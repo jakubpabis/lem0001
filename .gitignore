@@ -1,0 +1,17 @@
+/prototype/node_modules
+/build/node_modules
+/prototype/.sass-cache
+/.DS_Store
+**/.DS_Store
+/design
+/data
+/build/composer.lock
+/build/*
+/build/themes/sative/content
+/build/themes/sative/content/*
+/build/themes/sative/meta
+/build/themes/sative/meta/*
+!/.gitignore
+!/build/themes
+!/build/plugins/sative
+!/build/plugins/sative/*
