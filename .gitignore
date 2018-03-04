@@ -7,11 +7,13 @@
 /data
 /build/composer.lock
 /build/*
+
 /build/themes/sative/content
 /build/themes/sative/content/*
 /build/themes/sative/meta
 /build/themes/sative/meta/*
 !/.gitignore
 !/build/themes
+/build/themes/demo
 !/build/plugins/sative
 !/build/plugins/sative/*
