@@ -1,0 +1,111 @@
+.products {
+
+    &__container {
+        justify-content: space-between;
+    }
+
+    &__item {
+        flex-basis: 33.3333%;
+        max-width: 400px;
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        overflow: hidden;
+        @include trans(200ms);
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+
+            .products__item-btn {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            // .products__item-text {
+            //     transform: translateY(-10px);
+            // }
+
+            .products__item-photo {
+
+                img {
+                    transform: scale(1.1);
+                }
+
+            }
+
+        }
+
+        &-photo {
+            padding: 40px 30px;
+
+            img {
+                @include trans(200ms);
+            }
+
+        }
+
+        &-text {
+            //@include trans(200ms);
+
+            .title {
+                font-size: 20px;
+                letter-spacing: 0.5px;
+                font-weight: 600;
+                margin: 0 auto 10px;
+            }
+
+            hr {
+                height: 2px;
+                width: 40px;
+                background-color: $color-tertiary;
+            }
+
+            .price {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 0;
+
+                span {
+                    font-size: 24px;
+                }
+
+            }
+
+            .sub-price {
+                font-size: 14px;
+                font-weight: 500;
+                color:$color-tertiary;
+                margin-bottom: 30px;
+
+                span {
+                    font-size: 16px;
+                }
+
+            }
+
+        }
+
+        &-btn {
+            height: 64px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 62px;
+            background-color: $color-grey;
+            opacity: 0;
+            transform: translateY(64px);
+            @include trans(200ms);
+
+            i {
+                font-size: 17px;
+                margin-left: 15px;
+                color: $color-tertiary;
+            }
+
+        }
+
+    }
+
+}

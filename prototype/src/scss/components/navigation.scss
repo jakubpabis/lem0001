@@ -1,0 +1,113 @@
+.topbar {
+	padding: 30px 0;
+
+	> .container {
+		justify-content: space-between;
+	}
+
+	&__logo {
+
+	}
+
+	&__nav {
+
+		&-main {
+			align-self: center;
+
+			ul {
+				padding: 0;
+				margin: 6px 0 0 0;
+				display: flex;
+				flex-wrap: nowrap;
+
+				li {
+					font-size: 24px;
+					font-weight: 700;
+					line-height: 1;
+					color: $color-primary;
+					letter-spacing: 1.5px;
+					padding: 0;
+					position: relative;
+
+					a {
+						padding: 0 30px;
+					}
+
+					&:before {
+						content: '';
+						display: block;
+						position: absolute;
+						top: -8px;
+						left: 50%;
+						width: 0;
+						height: 3px;
+						opacity: 0;
+						background-color: $color-tertiary;
+						@include trans(200ms);
+					}
+
+					i {
+						vertical-align: 2px;
+						font-size: 19px;
+						margin-left: 10px;
+					}
+
+					&:hover {
+
+						&:before {
+							opacity: 1;
+							left: 30px;
+							width: calc(100% - 60px);
+						}
+
+					}
+
+				}
+
+			}
+
+		}
+
+		&-side {
+			align-self: center;
+
+			ul {
+				padding: 0;
+				margin: 20px -15px 0 0;
+				display: flex;
+				flex-wrap: nowrap;
+
+				li {
+					font-size: 18px;
+					font-weight: 500;
+					line-height: 1;
+					color: $color-primary;
+					padding: 0;
+					position: relative;
+					@include trans(200ms);
+
+					a {
+						padding: 0 15px;
+						display: block;
+
+						object,
+						svg {
+							margin-top: -10px;
+							margin-left: 10px;
+						}
+
+					}
+
+					&:hover {
+						opacity: 0.5;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+}

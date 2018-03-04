@@ -34,8 +34,8 @@ var src = {
     buildCss: './build/assets/css',
     buildImg: './build/assets/img',
     buildFonts: './build/assets/fonts',
-    portJs: '../build/themes/searchit/assets/js',
-    portCss: '../build/themes/searchit/assets/css'
+    portJs: '../build/themes/sative/assets/js',
+    portCss: '../build/themes/sative/assets/css'
 };
 
 var production = false;
