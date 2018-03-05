@@ -2,14 +2,16 @@
 
     &__container {
         justify-content: space-between;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     &__item {
         flex-basis: 33.3333%;
         max-width: 400px;
         text-align: center;
-        margin-top: 40px;
-        margin-bottom: 40px;
+        margin-top: 20px;
+        margin-bottom: 20px;
         overflow: hidden;
         @include trans(200ms);
         cursor: pointer;
