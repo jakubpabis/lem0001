@@ -2,10 +2,15 @@
 @import "base/font-awesome";
 @import "base/variables";
 @import "base/mixins";
+@import "base/buttons";
 @import "base/typography";
 @import "base/layout";
 
 // MODULES
+@import "components/owl.carousel.min.css";
+@import "components/owl.theme.default.min.css";
 @import "components/navigation";
 @import "components/product-list";
+@import "components/slider";
+@import "components/section";
 @import "components/footer";

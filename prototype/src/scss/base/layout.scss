@@ -89,20 +89,22 @@ section {
 #wrapper {
 	position: relative;
 	display: block;
+	margin: 0 auto;
+	max-width: 1920px;
 
-	@media(max-width: 800px) {
-		transition: all 250ms ease;
-		padding-top: 130px;
+	// @media(max-width: 800px) {
+	// 	transition: all 250ms ease;
+	// 	padding-top: 130px;
 
-		&.menu-active {
-			transform: translateX(270px);
-		}
+	// 	&.menu-active {
+	// 		transform: translateX(270px);
+	// 	}
 
-	}
+	// }
 
-	@media(max-width: 480px) {
-		padding-top: 121px;
-	}
+	// @media(max-width: 480px) {
+	// 	padding-top: 121px;
+	// }
 
 }
 
@@ -318,4 +320,22 @@ section {
 
 	}
 
+}
+
+.embed-container { 
+	position: relative; 
+	padding-bottom: 56.25%; 
+	height: 0; 
+	overflow: hidden; 
+	max-width: 100%; 
+} 
+
+.embed-container iframe, 
+.embed-container object, 
+.embed-container embed { 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	width: 100%; 
+	height: 100%; 
 }

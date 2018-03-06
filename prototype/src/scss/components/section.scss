@@ -1,0 +1,35 @@
+.section {
+
+    &__intro {
+        text-align: center;
+        display: block;
+        margin-bottom: 80px;
+
+        hr {
+            width: 64px;
+            height: 2px;
+            background-color: $color-tertiary;
+        }
+
+    }
+
+    &__title {
+        font-size: 72px;
+        font-weight: 400;
+        letter-spacing: 2px;
+        margin: 0;
+        margin-bottom: 20px;
+        line-height: 1.1;
+    }
+
+    &__text {
+        margin: 15px auto 0;
+        max-width: 660px;
+        line-height: 1.44;
+        font-size: 18px;
+        font-weight: 400;
+        font-family: $font-secondary;
+        color: $color-dark;
+    }
+
+}
