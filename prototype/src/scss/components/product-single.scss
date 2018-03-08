@@ -133,6 +133,26 @@
 
             }
 
+            .btn {
+                display: block;
+                margin: 30px 5px;
+
+                i {
+                    font-size: 30px;
+                    line-height: 21px;
+                    font-weight: 500;
+                    margin-left: 0;
+                    margin-right: 15px;
+                    vertical-align: -1px;
+                    font-style: normal;
+                }
+
+                span {
+                    vertical-align: 2px;
+                }
+
+            }
+
         }
 
         &-description {
