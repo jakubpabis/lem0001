@@ -1,0 +1,96 @@
+.cards {
+
+    &__container {
+        max-width: 1130px;
+        margin: 200px auto 100px;
+        display: block;
+        position: relative;
+        text-align: center;
+    }
+
+    &__item {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        margin-bottom: 40px;
+        background-color: $color-secondary;
+
+        &:nth-child(even) {
+
+            .image {
+                order: 100;
+            }
+
+            .text {
+                order: 0;
+            }
+
+        }
+
+        &:nth-child(odd) {
+
+            .image {
+                order: 0;
+            }
+
+            .text {
+                order: 100;
+            }
+
+        }
+
+        .image {
+            flex-basis: 60%;
+            overflow: hidden;
+
+            img {
+                object-fit: cover;
+                object-position: center center;
+                max-width: 200%;
+                max-height: 200%;
+                display: block;
+                min-height: 100%;
+                min-width: 100%;
+            }
+
+        }
+
+        .text {
+            flex-basis: 40%;
+            text-align: center;
+            padding: 80px 30px;
+
+            &__title {
+                font-size: 48px;
+                font-weight: 600;
+                letter-spacing: 1px;
+                margin-bottom: 15px;
+            }
+
+            hr {
+                width: 64px;
+                height: 2px;
+                background-color: $color-tertiary;
+            }
+
+            &__text {
+                font-size: 18px;
+                font-weight: 400;
+                font-family: $font-secondary;
+                line-height: 1.5;
+                margin-top: 15px;
+            }
+
+        }
+
+        .btn {
+            margin-bottom: 0;
+        }
+
+        &.big {
+
+        }
+
+    }
+
+}

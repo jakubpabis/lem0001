@@ -151,26 +151,52 @@ function initContactMap()
 	);
 }
 
-$(document).ready(function() {
+function configOpen()
+{
+	$('.product__single-info').find('.select').on('focusin', function(e) {
+		e.preventDefault();
+		$(this).find('ul').slideDown(200);
+	});
+
+	$('.product__single-info').find('.select').on('focusout', function() {
+		$(this).find('ul').slideUp(200);
+	});
+
+	$('.product__single-info').find('.select').find('li').on('click', function(e) {
+		e.preventDefault();
+		$(this).parent().slideUp(200).parent().find('span').text($(this).text());
+	});
+}
+
+function initOwlCarousel() 
+{
 	
-	$('.owl-carousel').owlCarousel({
+	var $owl = $('.owl-carousel');
+	$owl.owlCarousel({
 		loop: true,
 		margin: 0,
-		nav: true,
+		nav: false,
 		dots: true,
 		smartSpeed: 500,
-		navText: [
-			'<i class="fa fa-chevron-left"></i>',
-			'<i class="fa fa-chevron-right"></i>'
-		],
-		// video: true,
-		// videoHeight: 100,
 		responsive: {
 			0: {
 				items: 1
 			}
 		}
 	});
+
+	$('.owl-next').click(function() {
+		$owl.trigger('next.owl.carousel');
+	});
+	$('.owl-prev').click(function() {
+		$owl.trigger('prev.owl.carousel');
+	});
+}
+
+$(document).ready(function() {
+	
+	initOwlCarousel();
+	configOpen();
 
 });
 

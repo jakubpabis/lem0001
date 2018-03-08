@@ -1,6 +1,10 @@
 .products {
     text-align: center;
 
+    &__listing {
+        padding-top: 50px;
+    }
+
     &__container {
         justify-content: space-between;
         display: flex;
@@ -11,6 +15,7 @@
         flex-basis: 33.3333%;
         max-width: 400px;
         text-align: center;
+        position: relative;
         margin-top: 0;
         margin-bottom: 40px;
         overflow: hidden;
@@ -102,9 +107,89 @@
             @include trans(200ms);
 
             i {
-                font-size: 17px;
-                margin-left: 15px;
+                font-size: 18px;
+                vertical-align: -1px;
+                margin-left: 10px;
                 color: $color-tertiary;
+            }
+
+        }
+
+    }
+
+    &__pagination {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        margin: 50px auto 100px;
+
+        .prev,
+        .next {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            vertical-align: middle;
+
+            i {
+                font-size: 26px;
+                vertical-align: -4px;
+                margin: 0 5px;
+                @include trans(200ms);
+            }
+
+        }
+
+        .prev {
+            
+            &:hover {
+                
+                i {
+                    color: $color-tertiary;
+                    transform: translateX(-5px);
+                }
+
+            }
+
+        }
+
+        .next {
+            
+            &:hover {
+                
+                i {
+                    color: $color-tertiary;
+                    transform: translateX(5px);
+                }
+
+            }
+
+        }
+
+        ul {
+            margin: -4px 55px 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: nowrap;
+
+            li {
+
+                a {
+                    font-size: 24px;
+                    font-weight: 600;
+                    padding: 0 15px;
+                    @include trans(200ms);
+                }
+
+                &:hover,
+                &.active {
+
+                    a {
+                        color: $color-tertiary;
+                    }
+
+                }
+
             }
 
         }

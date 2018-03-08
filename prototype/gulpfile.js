@@ -24,18 +24,18 @@ var src = {
     sass: './sass',
     img: 'src/img',
     fonts: 'src/fonts',
+    video: 'src/video',
     html: 'build',
-    public: '../public',
-    publicJs: './public/assets/js',
-    publicCss: './public/assets/css',
-    publicImg: './public/assets/img',
-    publicFonts: './public/assets/fonts',
     buildJs: './build/assets/js',
     buildCss: './build/assets/css',
     buildImg: './build/assets/img',
     buildFonts: './build/assets/fonts',
+    buildVideo: './build/assets/video',
     portJs: '../build/themes/sative/assets/js',
-    portCss: '../build/themes/sative/assets/css'
+    portCss: '../build/themes/sative/assets/css',
+    portImg: '../build/themes/sative/assets/img',
+    portFonts: '../build/themes/sative/assets/fonts',
+    portVideo: '../build/themes/sative/assets/video',
 };
 
 var production = false;
@@ -66,9 +66,8 @@ var log = function (event) {
 gulp.task('build-sass', function() {
     return gulp.src([src.scss + '/prototype.scss', src.scss + '/prototype.sass'])
         .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-        .pipe(autoprefixer('last 10 versions'))
+        .pipe(autoprefixer('last 20 versions'))
         .pipe(plugins.minifyCss())
-        .pipe(gulp.dest(src.publicCss))
         .pipe(gulp.dest(src.buildCss))
         .pipe(gulp.dest(src.portCss))
 });
@@ -96,7 +95,6 @@ gulp.task('build-js', function () {
         .pipe(plugins.concat('app.js'))
         .pipe(plugins.uglify())
         .pipe(plugins.size())
-        .pipe(gulp.dest(src.publicJs))
         .pipe(gulp.dest(src.buildJs))
         .pipe(gulp.dest(src.portJs))
 });
@@ -113,7 +111,6 @@ gulp.task('sprite', function () {
     cssName: 'sprite.css'
   }));
   var imgStream = spriteData.img
-    .pipe(gulp.dest(src.publicImg))
     .pipe(gulp.dest(src.buildImg));
   var cssStream = spriteData.css
     .pipe(gulp.dest('src/scss/other/'));
@@ -122,23 +119,31 @@ gulp.task('sprite', function () {
 });
 
 /**
- * Task: Copy images to build and public folder
+ * Task: Copy images to build folder
  */
 gulp.task('build-img', function() {
     return gulp.src([src.img + '/*', src.img + '/**/*'])
-        .pipe(gulp.dest(src.publicImg))
         .pipe(gulp.dest(src.buildImg))
+        .pipe(gulp.dest(src.portImg))
+});
+
+/**
+ * Task: Copy videos to build folder
+ */
+gulp.task('build-video', function() {
+    return gulp.src([src.video + '/*', src.video + '/**/*'])
+        .pipe(gulp.dest(src.buildVideo))
+        .pipe(gulp.dest(src.portVideo))
 });
 
 
 /**
-* Task: Copy fonts to the build and public folder
-*/
-
+ * Task: Copy fonts to the build and public folder
+ */
 gulp.task('build-fonts', function() {
     return gulp.src([src.fonts + '/*', src.fonts + '/**/*'])
-        .pipe(gulp.dest(src.publicFonts))
         .pipe(gulp.dest(src.buildFonts))
+        .pipe(gulp.dest(src.portFonts))
 });
 
 
@@ -149,6 +154,16 @@ gulp.task('watch-js', function () {
     console.log(hint('\n --------- Watching JS Files ------------------------------------------->>> \n'));
     gulp
     .watch([src.root + '/*.js', src.js + '/**/*.js'], ['build-js'])
+    .once('change', log);
+});
+
+/**
+ * Task: Individually Watch IMG
+ */
+gulp.task('watch-img', function () {
+    console.log(hint('\n --------- Watching IMG Files ------------------------------------------->>> \n'));
+    gulp
+    .watch([src.img + '/*', src.img + '/**/*'], ['build-img'])
     .once('change', log);
 });
 
@@ -187,7 +202,7 @@ gulp.task('clean', function () {
  */
 gulp.task('build', function () {
     console.log(hint('\n --------- Build Development Mode  -------------------------------------->>> \n'));
-    runSequence('build-sass', 'build-js', 'build-html', 'build-img', 'build-fonts');
+    runSequence('build-sass', 'build-js', 'build-html', 'build-img', 'build-fonts', 'build-video');
 });
 
 /** 
@@ -198,4 +213,4 @@ gulp.task('default', ['build']);
 /**
  * Task: Watch all 
  */
-gulp.task('watch', ['watch-js', 'watch-sass', 'watch-html']);
+gulp.task('watch', ['watch-js', 'watch-sass', 'watch-html', 'watch-img']);

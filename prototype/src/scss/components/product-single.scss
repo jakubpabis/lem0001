@@ -1,0 +1,144 @@
+.product {
+
+    &__single {
+        margin-top: 50px;
+
+        &-container {
+            display: flex;
+            flex-wrap: nowrap;
+            position: relative;
+        }
+
+        &-slider {
+            flex-basis: 66.6666%;
+            max-width: 66.6666%;
+
+            .item {
+                padding: 50px 100px 30px;
+            }
+
+        }
+
+        &-info {
+            flex-basis: 33.3333%;
+            max-width: 33.3333%;
+            text-align: center;
+            padding-left: 30px;
+
+            .title {
+                font-size: 40px;
+                letter-spacing: 1px;
+                font-weight: 600;
+                margin: 0 auto 20px;
+            }
+
+            hr {
+                height: 3px;
+            }
+            
+            .price {
+                margin-top: 12px;
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 5px;
+
+                span {
+                    font-size: 24px;
+                }
+
+            }
+
+            .sub-price {
+                font-size: 14px;
+                font-weight: 500;
+                color:$color-tertiary;
+
+                span {
+                    font-size: 16px;
+                }
+
+            }
+
+            .config {
+                margin-top: 50px;
+
+                span {
+                    font-size: 16px;
+                    letter-spacing: 1px;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                    display: block;
+                }
+
+                &__selects {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    .select {
+                        flex-basis: calc(50% - 10px);
+                        max-width: calc(50% - 10px);
+                        font-size: 16px;
+                        font-weight: 600;
+                        padding: 12px 18px;
+                        background-color: $color-secondary;
+                        margin: 5px;
+                        border: none!important;
+                        outline: 0!important;
+                        letter-spacing: 1px;
+                        text-align: left;
+                        position: relative;
+                        cursor: pointer;
+
+                        span {
+                            font-size: 16px;
+                            margin: 0;
+                            line-height: 1;
+                        }
+
+                        i {
+                            position: absolute;
+                            top: 13px;
+                            right: 15px;
+                        }
+
+                        ul {
+                            display: none;
+                            position: absolute;
+                            padding: 0;
+                            left: 0;
+                            right: 0;
+                            z-index: 9999;
+                            top: 40px;
+                            background-color: white;
+                            border: 1px solid $color-secondary;
+                            border-top: none;
+
+                            li {
+                                font-weight: 400;
+                                font-size: 15px;
+                                letter-spacing: 0;
+                                padding: 10px 15px 10px 18px;
+
+                                &:hover {
+                                    background-color: $color-secondary;
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        &-description {
+
+        }
+
+    }
+
+}

@@ -13,6 +13,40 @@
 
 	}
 
+	&__big {
+		display: inline-block;
+		padding: 22px 50px;
+		border: 3px solid $color-primary;
+		margin-top: 50px;
+		margin-bottom: 50px;
+
+		span {
+			line-height: 1;
+			font-size: 24px;
+			font-weight: 700;
+			letter-spacing: 1.5px;
+			text-transform: uppercase;
+		}
+
+		i {
+			font-size: 22px;
+			line-height: 1;
+			vertical-align: -1px;
+			margin-left: 20px;
+			color: $color-tertiary;
+			@include trans(250ms);
+		}
+
+		&:hover {
+
+			i {
+				transform: translateX(7px);
+			}
+
+		}
+
+	}
+
 	&__normal {
 		display: inline-block;
 		padding: 16px 36px;
@@ -31,6 +65,7 @@
 		i {
 			font-size: 18px;
 			line-height: 1;
+			vertical-align: -1px;
 			margin-left: 15px;
 			color: $color-tertiary;
 			@include trans(250ms);
@@ -40,6 +75,58 @@
 
 			i {
 				transform: translateX(5px);
+			}
+
+		}
+
+	}
+
+	&__smaller {
+		display: inline-block;
+		padding: 14px 33px;
+		border: 3px solid $color-primary;
+		margin-top: 24px;
+		margin-bottom: 24px;
+
+		span {
+			line-height: 1;
+			font-size: 18px;
+			font-weight: 700;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+		}
+
+		i {
+			font-size: 17px;
+			line-height: 1;
+			vertical-align: -1px;
+			margin-left: 12px;
+			color: $color-tertiary;
+			@include trans(250ms);
+		}
+
+		&:hover {
+
+			i {
+				transform: translateX(5px);
+			}
+
+		}
+
+	}
+
+	&__full {
+		background-color: $color-primary;
+
+		span,
+		i {
+			color: white;
+		}
+
+		&:hover {
+
+			i {
+				color: $color-tertiary;
 			}
 
 		}
