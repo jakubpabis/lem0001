@@ -133,9 +133,10 @@
 
             }
 
-            .btn {
+            .add_to_cart {
                 display: block;
                 margin: 40px 5px;
+                @include trans(250ms);
 
                 i {
                     font-size: 30px;
@@ -149,14 +150,166 @@
 
                 span {
                     vertical-align: 2px;
+                    @include trans(250ms);
+                }
+
+                &:hover {
+                    background-color: $color-primary;
+
+                    span {
+                        color: white;
+                    }
+
                 }
 
             }
 
         }
 
-        &-description {
+        &-tabs {
+            margin-top: 50px;
+            margin-bottom: 100px;
 
+            .tabs {
+                
+                &__header {
+                    display: flex;
+                    flex-wrap: nowrap;
+                }
+
+                &__option {
+                    height: 67px;
+                    line-height: 64px;
+                    text-align: center;
+                    flex-basis: 25%;
+                    max-width: 25%;
+                    font-size: 21px;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                    @include trans(250ms);
+                    border-top: 3px solid transparent;
+                    opacity: 0.5;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $color-secondary;
+                        opacity: 0.6;
+                    }
+
+                    &.active {
+                        border-color: $color-tertiary;
+                        background-color: $color-secondary;
+                        opacity: 1;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+
+                    }
+
+                }
+
+                &__body {
+                    background-color: $color-secondary;
+                    padding: 60px 80px;
+                    font-family: $font-secondary;
+
+                    p {
+                        font-size: 18px;
+                        line-height: 1.66;
+                    }
+
+                }
+
+                &__content {
+                    display: none;
+
+                    &.active {
+                        display: block;
+                    }
+
+                }
+
+                &__footer {
+                    height: 72px;
+                    line-height: 72px;
+                    width: 100%;
+                    background-color: $color-grey;
+                    display: block;
+                    position: relative;
+                    padding: 0 80px;
+
+                    span {
+                        font-size: 21px;
+                        font-weight: 600;
+                        letter-spacing: 1px;
+                        margin-right: 20px;
+                    }
+
+                    a {
+                        display: inline-block;
+                        position: relative;
+                        margin: auto 8px;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 100%;
+                        text-align: center;
+                        line-height: 39px;
+                        @include trans(150ms);
+
+                        &.facebook {
+                            background-color: #3B5998;
+                        }
+
+                        &.twitter {
+                            background-color: #55ACEE;
+                        }
+
+                        &.linkedin {
+                            background-color: #007AB9;
+                        }
+
+                        &.google-plus {
+                            background-color: #DC4E41;
+                        }
+
+                        &.pinterest {
+                            background-color: #CB2027;
+                        }
+                        
+                        &.whatsapp {
+                            background-color: #25D366;
+                        }
+
+                        i {
+                            font-size: 21px;
+                            color: white;
+                        }
+
+                        &:hover {
+                            transform: scale(1.15);
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    &__related {
+        margin-top: 120px;
+        margin-bottom: 60px;
+        text-align: center;
+
+        &-title {
+            font-size: 48px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 70px;
         }
 
     }

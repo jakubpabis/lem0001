@@ -168,6 +168,52 @@ function configOpen()
 	});
 }
 
+function tabsSwitching()
+{
+	$('.tabs__option').on('click', function() {
+		var $this = $(this);
+		var $tabActive = $('.tabs__option.active');
+		var $bodyActive = $('.tabs__content.active');
+		var $target = $('.tabs__content[data-tab='+$this.data("tab")+']');
+
+		if(!$this.hasClass('active')) {
+
+			$tabActive.removeClass('active');
+			$bodyActive.removeClass('active');
+			$this.addClass('active');
+			$target.addClass('active');
+
+		}
+
+	});
+}
+
+function cartToggle()
+{
+	$('#cartOpenBTN').on('click', function() {
+		$('#wrapper').addClass('before-before-cart-open');
+		setTimeout(function() {
+			$('#wrapper').addClass('before-cart-open');
+		}, 10);
+		setTimeout(function() {
+			$('#wrapper').addClass('cart-open');
+		}, 20);
+	});
+
+	$('.cart__close, #wrapper__overlay').on('click', function() {
+		
+		if($('#wrapper').hasClass('cart-open')) {
+			$('#wrapper').removeClass('cart-open');
+			setTimeout(function() {
+				$('#wrapper').removeClass('before-cart-open');
+				$('#wrapper').removeClass('before-before-cart-open');
+			}, 250);
+		}
+
+	});
+
+}
+
 function initOwlCarousel() 
 {
 	
@@ -197,6 +243,8 @@ $(document).ready(function() {
 	
 	initOwlCarousel();
 	configOpen();
+	tabsSwitching();
+	cartToggle();
 
 });
 

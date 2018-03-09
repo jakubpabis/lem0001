@@ -94,6 +94,45 @@ section {
 	display: block;
 	margin: 0 auto;
 	max-width: 1920px;
+	@include trans(250ms);
+
+	&__overlay {
+		display: none;
+		position: absolute;
+		top: -100px;
+		right: 0;
+		bottom: -100px;
+		left: -100px;
+		background-color: black;
+		opacity: 0;
+		z-index: 9;
+	}
+
+	&.before-before-cart-open {
+
+		#wrapper__overlay {
+			display: block;
+		}
+
+	}
+
+	&.before-cart-open {
+
+		#wrapper__overlay {
+			@include trans(250ms);
+		}
+
+	}
+
+	&.cart-open {
+		transform: translateX(-480px);
+
+		#wrapper__overlay {
+			opacity: 0.7;
+			cursor: url('../img/cancel.svg'), e-resize;
+		}
+
+	}
 
 	// @media(max-width: 800px) {
 	// 	transition: all 250ms ease;
