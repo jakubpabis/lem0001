@@ -1,0 +1,12 @@
+description = "Default CMS template"
+
+[staticMenu mainMenu]
+code = "main-menu"
+
+[localePicker]
+forceUrl = 1
+==
+
+{% partial 'head' %}
+    {% page %}
+{% partial 'footer' %}

@@ -1,11 +1,29 @@
 .topbar {
 	padding: 30px 0;
 
+	@media(max-width: 1280px) {
+		padding: 24px 0;
+	}
+
+	@media(max-width: 960px) {
+		padding: 20px 0 16px;
+	}
+
 	> .container {
 		justify-content: space-between;
+		align-items: center;
 	}
 
 	&__logo {
+
+		@media(max-width: 1280px) {
+			width: 190px;
+		}
+
+		@media(max-width: 960px) {
+			margin-top: -6px;
+			width: 180px;
+		}
 
 	}
 
@@ -14,11 +32,19 @@
 		&-main {
 			align-self: center;
 
+			@media(max-width: 960px) {
+				display: none;
+			}
+
 			ul {
 				padding: 0;
 				margin: 6px 0 0 0;
 				display: flex;
 				flex-wrap: nowrap;
+
+				@media(max-width: 1280px) {
+					margin: 8px 0 0 0;
+				}
 
 				li {
 					font-size: 24px;
@@ -29,8 +55,18 @@
 					padding: 0;
 					position: relative;
 
+					@media(max-width: 1280px) {
+						font-size: 21px;
+						letter-spacing: 1px;
+					}
+
 					a {
 						padding: 0 30px;
+
+						@media(max-width: 1280px) {
+							padding: 0 20px;
+						}
+
 					}
 
 					&:before {
@@ -50,6 +86,11 @@
 						vertical-align: -2px;
 						font-size: 19px;
 						margin-left: 7px;
+
+						@media(max-width: 1280px) {
+							font-size: 17px;
+						}	
+
 					}
 
 					&:hover,
@@ -59,6 +100,12 @@
 							opacity: 1;
 							left: 30px;
 							width: calc(100% - 60px);
+
+							@media(max-width: 1280px) {
+								left: 20px;
+								width: calc(100% - 40px);
+							}
+
 						}
 
 					}
@@ -72,11 +119,19 @@
 		&-side {
 			align-self: center;
 
+			@media(max-width: 960px) {
+				display: none;
+			}
+
 			ul {
 				padding: 0;
 				margin: 20px -15px 0 0;
 				display: flex;
 				flex-wrap: nowrap;
+
+				@media(max-width: 1280px) {
+					margin: 15px -10px 0 0;
+				}
 
 				li {
 					font-size: 18px;
@@ -87,14 +142,27 @@
 					position: relative;
 					@include trans(200ms);
 
+					@media(max-width: 1280px) {
+						font-size: 16px;
+					}
+
 					a {
 						padding: 0 15px;
 						display: block;
+
+						@media(max-width: 1280px) {
+							padding: 0 10px;
+						}
 
 						object,
 						svg {
 							margin-top: -10px;
 							margin-left: 10px;
+
+							@media(max-width: 1280px) {
+								width: 30px;
+							}
+
 						}
 
 					}
@@ -109,12 +177,86 @@
 
 		}
 
+		&-mobile {
+			display: none;
+			position: fixed;
+			width: 280px;
+			top: 0;
+			left: -280px;
+			bottom: -100px;
+			padding-bottom: 100px;
+			background-color: white;
+			z-index: 999999999999999999999999999;
+
+			@media(max-width: 960px) {
+				display: block;
+			}
+
+			&__close {
+				position: absolute;
+				font-size: 48px;
+				color: grey;
+				line-height: 1;
+				font-weight: 100;
+				transform: rotate(45deg);
+				top: -5px;
+				right: 10px;
+				cursor: pointer;
+				user-select: none;
+				
+				&:hover {
+					color: $color-tertiary;
+				}
+			
+			}
+
+			ul {
+				padding: 0;
+				margin: 50px auto;
+
+				li {
+					font-size: 21px;
+					font-weight: 600;
+					line-height: 1;
+					color: $color-primary;
+					letter-spacing: 1px;
+					padding: 0;
+					position: relative;
+					display: block;
+					text-align: center;
+
+					a {
+						padding: 15px;
+						display: block;
+					}
+
+					i {
+						vertical-align: -2px;
+						font-size: 19px;
+						margin-left: 7px;
+					}
+
+					&:hover,
+					&.active {
+						color: $color-tertiary;
+					}
+
+				}
+
+			}
+
+		}
+
 	}
 
 	&__subnav {
 		margin-top: 30px;
 		background-color: $color-secondary;
 		text-align: center;
+
+		@media(max-width: 1280px) {
+			margin-top: 24px;
+		}
 
 		ul {
 			padding: 0;
@@ -133,6 +275,13 @@
 					letter-spacing: 1px;
 					display: block;
 					@include trans(250ms);
+
+					@media(max-width: 1280px) {
+						line-height: 56px;
+						padding: 0 20px;
+						font-size: 17px;
+					}
+
 				}
 
 				&:hover,
@@ -188,6 +337,13 @@
 					letter-spacing: 1px;
 					display: block;
 					@include trans(250ms);
+
+					@media(max-width: 1280px) {
+						line-height: 48px;
+						padding: 0 15px;
+						font-size: 15px;
+					}
+
 				}
 
 				&:hover,
@@ -201,6 +357,16 @@
 
 			}
 
+		}
+
+	}
+
+	.cart-btn-mobile,
+	.menu-btn-mobile {
+		display: none;
+
+		@media(max-width: 960px) {
+			display: block;
 		}
 
 	}
