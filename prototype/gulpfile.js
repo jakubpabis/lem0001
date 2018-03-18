@@ -31,11 +31,11 @@ var src = {
     buildImg: './build/assets/img',
     buildFonts: './build/assets/fonts',
     buildVideo: './build/assets/video',
-    portJs: '../build/themes/sative/assets/js',
-    portCss: '../build/themes/sative/assets/css',
-    portImg: '../build/themes/sative/assets/img',
-    portFonts: '../build/themes/sative/assets/fonts',
-    portVideo: '../build/themes/sative/assets/video',
+    portJs: '../build/wp-content/themes/lemasomo/assets/js',
+    portCss: '../build/wp-content/themes/lemasomo/assets/css',
+    portImg: '../build/wp-content/themes/lemasomo/assets/img',
+    portFonts: '../build/wp-content/themes/lemasomo/assets/fonts',
+    portVideo: '../build/wp-content/themes/lemasomo/assets/video',
 };
 
 var production = false;
