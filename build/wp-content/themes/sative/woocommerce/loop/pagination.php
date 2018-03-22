@@ -26,7 +26,7 @@ if ( $wp_query->max_num_pages <= 1 ) {
 	return;
 }
 ?>
-<div class="product-listing__pagination">
+<nav class="products__pagination">
 	<?php
 		echo paginate_links( apply_filters( 'woocommerce_pagination_args', array(
 			'base'         => esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) ),
@@ -34,11 +34,11 @@ if ( $wp_query->max_num_pages <= 1 ) {
 			'add_args'     => false,
 			'current'      => max( 1, get_query_var( 'paged' ) ),
 			'total'        => $wp_query->max_num_pages,
-			'prev_text'    => '<i class="material-icons">chevron_left</i><span>Prev</span>',
-			'next_text'    => '<span>Next</span><i class="material-icons">chevron_right</i>',
+			'prev_text'    => '<i class="icon-chevron_left_bold"></i>'.__('Prev'),
+			'next_text'    => __('Next').'<i class="icon-chevron_right_bold"></i>',
 			'type'         => 'list',
 			'end_size'     => 3,
 			'mid_size'     => 3,
 		) ) );
 	?>
-</div>
+</nav>

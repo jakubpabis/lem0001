@@ -21,23 +21,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); ?>
-<div class="container">
+<main class="product__single">
 
-	<?php
-		/**
-		 * woocommerce_before_single_product hook.
-		 *
-		 * @hooked wc_print_notices - 10
-		 */
-		do_action( 'woocommerce_before_single_product' );
+		<?php
+			/**
+			 * woocommerce_before_single_product hook.
+			 *
+			 * @hooked wc_print_notices - 10
+			 */
+			do_action( 'woocommerce_before_single_product' );
 
-		if ( post_password_required() ) {
-			echo get_the_password_form();
-			return;
-		}
-	?>
-	
-    <section class="product-detail">
+			if ( post_password_required() ) {
+				echo get_the_password_form();
+				return;
+			}
+		?>
 
 		<?php
 			/**
@@ -46,14 +44,14 @@ get_header(); ?>
 			 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
 			 * @hooked woocommerce_breadcrumb - 20
 			 */
-			// do_action( 'woocommerce_before_main_content' );
+			//do_action( 'woocommerce_before_main_content' );
 		?>
 
-			<?php while ( have_posts() ) : the_post(); ?>
+		<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php wc_get_template_part( 'content', 'single-product' ); ?>
+			<?php wc_get_template_part( 'content', 'single-product' ); ?>
 
-			<?php endwhile; // end of the loop. ?>
+		<?php endwhile; // end of the loop. ?>
 
 		<?php
 			/**
@@ -61,7 +59,7 @@ get_header(); ?>
 			 *
 			 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
 			 */
-			// do_action( 'woocommerce_after_main_content' );
+			//do_action( 'woocommerce_after_main_content' );
 		?>
 
 		<?php
@@ -70,11 +68,10 @@ get_header(); ?>
 			 *
 			 * @hooked woocommerce_get_sidebar - 10
 			 */
-			// do_action( 'woocommerce_sidebar' );
+			//do_action( 'woocommerce_sidebar' );
 		?>
 
-	</section>
-</div>
+</main>
 
 <?php get_footer();
 

@@ -13,7 +13,7 @@
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 3.0.0
+ * @version 3.3.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -32,16 +32,20 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
 	<?php //do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
-	<div class="products__item-photo">
-		<img src="<?= get_template_directory_uri(); ?>/assets/img/dogmaf10_resize.jpg" alt="" width="300">
-	</div>
+	<?php if ( has_post_thumbnail() ) : ?>
+		<div class="products__item-photo">
+			<?= get_the_post_thumbnail( $post->ID, 'medium'); ?>
+		</div>
+	<?php endif; ?>
 
 	<div class="products__item-text">
 		
-		<?php the_title( '<h3 class="title">', '</h3>' ); ?>
-		
-		<hr>
-		
+		<?php 
+		/**
+		 * Display product title
+		 */
+		do_action( 'sative_product_title', 'h3' ); ?>
+
 		<?php  
 		/**
 		 *  Display price
@@ -51,7 +55,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	</div>
 
 	<div class="products__item-btn">
-		View product
+		<?= __('View product') ?>
 		<i class="icon-chevron_right_bold"></i>
 	</div>
 	<?php 

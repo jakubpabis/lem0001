@@ -10,14 +10,13 @@
 function sative_setup() {
 
 	load_theme_textdomain( 'sative' );
-	add_theme_support( 'title-tag' );
 
+	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
-		'shop'    => __( 'Shop Menu', 'sative' ),
-		'social' => __( 'Social Links Menu', 'sative' ),
+		'side'    => __( 'Side Menu', 'sative' ),
 		'menu'    => __( 'Main Menu', 'sative' ),
 	) );
 
@@ -91,28 +90,9 @@ function sative_widgets_init() {
 }
 add_action( 'widgets_init', 'sative_widgets_init' );
 
-/**
- * Replaces "[...]" (appended to automatically generated excerpts) with ... and
- * a 'Continue reading' link.
- *
- * @since Twenty Seventeen 1.0
- *
- * @param string $link Link to single post/page.
- * @return string 'Continue reading' link prepended with an ellipsis.
- */
-// function atg_excerpt_more( $link ) {
-// 	if ( is_admin() ) {
-// 		return $link;
-// 	}
+/* Disable WordPress Admin Bar for all users but admins. */
+show_admin_bar(false);
 
-// 	$link = sprintf( '<p class="link-more"><a href="%1$s" class="more-link">%2$s</a></p>',
-// 		esc_url( get_permalink( get_the_ID() ) ),
-// 		/* translators: %s: Name of current post */
-// 		sprintf( __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'atg' ), get_the_title( get_the_ID() ) )
-// 	);
-// 	return ' &hellip; ' . $link;
-// }
-// add_filter( 'excerpt_more', 'atg_excerpt_more' );
 
 /**
  * Use front-page.php when Front page displays is set to a static page.
@@ -128,30 +108,53 @@ function sative_front_page_template( $template ) {
 }
 add_filter( 'frontpage_template',  'sative_front_page_template' );
 
-
-
+/**
+ * 
+ * Add WooCommerce support
+ * 
+ */
 add_action( 'after_setup_theme', 'woocommerce_support' );
 function woocommerce_support() {
     add_theme_support( 'woocommerce' );
 }
 
-
-// Remove each style one by one
-add_filter( 'woocommerce_enqueue_styles', 'sative_dequeue_styles' );
-function sative_dequeue_styles( $enqueue_styles ) {
-	unset( $enqueue_styles['woocommerce-general'] );	// Remove the gloss
-	unset( $enqueue_styles['woocommerce-layout'] );		// Remove the layout
-	unset( $enqueue_styles['woocommerce-smallscreen'] );	// Remove the smallscreen optimisation
-	return $enqueue_styles;
-}
-
-// Or just remove them all in one line
+// Remove all WooCommerce styles and scripts
 add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
-// function wc_format_sale_price( $regular_price, $sale_price ) {
-// 	$price = ( is_numeric( $sale_price ) ? wc_price( $sale_price ) : $sale_price );
-// 	return apply_filters( 'woocommerce_format_sale_price', $price, $regular_price, $sale_price );
+
+
+
+
+
+
+/**
+ * 
+ * 
+ * uncomment this on production
+ * 
+ */
+
+// function pm_remove_all_scripts() {
+//     global $wp_scripts;
+//     $wp_scripts->queue = array();
 // }
+// add_action('wp_print_scripts', 'pm_remove_all_scripts', 100);
+// function pm_remove_all_styles() {
+//     global $wp_styles;
+//     $wp_styles->queue = array();
+// }
+// add_action('wp_print_styles', 'pm_remove_all_styles', 100);
+
+/**
+ * 
+ * 
+ * uncomment this on production
+ * 
+ */
+
+
+
+
 
 // function my_search_form($html)
 // {
@@ -174,27 +177,96 @@ add_filter( 'wp_get_attachment_image_attributes', function( $attr )
 
     return $attr;
 
- }, PHP_INT_MAX );
-
+}, PHP_INT_MAX );
 // Override the calculated image sizes
 add_filter( 'wp_calculate_image_sizes', '__return_empty_array',  PHP_INT_MAX );
-
 // Override the calculated image sources
 add_filter( 'wp_calculate_image_srcset', '__return_empty_array', PHP_INT_MAX );
-
 // Remove the reponsive stuff from the content
 remove_filter( 'the_content', 'wp_make_content_images_responsive' );
 
+/**
+ * 
+ * Add Brand taxonomy to WooCommerce products
+ * 
+ */
+function brand_taxonomy()  {
 
+	$labels = array(
+		'name'                       => __('Brands'),
+		'singular_name'              => __('Brand'),
+		'menu_name'                  => __('Brands'),
+		'all_items'                  => __('All brands'),
+		'parent_item'                => __('Parent brand'),
+		'parent_item_colon'          => __('Parent item'),
+		'new_item_name'              => __('New brand'),
+		'add_new_item'               => __('Add new brand'),
+		'edit_item'                  => __('Edit item'),
+		'update_item'                => __('Update item'),
+		'separate_items_with_commas' => __('Separate Brand with commas'),
+		'search_items'               => __('Search Brands'),
+		'add_or_remove_items'        => __('Add or remove Brands'),
+		'choose_from_most_used'      => __('Choose from the most used Brands'),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'brand', 'product', $args );
+	
+}
+add_action( 'init', 'brand_taxonomy', 0 );
 
+/**
+ * Insert the  anchor tag for products in the loop.
+ */
 if ( ! function_exists( 'sative_add_product_link' ) ) {
-	/**
-	 * Insert the opening anchor tag for products in the loop.
-	 */
 	function sative_add_product_link() {
 		global $product;
 		$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
-		echo '<a href="' . esc_url( $link ) . '" class="whole-element-link"></a>';
+		echo '<a href="' . esc_url( $link ) . '" class="whole-element-link" titie="' . __("View product").' '. get_the_title() .'"></a>';
 	}
 }
 add_action( 'sative_product_link', 'sative_add_product_link', 10 );
+
+/**
+ * Insert the title for products in the loop.
+ */
+if ( ! function_exists( 'sative_add_product_title' ) ) {
+	function sative_add_product_title($tag) {
+		global $product;
+		global $post;
+		$terms = get_the_terms( $post->ID , 'brand' ); 
+		echo '<'.$tag.' class="title">';
+		if($terms) {
+			echo $terms[0]->name.'&nbsp;';
+		}
+		echo get_the_title();
+		echo '</'.$tag.'>';
+		echo '<hr/>';
+
+	}
+}
+add_action( 'sative_product_title', 'sative_add_product_title', 10 );
+
+/**
+ * Output the related products.
+ */
+if ( ! function_exists( 'woocommerce_output_related_products' ) ) {
+	function woocommerce_output_related_products() {
+
+		$args = array(
+			'posts_per_page' => 3,
+			'columns'        => 3,
+			'orderby'        => 'rand', // @codingStandardsIgnoreLine.
+		);
+
+		woocommerce_related_products( apply_filters( 'woocommerce_output_related_products_args', $args ) );
+	}
+}
+

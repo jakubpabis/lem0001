@@ -30,19 +30,52 @@ $tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 if ( ! empty( $tabs ) ) : ?>
 
-	<div class="woocommerce-tabs wc-tabs-wrapper">
-		<ul class="tabs wc-tabs" role="tablist">
+<section class="container container-sml">
+
+	<div class="product__single-tabs">
+		<div class="tabs__header">
+			<?php $i = 0; ?>
 			<?php foreach ( $tabs as $key => $tab ) : ?>
-				<li class="<?php echo esc_attr( $key ); ?>_tab" id="tab-title-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
-					<a href="#tab-<?php echo esc_attr( $key ); ?>"><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?></a>
-				</li>
+				<div class="tabs__option <?= $i == 0 ? 'active' : null ?>" data-tab="tab-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
+					<?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?>
+				</div>
+				<?php $i++; ?>
 			<?php endforeach; ?>
-		</ul>
-		<?php foreach ( $tabs as $key => $tab ) : ?>
-			<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
-				<?php call_user_func( $tab['callback'], $key, $tab ); ?>
-			</div>
-		<?php endforeach; ?>
+		</div>
+		<div class="tabs__body">
+			<?php $j = 0; ?>
+			<?php foreach ( $tabs as $key => $tab ) : ?>
+				<div class="tabs__content <?= $j == 0 ? 'active' : null ?>" data-tab="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
+					<?php call_user_func( $tab['callback'], $key, $tab ); ?>
+				</div>
+				<?php $j++; ?>
+			<?php endforeach; ?>
+		</div>
+		<div class="tabs__footer">
+			<span>
+				<?= __('Share it!'); ?>
+			</span>
+			<a href="" target="_blank" class="facebook">
+				<i class="fa fa-facebook"></i>
+			</a>
+			<a href="" target="_blank" class="twitter">
+				<i class="fa fa-twitter"></i>
+			</a>
+			<a href="" target="_blank" class="linkedin">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			<a href="" target="_blank" class="google-plus">
+				<i class="fa fa-google-plus"></i>
+			</a>
+			<a href="" target="_blank" class="pinterest">
+				<i class="fa fa-pinterest-p"></i>
+			</a>
+			<a href="" target="_blank" class="whatsapp">
+				<i class="fa fa-whatsapp"></i>
+			</a>
+		</div>
 	</div>
+
+</section>
 
 <?php endif; ?>

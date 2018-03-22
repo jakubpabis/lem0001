@@ -19,12 +19,14 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
- /*
+
 if ( $related_products ) : ?>
 
-	<section class="related products">
+	<aside class="container product__related">
 
-		<h2><?php esc_html_e( 'Related products', 'woocommerce' ); ?></h2>
+		<div class="product__related-title">
+			<?php esc_html_e( 'You may also enjoy these…', 'woocommerce' ); ?>
+        </div>
 
 		<?php woocommerce_product_loop_start(); ?>
 
@@ -41,9 +43,8 @@ if ( $related_products ) : ?>
 
 		<?php woocommerce_product_loop_end(); ?>
 
-	</section>
+	</aside>
 
 <?php endif;
 
 wp_reset_postdata();
-*/

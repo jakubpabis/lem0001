@@ -135,6 +135,8 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             vertical-align: middle;
+            display: block;
+            margin-top: 4px;
 
             i {
                 font-size: 26px;
@@ -146,6 +148,7 @@
         }
 
         .prev {
+            margin-right: 30px;
             
             &:hover {
                 
@@ -159,6 +162,7 @@
         }
 
         .next {
+            margin-left: 30px;
             
             &:hover {
                 
@@ -172,18 +176,23 @@
         }
 
         ul {
-            margin: -4px 55px 0;
+            margin: -4px auto 0;
             padding: 0;
             display: flex;
             flex-wrap: nowrap;
 
             li {
 
-                a {
+                a,
+                span {
                     font-size: 24px;
                     font-weight: 600;
                     padding: 0 15px;
                     @include trans(200ms);
+                }
+
+                span {
+                    color: $color-tertiary;
                 }
 
                 &:hover,

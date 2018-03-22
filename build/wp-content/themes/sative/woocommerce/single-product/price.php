@@ -23,5 +23,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 ?>
-<?php the_title( '<h1>', '</h1>' ); ?>
 <p class="price"><?php echo $product->get_price_html(); ?></p>

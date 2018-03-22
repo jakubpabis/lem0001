@@ -35,67 +35,27 @@ $attachment_ids = $product->get_gallery_image_ids();
 // ) );
 ?>
 
-<div class="product-detail__image">
-	<div class="main">
-		<div id="product-carousel">
+<div class="product__single-slider slider__container">
+	<div class="owl-carousel owl-theme">
 		<?php if ( has_post_thumbnail() ) : ?>
-				<picture>
-					<source srcset="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-big'); ?>" media="(min-width: 740px)" type="image/jpeg">
-					<source srcset="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-medium'); ?>" media="(min-width: 640px)" type="image/jpeg">
-					<source srcset="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-big'); ?>" media="(min-width: 400px)" type="image/jpeg">
-					<source srcset="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-medium'); ?>" media="(min-width: 1px)" type="image/jpeg">
-					<img src="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-big'); ?>" alt="">
-				</picture>
-			<?php endif; ?>
-			<?php if ( $attachment_ids && has_post_thumbnail() ) :
-				foreach ( $attachment_ids as $attachment_id ) : ?>
-					<picture>
-						<source srcset="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-big'); ?>" media="(min-width: 740px)" type="image/jpeg">
-						<source srcset="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-medium'); ?>" media="(min-width: 640px)" type="image/jpeg">
-						<source srcset="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-big'); ?>" media="(min-width: 400px)" type="image/jpeg">
-						<source srcset="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-medium'); ?>" media="(min-width: 1px)" type="image/jpeg">
-						<img src="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-big'); ?>" alt="">
-					</picture>
-					<?php endforeach;
-			endif; ?>
-		</div>
-		<?php if ( $attachment_ids && has_post_thumbnail() ) : ?>
-			<div id="siema-prev">
-				<i class="material-icons">chevron_left</i>
-			</div>
-			<div id="siema-next">
-				<i class="material-icons">chevron_right</i>
-			</div>
-		<?php endif; ?>
-	</div>
-	<div class="thumbnails">
-		<?php if ( $attachment_ids && has_post_thumbnail() ) : ?>
-			<div class="thumb">
-				<?php if ( has_post_thumbnail() ) : ?>
-					<picture>
-						<source srcset="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-xsmall'); ?>" media="(min-width: 767px)" type="image/jpeg">
-						<source srcset="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-xxsmall'); ?>" media="(min-width: 640px)" type="image/jpeg">
-						<source srcset="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-xsmall'); ?>" media="(min-width: 450px)" type="image/jpeg">
-						<source srcset="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-xxsmall'); ?>" media="(min-width: 1px)" type="image/jpeg">
-						<img src="<?= get_the_post_thumbnail_url( $post->ID, 'atg-product-xsmall'); ?>" alt="">
-					</picture>
-				<?php else :
-					$html = sprintf( '<img src="%s" alt="%s"/>', esc_url( wc_placeholder_img_src() ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
-				endif; ?>
+			<div class="item">
+				<?= get_the_post_thumbnail( $post->ID, 'large'); ?>
 			</div>
 		<?php endif; ?>
 		<?php if ( $attachment_ids && has_post_thumbnail() ) :
 			foreach ( $attachment_ids as $attachment_id ) : ?>
-				<div class="thumb">
-					<picture>
-						<source srcset="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-xsmall'); ?>" media="(min-width: 767px)" type="image/jpeg">
-						<source srcset="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-xxsmall'); ?>" media="(min-width: 640px)" type="image/jpeg">
-						<source srcset="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-xsmall'); ?>" media="(min-width: 450px)" type="image/jpeg">
-						<source srcset="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-xxsmall'); ?>" media="(min-width: 1px)" type="image/jpeg">
-						<img src="<?= wp_get_attachment_image_url( $attachment_id, 'atg-product-xsmall'); ?>" alt="">
-					</picture>
+				<div class="item">
+					<?= wp_get_attachment_image( $attachment_id, 'large'); ?>
 				</div>
 			<?php endforeach;
 		endif; ?>
 	</div>
+	<?php if ( $attachment_ids && has_post_thumbnail() ) : ?>
+		<div class="owl-prev">
+			<i class="icon-chevron_left"></i>
+		</div>
+		<div class="owl-next">
+			<i class="icon-chevron_right"></i>
+		</div>
+	<?php endif; ?>
 </div>
