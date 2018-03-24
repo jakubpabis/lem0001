@@ -1,13 +1,14 @@
 <?php 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
-?>
-<?php 
+
+	if ( ! defined( 'ABSPATH' ) ) {
+		exit; // Exit if accessed directly
+	}
+
 	global $wp;
 	$main_menu = wp_get_nav_menu_items('main-menu');
 	$side_menu = wp_get_nav_menu_items('side-menu'); 
 	$current_url = home_url(add_query_arg(array(),$wp->request)).'/';
+	
 ?>
 
 <header class="topbar">
