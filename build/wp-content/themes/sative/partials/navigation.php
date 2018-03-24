@@ -3,18 +3,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 ?>
+<?php 
+	global $wp;
+	$main_menu = wp_get_nav_menu_items('main-menu');
+	$side_menu = wp_get_nav_menu_items('side-menu'); 
+	$current_url = home_url(add_query_arg(array(),$wp->request)).'/';
+?>
 
 <header class="topbar">
 	<div class="container flex-cont">
 		<nav class="topbar__nav-mobile">
+
 			<div class="topbar__nav-mobile__close">
 				+
 			</div>
-			<?php $main_menu = wp_get_nav_menu_items('main-menu'); ?>
+			
 			<ul>
 				<?php foreach($main_menu as $item) : ?>
 				
-					<li>
+					<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>">
 							<?= $item->title; ?>
 							<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
@@ -23,11 +30,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<?php endforeach; ?>
 			</ul>
-			<?php $side_menu = wp_get_nav_menu_items('side-menu'); ?>
+
 			<ul>
 				<?php foreach($side_menu as $item) : ?>
 				
-					<li>
+					<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<?php if($item->url) : ?>
 							<a href="<?= $item->url; ?>">
 								<?= $item->title; ?>
@@ -49,11 +56,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</object>
 		</a>
 		<nav class="topbar__nav-main">
-			<?php $main_menu = wp_get_nav_menu_items('main-menu'); ?>
 			<ul>
 				<?php foreach($main_menu as $item) : ?>
-				
-					<li>
+					<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>">
 							<?= $item->title; ?>
 							<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
@@ -64,7 +69,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</ul>
 		</nav>
 		<nav class="topbar__nav-side">
-			<?php $side_menu = wp_get_nav_menu_items('side-menu'); ?>
 			<ul>
 				<?php foreach($side_menu as $item) : ?>
 				
