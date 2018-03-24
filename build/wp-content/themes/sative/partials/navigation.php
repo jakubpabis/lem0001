@@ -20,7 +20,7 @@
 			</div>
 			
 			<ul>
-				<?php foreach($main_menu as $item) : ?>
+				<?php if ($main_menu) foreach($main_menu as $item) : ?>
 				
 					<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>">
@@ -33,7 +33,7 @@
 			</ul>
 
 			<ul>
-				<?php foreach($side_menu as $item) : ?>
+				<?php if ($side_menu) foreach($side_menu as $item) : ?>
 				
 					<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<?php if($item->url) : ?>
@@ -58,7 +58,7 @@
 		</a>
 		<nav class="topbar__nav-main">
 			<ul>
-				<?php foreach($main_menu as $item) : ?>
+				<?php if ($main_menu) foreach($main_menu as $item) : ?>
 					<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>">
 							<?= $item->title; ?>
@@ -71,7 +71,7 @@
 		</nav>
 		<nav class="topbar__nav-side">
 			<ul>
-				<?php foreach($side_menu as $item) : ?>
+				<?php if ($side_menu) foreach($side_menu as $item) : ?>
 				
 					<li>
 						<?php if($item->url) : ?>
