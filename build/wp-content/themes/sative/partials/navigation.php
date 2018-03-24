@@ -10,40 +10,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="topbar__nav-mobile__close">
 				+
 			</div>
+			<?php $main_menu = wp_get_nav_menu_items('main-menu'); ?>
 			<ul>
-				<li>
-					<a href="shop.html">
-						Shop
-					</a>
-				</li>
-				<li>
-					<a href="brands.html">
-						Our brands
-					</a>
-				</li>
-				<li>
-					<a href="about.html">
-						About us
-					</a>
-				</li>
-				<li>
-					<a href="javascript:void(0)">
-						More
-						<i class="icon-chevron_down_bold"></i>
-					</a>
-				</li>
+				<?php foreach($main_menu as $item) : ?>
+				
+					<li>
+						<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>">
+							<?= $item->title; ?>
+							<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
+						</a>
+					</li>
+
+				<?php endforeach; ?>
 			</ul>
+			<?php $side_menu = wp_get_nav_menu_items('side-menu'); ?>
 			<ul>
-				<li>
-					<a href="help.html">
-						Help
-					</a>
-				</li>
-				<li>
-					<a href="contact.html">
-						Contact
-					</a>
-				</li>
+				<?php foreach($side_menu as $item) : ?>
+				
+					<li>
+						<?php if($item->url) : ?>
+							<a href="<?= $item->url; ?>">
+								<?= $item->title; ?>
+							</a>
+						<?php endif; ?>
+					</li>
+
+				<?php endforeach; ?>
 			</ul>
 		</nav>
 		<a href="javascript:void(0)" class="menu-btn-mobile" id="menuOpenBTN">
@@ -57,42 +49,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</object>
 		</a>
 		<nav class="topbar__nav-main">
+			<?php $main_menu = wp_get_nav_menu_items('main-menu'); ?>
 			<ul>
-				<li>
-					<a href="shop.html">
-						Shop
-					</a>
-				</li>
-				<li>
-					<a href="brands.html">
-						Our brands
-					</a>
-				</li>
-				<li>
-					<a href="about.html">
-						About us
-					</a>
-				</li>
-				<li>
-					<a href="javascript:void(0)">
-						More
-						<i class="icon-chevron_down_bold"></i>
-					</a>
-				</li>
+				<?php foreach($main_menu as $item) : ?>
+				
+					<li>
+						<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>">
+							<?= $item->title; ?>
+							<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
+						</a>
+					</li>
+
+				<?php endforeach; ?>
 			</ul>
 		</nav>
 		<nav class="topbar__nav-side">
+			<?php $side_menu = wp_get_nav_menu_items('side-menu'); ?>
 			<ul>
-				<li>
-					<a href="help.html">
-						Help
-					</a>
-				</li>
-				<li>
-					<a href="contact.html">
-						Contact
-					</a>
-				</li>
+				<?php foreach($side_menu as $item) : ?>
+				
+					<li>
+						<?php if($item->url) : ?>
+							<a href="<?= $item->url; ?>">
+								<?= $item->title; ?>
+							</a>
+						<?php endif; ?>
+					</li>
+
+				<?php endforeach; ?>
 				<li>
 					<a href="javascript:void(0)" id="cartOpenBTN">
 						<object data="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="36" height="39">
