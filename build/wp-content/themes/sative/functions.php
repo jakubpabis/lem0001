@@ -58,35 +58,17 @@ add_action( 'after_setup_theme', 'sative_setup' );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function sative_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Blog Sidebar', 'sative' ),
-		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your sidebar on blog posts and archive pages.', 'sative' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Footer 1', 'sative' ),
-		'id'            => 'sidebar-2',
-		'description'   => __( 'Add widgets here to appear in your footer.', 'sative' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'name'          => __( 'Cart', 'sative' ),
+		'id'            => 'cart-sidebar',
+		'description'   => __( 'Add widgets here to appear in your cart sidebar.', 'sative' ),
+		'before_widget' => '<aside id="%1$s" class="widget cart %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<div class="cart__title">',
+		'after_title'   => '</div>',
 	) );
 
-	register_sidebar( array(
-		'name'          => __( 'Footer 2', 'sative' ),
-		'id'            => 'sidebar-3',
-		'description'   => __( 'Add widgets here to appear in your footer.', 'sative' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
 }
 add_action( 'widgets_init', 'sative_widgets_init' );
 
