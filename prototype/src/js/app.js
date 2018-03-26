@@ -282,6 +282,13 @@ $(document).ready(function() {
 	cartToggle();
 	menuToggle();
 	
+	$( document ).on( 'found_variation', '.variations_form', function ( event, variation) {
+		console.log('cos');
+		var $salePrice = $('.woocommerce-variation-price').find('del').find('> span').clone().children().remove().end().text();
+		var $price = $('.woocommerce-variation-price').find('ins').find('> span').clone().children().remove().end().text();
+		$('.product__single-info').find('> .price').find('span').text($salePrice);
+		$('.product__single-info').find('> .sub-price').find('span').text($price);
+	});	
 
 });
 
@@ -289,9 +296,3 @@ $(window).on('load', function() {
 
 });
 
-$( document ).on( 'change', '.variations_form', function ( event, variation) {
-	var $salePrice = $('.woocommerce-variation-price').find('del').find('> span').clone().children().remove().end().text();
-	var $price = $('.woocommerce-variation-price').find('ins').find('> span').clone().children().remove().end().text();
-	$('.product__single-info').find('> .price').find('span').text($salePrice);
-	$('.product__single-info').find('> .sub-price').find('span').text($price);
-});	
