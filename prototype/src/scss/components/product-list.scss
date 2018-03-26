@@ -22,6 +22,7 @@
         text-align: center;
         position: relative;
         margin-top: 0;
+        padding-bottom: 90px;
         margin-bottom: 40px;
         overflow: hidden;
         @include trans(200ms);
@@ -88,7 +89,7 @@
                 font-size: 14px;
                 font-weight: 500;
                 color:$color-tertiary;
-                margin-bottom: 30px;
+                margin-bottom: 0;
 
                 span {
                     font-size: 16px;
