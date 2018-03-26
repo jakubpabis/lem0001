@@ -21,6 +21,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $product;
+$currency = get_woocommerce_currency_symbol();
 
 ?>
-<p class="price"><?php echo $product->get_price_html(); ?></p>
+
+<?php if ( $product->get_variation_regular_price( 'min', true ) != $product->get_variation_price( 'min', true ) ) : ?>
+	<p class="price">
+		price online: <span><?= number_format( $product->get_variation_price( 'min', true ), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+	</p>
+	<p class="sub-price">
+		regular price: <span><?= number_format( $product->get_variation_regular_price( 'min', true ), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+	</p>
+<?php elseif ( $product->get_sale_price() ) : ?>
+	<p class="price">
+		price online: <span><?= number_format( $product->get_sale_price(), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+	</p>
+	<p class="sub-price">
+		regular price: <span><?= number_format( $product->get_regular_price(), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+	</p>
+<?php elseif ( $product->get_price() ) : ?>
+	<p class="price">
+		<span><?= number_format( $product->get_price(), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+	</p>
+<?php endif; ?>
