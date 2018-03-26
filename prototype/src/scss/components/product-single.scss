@@ -657,6 +657,18 @@
 
     .form-submit input {
         left: auto;
+        background-color: $color-primary;
+        color: white;
+        display: inline-block;
+		padding: 16px 64px;
+		border: 3px solid $color-primary;
+		margin-top: 16px;
+        margin-bottom: 16px;
+        line-height: 1;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
     }
 
     textarea {
