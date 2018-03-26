@@ -116,7 +116,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div id="wrapper__overlay"></div>
 		<?php if(is_active_sidebar( 'cart-sidebar' )) dynamic_sidebar( 'cart-sidebar' ); ?> 
 	</div>
+	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js"></script>
 	<?php wp_footer(); ?>
-	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js" defer></script>
 </body>
 </html>

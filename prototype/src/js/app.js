@@ -269,11 +269,6 @@ function initOwlCarousel()
 	});
 }
 
-function priceChange()
-{
-	
-}
-
 $(document).ready(function() {
 	
 	initOwlCarousel();
