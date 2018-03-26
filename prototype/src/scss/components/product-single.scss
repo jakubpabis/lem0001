@@ -304,6 +304,51 @@
 
                     }
 
+                    table {
+                        background-color: #F4F4F4;
+                        max-width: 100%;
+                        min-width: 100%;
+                        display: block;
+                        text-align: left;
+                        border-collapse: collapse;
+                        margin: 0 -16px;
+
+                        td,
+                        th {
+                            padding: 16px 16px;
+                            vertical-align: middle;
+                            font-size: 16px;
+                            line-height: 1.66;
+
+                            p {
+                                margin: 0;
+                                vertical-align: middle;
+                                font-size: 16px;
+                                line-height: 1.66;
+                            }
+
+                        }
+
+                        th {
+                            padding-right: 48px;
+                            font-size: 18px;
+                        }
+
+                    }
+
+                    table tbody td {
+                        font-size: 16px;
+                    }
+
+                    table tr:nth-child(even) {
+                        background: #E2E2E2;
+                    }
+
+                    table thead th {
+                        font-size: 16px;
+                        font-weight: bold;
+                    }
+
                 }
 
                 &__content {
