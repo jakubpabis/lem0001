@@ -23,6 +23,28 @@
   font-style: normal;
 }
 
+@font-face {
+	font-family: 'star';
+	src: url('#{$font-path}/star.eot');
+	src: url('#{$font-path}/star.eot?#iefix') format('embedded-opentype'),
+		url('#{$font-path}/star.woff') format('woff'),
+		url('#{$font-path}/star.ttf') format('truetype'),
+		url('#{$font-path}/star.svg#star') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'WooCommerce';
+	src: url('#{$font-path}/WooCommerce.eot');
+	src: url('#{$font-path}/WooCommerce.eot?#iefix') format('embedded-opentype'),
+		url('#{$font-path}/WooCommerce.woff') format('woff'),
+		url('#{$font-path}/WooCommerce.ttf') format('truetype'),
+		url('#{$font-path}/WooCommerce.svg#WooCommerce') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
