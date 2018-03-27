@@ -252,15 +252,22 @@ if ( ! function_exists( 'woocommerce_output_related_products' ) ) {
 	}
 }
 
+/**
+ * Change Checkout button in cart
+ */
 if ( ! function_exists( 'sative_widget_shopping_cart_proceed_to_checkout' ) ) {
-
-	/**
-	 * Output the proceed to checkout button.
-	 */
 	function sative_widget_shopping_cart_proceed_to_checkout() {
 		echo '<a href="' . esc_url( wc_get_checkout_url() ) . '" class="button checkout wc-forward btn btn__normal btn__full btn__checkout"><span>' . esc_html__( 'Go to Checkout', 'woocommerce' ) . '</span><i class="icon-chevron_right_bold"></i></a>';
 	}
 }
-
 add_action( 'sative_widget_shopping_cart_buttons', 'sative_widget_shopping_cart_proceed_to_checkout', 20 );
 
+ 
+function sative_custom_add_to_cart_message() {
+ 
+global $woocommerce;
+$return_to  = get_permalink(wc_get_page_id('shop'));
+$message    = __('Product successfully added to your cart. ', 'woocommerce').'<span id="cartOpenBTNSuccess">View cart</span>';
+return $message;
+}
+add_filter( 'wc_add_to_cart_message_html', 'sative_custom_add_to_cart_message' );

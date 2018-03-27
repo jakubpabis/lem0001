@@ -85,16 +85,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); ?>
 									</div>
 								</div>
-								<?php /* if ( ! $_product->is_visible() ) : ?>
-									<?php echo str_replace( array( 'http:', 'https:' ), '', $thumbnail ) . $product_name . '&nbsp;'; ?>
-								<?php else : ?>
-									<a href="<?php echo esc_url( $product_permalink ); ?>">
-										<?php echo str_replace( array( 'http:', 'https:' ), '', $thumbnail ) . $product_name . '&nbsp;'; ?>
-									</a>
-								<?php endif; */ ?>
+
 								<?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
 
-								
 							</div>
 							<?php
 						}
@@ -116,7 +109,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
 			<?php do_action( 'sative_widget_shopping_cart_buttons' ); ?>
-			
+
 			<a href="" class="cart__policy">
 				Our Shopping & Return Policy
 			</a>

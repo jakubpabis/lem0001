@@ -190,7 +190,7 @@ function tabsSwitching()
 
 function cartToggle()
 {
-	$('#cartOpenBTN, #cartOpenBTNMobile').on('click', function() {
+	$('#cartOpenBTN, #cartOpenBTNMobile, #cartOpenBTNSuccess').on('click', function() {
 		$('#wrapper').addClass('before-before-cart-open');
 		$('body').addClass('cart-active');
 		setTimeout(function() {
