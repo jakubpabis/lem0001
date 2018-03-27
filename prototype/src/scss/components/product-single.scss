@@ -36,6 +36,10 @@
                 padding: 50px 100px 30px;
             }
 
+            * {
+                user-select: none;
+            }
+
         }
 
         &-info {

@@ -15,7 +15,6 @@
         color: grey;
         line-height: 1;
         font-weight: 100;
-        transform: rotate(45deg);
         top: -5px;
 		right: 10px;
         cursor: pointer;
@@ -47,11 +46,20 @@
     &__item {
         display: flex;
         flex-wrap: nowrap;
+        position: relative;
         border-bottom: 1px solid $color-grey2;
         padding: 24px 0 16px;
 
         &:last-of-type {
             border-bottom: none;
+        }
+
+        .remove_from_cart_button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 28px;
+            color: grey;
         }
 
         .photo {

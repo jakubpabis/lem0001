@@ -63,8 +63,8 @@ function sative_widgets_init() {
 		'name'          => __( 'Cart', 'sative' ),
 		'id'            => 'cart-sidebar',
 		'description'   => __( 'Add widgets here to appear in your cart sidebar.', 'sative' ),
-		'before_widget' => '<aside id="%1$s" class="widget cart %2$s">',
-		'after_widget'  => '</aside>',
+		'before_widget' => '<aside id="%1$s" class="widget cart %2$s"><div class="cart__close">+</div><div class="cart__container">',
+		'after_widget'  => '</div></aside>',
 		'before_title'  => '<div class="cart__title">',
 		'after_title'   => '</div>',
 	) );
@@ -251,4 +251,16 @@ if ( ! function_exists( 'woocommerce_output_related_products' ) ) {
 		woocommerce_related_products( apply_filters( 'woocommerce_output_related_products_args', $args ) );
 	}
 }
+
+if ( ! function_exists( 'sative_widget_shopping_cart_proceed_to_checkout' ) ) {
+
+	/**
+	 * Output the proceed to checkout button.
+	 */
+	function sative_widget_shopping_cart_proceed_to_checkout() {
+		echo '<a href="' . esc_url( wc_get_checkout_url() ) . '" class="button checkout wc-forward btn btn__normal btn__full btn__checkout"><span>' . esc_html__( 'Go to Checkout', 'woocommerce' ) . '</span><i class="icon-chevron_right_bold"></i></a>';
+	}
+}
+
+add_action( 'sative_widget_shopping_cart_buttons', 'sative_widget_shopping_cart_proceed_to_checkout', 20 );
 
