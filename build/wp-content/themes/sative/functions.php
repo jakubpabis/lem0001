@@ -60,13 +60,13 @@ add_action( 'after_setup_theme', 'sative_setup' );
 function sative_widgets_init() {
 
 	register_sidebar( array(
-		'name'          => __( 'Cart', 'sative' ),
-		'id'            => 'cart-sidebar',
-		'description'   => __( 'Add widgets here to appear in your cart sidebar.', 'sative' ),
-		'before_widget' => '<aside id="%1$s" class="widget cart %2$s"><div class="cart__close">+</div><div class="cart__container">',
-		'after_widget'  => '</div></aside>',
-		'before_title'  => '<div class="cart__title">',
-		'after_title'   => '</div>',
+		'name'          => __( 'Nav', 'sative' ),
+		'id'            => 'nav-sidebar',
+		'description'   => __( 'Add widgets here to appear in your nav sidebar.', 'sative' ),
+		'before_widget' => '<nav id="%1$s" class="topbar__subnav widget %2$s">',
+		'after_widget'  => '</nav>',
+		'before_title'  => '',
+		'after_title'   => '',
 	) );
 
 }

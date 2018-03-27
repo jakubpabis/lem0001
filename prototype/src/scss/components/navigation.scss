@@ -285,7 +285,8 @@
 				}
 
 				&:hover,
-				&.active {
+				&.active,
+				&.current-cat {
 
 					a {
 						color: $color-tertiary;
@@ -293,7 +294,8 @@
 
 				}
 
-				&.active {
+				&.active,
+				&.current-cat {
 
 					&:after {
 						content: '';

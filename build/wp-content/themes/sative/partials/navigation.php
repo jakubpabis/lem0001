@@ -97,4 +97,60 @@
 			</object>
 		</a>
 	</div>
+	<?php if(is_shop() || is_product() || is_product_category()) : ?>
+		<nav class="topbar__subnav">
+			<?php
+				$cat_args = array(
+					'parent'        => 0,
+					'hide_empty'    => false  
+				);
+				$product_categories = get_terms( 'product_cat', $cat_args );
+				$haveChildren;
+				$catParent;
+				if( !empty($product_categories) ){
+					echo '<ul>';
+					foreach ($product_categories as $key => $category) {
+						if(is_product_category($category->slug)) {
+							$haveChildren = get_term_children($category->term_id, 'product_cat');
+							$catParent = $category->term_id;
+							echo '<li class="active">';
+						} else {
+							echo '<li>';
+						}
+						echo '<a href="'.get_term_link($category).'" >';
+						echo $category->name;
+						echo '</a>';
+						echo '</li>';
+					}
+					echo '</ul>';
+				}
+			?>
+		</nav>
+		<?php if(isset($haveChildren)) : ?>
+			<nav class="topbar__subsubnav">
+				<?php
+					$cat_args = array(
+						'parent'        => $catParent,
+						'hide_empty'    => false  
+					);
+					$product_categories = get_terms( 'product_cat', $cat_args );
+					if( !empty($product_categories) ){
+						echo '<ul>';
+						foreach ($product_categories as $key => $category) {
+							if(is_product_category($category->slug)) {
+								echo '<li class="active">';
+							} else {
+								echo '<li>';
+							}
+							echo '<a href="'.get_term_link($category).'" >';
+							echo $category->name;
+							echo '</a>';
+							echo '</li>';
+						}
+						echo '</ul>';
+					}
+				?>
+			</nav>
+		<?php endif; ?>
+	<?php endif;  ?>
 </header>
