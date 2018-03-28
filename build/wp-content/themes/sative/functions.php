@@ -262,12 +262,21 @@ if ( ! function_exists( 'sative_widget_shopping_cart_proceed_to_checkout' ) ) {
 }
 add_action( 'sative_widget_shopping_cart_buttons', 'sative_widget_shopping_cart_proceed_to_checkout', 20 );
 
- 
+/**
+ * Change view cart message
+ */
 function sative_custom_add_to_cart_message() {
- 
-global $woocommerce;
-$return_to  = get_permalink(wc_get_page_id('shop'));
-$message    = __('Product successfully added to your cart. ', 'woocommerce').'<span id="cartOpenBTNSuccess">View cart</span>';
-return $message;
+	global $woocommerce;
+	$return_to  = get_permalink(wc_get_page_id('shop'));
+	$message    = __('Product successfully added to your cart. ', 'woocommerce').'<span id="cartOpenBTNSuccess">View cart</span>';
+	return $message;
 }
 add_filter( 'wc_add_to_cart_message_html', 'sative_custom_add_to_cart_message' );
+
+/**
+ * Ensure variation combinations are working properly - standard limit is 30
+ */
+function woo_custom_ajax_variation_threshold( $qty, $product ) {
+    return 100;
+}       
+add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_threshold', 10, 2 );
