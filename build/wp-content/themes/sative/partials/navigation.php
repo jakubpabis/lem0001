@@ -105,12 +105,12 @@
 					'hide_empty'    => false  
 				);
 				$product_categories = get_terms( 'product_cat', $cat_args );
-				$haveChildren;
-				$catParent;
+				$haveChildren = null;
+				$catParent = null;
 				if( !empty($product_categories) ){
 					echo '<ul>';
-					foreach ($product_categories as $key => $category) {
-						if(is_product_category($category->slug)) {
+					foreach ($product_categories as $key => $category) if($category->slug !== 'uncategorized') {
+						if(is_product_category($category->slug) || is_product_category(get_term_children($category->term_id, 'product_cat'))) {
 							$haveChildren = get_term_children($category->term_id, 'product_cat');
 							$catParent = $category->term_id;
 							echo '<li class="active">';
@@ -126,7 +126,7 @@
 				}
 			?>
 		</nav>
-		<?php if(isset($haveChildren)) : ?>
+		<?php if(isset($haveChildren) && $haveChildren !== null) : ?>
 			<nav class="topbar__subsubnav">
 				<?php
 					$cat_args = array(
