@@ -324,8 +324,12 @@
                         // }
 
                         thead {
-                            border-bottom: 1px solid $color-grey2;
-                            margin-bottom: 16px;
+                            
+                            tr {
+                                border-bottom: 1px solid $color-grey2;
+                                margin-bottom: 16px;
+                            }
+
                         }
 
                         td,
