@@ -39,13 +39,14 @@ if ( ! empty( $tabs ) ) : ?>
 				<div class="tabs__option <?= $i == 0 ? 'active' : null ?>" data-tab="tab-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
 					<?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?>
 				</div>
+				<?php if(get_field('technical_specs') && $i === 0) : ?>
+					<?php $i++; ?>
+					<div class="tabs__option" data-tab="tab-<?php echo esc_attr( $i ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $i ); ?>">
+						<?= __('Technical Specs'); ?>
+					</div>
+				<?php endif; ?>
 				<?php $i++; ?>
 			<?php endforeach; ?>
-			<?php if(get_field('technical_specs')) : ?>
-				<div class="tabs__option" data-tab="tab-<?php echo esc_attr( $i ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $i ); ?>">
-					<?= __('Technical Specs'); ?>
-				</div>
-			<?php endif; ?>
 		</div>
 		<div class="tabs__body">
 			<?php $j = 0; ?>
@@ -53,13 +54,14 @@ if ( ! empty( $tabs ) ) : ?>
 				<div class="tabs__content <?= $j == 0 ? 'active' : null ?>" data-tab="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
 					<?php call_user_func( $tab['callback'], $key, $tab ); ?>
 				</div>
+				<?php if(get_field('technical_specs') && $j === 0) : ?>
+					<div class="tabs__content" data-tab="tab-<?php echo esc_attr( $j ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $j ); ?>">
+						<?php the_field('technical_specs'); ?>
+					</div>
+					<?php $j++; ?>
+				<?php endif; ?>
 				<?php $j++; ?>
 			<?php endforeach; ?>
-			<?php if(get_field('technical_specs')) : ?>
-				<div class="tabs__content" data-tab="tab-<?php echo esc_attr( $j ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $j ); ?>">
-					<?php the_field('technical_specs'); ?>
-				</div>
-			<?php endif; ?>
 		</div>
 		<div class="tabs__footer">
 			<span>
