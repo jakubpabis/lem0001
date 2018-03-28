@@ -315,7 +315,7 @@
                         display: block;
                         text-align: left;
                         border-collapse: collapse;
-                        margin: 0 -5px;
+                        margin: 0 -10px;
 
                         // tr {
                         //     display: flex;
@@ -323,9 +323,13 @@
                         //     justify-content: space-evenly;
                         // }
 
+                        thead {
+                            border-bottom: 1px solid #E2E2E2;
+                        }
+
                         td,
                         th {
-                            padding: 16px 5px;
+                            padding: 16px 10px;
                             vertical-align: middle;
                             font-size: 16px;
                             line-height: 1.66;
