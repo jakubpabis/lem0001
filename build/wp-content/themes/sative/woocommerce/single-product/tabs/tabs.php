@@ -55,10 +55,10 @@ if ( ! empty( $tabs ) ) : ?>
 					<?php call_user_func( $tab['callback'], $key, $tab ); ?>
 				</div>
 				<?php if(get_field('technical_specs') && $j === 0) : ?>
+					<?php $j++; ?>
 					<div class="tabs__content" data-tab="tab-<?php echo esc_attr( $j ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $j ); ?>">
 						<?php the_field('technical_specs'); ?>
 					</div>
-					<?php $j++; ?>
 				<?php endif; ?>
 				<?php $j++; ?>
 			<?php endforeach; ?>
