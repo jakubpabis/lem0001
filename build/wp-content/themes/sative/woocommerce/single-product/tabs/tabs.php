@@ -41,7 +41,7 @@ if ( ! empty( $tabs ) ) : ?>
 				</div>
 				<?php $i++; ?>
 			<?php endforeach; ?>
-			<?php if(the_field('technical_specs')) : ?>
+			<?php if(get_field('technical_specs')) : ?>
 				<div class="tabs__option" data-tab="tab-<?php echo esc_attr( $i ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $i ); ?>">
 					<?= __('Technical Specs'); ?>
 				</div>
@@ -55,7 +55,7 @@ if ( ! empty( $tabs ) ) : ?>
 				</div>
 				<?php $j++; ?>
 			<?php endforeach; ?>
-			<?php if(the_field('technical_specs')) : ?>
+			<?php if(get_field('technical_specs')) : ?>
 				<div class="tabs__content" data-tab="tab-<?php echo esc_attr( $j ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $j ); ?>">
 					<?php the_field('technical_specs'); ?>
 				</div>
