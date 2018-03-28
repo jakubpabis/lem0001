@@ -214,6 +214,12 @@ section {
 	text-align: center;
 }
 
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .centerV-container {
 	display: flex;
 	flex-wrap: nowrap;
