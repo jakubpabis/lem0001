@@ -59,7 +59,12 @@
 		<nav class="topbar__nav-main">
 			<ul>
 				<?php if ($main_menu) foreach($main_menu as $item) : ?>
-					<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
+
+					<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
+						<li class="active">
+					<?php else : ?>
+						<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
+					<?php endif; ?>
 						<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>">
 							<?= $item->title; ?>
 							<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
