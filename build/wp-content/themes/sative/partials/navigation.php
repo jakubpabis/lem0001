@@ -107,27 +107,29 @@
 				$product_categories = get_terms( 'product_cat', $cat_args );
 				$haveChildren = null;
 				$catParent = null;
+				$is_child_active = null;
 
 				if( !empty($product_categories) ){
 					echo '<ul>';
 					foreach ($product_categories as $key => $category) if($category->slug !== 'uncategorized') {
-						// $child_term = get_term( $category->term_id, 'product_cat' );
-						// $parent_term = get_term( $child_term->parent, 'product_cat' );
+
 						$children = get_term_children($category->term_id, 'product_cat');
-						$is_child = null;
 						if($children) foreach($children as $child) {
 							if(is_product_category($child['slug'])) {
-								$is_child = 1;
+								$is_child_active = 1;
 								break;
 							}
 						}
-						if(is_product_category($category->slug) || $is_child !== null) {
+
+						if(is_product_category($category->slug) || $is_child_active !== null) {
 							$haveChildren = get_term_children($category->term_id, 'product_cat');
 							$catParent = $category->term_id;
+							$is_child_active = null;
 							echo '<li class="active">';
 						} else {
 							echo '<li>';
 						}
+
 						echo '<a href="'.get_term_link($category).'" >';
 						echo $category->name;
 						echo '</a>';
