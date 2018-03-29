@@ -109,6 +109,11 @@
 				$catParent = null;
 				$is_child_active = null;
 
+				if(is_product()) {
+					global $post;
+					$product_terms = get_the_terms( $post->ID, 'product_cat' );
+				}
+
 				if( !empty($product_categories) ){
 					echo '<ul>';
 					foreach ($product_categories as $key => $category) if($category->slug !== 'uncategorized') {
@@ -116,6 +121,13 @@
 						$children = get_term_children($category->term_id, 'product_cat');
 						if($children) foreach($children as $child) {
 							if(is_product_category(get_term($child, 'product_cat')->slug)) {
+								$is_child_active = 1;
+								break;
+							}
+						}
+
+						if(is_product()) {
+							foreach($product_terms as $term) if($term->slug === $category->slug) {
 								$is_child_active = 1;
 								break;
 							}
@@ -150,7 +162,16 @@
 					if( !empty($product_categories) ){
 						echo '<ul>';
 						foreach ($product_categories as $key => $category) {
-							if(is_product_category($category->slug)) {
+
+							if(is_product()) {
+								foreach($product_terms as $term) if($term->slug === $category->slug) {
+									$is_child_active = 1;
+									break;
+								}
+							}
+
+							if(is_product_category($category->slug) || $is_child_active !== null) {
+								$is_child_active = null;
 								echo '<li class="active">';
 							} else {
 								echo '<li>';

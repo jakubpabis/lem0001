@@ -277,6 +277,6 @@ add_filter( 'wc_add_to_cart_message_html', 'sative_custom_add_to_cart_message' )
  * Ensure variation combinations are working properly - standard limit is 30
  */
 function woo_custom_ajax_variation_threshold( $qty, $product ) {
-    return 100;
+    return 500;
 }       
 add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_threshold', 10, 2 );
