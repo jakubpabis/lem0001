@@ -68,7 +68,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<?= $_product->get_title(); ?>
 									</div>
 									<div class="info__details">
-										<?php //$_product->get_attributes(); ?>
 										<?php $i = 0; $len = count($_product->get_attributes()); ?>
 										<?php foreach ( $_product->get_attributes() as $data ) : ?>
 											<?= strtoupper(preg_replace('/-/', ' ', $data)); ?>
@@ -85,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</div>
 								</div>
 
-								<?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
+								<?php // echo wc_get_formatted_cart_item_data( $cart_item ); ?>
 
 							</div>
 							<?php
