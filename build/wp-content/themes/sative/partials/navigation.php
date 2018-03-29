@@ -115,7 +115,7 @@
 
 						$children = get_term_children($category->term_id, 'product_cat');
 						if($children) foreach($children as $child) {
-							if(is_product_category($child['slug'])) {
+							if(is_product_category(get_term($child, 'product_cat')->slug)) {
 								$is_child_active = 1;
 								break;
 							}
