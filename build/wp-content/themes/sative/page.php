@@ -6,15 +6,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
-<section class="generic">
+<main class="generic">
     <div class="container">
         <?php while ( have_posts() ) : the_post(); ?>
 
-            <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+            <?php the_title( '<h1 class="entry-title text-center">', '</h1>' ); ?>
             <?php the_content(); ?>
 
         <?php endwhile; // end of the loop. ?>
     </div>
-</section>  
+</main>  
 
 <?php get_footer(); ?>

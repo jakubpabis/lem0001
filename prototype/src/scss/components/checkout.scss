@@ -1,0 +1,151 @@
+.checkout {
+
+    table {
+        background-color: $color-secondary;
+        max-width: 100%;
+        min-width: 100%;
+        display: block;
+        text-align: left;
+        border-collapse: collapse;
+        margin: 0 auto;
+
+        &.woocommerce-checkout-review-order-table {
+            margin-bottom: 30px;
+        }
+
+        thead {
+            border-bottom: 1px solid $color-grey2;
+        }
+
+        td,
+        th {
+            padding: 16px 10px;
+            vertical-align: middle;
+            font-size: 16px;
+            line-height: 1.66;
+
+            p {
+                margin: 0;
+                vertical-align: middle;
+                font-size: 16px;
+                line-height: 1.66;
+            }
+
+        }
+
+        th {
+            font-size: 18px;
+        }
+
+        tbody td {
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background: $color-grey;
+        }
+
+        thead th {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+    }
+
+    .col2-set,
+    .woocommerce-checkout-review-order,
+    #order_review_heading {
+        max-width: 640px;
+        display: block;
+        margin: 0 auto;
+
+        .woocommerce-billing-fields__field-wrapper,
+        .woocommerce-shipping-fields__field-wrapper,
+        .woocommerce-additional-fields__field-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+            padding: 15px 0;
+        }
+        
+        .form-row {
+            padding: 0 15px;
+            margin-bottom: 32px;
+            flex-basis: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            position: relative;
+            justify-content: flex-end;
+
+            label,
+            input,
+            select,
+            textarea {
+                display: block;
+                width: 100%;
+                appearance: none;
+            }
+
+            label {
+                font-weight: 400;
+                letter-spacing: 0px;
+                margin-bottom: 6px;
+                font-size: 14px;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                pointer-events: none;
+
+                abbr {
+                    outline: 0;
+                    border: none;
+                    color: $color-tertiary;
+                }
+
+            }
+
+            input,
+            select,
+            textarea,
+            .select2-selection {
+                line-height: 1.44;
+                padding: 6px 10px 6px 10px;
+                font-size: 17px;
+                font-weight: 600;
+                border: 1px solid $color-grey2;
+                border-radius: 0;
+                outline: 0!important;
+                min-height: 40px;
+            }
+
+            .select2-selection {
+                margin-bottom: 0px;
+            }
+
+            .select2-selection__rendered {
+                padding-left: 0;
+                line-height: 1.44;
+            }
+
+            .select2-selection__arrow {
+                margin-top: 6px;
+            }
+
+            &#order_comments_field {
+                flex-basis: 100%;
+
+                textarea {
+                    min-height: 120px;
+                }
+
+            }
+
+        }
+
+    }
+
+    #order_review_heading {
+        margin-bottom: 30px;
+    }
+
+}
