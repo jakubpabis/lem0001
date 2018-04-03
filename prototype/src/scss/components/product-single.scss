@@ -34,9 +34,12 @@
 
             .item {
                 padding: 10px 20px;
+                text-align: center;
                 
                 img {
                     max-height: 80vh;
+                    margin: 0 auto;
+                    display: block;
                 }
 
             }
