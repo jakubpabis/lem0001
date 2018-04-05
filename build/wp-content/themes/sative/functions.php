@@ -101,7 +101,7 @@ function woocommerce_support() {
 }
 
 // Remove all WooCommerce styles and scripts
-add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+//add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 
 
@@ -211,7 +211,7 @@ if ( ! function_exists( 'sative_add_product_link' ) ) {
 	function sative_add_product_link() {
 		global $product;
 		$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
-		echo '<a href="' . esc_url( $link ) . '" class="whole-element-link" titie="' . __("View product").' '. get_the_title() .'"></a>';
+		echo '<a href="' . esc_url( $link ) . '" class="whole-element-link" title="' . __("View product").' '. get_the_title() .'"></a>';
 	}
 }
 add_action( 'sative_product_link', 'sative_add_product_link', 10 );
@@ -235,6 +235,25 @@ if ( ! function_exists( 'sative_add_product_title' ) ) {
 	}
 }
 add_action( 'sative_product_title', 'sative_add_product_title', 10 );
+
+
+/**
+ * Insert the title for products in the loop.
+ */
+if ( ! function_exists( 'sative_homepage_add_product_title' ) ) {
+	function sative_homepage_add_product_title($item) {
+		$product = wc_get_product( get_sub_field('product') );
+		$terms = get_the_terms( $item , 'brand' ); 
+		echo '<h3 class="title">';
+		if($terms) {
+			echo $terms[0]->name.'&nbsp;';
+		}
+		echo $product->get_name();
+		echo '</h3>';
+		echo '<hr/>';
+	}
+}
+add_action( 'sative_homepage_product_title', 'sative_homepage_add_product_title', 10 );
 
 /**
  * Output the related products.

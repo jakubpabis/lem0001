@@ -29,6 +29,7 @@
                 top: 50%;
                 margin-top: -40px;
                 z-index: 9999999999;
+                cursor: pointer;
 
                 @media(max-width: 1280px) {
                     width: 40px;
@@ -80,6 +81,7 @@
             top: 50%;
             margin-top: -48px;
             z-index: 9999999999;
+            cursor: pointer;
 
             @media(max-width: 1280px) {
                 width: 40px;
@@ -123,6 +125,21 @@
 
         }
         
+    }
+
+    &__full {
+        max-height: 90vh;
+
+        .item {
+
+            img {
+                object-fit: cover;
+                object-position: center;
+                max-height: 90vh;
+            }
+
+        }
+
     }
 
 }
