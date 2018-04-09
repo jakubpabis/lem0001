@@ -23,13 +23,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</p>
 					<div class="socials">
 						<a href="">
-							<i class="fa fa-facebook"></i>
+							<i class="fab fa-facebook-f"></i>
 						</a>
 						<a href="">
-							<i class="fa fa-twitter"></i>
+							<i class="fab fa-twitter"></i>
 						</a>
 						<a href="">
-							<i class="fa fa-instagram"></i>
+							<i class="fab fa-instagram"></i>
 						</a>
 					</div>
 				</div>

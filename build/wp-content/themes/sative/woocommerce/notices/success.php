@@ -28,6 +28,11 @@ if ( ! $messages ) {
 
 <div class="container text-center">
 	<?php foreach ( $messages as $message ) : ?>
-		<div class="woocommerce-message" role="alert"><p class="font-size-large"><?php echo wp_kses_post( $message ); ?></p></div>
+		<div class="woocommerce-message" role="alert">
+			<p class="font-size-large">
+				<?php echo wp_kses_post( $message ); ?>
+				<?= wp_kses_post( $message ) == 'Cart updated.' ? '<span id="cartOpenBTNSuccess">'.__("View cart").'</span>' : null ?>
+			</p>
+		</div>
 	<?php endforeach; ?>
 </div>

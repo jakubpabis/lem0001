@@ -206,6 +206,15 @@ add_action( 'init', 'brand_taxonomy', 0 );
 
 
 
+
+/**
+ * 
+ * 
+ * Homepage WooCommerce functions.
+ * 
+ * 
+ */
+
 /**
  * Insert the anchor tag for products on homepage.
  */
@@ -266,16 +275,13 @@ if ( ! function_exists( 'sative_homepage_add_product_title' ) ) {
 add_action( 'sative_homepage_product_title', 'sative_homepage_add_product_title', 10 );
 
 
-
-add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
-
-function iconic_cart_count_fragments( $fragments ) {
-    
-    $fragments['div.header-cart-count'] = '<div class="header-cart-count">' . WC()->cart->get_cart_contents_count() . '</div>';
-    
-    return $fragments;
-    
-}
+/**
+ * 
+ * 
+ * Shop WooCommerce functions.
+ * 
+ * 
+ */
 
 /**
  * Insert the  anchor tag for products in the loop.

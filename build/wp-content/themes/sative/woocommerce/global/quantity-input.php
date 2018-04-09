@@ -29,7 +29,8 @@ if ( $max_value && $min_value === $max_value ) {
 } else {
 	?>
 	<div class="quantity">
-		<input type="number" 
+		<input 
+		type="number" 
 		id="<?php echo esc_attr( $input_id ); ?>" 
 		class="input-text qty text" 
 		step="<?php echo esc_attr( $step ); ?>" 
@@ -43,7 +44,7 @@ if ( $max_value && $min_value === $max_value ) {
 		pattern="<?php echo esc_attr( $pattern ); ?>" 
 		inputmode="<?php echo esc_attr( $inputmode ); ?>" 
 		aria-labelledby="<?php echo ! empty( $args['product_name'] ) ? sprintf( esc_attr__( '%s quantity', 'woocommerce' ), $args['product_name'] ) : ''; ?>" 
-		onchange="updateCartButton()" />
+		onchange="updateCartButton(this)" />
 	</div>
 	<?php
 }

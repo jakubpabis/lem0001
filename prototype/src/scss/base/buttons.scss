@@ -154,13 +154,26 @@
 
 		span,
 		i {
-			color: white;
+			color: white!important;
 		}
 
 		&:hover {
 
 			i {
-				color: $color-tertiary;
+				color: $color-tertiary!important;
+			}
+
+		}
+
+	}
+
+	&:disabled {
+
+		&:hover {
+
+			i {
+				color: initial;
+				transform: none;
 			}
 
 		}

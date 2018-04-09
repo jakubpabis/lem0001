@@ -36,12 +36,12 @@ function cookieAgree()
 	document.getElementById('cookieMessage').classList.remove('show');
 }
 
-function updateCartButton()
+function updateCartButton($el)
 {
 	$btn = $('button[name="update_cart"]');
-	if($btn.is(':disabled') && $btn.val() !== $btn.data('value')) {
+	if($btn.is(':disabled') && $el.value != $($el).data('value')) {
 		$btn.attr('disabled', false);
-	} else if($btn.val() === $btn.data('value')) {
+	} else if($el.value == $($el).data('value')) {
 		$btn.attr('disabled', true);
 	}
 }
