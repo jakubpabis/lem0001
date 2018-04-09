@@ -135,7 +135,7 @@ wc_print_notices(); ?>
 				</div>
 
 				<div class="text-center">
-					<button disabled type="submit" class="button btn btn__small" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>">
+					<button disabled type="submit" class="button btn btn__full btn__small" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>">
 						<span>
 							<?php esc_html_e( 'Update cart', 'woocommerce' ); ?>
 						</span>

@@ -143,11 +143,10 @@
     }
 
     button[name="update_cart"] {
-        background-color: white;
-        margin-top: 40px;
+        margin-top: 48px;
 
         &:disabled {
-            opacity: 0.3;
+            opacity: 0.2;
             cursor: not-allowed;
         }
 

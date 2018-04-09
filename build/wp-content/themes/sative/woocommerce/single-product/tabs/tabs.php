@@ -68,22 +68,22 @@ if ( ! empty( $tabs ) ) : ?>
 				<?= __('Share it!'); ?>
 			</span>
 			<a href="" target="_blank" class="facebook">
-				<i class="fa fa-facebook"></i>
+				<i class="fab fa-facebook-f"></i>
 			</a>
 			<a href="" target="_blank" class="twitter">
-				<i class="fa fa-twitter"></i>
+				<i class="fab fa-twitter"></i>
 			</a>
 			<a href="" target="_blank" class="linkedin">
-				<i class="fa fa-linkedin"></i>
+				<i class="fab fa-linkedin-in"></i>
 			</a>
 			<a href="" target="_blank" class="google-plus">
-				<i class="fa fa-google-plus"></i>
+				<i class="fab fa-google-plus-g"></i>
 			</a>
 			<a href="" target="_blank" class="pinterest">
-				<i class="fa fa-pinterest-p"></i>
+				<i class="fab fa-pinterest-p"></i>
 			</a>
 			<a href="" target="_blank" class="whatsapp">
-				<i class="fa fa-whatsapp"></i>
+				<i class="fab fa-whatsapp"></i>
 			</a>
 		</div>
 	</div>

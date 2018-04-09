@@ -25,3 +25,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 <body <?php body_class(); ?>>
 	<div id="wrapper">
 		<?php get_template_part( 'partials/navigation', 'none' ); ?>
+		<?php wc_print_notices(); ?>
