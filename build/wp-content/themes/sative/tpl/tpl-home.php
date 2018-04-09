@@ -13,7 +13,7 @@ get_header(); ?>
 
 		<?php if(have_rows('slide')) : ?>
 
-			<div class="slider__container">
+			<section class="slider__container">
 				<div class="owl-carousel owl-theme slider__full">
 
 					<?php while ( have_rows('slide') ) : the_row(); ?>
@@ -50,7 +50,7 @@ get_header(); ?>
 
 				<?php endif; ?>
 
-			</div>
+			</section>
 
 		<?php endif; ?>
 
@@ -58,7 +58,7 @@ get_header(); ?>
 
 			while ( have_rows('section') ) : the_row(); ?>
 
-				<section class="products container">
+				<section class="products container homepage">
 
 					<div class="section__intro container">
 						<p class="section__title">
@@ -84,42 +84,26 @@ get_header(); ?>
 									</div>
 									<div class="products__item-text">
 										<?php do_action('sative_homepage_product_title', get_sub_field('product')); ?>
-										<?php $currency = get_woocommerce_currency_symbol(); ?>
-										<?php if ( $product->is_type( 'variable' ) && $product->get_variation_regular_price( 'min', true ) != $product->get_variation_price( 'min', true ) ) : ?>
-											<p class="price">
-												price online: <span><?= number_format( $product->get_variation_price( 'min', true ), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
-											</p>
-											<p class="sub-price">
-												regular price: <span><?= number_format( $product->get_variation_regular_price( 'min', true ), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
-											</p>
-										<?php elseif ( $product->get_sale_price() ) : ?>
-											<p class="price">
-												price online: <span><?= number_format( $product->get_sale_price(), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
-											</p>
-											<p class="sub-price">
-												regular price: <span><?= number_format( $product->get_regular_price(), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
-											</p>
-										<?php elseif ( $product->get_price() ) : ?>
-											<p class="price">
-												<span><?= number_format( $product->get_price(), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
-											</p>
-										<?php endif; ?>
+										<?php do_action('sative_homepage_price', $product); ?>
 									</div>
 									<div class="products__item-btn">
-										View product
+										<?= __('View product'); ?>
 										<i class="icon-chevron_right_bold"></i>
 									</div>
+									<?php do_action('sative_homepage_product_link', get_sub_field('product')); ?>
 								</div>
 
 							<?php endwhile; ?>
 						
 						</div>
 
-						<a href="" class="btn btn__normal">
-							<span>Start shopping</span>
-							<i class="icon-chevron_right_bold"></i>
-						</a>
-
+						<?php if(get_sub_field('cta')) : ?>
+							<a href="<?= get_sub_field('cta')['url']; ?>" class="btn btn__normal">
+								<span><?= get_sub_field('cta')['title']; ?></span>
+								<i class="icon-chevron_right_bold"></i>
+							</a>
+						<?php endif; ?>
+					
 					<?php endif; ?>
 
 				</section>

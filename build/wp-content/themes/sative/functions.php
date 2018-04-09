@@ -101,7 +101,7 @@ function woocommerce_support() {
 }
 
 // Remove all WooCommerce styles and scripts
-//add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 
 
@@ -204,6 +204,85 @@ function brand_taxonomy()  {
 }
 add_action( 'init', 'brand_taxonomy', 0 );
 
+
+
+/**
+ * Insert the anchor tag for products on homepage.
+ */
+if ( ! function_exists( 'sative_homepage_add_product_link' ) ) {
+	function sative_homepage_add_product_link($id) {
+		$link = get_the_permalink($id);
+		$product = wc_get_product($id);
+		echo '<a href="' . esc_url( $link ) . '" class="whole-element-link" title="' . __("View product").' '. $product->get_name() .'"></a>';
+	}
+}
+add_action( 'sative_homepage_product_link', 'sative_homepage_add_product_link', 10 );
+
+/**
+ * Display price on homepage
+ */
+if( ! function_exists( 'sative_homepage_add_price' ) ) {
+	function sative_homepage_add_price($product) {
+		$currency = get_woocommerce_currency_symbol();
+		if ( $product->is_type( 'variable' ) && $product->get_variation_regular_price( 'min', true ) != $product->get_variation_price( 'min', true ) ) : ?>
+			<p class="price">
+				price online: <span><?= number_format( $product->get_variation_price( 'min', true ), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+			</p>
+			<p class="sub-price">
+				regular price: <span><?= number_format( $product->get_variation_regular_price( 'min', true ), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+			</p>
+		<?php elseif ( $product->get_sale_price() ) : ?>
+			<p class="price">
+				price online: <span><?= number_format( $product->get_sale_price(), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+			</p>
+			<p class="sub-price">
+				regular price: <span><?= number_format( $product->get_regular_price(), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+			</p>
+		<?php elseif ( $product->get_price() ) : ?>
+			<p class="price">
+				<span><?= number_format( $product->get_price(), $decimals=2, $dec_point=".", $thousands_sep="," ); ?></span> <?= $currency; ?>
+			</p>
+		<?php endif;
+	}
+}
+add_action( 'sative_homepage_price', 'sative_homepage_add_price', 10 );
+
+/**
+ * Insert the title for products on the homepage.
+ */
+if ( ! function_exists( 'sative_homepage_add_product_title' ) ) {
+	function sative_homepage_add_product_title($item) {
+		$product = wc_get_product( get_sub_field('product') );
+		$terms = get_the_terms( $item , 'brand' ); 
+		echo '<h3 class="title">';
+		if($terms) {
+			echo $terms[0]->name.'&nbsp;';
+		}
+		echo $product->get_name();
+		echo '</h3>';
+		echo '<hr/>';
+	}
+}
+add_action( 'sative_homepage_product_title', 'sative_homepage_add_product_title', 10 );
+
+
+
+
+
+
+function woocommerce_category_description() {
+    if (is_product_category()) {
+        global $wp_query;
+        $cat = $wp_query->get_queried_object();
+        echo "CAT IS:".print_r($cat,true); // the category needed.
+    }
+}
+add_action('woocommerce_archive_description', 'woocommerce_category_description', 2);
+
+
+
+
+
 /**
  * Insert the  anchor tag for products in the loop.
  */
@@ -235,25 +314,6 @@ if ( ! function_exists( 'sative_add_product_title' ) ) {
 	}
 }
 add_action( 'sative_product_title', 'sative_add_product_title', 10 );
-
-
-/**
- * Insert the title for products in the loop.
- */
-if ( ! function_exists( 'sative_homepage_add_product_title' ) ) {
-	function sative_homepage_add_product_title($item) {
-		$product = wc_get_product( get_sub_field('product') );
-		$terms = get_the_terms( $item , 'brand' ); 
-		echo '<h3 class="title">';
-		if($terms) {
-			echo $terms[0]->name.'&nbsp;';
-		}
-		echo $product->get_name();
-		echo '</h3>';
-		echo '<hr/>';
-	}
-}
-add_action( 'sative_homepage_product_title', 'sative_homepage_add_product_title', 10 );
 
 /**
  * Output the related products.

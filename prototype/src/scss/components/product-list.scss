@@ -1,6 +1,10 @@
 .products {
     text-align: center;
 
+    &.homepage {
+        margin-bottom: 164px;
+    }
+
     &__listing {
         padding-top: 50px;
     }

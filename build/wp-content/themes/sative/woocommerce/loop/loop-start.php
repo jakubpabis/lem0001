@@ -16,39 +16,29 @@
  * @version     2.0.0
  */
 ?>
+
+<?php
+
+    $queried_object = get_queried_object();
+    if(isset($queried_object->parent) && $queried_object->parent) {
+        $cat_parent = get_term($queried_object->parent, 'product_cat');
+    }
+
+?>
+
+<?php if(single_cat_title('', false)) : ?>
+    <div class="section__intro container">
+        <h1 class="section__title">
+            <?= isset($cat_parent) ? $cat_parent->name : null ?>
+            <?= single_cat_title('', false); ?>
+        </h1>
+    </div>
+<?php endif; ?>
+
 <div class="products__container">
-    <!-- <aside class="product-listing__sorting"> -->
-        <!-- <form>
-            <div class="search">
-                <input type="text" id="search__job-title" placeholder="product name - e.g. &quot;Necklace&quot;">
-                <input type="submit" value="Search">
-            </div>
-            <div class="sort">
-                <select>
-                    <option value="null">Sort products by</option>
-                    <option value="">Price: high to low</option>
-                    <option value="">Price: low to high</option>
-                    <option value="">Date: newest first</option>
-                    <option value="">Date: oldest first</option>
-                </select>
-                <i class="material-icons">expand_more</i>
-            </div>
-        </form> -->
-        <?php
-            // /**
-            //  * Sorting and breadcrumbs
-            //  */
-            //do_action( 'woocommerce_before_shop_loop' );
-        ?>
-    <!-- </aside> -->
-    <!-- <div class="product-listing__product-number">
-        <span>284,038</span>
-        <p>&nbsp;products found for:&nbsp;</p>
-        <span>"necklace"</span>
-        <div class="showing">
-            <span>1</span>
-            <p> - </p>
-            <span>20</span>
-            <p>of 284,103 products</p>
-        </div>
-    </div> -->
+    <?php
+        /**
+         * Sorting and breadcrumbs
+         */
+        //do_action( 'woocommerce_before_shop_loop' );
+    ?>
