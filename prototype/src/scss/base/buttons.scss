@@ -115,6 +115,40 @@
 
 	}
 
+	&__small {
+		display: inline-block;
+		padding: 10px 24px;
+		border: 2px solid $color-primary;
+		margin-top: 20px;
+		margin-bottom: 20px;
+
+		span {
+			line-height: 1;
+			font-size: 16px;
+			font-weight: 600;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+		}
+
+		i {
+			font-size: 16px;
+			line-height: 1;
+			vertical-align: 0;
+			margin-left: 10px;
+			color: $color-tertiary;
+			@include trans(250ms);
+		}
+
+		&:hover {
+
+			i {
+				transform: translateX(5px);
+			}
+
+		}
+
+	}
+
 	&__full {
 		background-color: $color-primary;
 

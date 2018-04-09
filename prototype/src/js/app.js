@@ -36,6 +36,16 @@ function cookieAgree()
 	document.getElementById('cookieMessage').classList.remove('show');
 }
 
+function updateCartButton()
+{
+	$btn = $('button[name="update_cart"]');
+	if($btn.is(':disabled') && $btn.val() !== $btn.data('value')) {
+		$btn.attr('disabled', false);
+	} else if($btn.val() === $btn.data('value')) {
+		$btn.attr('disabled', true);
+	}
+}
+
 function initContactMap()
 {
 	var contact_map = document.getElementById('contact_map');

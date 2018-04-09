@@ -89,16 +89,22 @@
 				<?php endforeach; ?>
 				<li>
 					<a href="javascript:void(0)" id="cartOpenBTN">
+						<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>
+							<span><?= WC()->cart->get_cart_contents_count(); ?></span>
+						<?php endif; ?>
 						<object data="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="36" height="39">
-							<img src="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="Sative cart icon black" width="36" height="39">
+							<img src="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="cart icon black" width="36" height="39">
 						</object>
 					</a>
 				</li>
 			</ul>
 		</nav>
 		<a href="javascript:void(0)" class="cart-btn-mobile" id="cartOpenBTNMobile">
+			<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>
+				<span><?= WC()->cart->get_cart_contents_count(); ?></span>
+			<?php endif; ?>
 			<object data="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="28" height="30">
-				<img src="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="Sative cart icon black" width="28" height="30">
+				<img src="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="cart icon black" width="28" height="30">
 			</object>
 		</a>
 	</div>

@@ -267,21 +267,15 @@ add_action( 'sative_homepage_product_title', 'sative_homepage_add_product_title'
 
 
 
+add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
 
-
-
-function woocommerce_category_description() {
-    if (is_product_category()) {
-        global $wp_query;
-        $cat = $wp_query->get_queried_object();
-        echo "CAT IS:".print_r($cat,true); // the category needed.
-    }
+function iconic_cart_count_fragments( $fragments ) {
+    
+    $fragments['div.header-cart-count'] = '<div class="header-cart-count">' . WC()->cart->get_cart_contents_count() . '</div>';
+    
+    return $fragments;
+    
 }
-add_action('woocommerce_archive_description', 'woocommerce_category_description', 2);
-
-
-
-
 
 /**
  * Insert the  anchor tag for products in the loop.

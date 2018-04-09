@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php if ( ! WC()->cart->is_empty() ) : ?>
 
-			<div class="cart__items woocommerce-mini-cart cart_list product_list_widget <?php echo esc_attr( $args['list_class'] ); ?>">
+			<div class="cart__items woocommerce-mini-cart cart_list product_list_widget">
 				<?php
 					do_action( 'woocommerce_before_mini_cart_contents' );
 

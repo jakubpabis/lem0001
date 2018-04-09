@@ -97,6 +97,21 @@
                 font-weight: 600;
                 letter-spacing: 1.5px;
                 text-align: right;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                align-content: center;
+
+                .quantity {
+
+                    input {
+                        width: 50px;
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+
+                }
+
             }
 
         }
@@ -121,10 +136,21 @@
     }
 
     .btn__checkout {
-        margin-top: 60px;
+        margin-top: 40px;
         margin-bottom: 40px;
         display: block;
         text-align: center;
+    }
+
+    button[name="update_cart"] {
+        background-color: white;
+        margin-top: 40px;
+
+        &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
     }
 
     .cart__policy {
