@@ -112,6 +112,88 @@ get_header(); ?>
 
 		endif; ?>
 
+		<?php if(have_rows('panels')) : ?>
+		
+			<section class="cards__container container">
+
+				<?php while ( have_rows('panels') ) : the_row(); ?>
+			
+					<div class="cards__item">
+						<div class="image">
+							<?php $image = get_sub_field('image'); ?>
+							<img src="<?= $image['url']; ?>" alt="<?= $image['alt'] ? $image['alt'] : null ?>">
+						</div>
+						<div class="text">
+
+							<p class="text__title">
+								<?= get_sub_field('title'); ?>
+							</p>
+							<hr>
+							<p class="text__text">
+								<?= get_sub_field('text'); ?>
+							</p>
+
+							<?php if(get_sub_field('cta')) : ?>
+								<a href="<?= get_sub_field('cta')['url']; ?>" class="btn btn__smaller btn__full">
+									<span>
+										<?= get_sub_field('cta')['title']; ?>
+									</span>
+									<i class="icon-chevron_right_bold"></i>
+								</a>
+							<?php endif;?>
+						
+						</div>
+					</div>
+
+				<?php endwhile; ?>
+
+				<?php if(get_field('cta')) : ?>
+
+					<a href="<?= get_field('cta')['url']; ?>" class="btn btn__big">
+						<span>
+							<?= get_field('cta')['title']; ?>
+						</span>
+						<i class="icon-chevron_right_bold"></i>
+					</a>
+
+				<?php endif; ?>
+			
+			</section>
+		
+		<?php endif; ?>
+
+		<?php if(get_field('about-title')) : ?>
+		
+			<section class="homepage__about">
+				<div class="container">
+
+					<p class="homepage__about-title">
+						<?= get_field('about-title'); ?>
+					</p>
+					<hr/>
+
+					<?php if(get_field('about-content')) : ?>
+
+						<div class="homepage__about-content">
+							<?= get_field('about-content'); ?>
+						</div>
+
+					<?php endif; ?>
+
+					<?php if(get_field('about-cta')) : ?>
+						<a href="<?= get_field('about-cta')['url']; ?>" class="btn btn__smaller btn__full">
+							<span>
+								<?= get_field('about-cta')['title']; ?>
+							</span>
+							<i class="icon-chevron_right_bold"></i>
+						</a>
+					<?php endif; ?>
+				
+				</div>
+			</section>
+		
+		<?php endif; ?>
+
 	<?php endwhile; // end of the loop. ?>
 
 </main>

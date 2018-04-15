@@ -1,7 +1,7 @@
 .cards {
 
     &__container {
-        max-width: 1130px;
+        max-width: 1210px;
         margin: 200px auto 100px;
         display: block;
         position: relative;
@@ -15,7 +15,7 @@
         margin-bottom: 40px;
         background-color: $color-secondary;
 
-        &:nth-child(even) {
+        &:nth-child(odd) {
 
             .image {
                 order: 100;
@@ -27,7 +27,7 @@
 
         }
 
-        &:nth-child(odd) {
+        &:nth-child(even) {
 
             .image {
                 order: 0;
@@ -42,12 +42,12 @@
         .image {
             flex-basis: 60%;
             overflow: hidden;
+            position: relative;
 
             img {
+                position: absolute;
                 object-fit: cover;
-                object-position: center center;
-                max-width: 200%;
-                max-height: 200%;
+                object-position: 50% 50%;
                 display: block;
                 min-height: 100%;
                 min-width: 100%;
