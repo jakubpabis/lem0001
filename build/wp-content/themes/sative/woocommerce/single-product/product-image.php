@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
 global $post, $product;
 $attachment_ids = $product->get_gallery_image_ids();
 
-
+/*
 // $columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
 // $thumbnail_size    = apply_filters( 'woocommerce_product_thumbnails_large_size', 'full' );
 // $post_thumbnail_id = get_post_thumbnail_id( $post->ID );
@@ -66,9 +66,8 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 		?>
 	</figure>
 </div>
+*/ ?>
 
-
-<?php /*
 <div class="product__single-slider slider__container">
 	<div class="owl-carousel owl-theme">
 		<?php if ( has_post_thumbnail() ) : ?>
@@ -93,4 +92,3 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 		</div>
 	<?php endif; ?>
 </div>
-*/?>

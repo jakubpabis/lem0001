@@ -101,7 +101,7 @@ function woocommerce_support() {
 }
 
 // Remove all WooCommerce styles and scripts
-//add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 
 
