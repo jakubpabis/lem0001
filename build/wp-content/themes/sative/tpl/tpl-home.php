@@ -33,6 +33,35 @@ get_header(); ?>
 
 							<?php endif; ?>
 
+							<?php if(get_sub_field('slide_title') || get_sub_field('slide_text') || get_sub_field('slide_cta')) : ?>
+							
+								<div class="slider__overlay">
+
+									<?php if(get_sub_field('slide_title')) : ?>
+										<p class="slider__title">
+											<?= get_sub_field('slide_title'); ?>
+										</p>
+									<?php endif; ?>
+
+									<?php if(get_sub_field('slide_text')) : ?>
+										<p class="slider__text">
+											<?= get_sub_field('slide_text'); ?>
+										</p>
+									<?php endif; ?>
+
+									<?php if(get_sub_field('slide_cta')) : ?>
+										<a href="<?= get_sub_field('slide_cta')['url']; ?>" class="btn btn__smaller btn__full">
+											<span>
+												<?= get_sub_field('slide_cta')['title']; ?>
+											</span>
+											<i class="icon-chevron_right_bold"></i>
+										</a>
+									<?php endif; ?>
+									
+								</div>
+							
+							<?php endif; ?>
+
 						</div>
 
 					<?php endwhile; ?>
