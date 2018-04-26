@@ -68,7 +68,7 @@
 						<?php else : ?>
 							<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<?php endif; ?>
-							<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>" data-action="dropdown">
+							<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>" <?= $item->url ? null : 'data-action="dropdown"' ?>>
 								<?= $item->title; ?>
 								<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
 							</a>
