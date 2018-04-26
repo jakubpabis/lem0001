@@ -254,6 +254,15 @@ function menuToggle()
 
 }
 
+function subMenuToggle()
+{
+	$('a[data-action="dropdown"]').on('click', function(e) {
+		e.preventDefault();
+		$(this).parent().stop(true, true).toggleClass('active');
+		$(this).next('.sub_menu').stop(true, true).toggleClass('active');
+	});
+}
+
 function initOwlCarousel() 
 {
 	
@@ -286,6 +295,7 @@ $(document).ready(function() {
 	tabsSwitching();
 	cartToggle();
 	menuToggle();
+	subMenuToggle();
 	
 	$( document ).on( 'found_variation', '.variations_form', function ( event, variation) {
 		console.log(variation);

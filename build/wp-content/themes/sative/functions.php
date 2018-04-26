@@ -90,6 +90,45 @@ function sative_front_page_template( $template ) {
 }
 add_filter( 'frontpage_template',  'sative_front_page_template' );
 
+
+function searchForId($id, $array) {
+	foreach ($array as $key => $val) {
+		if ($val->ID == $id) {
+			return $key;
+		}
+	}
+	return null;
+ }
+
+/**
+ * Main menu array setup
+ *
+ * @param [type] $id
+ * @return void
+ */
+function sative_main_menu_setup($menu) {
+
+	$main_menu = [];
+	foreach($menu as $item) {
+
+		if($item->menu_item_parent == 0) {
+			$main_menu[] = $item;
+		} else {
+			$id = searchForId($item->menu_item_parent, $main_menu);
+
+			if(!$main_menu[$id]->menu_children) {
+				$main_menu[$id]->menu_children = [];
+				array_push($main_menu[$id]->menu_children, $item);
+			} else {
+				array_push($main_menu[$id]->menu_children, $item);
+			}
+		}
+
+	}
+
+	return $main_menu;
+}
+
 /**
  * 
  * Add WooCommerce support

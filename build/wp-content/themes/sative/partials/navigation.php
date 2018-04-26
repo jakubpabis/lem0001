@@ -5,7 +5,7 @@
 	}
 
 	global $wp;
-	$main_menu = wp_get_nav_menu_items('main-menu');
+	$main_menu = sative_main_menu_setup(wp_get_nav_menu_items('main-menu'));
 	$side_menu = wp_get_nav_menu_items('side-menu'); 
 	$current_url = home_url(add_query_arg(array(),$wp->request)).'/';
 	
@@ -57,19 +57,43 @@
 			</object>
 		</a>
 		<nav class="topbar__nav-main">
-			<ul>
+		<?php //var_dump($main_menu); ?>
+			<ul class="menu">
 				<?php if ($main_menu) foreach($main_menu as $item) : ?>
 
-					<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
-						<li class="active">
-					<?php else : ?>
-						<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
+					<?php if($item->menu_item_parent == 0) : ?>
+					
+						<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
+							<li class="active">
+						<?php else : ?>
+							<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
+						<?php endif; ?>
+							<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>" data-action="dropdown">
+								<?= $item->title; ?>
+								<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
+							</a>
+							<?php if($item->menu_children): ?>
+
+								<ul class="sub_menu">
+									
+									<?php foreach($item->menu_children as $child): ?>
+										
+										<li <?= $child->url == $current_url ? 'class="active"' : null ?>>
+
+											<a href="<?= $child->url ? $child->url : 'javascript:void(0);' ?>">
+												<?= $child->title; ?>
+											</a>
+
+										</li>
+
+									<?php endforeach; ?>
+									
+								</ul>
+							
+							<?php endif; ?>
+						</li>
+					
 					<?php endif; ?>
-						<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>">
-							<?= $item->title; ?>
-							<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
-						</a>
-					</li>
 
 				<?php endforeach; ?>
 			</ul>

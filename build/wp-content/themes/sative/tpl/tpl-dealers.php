@@ -8,17 +8,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header(); ?>
 
 <section class="dealers">
-    <div class="container">
-        <?php while ( have_posts() ) : the_post(); ?>
+    <?php while ( have_posts() ) : the_post(); ?>
 
-            <div class="about__pod">
-                <h1><?php the_title(); ?></h1>
-                <?php the_post_thumbnail(); ?>
+        <div class="dealers__intro">
+            <div class="container container-xsml">
+                <h1 class="text-center"><?php the_title(); ?></h1>
                 <?php the_content(); ?>
             </div>
+        </div>
 
-        <?php endwhile; // end of the loop. ?>
-    </div>
+    <?php endwhile; // end of the loop. ?>
 </section>
 
 <?php get_footer(); ?>
