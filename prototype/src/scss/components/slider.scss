@@ -128,14 +128,14 @@
     }
 
     &__full {
-        max-height: 90vh;
+        max-height: 80vh;
 
         .item {
 
             img {
                 object-fit: cover;
                 object-position: center;
-                max-height: 90vh;
+                max-height: 80vh;
             }
 
         }
