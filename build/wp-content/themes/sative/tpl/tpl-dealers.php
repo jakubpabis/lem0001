@@ -17,22 +17,25 @@ get_header(); ?>
             </div>
         </div>
 
-        <?php while ( have_rows('dealers') ) : the_row(); ?>
+        <div class="dealers__grid container container-sml">
 
-            <div class="dealers__grid container">
+            <?php while ( have_rows('dealers') ) : the_row(); ?>
+
                 <div class="dealers__grid-item">
                     <?php $image = get_sub_field('logo'); ?>
-				    <img src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+                    <img src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
                     <h3>
                         <?= get_sub_field('title'); ?>
                     </h3>
+                    <hr/>
                     <div class="content">
                         <?= get_sub_field('content'); ?>
                     </div>
-                </div>
-            </div>
-        
-        <?php endwhile; ?>
+                </div>                
+            
+            <?php endwhile; ?>
+
+        </div>
 
     <?php endwhile; // end of the loop. ?>
 </section>
