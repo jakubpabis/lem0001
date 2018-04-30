@@ -137,7 +137,7 @@
 			<?php
 				$cat_args = array(
 					'parent'        => 0,
-					'hide_empty'    => false  
+					'hide_empty'    => true  
 				);
 				$product_categories = get_terms( 'product_cat', $cat_args );
 				$haveChildren = null;
@@ -191,7 +191,7 @@
 				<?php
 					$cat_args = array(
 						'parent'        => $catParent,
-						'hide_empty'    => false  
+						'hide_empty'    => true 
 					);
 					$product_categories = get_terms( 'product_cat', $cat_args );
 					if( !empty($product_categories) ){
