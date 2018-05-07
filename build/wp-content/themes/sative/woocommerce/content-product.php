@@ -34,8 +34,7 @@ if ( empty( $product ) || ! $product->is_visible() || ! has_post_thumbnail() ) {
 
 	<?php if ( has_post_thumbnail() ) : ?>
 		<div class="products__item-photo">
-			<?php //get_the_post_thumbnail( $post->ID, 'medium'); ?>
-			<?php echo woocommerce_get_product_thumbnail(); ?>
+			<?= get_the_post_thumbnail( $post->ID, 'medium'); ?>
 		</div>
 	<?php endif; ?>
 
