@@ -191,7 +191,7 @@ get_header(); ?>
 		
 		<?php endif; ?>
 
-		<?php if(get_field('about-title')) : ?>
+		<?php if(get_field('about-title') && get_field('hide_section') !== true) : ?>
 		
 			<section class="homepage__about">
 				<div class="container">
