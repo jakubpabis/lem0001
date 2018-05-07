@@ -56,19 +56,19 @@
 
         &-photo {
             padding: 10px;
-            // max-width: 400px;
-            // max-height: 400px;
-            // width: calc(33.3333vw - 20px);
-            // height: calc(33.3333vw - 20px);
-            // display: flex;
-            // align-content: center;
-            // align-items: center;
-            // justify-content: center;
+            max-width: 400px;
+            max-height: 320px;
+            width: calc(33.3333vw - 20px);
+            height: calc(33.3333vw - 20px);
+            display: flex;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
 
-            // @media(max-width: 960px) {
-            //     width: calc(50vw - 20px);
-            //     height: calc(50vw - 20px);
-            // }
+            @media(max-width: 960px) {
+                width: calc(50vw - 20px);
+                height: calc(50vw - 20px);
+            }
 
             img {
                 @include trans(200ms);
