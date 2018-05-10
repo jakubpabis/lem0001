@@ -22,8 +22,10 @@ get_header(); ?>
             <?php while ( have_rows('dealers') ) : the_row(); ?>
 
                 <div class="dealers__grid-item">
-                    <?php $image = get_sub_field('logo'); ?>
-                    <img src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+                    <div class="image">
+                        <?php $image = get_sub_field('logo'); ?>
+                        <img src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+                    </div>
                     <h3>
                         <?= get_sub_field('title'); ?>
                     </h3>

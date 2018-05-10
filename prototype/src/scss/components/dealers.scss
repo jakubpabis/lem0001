@@ -23,6 +23,14 @@
             margin-bottom: 40px;
             text-align: center;
 
+            .image {
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                height: 220px;
+            }
+
             img {
                 display: block;
                 margin: 0 auto;
