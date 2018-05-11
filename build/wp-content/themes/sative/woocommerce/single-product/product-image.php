@@ -73,7 +73,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 	<div class="owl-carousel owl-theme">
 		<?php if ( !empty( $product_variations ) ) : ?>
 			<?php 
-				foreach ( $variations as $variation ) {
+				foreach ( $product_variations as $variation ) {
 					echo "<img src=" . $variation['image']['full_src'] .">";
 				}
 			?>
