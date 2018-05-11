@@ -74,7 +74,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 		<?php if ( !empty( $product_variations ) ) : ?>
 			<?php 
 				foreach ( $product_variations as $variation ) {
-					echo "<img src=" . $variation['image']['full_src'] .">";
+					echo "<img src=" . $variation['image']['large'] .">";
 				}
 			?>
 		<?php endif; /* if ( has_post_thumbnail() ) : ?>
