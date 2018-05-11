@@ -20,6 +20,7 @@ defined( 'ABSPATH' ) || exit;
 
 global $post, $product;
 $attachment_ids = $product->get_gallery_image_ids();
+$product_variations = $product->get_available_variations();
 
 /*
 // $columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
@@ -70,7 +71,13 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 
 <div class="product__single-slider slider__container">
 	<div class="owl-carousel owl-theme">
-		<?php if ( has_post_thumbnail() ) : ?>
+		<?php if ( !empty( $product_variations ) ) : ?>
+			<?php 
+				foreach ( $variations as $variation ) {
+					echo "<img src=" . $variation['image']['full_src'] .">";
+				}
+			?>
+		<?php elseif ( has_post_thumbnail() ) : ?>
 			<div class="item" data-color="">
 				<?= get_the_post_thumbnail( $post->ID, 'large'); ?>
 			</div>
