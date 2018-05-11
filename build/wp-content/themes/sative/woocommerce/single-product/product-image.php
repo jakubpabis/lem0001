@@ -77,7 +77,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 					echo "<img src=" . $variation['image']['full_src'] .">";
 				}
 			?>
-		<?php elseif ( has_post_thumbnail() ) : ?>
+		<?php endif; /* if ( has_post_thumbnail() ) : ?>
 			<div class="item" data-color="">
 				<?= get_the_post_thumbnail( $post->ID, 'large'); ?>
 			</div>
@@ -88,7 +88,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 					<?= wp_get_attachment_image( $attachment_id, 'large'); ?>
 				</div>
 			<?php endforeach;
-		endif; ?>
+		endif; */ ?>
 	</div>
 	<?php if ( $attachment_ids && has_post_thumbnail() ) : ?>
 		<div class="owl-prev">
