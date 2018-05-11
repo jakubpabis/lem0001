@@ -4,7 +4,8 @@
         background-color: $color-secondary;
         max-width: 100%;
         min-width: 100%;
-        display: block;
+        display: flex;
+        flex-direction: column;
         text-align: left;
         border-collapse: collapse;
         margin: 0 auto;
@@ -13,8 +14,16 @@
             margin-bottom: 30px;
         }
 
-        thead {
+        thead,
+        tbody,
+        tfoot {
             border-bottom: 1px solid $color-grey2;
+
+            tr {
+                display: flex;
+                justify-content: space-between;
+            }
+
         }
 
         td,
