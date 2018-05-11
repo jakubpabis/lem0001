@@ -171,4 +171,189 @@
         margin-bottom: 30px;
     }
 
+    .woocommerce-checkout-payment {
+        margin-top: 60px;
+    }
+
+    .wc_payment_methods {
+
+        li {
+            padding: 5px 0;
+
+            label {
+                font-weight: 500;
+                margin-left: 5px;
+                margin-right: 5px;
+                font-size: 16px;
+                letter-spacing: 0.5px;
+            }
+
+            .payment_box {
+                margin-top: 5px;
+            }
+
+        }
+
+    }
+
+    &__coupon {
+        text-align: center;
+
+        .form-row {
+            text-align: center;
+
+            label,
+            input {
+                display: block;
+                max-width: 260px;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            label {
+                font-weight: 400;
+                letter-spacing: 0px;
+                margin-bottom: 6px;
+                font-size: 14px;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                pointer-events: none;
+                text-align: left;
+    
+                abbr {
+                    outline: 0;
+                    border: none;
+                    color: $color-tertiary;
+                }
+    
+            }
+    
+            input,
+            select,
+            textarea,
+            button,
+            .select2-selection {
+                line-height: 1.44;
+                padding: 6px 10px 6px 10px;
+                font-size: 17px;
+                font-weight: 600;
+                border: 1px solid $color-grey2;
+                border-radius: 0;
+                outline: 0!important;
+                min-height: 40px;
+            }
+
+            button.button {
+                display: inline-block;
+                width: auto;
+                font-size: 16px;
+                background-color: $color-primary;
+                color: white;
+                padding-left: 20px;
+                padding-right: 20px;
+                border: none;
+                outline: 0;
+            }
+
+        }
+
+    }
+
+}
+
+.woocommerce-form-login {
+        
+    .form-row {
+        text-align: center;
+
+        label,
+        input {
+            display: block;
+            max-width: 260px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: 400;
+            letter-spacing: 0px;
+            margin-bottom: 6px;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            pointer-events: none;
+            text-align: left;
+
+            abbr {
+                outline: 0;
+                border: none;
+                color: $color-tertiary;
+            }
+
+        }
+
+        input,
+        select,
+        textarea,
+        .select2-selection {
+            line-height: 1.44;
+            padding: 6px 10px 6px 10px;
+            font-size: 17px;
+            font-weight: 600;
+            border: 1px solid $color-grey2;
+            border-radius: 0;
+            outline: 0!important;
+            min-height: 40px;
+        }
+
+        &:last-child {
+            max-width: 260px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+
+            input.button {
+                order: 100;
+                display: inline-block;
+                width: auto;
+                align-self: flex-end;
+                margin-right: 0;
+                font-size: 16px;
+                background-color: $color-primary;
+                color: white;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            label {
+                width: auto;
+                display: inline-block;
+                align-self: flex-start;
+                margin-left: 0;
+                position: relative;
+                z-index: 9999;
+
+                input {
+                    width: auto;
+                    display: inline-block;
+                    position: relative;
+                    z-index: 9999;
+                }
+
+            }
+
+            a {
+                flex-basis: 100%;
+                width: 100%;
+                display: inline-block;
+                margin-left: 0;
+                order: 1000;
+                text-align: left;
+            }
+
+        }
+
+    }
+
 }
