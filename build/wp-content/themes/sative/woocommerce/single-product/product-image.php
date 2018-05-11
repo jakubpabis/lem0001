@@ -81,11 +81,6 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 					<?= wp_get_attachment_image( $attachment_id, 'large'); ?>
 				</div>
 			<?php endforeach;
-			$variations = $product->get_available_variations();
-
-			foreach ( $variations as $variation ) {
-			  echo "<img src=" . $variation['image']['image_src'] .">";
-			}
 		endif; ?>
 	</div>
 	<?php if ( $attachment_ids && has_post_thumbnail() ) : ?>
