@@ -69,12 +69,12 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 </div>
 */ ?>
 <?php if ( !empty( $product_variations ) ) : ?>
-			<?php 
-				foreach ( $product_variations as $variation ) {
-					var_dump($variation['image']);
-				}
-			?>
-		<?php endif; ?>
+	<?php 
+		foreach ( $product_variations as $variation ) {
+			echo $variation['image']['src'];
+		}
+	?>
+<?php endif; ?>
 <div class="product__single-slider slider__container">
 	<div class="owl-carousel owl-theme">
 		<?php if ( has_post_thumbnail() ) : ?>
