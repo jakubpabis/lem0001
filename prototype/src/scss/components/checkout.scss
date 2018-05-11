@@ -52,9 +52,14 @@
 
     }
 
+    .woocommerce-account-fields {
+        margin: 0 -15px;
+    }
+
     .col2-set,
     .woocommerce-checkout-review-order,
-    #order_review_heading {
+    #order_review_heading,
+    .woocomerce-form {
         max-width: 640px;
         display: block;
         margin: 0 auto;
@@ -116,6 +121,15 @@
                 border-radius: 0;
                 outline: 0!important;
                 min-height: 40px;
+            }
+
+            input[type="checkbox"] {
+                appearance: checkbox!important;
+                width: 24px;
+                height: 24px;
+                padding: 0;
+                display: inline-block;
+                margin: 0 5px 0 0;
             }
 
             .select2-selection {

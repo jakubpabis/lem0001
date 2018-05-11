@@ -167,6 +167,23 @@
 
 	}
 
+	&__checkout {
+		color: white;
+		line-height: 1;
+		font-size: 24px;
+		font-weight: 700;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+		display: inline-block;
+		width: auto;
+		@include trans(250ms);
+
+		&:hover {
+			color: $color-tertiary;
+		}
+
+	}
+
 	&:disabled {
 
 		&:hover {

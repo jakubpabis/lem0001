@@ -171,6 +171,10 @@ section {
 	&-xsml {
 		max-width: 800px;
 	}
+
+	&-xxsml {
+		max-width: 640px;
+	}
 	
 	&__half-left {
 		position: relative;
@@ -272,6 +276,10 @@ section {
 	bottom: 0;
 	left: 0;
 	z-index: 9;
+}
+
+.nopadding {
+	padding: 0!important;
 }
 
 .modal-open {
