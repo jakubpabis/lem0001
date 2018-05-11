@@ -71,7 +71,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 <?php if ( !empty( $product_variations ) ) : ?>
 			<?php 
 				foreach ( $product_variations as $variation ) {
-					echo  $variation['image'];
+					var_dump($variation['image']);
 				}
 			?>
 		<?php endif; ?>
