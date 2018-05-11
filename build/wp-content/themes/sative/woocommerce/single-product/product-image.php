@@ -71,7 +71,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 <div class="product__single-slider slider__container">
 	<div class="owl-carousel owl-theme">
 		<?php if ( has_post_thumbnail() ) : ?>
-			<div class="item">
+			<div class="item" data-color="">
 				<?= get_the_post_thumbnail( $post->ID, 'large'); ?>
 			</div>
 		<?php endif; ?>
@@ -81,6 +81,11 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 					<?= wp_get_attachment_image( $attachment_id, 'large'); ?>
 				</div>
 			<?php endforeach;
+			$variations = $product->get_available_variations();
+
+			foreach ( $variations as $variation ) {
+			  echo "<img src=" . $variation['image']['thumb_src'] .">";
+			}
 		endif; ?>
 	</div>
 	<?php if ( $attachment_ids && has_post_thumbnail() ) : ?>
