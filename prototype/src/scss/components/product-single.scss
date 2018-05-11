@@ -139,6 +139,11 @@
                         position: relative;
                         cursor: pointer;
 
+                        &.full-width {
+                            flex-basis: calc(100% - 10px);
+                            max-width: calc(100% - 10px);
+                        }
+
                         label {
                             margin-top: 12px;
                             margin-bottom: 6px;

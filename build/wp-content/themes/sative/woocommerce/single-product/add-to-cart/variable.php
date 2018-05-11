@@ -37,8 +37,16 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				Configure your bike
 			</span>-->
 			<div class="config__selects">
+				<?php 
+					$fields_no = sizeof($attributes); 
+					$i = 1;
+				?>
 				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
-					<div class="select">
+					<?php if ($fields_no % 2 != 0 && $fields_no === $i) : ?>
+						<div class="select full-width">
+					<?php else : ?>
+						<div class="select">
+					<?php endif; ?>
 						<label for="<?php echo sanitize_title( $attribute_name ); ?>"><?php echo wc_attribute_label( $attribute_name ); ?></label>
 						<?php
 							$selected = isset( $_REQUEST[ 'attribute_' . sanitize_title( $attribute_name ) ] ) ? wc_clean( stripslashes( urldecode( $_REQUEST[ 'attribute_' . sanitize_title( $attribute_name ) ] ) ) ) : $product->get_variation_default_attribute( $attribute_name );
@@ -47,6 +55,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 						?>
 						<i class="icon-chevron_down_bold"></i>
 					</div>
+					<?php $i++; ?>
 				<?php endforeach;?>
 			</div>
 		</div>
