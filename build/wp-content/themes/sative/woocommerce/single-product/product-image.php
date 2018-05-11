@@ -84,7 +84,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 			$variations = $product->get_available_variations();
 
 			foreach ( $variations as $variation ) {
-			  echo $variation->get_image();
+			  echo "<img src=" . $variation['image']['medium'] .">";
 			}
 		endif; ?>
 	</div>
