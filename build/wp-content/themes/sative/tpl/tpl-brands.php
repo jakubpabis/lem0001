@@ -13,7 +13,7 @@ get_header(); ?>
 
 		<?php if(have_rows('panels')) : ?>
 		
-			<section class="cards__container container">
+			<section class="cards__container container brands">
 
                 <div class="section__intro container">
                     <p class="section__title">

@@ -6,6 +6,11 @@
         display: block;
         position: relative;
         text-align: center;
+
+        &.brands {
+            margin: 96px auto;
+        }
+
     }
 
     &__item {
