@@ -15,17 +15,21 @@ get_header(); ?>
 		
 			<section class="cards__container container brands">
 
-                <div class="section__intro container">
-                    <p class="section__title">
-                        <?= get_field('title'); ?>
-					</p>
-					<?php if(get_field('text')) : ?>
-						<hr>
-						<div class="section__text">
-							<?= get_field('text'); ?>
-						</div>
-					<?php endif; ?>
-                </div>
+				<?php if(get_field('title') || get_field('text')) : ?>
+					<div class="section__intro container">
+						<?php if(get_field('text')) : ?>
+							<p class="section__title">
+								<?= get_field('title'); ?>
+							</p>
+						<?php endif; ?>
+						<?php if(get_field('text')) : ?>
+							<hr>
+							<div class="section__text">
+								<?= get_field('text'); ?>
+							</div>
+						<?php endif; ?>
+					</div>
+				<?php endif; ?>
 
 				<?php while ( have_rows('panels') ) : the_row(); ?>
 			
