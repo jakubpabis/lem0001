@@ -414,3 +414,11 @@ section {
 	cursor: pointer;
 	font-weight: 700;
 }
+
+.generic {
+
+	&.article {
+		margin: 64px auto 96px;
+	}
+	
+}
