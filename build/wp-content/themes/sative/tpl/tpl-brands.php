@@ -1,4 +1,4 @@
-<?php /* Template Name: Home page */ ?>
+<?php /* Template Name: Our brands */ ?>
 <?php 
 
 if ( ! defined( 'ABSPATH' ) ) {
