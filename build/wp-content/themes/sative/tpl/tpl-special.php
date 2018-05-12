@@ -15,7 +15,7 @@ get_header(); ?>
 
 			while ( have_rows('section') ) : the_row(); ?>
 
-				<section class="products container homepage">
+				<section class="products container special">
 
 					<div class="section__intro container">
 						<p class="section__title">
@@ -69,7 +69,7 @@ get_header(); ?>
 
         <?php else : ?>
 
-            <section class="products container homepage">
+            <section class="products container special">
 
                 <div class="section__intro container">
                     <p class="section__title">
