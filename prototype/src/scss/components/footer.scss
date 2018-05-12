@@ -7,10 +7,10 @@
 	color: white;
 
 	&__logo {
-		margin: 0 auto 40px;
+		margin: 0 auto 30px;
 		display: block;
 		text-align: center;
-		max-width: 260px;
+		max-width: 220px;
 	}
 
 	> .container.lower {
@@ -50,7 +50,7 @@
 		}
 
 		.title {
-			font-size: 32px;
+			font-size: 25px;
 			font-weight: 600;
 			letter-spacing: 1px;
 			margin-bottom: 5px;
@@ -58,14 +58,14 @@
 
 		hr {
 			height: 2px;
-			width: 64px;
+			width: 48px;
 			background-color: $color-tertiary;
-			margin-bottom: 20px;
+			margin-bottom: 15px;
 		}
 
 		.text,
 		nav {
-			font-size: 20px;
+			font-size: 16px;
 			font-weight: 500;
 			line-height: 1.7;
 			letter-spacing: 0.5px;
@@ -75,8 +75,8 @@
 			display: flex;
 
 			a {
-				width: 36px;
-				height: 36px;
+				width: 32px;
+				height: 32px;
 				background-color: $color-tertiary;
 				border-radius: 100%;
 				text-align: center;
@@ -86,9 +86,9 @@
 
 			i {
 				color: $color-primary;
-				font-size: 24px;
+				font-size: 20px;
 				vertical-align: middle;
-				line-height: 36px;
+				line-height: 32px;
 			}
 
 		}
