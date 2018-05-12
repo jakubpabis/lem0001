@@ -73,11 +73,11 @@ get_header(); ?>
 
                 <div class="section__intro container">
                     <p class="section__title">
-                        <?= __('No special offer now...', 'sative'); ?>
+                        <?= __('No special offers for now...', 'sative'); ?>
                     </p>
                     <hr>
                     <div class="section__text">
-                        <?= __('Come back later, to checkout our best offers.', 'sative'); ?>
+                        <?= __('Come back later and checkout our best offers.', 'sative'); ?>
                     </div>
                 </div>
 
