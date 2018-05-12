@@ -17,12 +17,14 @@ get_header(); ?>
 
                 <div class="section__intro container">
                     <p class="section__title">
-                        <?= get_sub_field('title'); ?>
-                    </p>
-                    <hr>
-                    <div class="section__text">
-                        <?= get_sub_field('text'); ?>
-                    </div>
+                        <?= get_field('title'); ?>
+					</p>
+					<?php if(get_field('text')) : ?>
+						<hr>
+						<div class="section__text">
+							<?= get_field('text'); ?>
+						</div>
+					<?php endif; ?>
                 </div>
 
 				<?php while ( have_rows('panels') ) : the_row(); ?>
