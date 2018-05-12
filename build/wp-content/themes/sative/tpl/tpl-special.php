@@ -65,9 +65,25 @@ get_header(); ?>
 
 				</section>
 
-			<?php endwhile;
+			<?php endwhile; ?>
 
-		endif; ?>
+        <?php else : ?>
+
+            <section class="products container homepage">
+
+                <div class="section__intro container">
+                    <p class="section__title">
+                        <?= __('No special offer now...', 'sative'); ?>
+                    </p>
+                    <hr>
+                    <div class="section__text">
+                        <?= __('Come back later, to checkout our best offers.', 'sative'); ?>
+                    </div>
+                </div>
+
+            </section>
+
+		<?php endif; ?>
 
 	<?php endwhile; // end of the loop. ?>
 
