@@ -38,70 +38,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 						About us
 					</p>
 					<hr>
-					<nav>
-						<ul>
-							<li>
-								<a href="index.html">
-									Home
-								</a>
-							</li>
-							<li>
-								<a href="shop.html">
-									Shop
-								</a>
-							</li>
-							<li>
-								<a href="brands.html">
-									Our brands
-								</a>
-							</li>
-							<li>
-								<a href="about.html">
-									Our story
-								</a>
-							</li>
-							<li>
-								<a href="blog.html">
-									Blog
-								</a>
-							</li>
-						</ul>
-					</nav>
+					<?php 
+						wp_nav_menu( array( 
+							'theme_location' => 'footer_one', 
+							'container' =>	'nav',
+						) ); 
+					?>
 				</div>
 				<div class="footer__item right">
 					<p class="title">
 						Customer service
 					</p>
 					<hr>
-					<nav>
-						<ul>
-							<li>
-								<a href="index.html">
-									Help / FAQ
-								</a>
-							</li>
-							<li>
-								<a href="shop.html">
-									Returns policy
-								</a>
-							</li>
-							<li>
-								<a href="brands.html">
-									Warranty
-								</a>
-							</li>
-							<li>
-								<a href="about.html">
-									Terms & Conditions
-								</a>
-							</li>
-							<li>
-								<a href="blog.html">
-									Privacy policy
-								</a>
-							</li>
-						</ul>
-					</nav>
+					<?php 
+						wp_nav_menu( array( 
+							'theme_location' => 'footer_two', 
+							'container' =>	'nav',
+						) ); 
+					?>
 				</div>
 			</div>
 			<div class="container container-sml flex-cont lower">

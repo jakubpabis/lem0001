@@ -18,6 +18,8 @@ function sative_setup() {
 	register_nav_menus( array(
 		'side'    => __( 'Side Menu', 'sative' ),
 		'menu'    => __( 'Main Menu', 'sative' ),
+		'footer_one'    => __( 'Footer Menu First', 'sative' ),
+		'footer_two'    => __( 'Footer Menu Second', 'sative' ),
 	) );
 
 	/*
