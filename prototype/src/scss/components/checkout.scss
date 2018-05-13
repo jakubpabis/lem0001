@@ -216,7 +216,6 @@
                 font-size: 14px;
                 letter-spacing: 0.5px;
                 text-transform: uppercase;
-                pointer-events: none;
                 text-align: left;
     
                 abbr {
@@ -285,7 +284,6 @@
             font-size: 14px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            pointer-events: none;
             text-align: left;
 
             abbr {
@@ -408,4 +406,26 @@ ul.woocommerce-order-overview {
 
     }
 
+}
+
+.wc-terms-and-conditions {
+    margin-top: 30px;
+
+    input {
+        width: auto;
+        height: auto;
+    }
+
+    label {
+
+        a {
+            text-decoration: underline;
+        }
+
+    }
+
+}
+
+span.required {
+    color: $color-tertiary;
 }
