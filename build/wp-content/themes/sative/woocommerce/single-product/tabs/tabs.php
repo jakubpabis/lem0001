@@ -73,16 +73,16 @@ if ( ! empty( $tabs ) ) : ?>
 			<a href="https://twitter.com/intent/tweet?status=<?= rawurlencode(get_the_title()); ?>+<?= get_permalink(); ?>" target="_blank" class="twitter" rel="noopener noreferrer">
 				<i class="fab fa-twitter"></i>
 			</a>
-			<a href="" target="_blank" class="linkedin" rel="noopener noreferrer">
+			<a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= get_permalink(); ?>&title=<?= rawurlencode(get_the_title()); ?>&summary=&source=<?= get_permalink(); ?>" target="_blank" class="linkedin" rel="noopener noreferrer">
 				<i class="fab fa-linkedin-in"></i>
 			</a>
-			<a href="" target="_blank" class="google-plus" rel="noopener noreferrer">
+			<a href="https://plus.google.com/share?url=<?= get_permalink(); ?>" target="_blank" class="google-plus" rel="noopener noreferrer">
 				<i class="fab fa-google-plus-g"></i>
 			</a>
 			<a href="https://pinterest.com/pin/create/bookmarklet/?media=<?= wp_get_attachment_url( get_post_thumbnail_id() ); ?>&url=<?= get_permalink(); ?>&is_video=false&description=<?= rawurlencode(get_the_title()); ?>" target="_blank" class="pinterest" rel="noopener noreferrer">
 				<i class="fab fa-pinterest-p"></i>
 			</a>
-			<a href="" target="_blank" class="whatsapp" rel="noopener noreferrer">
+			<a href="whatsapp://send?text<?= rawurlencode(get_the_title()); ?> <?= get_permalink(); ?>" target="_blank" class="whatsapp" rel="noopener noreferrer">
 				<i class="fab fa-whatsapp"></i>
 			</a>
 		</div>
