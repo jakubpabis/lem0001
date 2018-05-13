@@ -412,8 +412,8 @@ ul.woocommerce-order-overview {
     margin-top: 30px;
 
     input[type="checkbox"] {
-        width: auto;
-        height: auto;
+        width: auto!important;
+        height: auto!important;
     }
 
     label {
