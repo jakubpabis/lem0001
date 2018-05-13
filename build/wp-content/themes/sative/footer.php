@@ -66,6 +66,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</footer>
 		<div id="wrapper__overlay"></div>
 		<?php include ('woocommerce/cart/cart.php'); ?>
+		<div id="cookieMessage">
+			<div class="container">
+				<div class="message">
+					Lemasomo uses cookies to improve our website and your user experience. 
+					<br/>
+					By clicking any link or continuing to browse you are giving your consent to our
+					<a href="/cookie-policy"><u>cookie-policy</u></a>.
+				</div>
+				<div class="agree" onclick="cookieAgree()">
+					Accept
+				</div>
+			</div>
+		</div>
 	</div>
 	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js"></script>
 	<?php wp_footer(); ?>

@@ -290,6 +290,7 @@ function initOwlCarousel()
 
 $(document).ready(function() {
 	
+	checkCookieMessage();
 	initOwlCarousel();
 	configOpen();
 	tabsSwitching();
