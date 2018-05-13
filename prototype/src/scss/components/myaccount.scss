@@ -1,0 +1,244 @@
+.woocommerce-MyAccount-navigation {
+
+    ul {
+        display: flex;
+        text-align: center;
+        align-content: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        background-color: $color-secondary;
+        padding: 10px 0;
+
+        li {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+
+            &.is-active {
+
+                a {
+                    color: $color-tertiary;
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+.woocommerce-MyAccount-content {
+    text-align: center;
+    margin-bottom: 64px;
+
+    p {
+        font-size: 18px;
+    }
+
+    address {
+        background-color: $color-secondary;
+        padding: 10px;
+        line-height: 1.7;
+        font-size: 18px;
+
+        p {
+            margin: 0 auto;
+            line-height: 1.7;
+            font-size: 18px;
+        }
+
+    }
+
+    .woocommerce-Addresses {
+
+        h3 {
+            margin: 30px auto 15px;
+        }
+
+        a {
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            display: inline-block;
+            color: $color-tertiary;
+        }
+
+    }
+
+    table {
+        background-color: $color-secondary;
+        max-width: 100%;
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        border-collapse: collapse;
+        margin: 0 auto;
+
+        &.woocommerce-checkout-review-order-table {
+            margin-bottom: 30px;
+        }
+
+        thead,
+        tbody,
+        tfoot {
+            border-bottom: 1px solid $color-grey2;
+
+            tr {
+                display: flex;
+                justify-content: space-between;
+            }
+
+        }
+
+        td,
+        th {
+            padding: 16px 10px;
+            vertical-align: middle;
+            font-size: 16px;
+            line-height: 1.66;
+            flex-basis: 20%;
+
+            p {
+                margin: 0;
+                vertical-align: middle;
+                font-size: 16px;
+                line-height: 1.66;
+            }
+
+        }
+
+        th {
+            font-size: 18px;
+        }
+
+        tbody td {
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background: $color-grey;
+        }
+
+        thead th {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+    }
+
+    .woocommerce-account-fields {
+        margin: 0 -15px;
+    }
+
+    .col2-set,
+    .woocommerce-checkout-review-order,
+    #order_review_heading,
+    .woocomerce-form,
+    .woocommerce-EditAccountForm {
+        max-width: 640px;
+        display: block;
+        margin: 0 auto;
+
+        .woocommerce-billing-fields__field-wrapper,
+        .woocommerce-shipping-fields__field-wrapper,
+        .woocommerce-additional-fields__field-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+            padding: 15px 0;
+        }
+
+        fieldset {
+            padding-top: 25px;
+        }
+        
+        .form-row {
+            padding: 0 15px;
+            margin-bottom: 32px;
+            flex-basis: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            position: relative;
+            justify-content: flex-end;
+
+            label,
+            input,
+            select,
+            textarea {
+                display: block;
+                width: 100%;
+                appearance: none;
+            }
+
+            label {
+                font-weight: 400;
+                letter-spacing: 0px;
+                margin-bottom: 6px;
+                font-size: 14px;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                text-align: left;
+
+                abbr {
+                    outline: 0;
+                    border: none;
+                    color: $color-tertiary;
+                }
+
+            }
+
+            input,
+            select,
+            textarea,
+            .select2-selection {
+                line-height: 1.44;
+                padding: 6px 10px 6px 10px;
+                font-size: 17px;
+                font-weight: 600;
+                border: 1px solid $color-grey2;
+                border-radius: 0;
+                outline: 0!important;
+                min-height: 40px;
+            }
+
+            input[type="checkbox"] {
+                appearance: checkbox!important;
+                width: 24px;
+                height: 24px;
+                padding: 0;
+                display: inline-block;
+                margin: 0 5px 0 0;
+            }
+
+            .select2-selection {
+                margin-bottom: 0px;
+            }
+
+            .select2-selection__rendered {
+                padding-left: 0;
+                line-height: 1.44;
+            }
+
+            .select2-selection__arrow {
+                margin-top: 6px;
+            }
+
+            &#order_comments_field {
+                flex-basis: 100%;
+
+                textarea {
+                    min-height: 120px;
+                }
+
+            }
+
+        }
+
+    }
+
+}
