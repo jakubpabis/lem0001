@@ -22,13 +22,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<a href="mailto:office@lemasomo.com">office@lemasomo.com</a>
 					</p>
 					<div class="socials">
-						<a href="">
+						<a href="https://www.facebook.com/PinarelloPolska/" target="_blank">
 							<i class="fab fa-facebook-f"></i>
 						</a>
-						<a href="">
-							<i class="fab fa-twitter"></i>
-						</a>
-						<a href="">
+						<a href="https://www.instagram.com/lemasomo/" target="_blank">
 							<i class="fab fa-instagram"></i>
 						</a>
 					</div>

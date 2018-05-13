@@ -67,10 +67,10 @@ if ( ! empty( $tabs ) ) : ?>
 			<span>
 				<?= __('Share it!'); ?>
 			</span>
-			<a href="" target="_blank" class="facebook">
+			<a href="https://www.facebook.com/sharer/sharer.php?u=<?= get_permalink(); ?>" target="_blank" class="facebook">
 				<i class="fab fa-facebook-f"></i>
 			</a>
-			<a href="" target="_blank" class="twitter">
+			<a href="https://twitter.com/intent/tweet?status=<?= get_the_title(); ?>+<?= get_permalink(); ?>" target="_blank" class="twitter">
 				<i class="fab fa-twitter"></i>
 			</a>
 			<a href="" target="_blank" class="linkedin">
