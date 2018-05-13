@@ -21,15 +21,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<div class="woocommerce-order">
+<div class="woocommerce-order container container-xsml">
 
 	<?php if ( $order ) : ?>
 
 		<?php if ( $order->has_status( 'failed' ) ) : ?>
 
-			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php _e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
+			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed text-center"><?php _e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
 
-			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions">
+			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions text-center">
 				<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php _e( 'Pay', 'woocommerce' ) ?></a>
 				<?php if ( is_user_logged_in() ) : ?>
 					<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php _e( 'My account', 'woocommerce' ); ?></a>
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php else : ?>
 
-			<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); ?></p>
+			<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received text-center"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); ?></p>
 
 			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
 
