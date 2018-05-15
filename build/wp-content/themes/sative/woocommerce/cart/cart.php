@@ -29,7 +29,7 @@ wc_print_notices(); ?>
     <div class="cart__container">
 
         <div class="cart__title">
-            <?= __('Your Cart'); ?>
+			<?= pll__('Your Cart'); ?>
         </div>
 
 		<?php do_action( 'woocommerce_before_cart' ); ?>
