@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="cart__container">
 
         <div class="cart__title">
-            <?= _e('Your Cart', 'sative'); ?>
+            <?= pll_('Your Cart'); ?>
         </div>
 
 		<?php do_action( 'woocommerce_before_mini_cart' ); ?>
