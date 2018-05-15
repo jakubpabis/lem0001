@@ -400,3 +400,15 @@ function woo_custom_ajax_variation_threshold( $qty, $product ) {
     return 500;
 }       
 add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_threshold', 10, 2 );
+
+/**
+ * Register polylang strings for translation
+ */
+if (function_exists('pll_register_string')) {
+	$strings = [
+		'Your Cart',
+	];
+	foreach($strings as $string) {
+		pll_register_string($string, $string);
+	}
+}
