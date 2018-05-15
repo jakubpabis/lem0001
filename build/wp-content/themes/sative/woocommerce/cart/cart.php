@@ -152,7 +152,7 @@ wc_print_notices(); ?>
 				<?php do_action( 'sative_widget_shopping_cart_buttons' ); ?>
 
 				<a href="" class="cart__policy">
-					Our Shopping & Return Policy
+					<?= pll__('Our Shopping & Return Policy'); ?>
 				</a>
 
 				<?php do_action( 'woocommerce_after_cart_table' ); ?>

@@ -84,6 +84,7 @@ show_admin_bar(false);
 if (function_exists('pll_register_string')) {
 	$strings = [
 		'Your Cart',
+		'Our Shopping & Return Policy'
 	];
 	foreach($strings as $string) {
 		pll_register_string($string, $string);
@@ -390,7 +391,7 @@ if ( ! function_exists( 'woocommerce_output_related_products' ) ) {
  */
 if ( ! function_exists( 'sative_widget_shopping_cart_proceed_to_checkout' ) ) {
 	function sative_widget_shopping_cart_proceed_to_checkout() {
-		echo '<a href="' . esc_url( wc_get_checkout_url() ) . '" class="button checkout wc-forward btn btn__normal btn__full btn__checkout"><span>' . esc_html__( 'Go to Checkout', 'woocommerce' ) . '</span><i class="icon-chevron_right_bold"></i></a>';
+		echo '<a href="' . esc_url( wc_get_checkout_url() ) . '" class="button checkout wc-forward btn btn__normal btn__full btn__checkout"><span>' . esc_html__e( 'Go to Checkout', 'woocommerce' ) . '</span><i class="icon-chevron_right_bold"></i></a>';
 	}
 }
 add_action( 'sative_widget_shopping_cart_buttons', 'sative_widget_shopping_cart_proceed_to_checkout', 20 );
