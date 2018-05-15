@@ -79,6 +79,19 @@ show_admin_bar(false);
 
 
 /**
+ * Register polylang strings for translation
+ */
+if (function_exists('pll_register_string')) {
+	$strings = [
+		'Your Cart',
+	];
+	foreach($strings as $string) {
+		pll_register_string($string, $string);
+	}
+}
+
+
+/**
  * Use front-page.php when Front page displays is set to a static page.
  *
  * @since Twenty Seventeen 1.0
@@ -400,15 +413,3 @@ function woo_custom_ajax_variation_threshold( $qty, $product ) {
     return 500;
 }       
 add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_threshold', 10, 2 );
-
-/**
- * Register polylang strings for translation
- */
-if (function_exists('pll_register_string')) {
-	$strings = [
-		'Your Cart',
-	];
-	foreach($strings as $string) {
-		pll_register_string($string, $string);
-	}
-}
