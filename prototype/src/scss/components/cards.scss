@@ -7,6 +7,10 @@
         position: relative;
         text-align: center;
 
+        @media(max-width: 1280px) {
+            margin: 160px auto 80px;
+        }
+
         &.brands {
             margin: 64px auto 96px;
         }
@@ -19,6 +23,10 @@
         flex-wrap: nowrap;
         margin-bottom: 40px;
         background-color: $color-secondary;
+
+        @media(max-width: 1280px) {
+            margin-bottom: 30px;
+        }
 
         &:nth-child(odd) {
 
@@ -68,11 +76,26 @@
             text-align: center;
             padding: 80px 30px;
 
+            @media(max-width: 1280px) {
+                padding: 60px 24px;
+            }
+
             &__title {
                 font-size: 48px;
                 font-weight: 600;
                 letter-spacing: 1px;
                 margin-bottom: 15px;
+
+                @media(max-width: 1280px) {
+                    font-size: 42px;
+                    margin-bottom: 12px;
+                }
+            
+                @media(max-width: 1024px) {
+                    font-size: 36px;
+                    margin-bottom: 9px;
+                }
+
             }
 
             hr {
@@ -87,6 +110,17 @@
                 font-family: $font-secondary;
                 line-height: 1.5;
                 margin-top: 15px;
+
+                @media(max-width: 1280px) {
+                    font-size: 17px;
+                    margin-top: 12px;
+                }
+            
+                @media(max-width: 1024px) {
+                    font-size: 16px;
+                    margin-top: 9px;
+                }
+
             }
 
         }

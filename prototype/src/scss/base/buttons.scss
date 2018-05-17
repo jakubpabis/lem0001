@@ -88,12 +88,23 @@
 		margin-top: 24px;
 		margin-bottom: 24px;
 
+		@media(max-width: 1280px) {
+			padding: 12px 28px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+        }
+
 		span {
 			line-height: 1;
 			font-size: 18px;
 			font-weight: 700;
 			letter-spacing: 1px;
 			text-transform: uppercase;
+
+			@media(max-width: 1280px) {
+				font-size: 17px;
+			}
+
 		}
 
 		i {
@@ -103,6 +114,12 @@
 			margin-left: 12px;
 			color: $color-tertiary;
 			@include trans(250ms);
+
+			@media(max-width: 1280px) {
+				font-size: 16px;
+				margin-left: 9px;
+			}
+
 		}
 
 		&:hover {
