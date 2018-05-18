@@ -72,19 +72,25 @@ wc_print_notices(); ?>
 									<div class="info__title">
 										<?= $_product->get_title(); ?>
 									</div>
-
-									<div class="info__details">
-										<?php $i = 0; $len = count($_product->get_attributes()); ?>
-										<?php foreach ( $_product->get_attributes() as $data ) : ?>
-											<?= strtoupper(preg_replace('/-/', ' ', $data)); ?>
-											<?php
-												if (!$i == $len - 1) {
-													echo '&nbsp;-&nbsp;';
-												}
-												$i++;
-											?>
-										<?php endforeach; ?>
-									</div>
+									
+									<?php if($_product->get_attributes()) : ?>
+										<div class="info__details">
+											<?php $i = 0; $len = count($_product->get_attributes()); ?>
+											<?php foreach ( $_product->get_attributes() as $data ) : ?>
+												<?php if(is_object($data)) : ?>
+													<?php // var_dump($data); ?>
+												<?php else : ?>
+													<?= strtoupper(preg_replace('/-/', ' ', $data)); ?>
+												<?php endif; ?>
+												<?php
+													if (!$i == $len - 1) {
+														echo '&nbsp;-&nbsp;';
+													}
+													$i++;
+												?>
+											<?php endforeach; ?>
+										</div>
+									<?php endif; ?>
 
 									<div class="info__price">
 										<div class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
