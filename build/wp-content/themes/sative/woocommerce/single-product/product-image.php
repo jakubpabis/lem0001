@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 
 global $post, $product;
 $attachment_ids = $product->get_gallery_image_ids();
-$product_variations = $product->get_available_variations();
+//$product_variations = $product->get_available_variations();
 
 /*
 // $columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );

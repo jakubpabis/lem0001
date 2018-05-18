@@ -462,6 +462,11 @@
 				font-size: 14px;
 			}
 
+			@media(max-width: 960px) {
+				top: -5px;
+				right: -8px;
+			}
+
 		}
 
 	}

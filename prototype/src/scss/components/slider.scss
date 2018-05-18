@@ -131,6 +131,10 @@
     &__full {
         max-height: 80vh;
 
+        @media(max-width: 767px) {
+            max-height: 9999px;
+        }
+
         .item {
 
             img {
@@ -161,11 +165,33 @@
             max-width: 40%;
         }
 
+        @media(max-width: 960px) {
+            left: 8%;
+            padding: 20px;
+            min-width: 30%;
+            max-width: 50%;
+        }
+
+        @media(max-width: 767px) {
+            left: auto;
+            top: auto;
+            position: relative;
+            transform: translateY(0);
+            background-color: $color-light;
+            padding: 20px;
+            min-width: 100%;
+            max-width: 100%;
+        }
+
         .btn {
             margin-bottom: 12px;
 
             @media(max-width: 1280px) {
                 margin-bottom: 10px;
+            }
+
+            @media(max-width: 960px) {
+                margin-bottom: 5px;
             }
 
         }
