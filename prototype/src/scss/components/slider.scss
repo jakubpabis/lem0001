@@ -59,6 +59,19 @@
                 right: 10px;
             }
 
+            .owl-stage {
+                display: flex;
+                align-items: center;
+            }
+
+            .owl-item {
+
+                img {
+                    width: auto!important;
+                }
+
+            }
+
         }
     
         .owl-carousel {
