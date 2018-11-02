@@ -108,6 +108,8 @@
         }
 
         &-text {
+            position: relative;
+            z-index: 9999;
 
             .title {
                 font-size: 20px;
