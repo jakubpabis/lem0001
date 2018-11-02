@@ -38,7 +38,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 		</div>
 	<?php else : ?>
 		<div class="products__item-photo">
-			<img src="<?= get_template_directory_uri(); ?>/assets/img/img_coming.png" class="attachment-medium size-medium wp-post-image" alt="Picture coming soon...">
+			<img width="320" height="320" src="<?= get_template_directory_uri(); ?>/assets/img/img_coming.png" class="attachment-medium size-medium wp-post-image" alt="Picture coming soon...">
 		</div>
 	<?php endif; ?>
 
