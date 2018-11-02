@@ -38,7 +38,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 		</div>
 	<?php else : ?>
 		<div class="products__item-photo">
-			<?= get_the_post_thumbnail( $post->ID, 'medium'); ?>
+			<img src="<?= get_template_directory_uri(); ?>/assets/img/img_coming.png" class="attachment-medium size-medium wp-post-image" alt="Picture coming soon...">
 		</div>
 	<?php endif; ?>
 
