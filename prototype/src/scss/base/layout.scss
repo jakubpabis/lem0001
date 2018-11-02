@@ -164,6 +164,14 @@ section {
 		padding: 0 20px;
 	}
 
+	@media(max-width: 560px) {
+		padding: 0 15px;
+	}
+
+	@media(max-width: 360px) {
+		padding: 0 10px;
+	}
+
 	&-sml {
 		max-width: 1200px;
 	}

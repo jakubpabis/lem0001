@@ -340,7 +340,7 @@ add_action( 'sative_homepage_product_title', 'sative_homepage_add_product_title'
  */
 
 /**
- * Insert the  anchor tag for products in the loop.
+ * Insert the anchor tag for products in the loop.
  */
 if ( ! function_exists( 'sative_add_product_link' ) ) {
 	function sative_add_product_link() {

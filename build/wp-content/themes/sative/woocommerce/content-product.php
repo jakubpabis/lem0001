@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 // Ensure visibility
-if ( empty( $product ) || ! $product->is_visible() || ! has_post_thumbnail() ) {
+if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
@@ -33,6 +33,10 @@ if ( empty( $product ) || ! $product->is_visible() || ! has_post_thumbnail() ) {
 	<?php //do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
 	<?php if ( has_post_thumbnail() ) : ?>
+		<div class="products__item-photo">
+			<?= get_the_post_thumbnail( $post->ID, 'medium'); ?>
+		</div>
+	<?php else : ?>
 		<div class="products__item-photo">
 			<?= get_the_post_thumbnail( $post->ID, 'medium'); ?>
 		</div>
