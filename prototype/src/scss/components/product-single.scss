@@ -426,9 +426,9 @@
                         text-align: left;
                         border-collapse: collapse;
                         margin: 0 auto;
+                        overflow: auto;
 
                         @media(max-width: 800px) {
-                            overflow: auto;
                             display: block!important;
                         }
 
