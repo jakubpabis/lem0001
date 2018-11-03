@@ -3,26 +3,63 @@
 
     &.homepage {
         margin-bottom: 164px;
+
+        @media(max-width: 1280px) {
+            margin-bottom: 128px;
+        }
+
+        @media(max-width: 767px) {
+            margin-bottom: 96px;
+        }
+
+        @media(max-width: 480px) {
+            margin-bottom: 64px;
+        }
+
     }
 
     &.special {
         margin-top: 96px;
         margin-bottom: 128px;
+
+        @media(max-width: 1280px) {
+            margin-top: 64px;
+            margin-bottom: 96px;
+        }
+
+        @media(max-width: 767px) {
+            margin-top: 48px;
+            margin-bottom: 64px;
+        }
+
+        @media(max-width: 480px) {
+            margin-top: 32px;
+            margin-bottom: 48px;
+        }
+
     }
 
     &__listing {
         padding-top: 50px;
+
+        @media(max-width: 1280px) {
+            padding-top: 44px;
+        }
+
+        @media(max-width: 767px) {
+            padding-top: 36px;
+        }
+
+        @media(max-width: 480px) {
+            padding-top: 32px;
+        }
+        
     }
 
     &__container {
         justify-content: space-evenly;
         display: flex;
         flex-wrap: wrap;
-
-        // @media(max-width: 960px) {
-        //     justify-content: space-around;
-        // }
-
     }
 
     &__item {
