@@ -34,11 +34,11 @@ if ( $wp_query->max_num_pages <= 1 ) {
 			'add_args'     => false,
 			'current'      => max( 1, get_query_var( 'paged' ) ),
 			'total'        => $wp_query->max_num_pages,
-			'prev_text'    => '<i class="icon-chevron_left_bold"></i>'.__('Prev'),
-			'next_text'    => __('Next').'<i class="icon-chevron_right_bold"></i>',
+			'prev_text'    => '<i class="icon-chevron_left_bold"></i><span>'.__('Prev').'</span>',
+			'next_text'    => '<span>'.__('Next').'</span><i class="icon-chevron_right_bold"></i>',
 			'type'         => 'list',
-			'end_size'     => 3,
-			'mid_size'     => 3,
+			'end_size'     => 1,
+			'mid_size'     => 2,
 		) ) );
 	?>
 </nav>
