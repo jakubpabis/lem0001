@@ -37,12 +37,12 @@ if ( ! empty( $tabs ) ) : ?>
 			<?php $i = 0; ?>
 			<?php foreach ( $tabs as $key => $tab ) : ?>
 				<div class="tabs__option <?= $i == 0 ? 'active' : null ?>" data-tab="tab-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
-					<?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?>
+					<span><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?></span>
 				</div>
 				<?php if(get_field('technical_specs') && $i === 0) : ?>
 					<?php $i++; ?>
 					<div class="tabs__option" data-tab="tab-<?php echo esc_attr( $i ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $i ); ?>">
-						<?= __('Technical Specs'); ?>
+						<span><?= __('Technical Specs'); ?></span>
 					</div>
 				<?php endif; ?>
 				<?php $i++; ?>
@@ -51,11 +51,17 @@ if ( ! empty( $tabs ) ) : ?>
 		<div class="tabs__body">
 			<?php $j = 0; ?>
 			<?php foreach ( $tabs as $key => $tab ) : ?>
+				<div class="tabs__title" data-tab="tab-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
+					<span><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?></span>
+				</div>
 				<div class="tabs__content <?= $j == 0 ? 'active' : null ?>" data-tab="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
 					<?php call_user_func( $tab['callback'], $key, $tab ); ?>
 				</div>
 				<?php if(get_field('technical_specs') && $j === 0) : ?>
 					<?php $j++; ?>
+					<div class="tabs__title" data-tab="tab-<?php echo esc_attr( $j ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $j ); ?>">
+						<span><?= __('Technical Specs'); ?></span>
+					</div>
 					<div class="tabs__content" data-tab="tab-<?php echo esc_attr( $j ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $j ); ?>">
 						<?php the_field('technical_specs'); ?>
 					</div>

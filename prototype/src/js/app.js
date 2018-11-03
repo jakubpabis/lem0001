@@ -196,6 +196,7 @@ function tabsSwitching()
 		}
 
 	});
+
 }
 
 function cartToggle()
