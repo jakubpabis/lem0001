@@ -283,6 +283,18 @@
         justify-content: center;
         margin: 50px auto 100px;
 
+        @media(max-width: 1024px) {
+            margin: 40px auto 80px;
+        }
+
+        @media(max-width: 767px) {
+            margin: 36px auto 64px;
+        }
+
+        @media(max-width: 480px) {
+            margin: 28px auto 48px;
+        }
+
         .prev,
         .next {
             font-size: 20px;
@@ -293,23 +305,70 @@
             display: block;
             margin-top: 4px;
 
+            @media(max-width: 1024px) {
+                font-size: 19px;
+            }
+    
+            @media(max-width: 767px) {
+                font-size: 18px;
+                margin-top: 3px;
+            }
+    
+            @media(max-width: 480px) {
+                font-size: 17px;
+            }
+
             i {
                 font-size: 26px;
                 vertical-align: -4px;
                 margin: 0 5px;
                 @include trans(200ms);
+
+                @media(max-width: 1024px) {
+                    font-size: 24px;
+                    margin: 0 4px;
+                }
+        
+                @media(max-width: 767px) {
+                    font-size: 23px;
+                    vertical-align: -3px;
+                    margin: 0 3px;
+                }
+        
+                @media(max-width: 480px) {
+                    font-size: 21px;
+                    margin: 0 2px;
+                }
+                
             }
 
         }
 
         .prev {
             margin-right: 30px;
+
+            @media(max-width: 1024px) {
+                margin-right: 24px;
+            }
+    
+            @media(max-width: 767px) {
+                margin-right: 21px;
+            }
+    
+            @media(max-width: 480px) {
+                margin-right: 18px;
+            }
             
             &:hover {
                 
                 i {
                     color: $color-tertiary;
                     transform: translateX(-5px);
+
+                    @media(max-width: 767px) {
+                        transform: translateX(0);
+                    }
+
                 }
 
             }
@@ -318,12 +377,29 @@
 
         .next {
             margin-left: 30px;
+
+            @media(max-width: 1024px) {
+                margin-left: 24px;
+            }
+    
+            @media(max-width: 767px) {
+                margin-left: 21px;
+            }
+    
+            @media(max-width: 480px) {
+                margin-left: 18px;
+            }
             
             &:hover {
                 
                 i {
                     color: $color-tertiary;
                     transform: translateX(5px);
+
+                    @media(max-width: 767px) {
+                        transform: translateX(0);
+                    }
+
                 }
 
             }
@@ -336,6 +412,10 @@
             display: flex;
             flex-wrap: nowrap;
 
+            @media(max-width: 767px) {
+                margin: -3px auto 0;
+            }
+
             li {
 
                 a,
@@ -344,6 +424,22 @@
                     font-weight: 600;
                     padding: 0 15px;
                     @include trans(200ms);
+
+                    @media(max-width: 1024px) {
+                        font-size: 22px;
+                        padding: 0 13px;
+                    }
+            
+                    @media(max-width: 767px) {
+                        font-size: 21px;
+                        padding: 0 12px;
+                    }
+            
+                    @media(max-width: 480px) {
+                        font-size: 19px;
+                        padding: 0 10px;
+                    }
+
                 }
 
                 span {
