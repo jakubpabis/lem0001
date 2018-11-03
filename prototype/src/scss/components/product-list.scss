@@ -96,15 +96,30 @@
         &:hover {
             box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 
+            @media(max-width: 767px) {
+                box-shadow: none;
+            }
+
             .products__item-btn {
                 transform: translateY(0);
                 opacity: 1;
+
+                @media(max-width: 767px) {
+                    transform: translateY(64px);
+                    opacity: 0;
+                }
+
             }
 
             .products__item-photo {
 
                 img {
                     transform: scale(1.1);
+
+                    @media(max-width: 767px) {
+                        transform: scale(1);
+                    }
+
                 }
 
             }

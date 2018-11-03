@@ -200,6 +200,10 @@
             }
 
             @media(max-width: 767px) {
+                left: 15px;
+            }
+
+            @media(max-width: 480px) {
                 left: 6px;
             }
 
@@ -213,6 +217,10 @@
             }
 
             @media(max-width: 767px) {
+                right: 15px;
+            }
+
+            @media(max-width: 480px) {
                 right: 6px;
             }
 
