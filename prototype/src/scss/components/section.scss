@@ -17,6 +17,11 @@
             width: 64px;
             height: 2px;
             background-color: $color-tertiary;
+
+            @media(max-width: 767px) {
+                width: 52px;
+            }
+
         }
 
     }
@@ -66,6 +71,10 @@
         @media(max-width: 1024px) {
             font-size: 16px;
             margin: 10px auto 0;
+        }
+
+        @media(max-width: 767px) {
+            margin: 8px auto 0;
         }
 
     }
