@@ -6,8 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
-<main class="generic">
-    <div class="container">
+<main class="generic article">
+    <div class="container container-sml">
         <?php while ( have_posts() ) : the_post(); ?>
 
             <?php the_title( '<h1 class="entry-title text-center">', '</h1>' ); ?>
