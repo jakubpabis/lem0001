@@ -109,7 +109,7 @@ get_header(); ?>
 								
 								<div class="products__item">
 									<div class="products__item-photo">
-										<img src="<?= get_the_post_thumbnail_url( $product->get_id(), 'medium' ); ?>" alt="" width="300">
+										<img class="lazy" data-src="<?= get_the_post_thumbnail_url( $product->get_id(), 'medium' ); ?>" alt="" width="300">
 									</div>
 									<div class="products__item-text">
 										<?php do_action('sative_homepage_product_title', get_sub_field('product')); ?>
