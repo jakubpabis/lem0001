@@ -173,4 +173,17 @@
 
     }
 
+    .nf-response-msg {
+        text-align: center;
+        margin: 32px auto;
+
+        p {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+            color: $color-tertiary;
+        }   
+
+    }
+
 }
