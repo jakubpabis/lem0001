@@ -309,5 +309,9 @@ $(document).ready(function() {
 
 $(window).on('load', function() {
 
+	$('.warranty__title, .warranty__extra').each(function() {
+		$(this).parent().addClass('warranty__full');
+	});
+
 });
 
