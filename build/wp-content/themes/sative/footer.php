@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 	</div>
-	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js" defer></script>
+	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js"></script>
 	<?php wp_footer(); ?>
 	<noscript id="deferred-styles">
 		<link href="https://fonts.googleapis.com/css?family=Barlow:200,300,400,500,600,700|Roboto:400,400i,500,500i,700&subset=latin-ext" rel="stylesheet"> 
