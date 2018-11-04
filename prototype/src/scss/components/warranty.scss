@@ -160,15 +160,16 @@
     }
 
     .nf-form-fields-required {
-        margin-top: 64px;
-        font-weight: 500;
-        text-decoration: underline;
+        display: none!important;
+        // margin-top: 64px;
+        // font-weight: 500;
+        // text-decoration: underline;
 
-        span {
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 19px;
-        }
+        // span {
+        //     text-decoration: none;
+        //     font-weight: 700;
+        //     font-size: 19px;
+        // }
 
     }
 
