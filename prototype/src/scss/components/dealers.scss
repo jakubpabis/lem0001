@@ -3,11 +3,32 @@
     &__intro {
         padding: 64px 0;
         background-color: $color-secondary;
+
+        @media(max-width: 1280px) {
+            padding: 56px 0;
+        }
+
+        @media(max-width: 767px) {
+            padding: 48px 0;
+        }
+
+        @media(max-width: 480px) {
+            padding: 36px 0;
+        }
         
         p {
             font-size: 18px;
             line-height: 1.5;
             font-family: $font-secondary;
+
+            @media(max-width: 767px) {
+                font-size: 17px;
+            }
+    
+            @media(max-width: 480px) {
+                font-size: 16px;
+            }
+
         }
 
     }
@@ -17,12 +38,36 @@
         display: flex!important;
         flex-wrap: wrap;
 
+        @media(max-width: 1280px) {
+            padding: 56px 0 12px 0;
+        }
+
+        @media(max-width: 767px) {
+            padding: 48px 0 10px 0;
+        }
+
+        @media(max-width: 480px) {
+            padding: 36px 0 10px 0;
+        }
+
         &-item {
             flex-basis: 33.3333%;
             max-width: 33.3333%;
             margin-bottom: 50px;
             padding: 0 15px;
             text-align: center;
+    
+            @media(max-width: 767px) {
+                flex-basis: 50%;
+                max-width: 50%;
+                margin-bottom: 30px;
+            }
+    
+            @media(max-width: 480px) {
+                flex-basis: 100%;
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
 
             .image {
                 display: flex;
@@ -30,6 +75,16 @@
                 align-content: center;
                 align-items: center;
                 height: 220px;
+
+                @media(max-width: 767px) {
+                    height: 190px;
+                }
+        
+                @media(max-width: 480px) {
+                    height: auto;
+                    min-height: 164px;
+                }
+
             }
 
             img {
@@ -44,6 +99,12 @@
             hr {
                 margin-bottom: 15px;
                 width: 48px;
+
+                @media(max-width: 480px) {
+                    margin-bottom: 12px;
+                    width: 36px;
+                }
+
             }
 
             .content {
