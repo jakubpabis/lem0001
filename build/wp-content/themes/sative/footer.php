@@ -22,10 +22,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<a href="mailto:office@lemasomo.com">office@lemasomo.com</a>
 					</p>
 					<div class="socials">
-						<a href="https://www.facebook.com/PinarelloPolska/" target="_blank">
+						<a href="https://www.facebook.com/PinarelloPolska/" target="_blank" rel="noreferrer">
 							<i class="fab fa-facebook-f"></i>
 						</a>
-						<a href="https://www.instagram.com/lemasomo/" target="_blank">
+						<a href="https://www.instagram.com/lemasomo/" target="_blank" rel="noreferrer">
 							<i class="fab fa-instagram"></i>
 						</a>
 					</div>
@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					Copyright © Lemasomo <?= date("Y"); ?>
 				</div>
 				<div class="footer__item lower right">
-					Made by <a href="https://www.sative.co.uk" target="_blank"><strong>SATIVE</strong></a>
+					Made by <a href="https://www.sative.co.uk" target="_blank" rel="noreferrer"><strong>SATIVE</strong></a>
 				</div>
 			</div>
 		</footer>
