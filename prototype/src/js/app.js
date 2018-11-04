@@ -310,8 +310,22 @@ $(document).ready(function() {
 $(window).on('load', function() {
 
 	$('.warranty__title, .warranty__extra').each(function() {
-		$(this).parent().addClass('warranty__full');
+
+		if(!$(this).parent().hasClass('warranty__full')){
+			$(this).parent().addClass('warranty__full');
+		}
+
 	});
+
+	setTimeout(function() {
+		$('.warranty__title, .warranty__extra').each(function() {
+
+			if(!$(this).parent().hasClass('warranty__full')){
+				$(this).parent().addClass('warranty__full');
+			}
+			
+		});
+	}, 500);
 
 });
 
