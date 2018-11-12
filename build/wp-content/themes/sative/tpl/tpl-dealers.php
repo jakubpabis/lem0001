@@ -24,7 +24,11 @@ get_header(); ?>
                 <div class="dealers__grid-item">
                     <div class="image">
                         <?php $image = get_sub_field('logo'); ?>
-                        <img src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+                        <?php if(get_row_index() > 3) : ?>
+                            <img class="lazy" src="<?= wp_get_attachment_image( $image, 'thumbnail' ) ?>" data-src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+                        <?php else : ?>
+                            <img src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+                        <?php endif; ?>
                     </div>
                     <h3>
                         <?= get_sub_field('title'); ?>

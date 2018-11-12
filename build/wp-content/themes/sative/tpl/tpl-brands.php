@@ -36,7 +36,11 @@ get_header(); ?>
 					<div class="cards__item">
 						<div class="image">
 							<?php $image = get_sub_field('image'); ?>
-							<img src="<?= $image['url']; ?>" alt="<?= $image['alt'] ? $image['alt'] : null ?>">
+							<?php if(get_row_index() > 1) : ?>
+								<img class="lazy" src="<?= wp_get_attachment_image( $image, 'thumbnail' ) ?>" data-src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+							<?php else : ?>
+								<img src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+							<?php endif; ?>
 						</div>
 						<div class="text">
 
