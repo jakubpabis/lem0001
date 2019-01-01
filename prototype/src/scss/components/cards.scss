@@ -2,25 +2,25 @@
 
     &__container {
         max-width: 1210px;
-        margin: 200px auto 100px;
+        margin: 140px auto 90px;
         display: block;
         position: relative;
         text-align: center;
 
         @media(max-width: 1280px) {
-            margin: 160px auto 80px;
+            margin: 120px auto 80px;
         }
 
         @media(max-width: 1024px) {
-            margin: 140px auto 70px;
+            margin: 100px auto 70px;
         }
 
         @media(max-width: 767px) {
-            margin: 120px auto 60px;
+            margin: 100px auto 60px;
         }
 
         @media(max-width: 480px) {
-            margin: 80px auto 40px;
+            margin: 70px auto 40px;
         }
 
         &.brands {
