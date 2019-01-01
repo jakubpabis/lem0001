@@ -86,7 +86,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 		<?php if ( $attachment_ids && has_post_thumbnail() ) :
 			foreach ( $attachment_ids as $attachment_id ) : ?>
 				<div class="item">
-					<img class="lazy" src="<?= wp_get_attachment_image_url($attachment_id, 'thumbnail'); ?>" data-src="<?= wp_get_attachment_image_url($attachment_id, 'large'); ?>" alt="">
+					<img class="lazy" data-src="<?= wp_get_attachment_image_url($attachment_id, 'large'); ?>" alt="">
 					<?php /* wp_get_attachment_image( $attachment_id, 'large'); */ ?>
 				</div>
 			<?php endforeach;

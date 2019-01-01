@@ -80,58 +80,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 	</div>
-	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js"></script>
 	<?php wp_footer(); ?>
-	<noscript id="deferred-styles">
-		<link href="https://fonts.googleapis.com/css?family=Barlow:200,300,400,500,600,700|Roboto:400,400i,500,500i,700&subset=latin-ext" rel="stylesheet"> 
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    </noscript>
-    <script>
-		var loadDeferredStyles=function(){var e=document.getElementById("deferred-styles"),n=document.createElement("div");n.innerHTML=e.textContent,document.body.appendChild(n),e.parentElement.removeChild(e)},raf=window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame||window.msRequestAnimationFrame;raf?raf(function(){window.setTimeout(loadDeferredStyles,0)}):window.addEventListener("load",loadDeferredStyles);
-		var lazy = [];
-		registerListener('load', setLazy);
-		registerListener('load', lazyLoad);
-		registerListener('scroll', lazyLoad);
-		registerListener('resize', lazyLoad);
-		
-		function setLazy(){
-			lazy = document.getElementsByClassName('lazy');
-		} 
-		function lazyLoad(){
-			for(var i=0; i<lazy.length; i++){
-				if(isInViewport(lazy[i])){
-					if (lazy[i].getAttribute('data-src')){
-						lazy[i].src = lazy[i].getAttribute('data-src');
-						lazy[i].removeAttribute('data-src');
-						lazy[i].addEventListener('load', unBlur(lazy[i]));
-					}
-				}
-			}
-			cleanLazy();
-		}
-		function unBlur($el) {
-			$el.classList.add('loaded');
-		}
-		function cleanLazy(){
-			lazy = Array.prototype.filter.call(lazy, function(l){ return l.getAttribute('data-src');});
-		}
-		function isInViewport(el){
-			var rect = el.getBoundingClientRect();
-			
-			return (
-				rect.bottom >= 0 && 
-				rect.right >= 0 && 
-				rect.top <= (window.innerHeight || document.documentElement.clientHeight) && 
-				rect.left <= (window.innerWidth || document.documentElement.clientWidth)
-			);
-		}
-		function registerListener(event, func) {
-			if (window.addEventListener) {
-				window.addEventListener(event, func)
-			} else {
-				window.attachEvent('on' + event, func)
-			}
-		}
-	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js" defer></script>
 </body>
 </html>

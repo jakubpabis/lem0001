@@ -3,14 +3,14 @@
     &__intro {
         text-align: center;
         display: block;
-        margin-bottom: 80px;
+        margin-bottom: 60px;
 
         @media(max-width: 767px) {
-            margin-bottom: 60px;
+            margin-bottom: 45px;
         }
     
         @media(max-width: 480px) {
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         hr {
@@ -22,6 +22,15 @@
                 width: 52px;
             }
 
+        }
+
+        .btn {
+            margin-top: 40px;
+    
+            @media(max-width: 767px) {
+                margin-top: 30px;
+            }
+    
         }
 
     }

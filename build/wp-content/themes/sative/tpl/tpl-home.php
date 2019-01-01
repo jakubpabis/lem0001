@@ -30,7 +30,7 @@ get_header(); ?>
 
 								<?php $image = get_sub_field('slide_photo'); ?>
 								<?php if(get_row_index() > 1) : ?>
-									<img class="lazy" src="<?= wp_get_attachment_image( $image, 'thumbnail' ) ?>" data-src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+									<img class="lazy" data-src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
 								<?php else : ?>
 									<img src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
 								<?php endif; ?>
@@ -101,6 +101,12 @@ get_header(); ?>
 						<div class="section__text">
 							<?= get_sub_field('text'); ?>
 						</div>
+						<?php if(get_sub_field('cta')) : ?>
+							<a href="<?= get_sub_field('cta')['url']; ?>" class="btn btn__normal">
+								<span><?= get_sub_field('cta')['title']; ?></span>
+								<i class="icon-chevron_right_bold"></i>
+							</a>
+						<?php endif; ?>
 					</div>
 
 					<?php if(have_rows('products')) : ?>
@@ -113,7 +119,7 @@ get_header(); ?>
 								
 								<div class="products__item">
 									<div class="products__item-photo">
-										<img class="lazy" src="<?= get_the_post_thumbnail_url( $product->get_id(), 'thumbnail' ); ?>" data-src="<?= get_the_post_thumbnail_url( $product->get_id(), 'medium' ); ?>" alt="" width="300">
+										<img class="lazy" data-src="<?= get_the_post_thumbnail_url( $product->get_id(), 'medium' ); ?>" alt="" width="300">
 									</div>
 									<div class="products__item-text">
 										<?php do_action('sative_homepage_product_title', get_sub_field('product')); ?>
@@ -129,13 +135,6 @@ get_header(); ?>
 							<?php endwhile; ?>
 						
 						</div>
-
-						<?php if(get_sub_field('cta')) : ?>
-							<a href="<?= get_sub_field('cta')['url']; ?>" class="btn btn__normal">
-								<span><?= get_sub_field('cta')['title']; ?></span>
-								<i class="icon-chevron_right_bold"></i>
-							</a>
-						<?php endif; ?>
 					
 					<?php endif; ?>
 
@@ -154,7 +153,7 @@ get_header(); ?>
 					<div class="cards__item">
 						<div class="image">
 							<?php $image = get_sub_field('image'); ?>
-							<img class="lazy" src="<?= wp_get_attachment_image( $image, 'thumbnail' ) ?>" data-src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
+							<img class="lazy" data-src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
 						</div>
 						<div class="text">
 

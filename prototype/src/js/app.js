@@ -289,8 +289,18 @@ function initOwlCarousel()
 	});
 }
 
+function lazyImages()
+{
+	$('.lazy').each(function() {
+		var $src = $(this).data('src');
+		$(this).attr('src', $src).removeAttr('data-src');	
+	});
+}
+
+
 $(document).ready(function() {
 	
+	lazyImages();
 	checkCookieMessage();
 	initOwlCarousel();
 	configOpen();
