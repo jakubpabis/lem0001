@@ -415,3 +415,33 @@ function woo_custom_ajax_variation_threshold( $qty, $product ) {
     return 500;
 }       
 add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_threshold', 10, 2 );
+
+
+
+
+/**
+ * @snippet       Disable Free Shipping if Cart has Shipping Class (WooCommerce 2.6+)
+ * @how-to        Watch tutorial @ https://businessbloomer.com/?p=19055
+ * @sourcecode    https://businessbloomer.com/?p=19960
+ * @author        Rodolfo Melogli
+ * @testedwith    WooCommerce 3.4.4
+ */
+ 
+add_filter( 'woocommerce_package_rates', 'businessbloomer_hide_free_shipping_for_shipping_class', 10, 2 );
+  
+function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package ) {
+	$shipping_class_target = 367;
+	$in_cart = false;
+	foreach( WC()->cart->cart_contents as $key => $values ) {
+		if( $values[ 'data' ]->get_shipping_class_id() == $shipping_class_target ) {
+			$in_cart = true;
+			break;
+		} 
+	}
+	if( $in_cart ) {
+		unset( $rates['free_shipping:6'] ); 
+		unset( $rates['flat_rate:1'] );
+		unset( $rates['flat_rate:7'] );
+	}
+return $rates;
+}
