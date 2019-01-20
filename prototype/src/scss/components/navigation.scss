@@ -25,8 +25,8 @@
 			width: 180px;
 		}
 
-		@media(max-width: 960px) {
-			margin-top: -6px;
+		@media(max-width: 1140px) {
+			margin-top: -4px;
 			width: 170px;
 		}
 
@@ -69,11 +69,20 @@
 						letter-spacing: 0.5px;
 					}
 
+					@media(max-width: 1140px) {
+						font-size: 19px;
+						letter-spacing: 0;
+					}
+
 					a {
 						padding: 0 25px;
 
 						@media(max-width: 1280px) {
 							padding: 0 18px;
+						}
+
+						@media(max-width: 1140px) {
+							padding: 0 15px;
 						}
 
 					}
@@ -108,12 +117,17 @@
 
 						&:before {
 							opacity: 1;
-							margin-left: 30px;
-							width: calc(100% - 60px);
+							margin-left: 25px;
+							width: calc(100% - 50px);
 
 							@media(max-width: 1280px) {
-								margin-left: 20px;
-								width: calc(100% - 40px);
+								margin-left: 18px;
+								width: calc(100% - 36px);
+							}
+	
+							@media(max-width: 1140px) {
+								margin-left: 15px;
+								width: calc(100% - 30px);
 							}
 
 						}
@@ -207,13 +221,10 @@
 
 			ul {
 				padding: 0;
-				margin: 10px -14px 15px;
+				margin: 10px -5px 15px;
 				display: flex;
 				flex-wrap: nowrap;
-
-				@media(max-width: 1280px) {
-					margin: 10px -10px;
-				}
+				justify-content: flex-end;
 
 				li {
 					font-size: 16px;
@@ -265,15 +276,21 @@
 
 			&-search {
 				width: 100%;
-				flex-basis: 100%;
+				position: relative;
+				display: block;
 
 				input {
-					width: calc(100% - 40px);
+					max-width: 100%;
+					width: auto;
 					font-size: 16px;
 					line-height: 1;
 					padding: 7px 32px 7px 0;
 					border: none;
 					border-bottom: 2px solid black;
+
+					@media(max-width: 1140px) {
+						max-width: 138px;
+					}
 
 					&:focus {
 						outline: 0;
@@ -284,7 +301,7 @@
 				button {
 					position: absolute;
 					bottom: 2px;
-					right: 46px;
+					right: 0;
 					width: 32px;
 					height: 32px;
 					background: transparent;

@@ -109,7 +109,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php do_action( 'sative_widget_shopping_cart_buttons' ); ?>
 
 			<a href="" class="cart__policy">
-				Our Shopping & Return Policy
+				<?= pll__('Our Shopping & Return Policy'); ?>
 			</a>
 
 		<?php else : ?>
