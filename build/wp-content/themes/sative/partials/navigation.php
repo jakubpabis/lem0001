@@ -116,7 +116,7 @@
 					<?php if ( is_user_logged_in() ) { ?>
 						<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','sative'); ?>">
 							<object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
-								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="cart icon black" width="36" height="39">
+								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="user icon black" width="36" height="39">
 							</object>
 							<?php // _e('My Account','sative'); ?>
 						</a>
@@ -124,7 +124,7 @@
 					else { ?>
 						<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','sative'); ?>">
 							<object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
-								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="cart icon black" width="36" height="39">
+								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="user icon black" width="36" height="39">
 							</object>
 							<?php // _e('Login / Register','sative'); ?>
 						</a>
