@@ -100,7 +100,7 @@
 		</nav>
 		<nav class="topbar__nav-side">
 			<ul>
-				<?php pll_the_languages(array('show_flags'=>1,'show_names'=>1, 'hide_current'=>1)); ?>
+				<?php // pll_the_languages(array('show_flags'=>1,'show_names'=>1, 'hide_current'=>1)); ?>
 				<?php /* if ($side_menu) foreach($side_menu as $item) : ?>
 				
 					<li>
