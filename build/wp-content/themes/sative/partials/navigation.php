@@ -100,7 +100,8 @@
 		</nav>
 		<nav class="topbar__nav-side">
 			<ul>
-				<?php if ($side_menu) foreach($side_menu as $item) : ?>
+				<?php pll_the_languages(array('show_flags'=>1,'show_names'=>1, 'hide_current'=>1)); ?>
+				<?php /* if ($side_menu) foreach($side_menu as $item) : ?>
 				
 					<li>
 						<?php if($item->url) : ?>
@@ -110,9 +111,27 @@
 						<?php endif; ?>
 					</li>
 
-				<?php endforeach; ?>
+				<?php endforeach; */ ?>
 				<li>
-					<a href="javascript:void(0)" id="cartOpenBTN">
+					<?php if ( is_user_logged_in() ) { ?>
+						<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','sative'); ?>">
+							<object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
+								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="cart icon black" width="36" height="39">
+							</object>
+							<?php // _e('My Account','sative'); ?>
+						</a>
+					<?php } 
+					else { ?>
+						<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','sative'); ?>">
+							<object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
+								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="cart icon black" width="36" height="39">
+							</object>
+							<?php // _e('Login / Register','sative'); ?>
+						</a>
+					<?php } ?>
+				</li>
+				<li>
+					<a href="javascript:void(0)" id="cartOpenBTN" title="<?php _e('Cart','sative'); ?>">
 						<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>
 							<span><?= WC()->cart->get_cart_contents_count(); ?></span>
 						<?php endif; ?>
@@ -122,6 +141,11 @@
 					</a>
 				</li>
 			</ul>
+			<form class="topbar__nav-side-search woocommerce-product-search" role="search" method="get" action="<?php echo esc_url( home_url( '/'  ) ); ?>">
+				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search Products&hellip;', 'placeholder', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label', 'woocommerce' ); ?>" />
+				<button type="submit"><i class="fas fa-search"></i></button>
+				<input type="hidden" name="post_type" value="product" />
+			</form>
 		</nav>
 		<a href="javascript:void(0)" class="cart-btn-mobile" id="cartOpenBTNMobile">
 			<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>

@@ -19,19 +19,20 @@
 	}
 
 	&__logo {
+		width: 190px;
 
 		@media(max-width: 1280px) {
-			width: 190px;
+			width: 180px;
 		}
 
 		@media(max-width: 960px) {
 			margin-top: -6px;
-			width: 180px;
+			width: 170px;
 		}
 
 		@media(max-width: 480px) {
 			margin-top: -4px;
-			width: 164px;
+			width: 150px;
 		}
 
 	}
@@ -56,23 +57,23 @@
 				}
 
 				li {
-					font-size: 24px;
+					font-size: 22px;
 					font-weight: 700;
 					line-height: 1;
 					color: $color-primary;
-					letter-spacing: 1.5px;
+					letter-spacing: 1px;
 					padding: 0;
 
 					@media(max-width: 1280px) {
-						font-size: 21px;
-						letter-spacing: 1px;
+						font-size: 20px;
+						letter-spacing: 0.5px;
 					}
 
 					a {
 						padding: 0 25px;
 
 						@media(max-width: 1280px) {
-							padding: 0 20px;
+							padding: 0 18px;
 						}
 
 					}
@@ -206,16 +207,16 @@
 
 			ul {
 				padding: 0;
-				margin: 20px -14px 0 0;
+				margin: 10px -14px 15px;
 				display: flex;
 				flex-wrap: nowrap;
 
 				@media(max-width: 1280px) {
-					margin: 20px -10px 0 0;
+					margin: 10px -10px;
 				}
 
 				li {
-					font-size: 18px;
+					font-size: 16px;
 					font-weight: 500;
 					line-height: 1;
 					color: $color-primary;
@@ -224,24 +225,30 @@
 					@include trans(200ms);
 
 					@media(max-width: 1280px) {
-						font-size: 16px;
+						font-size: 15px;
 					}
 
 					a {
 						padding: 0 14px;
+						line-height: 1;
 						display: block;
 
 						@media(max-width: 1280px) {
 							padding: 0 10px;
 						}
 
+						span {
+							vertical-align: middle;
+						}
+
 						object,
 						svg {
-							margin-top: -10px;
+							margin-top: -6px;
 							margin-left: 0;
+							width: 28px;
 
 							@media(max-width: 1280px) {
-								width: 30px;
+								width: 24px;
 							}
 
 						}
@@ -252,6 +259,36 @@
 						opacity: 0.5;
 					}
 
+				}
+
+			}
+
+			&-search {
+				width: 100%;
+				flex-basis: 100%;
+
+				input {
+					width: calc(100% - 40px);
+					font-size: 16px;
+					line-height: 1;
+					padding: 7px 32px 7px 0;
+					border: none;
+					border-bottom: 2px solid black;
+
+					&:focus {
+						outline: 0;
+					}
+
+				}
+
+				button {
+					position: absolute;
+					bottom: 2px;
+					right: 46px;
+					width: 32px;
+					height: 32px;
+					background: transparent;
+					border: none;
 				}
 
 			}
@@ -486,15 +523,15 @@
 
 		span {
 			position: absolute;
-			top: -15px;
-			right: 2px;
+			top: -12px;
+			right: 3px;
 			background-color: $color-tertiary;
 			color: white;
 			font-weight: 700;
-			font-size: 16px;
-			width: 26px;
-			height: 26px;
-			line-height: 26px;
+			font-size: 15px;
+			width: 21px;
+			height: 21px;
+			line-height: 21px;
 			border-radius: 100%;
 			text-align: center;
 
