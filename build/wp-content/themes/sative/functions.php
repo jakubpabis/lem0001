@@ -442,6 +442,8 @@ function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package
 		unset( $rates['free_shipping:6'] ); 
 		unset( $rates['flat_rate:1'] );
 		unset( $rates['flat_rate:7'] );
+	} else {
+		unset( $rates['local_pickup:8'] );
 	}
-return $rates;
+	return $rates;
 }
