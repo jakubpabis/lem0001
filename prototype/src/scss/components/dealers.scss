@@ -33,6 +33,13 @@
 
     }
 
+    &__map {
+        max-height: 600px;
+        min-height: 80vh;
+        display: block;
+        position: relative;
+    }
+
     &__grid {
         padding: 64px 0 14px 0;
         display: flex!important;
