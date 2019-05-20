@@ -39,6 +39,19 @@
         display: block;
         position: relative;
 
+        @media(max-width: 400px) {
+
+            .gm-style .gm-style-iw-c {
+                min-width: 240px!important;
+            }    
+
+        }
+
+        .gm-style-iw-d {
+            min-width: 100%!important;
+            overflow-x: none!important;
+        }
+
         &-infowindow {
             
             h4 {

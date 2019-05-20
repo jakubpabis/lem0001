@@ -75,7 +75,10 @@ get_header(); ?>
             center: new google.maps.LatLng(markers[0][1], markers[0][2])
         });
 
-        var infowindow = new google.maps.InfoWindow();
+        var infowindow = new google.maps.InfoWindow({
+            maxWidth: 300,
+            minWidth: 250
+        });
         var marker, i, contentString;
         for (i = 0; i < markers.length; i++) {  
 
