@@ -38,6 +38,24 @@
         min-height: 80vh;
         display: block;
         position: relative;
+
+        &-infowindow {
+            
+            h4 {
+                margin: 10px 0 5px 0;
+            }
+
+            p {
+                margin: 0;
+
+                a {
+                    text-decoration: underline;
+                }
+
+            }
+
+        }
+
     }
 
     &__grid {

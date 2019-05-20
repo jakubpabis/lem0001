@@ -57,9 +57,11 @@ get_header(); ?>
                 <?php $lat = floatval(get_sub_field('latitude')); ?>
                 <?php $lng = floatval(get_sub_field('longitude')); ?>
                 <?php $index = get_row_index(); ?>
+                <?php $content = str_replace(array("\n", "\r"), ' ', get_sub_field('content')); ?>
+                <?php $image = get_sub_field('logo')['url']; ?>
 
                 <?php if(!empty($lat) && !empty($lng)) : ?>
-                    ['<?= $name; ?>', <?= $lat; ?>, <?= $lng; ?>, <?= $index; ?>],
+                    ['<?= $name; ?>', <?= $lat; ?>, <?= $lng; ?>, <?= $index; ?>, '<?= $content; ?>', '<?= $image; ?>'],
                 <?php endif; ?>
 
             <?php endwhile; ?>
@@ -74,19 +76,29 @@ get_header(); ?>
         });
 
         var infowindow = new google.maps.InfoWindow();
-        var marker, i;
+        var marker, i, contentString;
         for (i = 0; i < markers.length; i++) {  
+
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(markers[i][1], markers[i][2]),
-                map: map
+                map: map,
+                title: markers[i][0]
             });
 
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            contentString = '<div class="dealers__map-infowindow">'+
+                '<img src="'+markers[i][5]+'" alt="">'+
+                '<h4>'+markers[i][0]+'</h4>'+
+                markers[i][4]+
+                '</div>';
+            
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i, contentString) {
                 return function() {
-                    infowindow.setContent(locations[i][0]);
+                    infowindow.setContent(contentString);
                     infowindow.open(map, marker);
                 }
-            })(marker, i));
+            })(marker, i, contentString));
+
         }
 
         var bounds = new google.maps.LatLngBounds();
