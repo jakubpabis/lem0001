@@ -42,7 +42,7 @@
         @media(max-width: 400px) {
 
             .gm-style .gm-style-iw-c {
-                min-width: 240px!important;
+                min-width: 260px!important;
             }    
 
         }
@@ -53,6 +53,10 @@
         }
 
         &-infowindow {
+
+            @media(max-width: 400px) {
+                text-align: center!important;
+            }
             
             h4 {
                 margin: 10px 0 5px 0;
