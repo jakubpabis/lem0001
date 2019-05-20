@@ -42,7 +42,7 @@
         @media(max-width: 400px) {
 
             .gm-style .gm-style-iw-c {
-                min-width: 260px!important;
+                min-width: 250px!important;
             }    
 
         }
@@ -56,6 +56,11 @@
 
             @media(max-width: 400px) {
                 text-align: center!important;
+
+                img {
+                    max-width: 100%!important;
+                }
+
             }
             
             h4 {
