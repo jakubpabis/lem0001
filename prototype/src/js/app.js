@@ -318,7 +318,7 @@ $(document).ready(function() {
 	subMenuToggle();
 	
 	$( document ).on( 'found_variation', '.variations_form', function ( event, variation) {
-		console.log(variation);
+		//console.log(variation);
 		$('.product__single-info').find('> .price').find('span').text((variation.display_price).toLocaleString('en'));
 		$('.product__single-info').find('> .sub-price').find('span').text((variation.display_regular_price).toLocaleString('en'));
 	});

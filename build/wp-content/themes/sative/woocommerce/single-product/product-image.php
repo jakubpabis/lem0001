@@ -97,7 +97,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 						<?php $varimages[] = $variation->get_image_id(); ?>
 					<?php endif;
 				endforeach; 
-			endif; var_dump($varimages);
+			endif;
 		?>
 		<?php if ( $attachment_ids && has_post_thumbnail() ) :
 			foreach ( $attachment_ids as $attachment_id ) : 
