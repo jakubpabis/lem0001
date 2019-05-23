@@ -79,19 +79,45 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 	<div class="owl-carousel owl-theme">
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="item">
-				<?php /* get_the_post_thumbnail( $post->ID, 'large'); */ ?>
-				<img src="<?= the_post_thumbnail_url($post->ID, 'large'); ?>" alt="">
+				<img src="<?= get_the_post_thumbnail_url($post->ID, 'large'); ?>" alt="">
 			</div>
 		<?php endif; ?>
+		<?php 
+			if( $product->is_type('variable') ) :
+				$variations = $product->get_visible_children(); 
+				$varimages = [];
+				foreach ( $variations as $variation ) : 
+					$variation = wc_get_product( $variation );
+					$color = $variation->get_attribute('pa_color');
+					$attribute = $variation->get_attributes()['pa_color'];
+					if(!empty($color)) : ?>
+						<div class="item">
+							<img class="lazy" data-col="<?= $variation->get_attributes()['pa_color']; ?>" data-src="<?= wp_get_attachment_image_url($variation->get_image_id(), 'large'); ?>" alt="">
+						</div>
+						<?php $varimages[] = $variation->get_image_id(); ?>
+					<?php endif;
+				endforeach; 
+			endif; var_dump($varimages);
+		?>
 		<?php if ( $attachment_ids && has_post_thumbnail() ) :
-			foreach ( $attachment_ids as $attachment_id ) : ?>
-				<div class="item">
-					<img class="lazy" data-src="<?= wp_get_attachment_image_url($attachment_id, 'large'); ?>" alt="">
-					<?php /* wp_get_attachment_image( $attachment_id, 'large'); */ ?>
-				</div>
-			<?php endforeach;
-		endif;  ?>
+			foreach ( $attachment_ids as $attachment_id ) : 
+				if (!in_array($attachment_id, $varimages)) : ?>
+					<div class="item">
+						<img class="lazy" data-src="<?= wp_get_attachment_image_url($attachment_id, 'large'); ?>" alt="">
+					</div>
+				<?php endif; 
+			endforeach;
+		endif; ?>
 	</div>
+	<?php /* $variations = $product->get_visible_children(); 
+		foreach ( $variations as $variation ) : 
+			$variation = wc_get_product( $variation );
+			$color = $variation->get_attribute('pa_color');
+			$attribute = $variation->get_attributes()['pa_color'];
+			if(!empty($color)) : ?>
+				<img class="lazy" data-col="<?= $variation->get_attributes()['pa_color']; ?>" data-src="<?= wp_get_attachment_image_url($variation->get_image_id(), 'large'); ?>" alt="">
+			<?php endif;
+	*/ ?>
 	<?php if ( $attachment_ids && has_post_thumbnail() ) : ?>
 		<div class="owl-prev">
 			<i class="icon-chevron_left"></i>

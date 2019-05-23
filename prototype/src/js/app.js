@@ -269,11 +269,12 @@ function initOwlCarousel()
 	
 	var $owl = $('.owl-carousel');
 	$owl.owlCarousel({
-		loop: true,
+		loop: false,
+		rewind: true,
 		margin: 0,
 		nav: false,
 		dots: true,
-		smartSpeed: 500,
+		speed: 500,
 		responsive: {
 			0: {
 				items: 1
@@ -287,6 +288,13 @@ function initOwlCarousel()
 	$('.owl-prev').click(function() {
 		$owl.trigger('prev.owl.carousel');
 	});
+
+	$(document).on('change', '#pa_color', function(event) {
+		$selected = $(this).children("option:selected").val();
+		$position = $owl.find('img[data-col="'+$selected+'"]').parent().parent().index();
+		$owl.trigger('to.owl.carousel', [$position]);
+	});
+
 }
 
 function lazyImages()
@@ -313,7 +321,7 @@ $(document).ready(function() {
 		console.log(variation);
 		$('.product__single-info').find('> .price').find('span').text((variation.display_price).toLocaleString('en'));
 		$('.product__single-info').find('> .sub-price').find('span').text((variation.display_regular_price).toLocaleString('en'));
-	});	
+	});
 
 });
 
