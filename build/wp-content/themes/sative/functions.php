@@ -447,3 +447,14 @@ function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package
 	}
 	return $rates;
 }
+
+function my_custom_loop_category_title( $category ) {
+	?>
+	<h2 class="woocommerce-loop-category__title">
+		<?php
+		echo esc_html( $category->name );
+		?>
+	</h2>
+	<?php
+}    
+add_action( 'my_woocommerce_shop_loop_subcategory_title', 'my_custom_loop_category_title', 10 ); 
