@@ -22,9 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( $upsells ) : ?>
 
-	<section class="up-sells upsells products">
+	<aside class="container product__related">
 
-		<h2><?php esc_html_e( 'You may also like&hellip;', 'woocommerce' ) ?></h2>
+		<div class="product__related-title">
+			<?php esc_html_e( 'You may also like&hellip;', 'woocommerce' ) ?>
+		</div>
 
 		<?php woocommerce_product_loop_start(); ?>
 
@@ -41,8 +43,16 @@ if ( $upsells ) : ?>
 
 		<?php woocommerce_product_loop_end(); ?>
 
-	</section>
+	</aside>
 
-<?php endif;
+<?php 
+
+$GLOBALS['upsellsused'] = true;
+
+else : 
+
+	$GLOBALS['upsellsused'] = false;
+	
+endif;
 
 wp_reset_postdata();

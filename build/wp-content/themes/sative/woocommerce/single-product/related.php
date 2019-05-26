@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( $related_products ) : ?>
+if ( $related_products && $GLOBALS['upsellsused'] !== true ) : ?>
 
 	<aside class="container product__related">
 
