@@ -83,14 +83,14 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 			</div>
 		<?php endif; ?>
 		<?php 
+			$varimages = [];
 			if( $product->is_type('variable') ) :
 				$variations = $product->get_visible_children(); 
-				$varimages = [];
 				foreach ( $variations as $variation ) : 
 					$variation = wc_get_product( $variation );
 					$color = $variation->get_attribute('pa_color');
 					$attribute = $variation->get_attributes()['pa_color'];
-					if(!empty($color)) : ?>
+					if(!empty($color) && !in_array($variation->get_image_id(), $varimages)) : ?>
 						<div class="item">
 							<img class="lazy" data-col="<?= $variation->get_attributes()['pa_color']; ?>" data-src="<?= wp_get_attachment_image_url($variation->get_image_id(), 'large'); ?>" alt="">
 						</div>
