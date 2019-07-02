@@ -3,7 +3,7 @@
 	position: relative;
 	background-color: white;
 	box-shadow: 0 -25px 70px -20px $color-grey3;
-	z-index: 9;
+	z-index: 99999999;
 
 	> .container {
 		justify-content: space-between;
@@ -36,11 +36,11 @@
 				display: flex;
 				flex-wrap: nowrap;
 
-				@media(max-width: 1280px) {
-					margin: 5px 0 0 0;
-				}
+				// @media(max-width: 1280px) {
+				// 	margin: 5px 0 0 0;
+				// }
 
-				li {
+				> li {
 					font-size: 18px;
 					font-weight: 700;
 					line-height: 1;
@@ -50,7 +50,6 @@
 
 					@media(max-width: 1280px) {
 						font-size: 17px;
-						letter-spacing: 0.5px;
 					}
 
 					@media(max-width: 1140px) {
@@ -58,7 +57,15 @@
 						letter-spacing: 0;
 					}
 
-					a {
+					&:hover {
+
+						.sub_menu {
+							height: 1000px;
+						}
+
+					}
+
+					> a {
 						padding: 0 24px;
 
 						@media(max-width: 1280px) {
@@ -126,64 +133,82 @@
 
 					}
 
-					ul.sub_menu {
+					.sub_menu {
 						position: absolute;
 						top: 100%;
 						width: 100vw;
-						margin-top: 30px;
 						left: 50%;
 						transform: translateX(-50%);
-						display: flex;
-						justify-content: center;
-						align-items: center;
+						display: block;
 						overflow: hidden;
-						background-color: $color-grey;
+						background-color: $color-secondary;
 						height: 0;
-						padding: 0;
-						z-index: 9;
-						max-height: 400px;
+						z-index: 999999999;
+						max-height: 540px;
 						@include trans(500ms);
 
-						&.active {
-							padding: 38px 0;
-							height: 120px;
-						}
+						// &.active {
+						// 	padding: 38px 0;
+						// 	height: 120px;
+						// }
 
-						li {
-							line-height: 1;
-							color: $color-primary;
-							padding: 0;
-							font-size: 21px;
-							font-weight: 500;
-							letter-spacing: 1px;
-							display: block;
+						> .container {
+							display: flex;
+							flex-wrap: wrap;
+							padding-top: 20px;
+							padding-bottom: 20px;
 
-							@media(max-width: 1280px) {
+							> div {
+								line-height: 1;
+								color: $color-primary;
+								padding: 20px 15px;
 								font-size: 18px;
-							}
-
-							&:before {
-								display: none;
-							}
-
-							a {
-								padding: 0 20px;
-								@include trans(500ms);
-
+								font-weight: 700;
+								letter-spacing: 1px;
+								display: block;
+								flex-basis: 16.666666%;
+	
 								@media(max-width: 1280px) {
-									padding: 0 15px;
+									font-size: 18px;
 								}
-
-							}
-
-							&:hover,
-							&.active,
-							&.current-cat {
-
+	
+								&:before {
+									display: none;
+								}
+	
 								a {
-									color: $color-tertiary;
+									display: flex;
+									flex-wrap: wrap;
+									@include trans(500ms);
+	
+									@media(max-width: 1280px) {
+										padding: 0 15px;
+									}
+
+									.img-cont {
+										background-color: white;
+									}
+
+									span {
+										margin-top: 10px;
+									}
+	
+								}
+	
+								&:hover,
+								&.active,
+								&.current-cat {
+	
+									a {
+										color: $color-tertiary;
+									}
+	
 								}
 
+								.subsub_menu {
+									display: none;
+								}
+	
 							}
 
 						}
@@ -538,6 +563,23 @@
 
 			@media(max-width: 960px) {
 				top: -5px;
+				right: -8px;
+			}
+
+		}
+
+	}
+
+	#cartOpenBTNMobile {
+
+		i {
+			font-size: 21px;
+		}
+
+		span {
+
+			@media(max-width: 960px) {
+				top: -9px;
 				right: -8px;
 			}
 

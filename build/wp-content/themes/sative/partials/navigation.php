@@ -72,7 +72,110 @@
 								<?= $item->title; ?>
 								<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
 							</a>
-							<?php if($item->menu_children): ?>
+							<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url): ?>
+							<div class="sub_menu">
+								<div class="container">
+									<?php
+										$cat_args = array(
+											'parent'        => 0,
+											'hide_empty'    => true  
+										);
+										$product_categories = get_terms( 'product_cat', $cat_args );
+										$haveChildren = null;
+										$catParent = null;
+										$is_child_active = null;
+
+										global $post;
+										$product_terms = get_the_terms( $post->ID, 'product_cat' );
+
+										if( !empty($product_categories) ){
+											foreach ($product_categories as $key => $category) if($category->slug !== 'uncategorized') {
+
+												$children = get_term_children($category->term_id, 'product_cat');
+
+												if(get_term_children($category->term_id, 'product_cat')) {
+													$haveChildren = get_term_children($category->term_id, 'product_cat');
+													$catParent = $category->term_id;
+												}
+
+												if($children) foreach($children as $child) {
+													if(is_product_category(get_term($child, 'product_cat')->slug)) {
+														$is_child_active = 1;
+														break;
+													}
+												}
+
+												if(is_product()) {
+													foreach($product_terms as $term) if($term->slug === $category->slug) {
+														$is_child_active = 1;
+														break;
+													}
+												}
+
+												if(is_product_category($category->slug) || $is_child_active !== null) {
+													$haveChildren = get_term_children($category->term_id, 'product_cat');
+													$catParent = $category->term_id;
+													$is_child_active = null;
+													echo '<div class="active">';
+												} else {
+													echo '<div>';
+												}
+												echo '<a href="'.get_term_link($category).'" >';
+												$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
+												$image = wp_get_attachment_url( $thumbnail_id );
+												echo '<div class="img-cont">';
+												if ( $image ) {
+													echo '<img width="320" height="320" class="lazy" data-src="' . $image . '" alt="' . $category->name . '" />';
+												} else {
+													echo '<img width="320" height="320" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy" alt="Picture coming soon...">';
+												}
+												echo '</div>';
+												
+												echo '<span>'.$category->name.'</span>';
+												echo '</a>';
+												if($haveChildren !== null) : ?>
+													<ul class="subsub_menu">
+														<?php
+															$cat_args = array(
+																'parent'        => $catParent,
+																'hide_empty'    => true 
+															);
+															$product_categories = get_terms( 'product_cat', $cat_args );
+															if( !empty($product_categories) ){
+																foreach ($product_categories as $key => $category) {
+
+																	if(is_product()) {
+																		foreach($product_terms as $term) if($term->slug === $category->slug) {
+																			$is_child_active = 1;
+																			break;
+																		}
+																	}
+
+																	if(is_product_category($category->slug) || $is_child_active !== null) {
+																		$is_child_active = null;
+																		echo '<li class="active">';
+																	} else {
+																		echo '<li>';
+																	}
+																	echo '<a href="'.get_term_link($category).'" >';
+																	echo $category->name;
+																	echo '</a>';
+																	echo '</li>';
+																}
+															}
+														?>
+													</ul>
+												<?php endif;
+												$haveChildren = null;
+												$catParent = null;
+												echo '</div>';
+											}
+										}
+									?>
+								</div>
+							</div>
+							<?php endif; ?>
+							<?php /* if($item->menu_children): ?>
 
 								<ul class="sub_menu">
 									
@@ -90,7 +193,7 @@
 									
 								</ul>
 							
-							<?php endif; ?>
+							<?php endif; */ ?>
 						</li>
 					
 					<?php endif; ?>
@@ -120,17 +223,11 @@
 				<li>
 					<?php if ( is_user_logged_in() ) : ?>
 						<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','sative'); ?>">
-							<?php /* <object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
-								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="user icon black" width="36" height="39">
-							</object> */ ?>
 							<i class="far fa-user"></i>
 							<?php // _e('My Account','sative'); ?>
 						</a>
 					<?php else : ?>
 						<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','sative'); ?>">
-							<?php /* <object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
-								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="user icon black" width="36" height="39">
-							</object> */ ?>
 							<i class="far fa-user"></i>
 							<?php // _e('Login / Register','sative'); ?>
 						</a>
@@ -141,29 +238,22 @@
 						<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>
 							<span><?= WC()->cart->get_cart_contents_count(); ?></span>
 						<?php endif; ?>
-						<?php /* <object data="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="36" height="39">
-							<img src="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="cart icon black" width="36" height="39">
-						</object> */ ?>
 						<i class="fas fa-shopping-cart"></i>
 					</a>
 				</li>
 			</ul>
-			<?php /*<form class="topbar__nav-side-search woocommerce-product-search" role="search" method="get" action="<?php echo esc_url( home_url( '/'  ) ); ?>">
-				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search Products&hellip;', 'placeholder', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label', 'woocommerce' ); ?>" />
-				<button type="submit"><i class="fas fa-search"></i></button>
-				<input type="hidden" name="post_type" value="product" />
-			</form> */ ?>
 		</nav>
 		<a href="javascript:void(0)" class="cart-btn-mobile" id="cartOpenBTNMobile">
 			<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>
 				<span><?= WC()->cart->get_cart_contents_count(); ?></span>
 			<?php endif; ?>
-			<object data="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="28" height="30">
-				<img src="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="cart icon black" width="28" height="30">
-			</object>
+			<?php /* <object data="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="36" height="39">
+				<img src="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="cart icon black" width="36" height="39">
+			</object> */ ?>
+			<i class="fas fa-shopping-cart"></i>
 		</a>
 	</div>
-	<?php if(is_shop() || is_product() || is_product_category()) : ?>
+	<?php /* if(is_shop() || is_product() || is_product_category()) : ?>
 		<nav class="topbar__subnav">
 			<?php
 				$cat_args = array(
@@ -252,7 +342,7 @@
 				?>
 			</nav>
 		<?php endif; ?>
-	<?php endif;  ?>
+	<?php endif; */ ?>
 </header>
 <div class="search__container">
 	<?= do_shortcode( '[wcas-search-form]' ); ?>
