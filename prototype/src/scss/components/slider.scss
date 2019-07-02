@@ -39,36 +39,34 @@
             .owl-next {
                 width: 48px;
                 height: 48px;
-                line-height: 48px;
                 background: transparent;
                 text-align: center;
                 margin: 0;
                 padding: 0;
                 position: absolute;
                 top: 50%;
-                margin-top: -40px;
+                margin-top: -24px;
                 z-index: 9999999999;
                 cursor: pointer;
 
                 @media(max-width: 1280px) {
                     width: 40px;
                     height: 40px;
-                    line-height: 40px;
-                    margin-top: -32px;
+                    margin-top: -20px;
                 }
 
                 @media(max-width: 767px) {
                     width: 36px;
                     height: 36px;
                     line-height: 36px;
-                    margin-top: -28px;
+                    margin-top: -18px;
                 }
         
                 @media(max-width: 480px) {
                     width: 32px;
                     height: 32px;
                     line-height: 32px;
-                    margin-top: -24px;
+                    margin-top: -16px;
                 }
 
                 i {
@@ -91,28 +89,92 @@
 
             }
 
-            .owl-prev {
-                left: 10px;
+            .owl-miniatures {
+                padding: 30px 38px 0;
+                display: flex;
+                flex-wrap: wrap;
+
+                @media(max-width: 1280px) {
+                    padding: 24px 28px 0;
+                }
+
+                @media(max-width: 1000px) {
+                    justify-content: center;
+                }
 
                 @media(max-width: 767px) {
-                    left: 0;
+                    padding: 20px 18px 0;
                 }
-        
-                @media(max-width: 480px) {
-                    left: -10px;
+
+                div {
+                    border: 1px solid $color-grey2;
+                    position: relative;
+                    display: flex;
+                    align-content: center;
+                    align-items: center;
+                    justify-content: center;
+                    width: 54px;
+                    height: 54px;
+                    margin: 2px;
+                    cursor: pointer;
+                    @include trans(200ms);
+
+                    @media(max-width: 767px) {
+                        width: 48px;
+                        height: 48px;
+                    }
+
+                    @media(max-width: 480px) {
+                        width: 40px;
+                        height: 40px;
+                    }
+
+                    &:before {
+                        @include trans(200ms);
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        width: calc(100% - 4px);
+                        height: calc(100% - 4px);
+                        border: 3px solid transparent;
+                        pointer-events: none;
+                        z-index: 9999;
+                    }
+
+                    &:after {
+                        content: '';
+                        display: block;
+                        padding-bottom: 100%;
+                    }
+
+                    &:hover,
+                    &.active {
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
+                        
+                        &:before {
+                            border-color: $color-tertiary;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .owl-prev {
+                left: -10px;
+
+                @media(max-width: 767px) {
+                    left: -15px;
                 }
 
             }
     
             .owl-next {
-                right: 10px;
+                right: -10px;
 
                 @media(max-width: 767px) {
-                    right: 0;
-                }
-        
-                @media(max-width: 480px) {
-                    right: -10px;
+                    right: -15px;
                 }
 
             }

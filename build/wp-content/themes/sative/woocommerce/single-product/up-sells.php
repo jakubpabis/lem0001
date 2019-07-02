@@ -20,6 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+global $upsellsused;
+
 if ( $upsells ) : ?>
 
 	<aside class="container product__related">
@@ -30,14 +32,21 @@ if ( $upsells ) : ?>
 
 		<?php woocommerce_product_loop_start(); ?>
 
+			<?php $i = 1; ?>
+
 			<?php foreach ( $upsells as $upsell ) : ?>
 
-				<?php
+				<?php if($i <= 3) :
+
 				 	$post_object = get_post( $upsell->get_id() );
 
 					setup_postdata( $GLOBALS['post'] =& $post_object );
 
-					wc_get_template_part( 'content', 'product' ); ?>
+					wc_get_template_part( 'content', 'product' ); 
+					
+					$i = $i + 1;
+
+				endif; ?>
 
 			<?php endforeach; ?>
 
@@ -47,11 +56,11 @@ if ( $upsells ) : ?>
 
 <?php 
 
-$GLOBALS['upsellsused'] = true;
+$upsellsused = true;
 
 else : 
 
-	$GLOBALS['upsellsused'] = false;
+	$upsellsused = false;
 	
 endif;
 

@@ -24,18 +24,24 @@
         }
 
         &.brands {
-            margin: 64px auto 96px;
+            background-color: white;
+            margin: 0 auto;
+            padding-top: 64px;
+            padding-bottom: 96px;
 
             @media(max-width: 1024px) {
-                margin: 60px auto 88px;
+                padding-top: 60px;
+                padding-bottom: 88px;
             }
     
             @media(max-width: 767px) {
-                margin: 50px auto 72px;
+                padding-top: 50px;
+                padding-bottom: 72px;
             }
     
             @media(max-width: 480px) {
-                margin: 40px auto 64px;
+                padding-top: 40px;
+                padding-bottom: 64px;
             }
 
         }
@@ -221,4 +227,8 @@
 
     }
 
+}
+
+.brands {
+    background-color: white;
 }

@@ -82,9 +82,6 @@ if ( ! empty( $tabs ) ) : ?>
 			<a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= get_permalink(); ?>&title=<?= rawurlencode(get_the_title()); ?>&summary=&source=<?= get_permalink(); ?>" target="_blank" class="linkedin" rel="noopener noreferrer">
 				<i class="fab fa-linkedin-in"></i>
 			</a>
-			<a href="https://plus.google.com/share?url=<?= get_permalink(); ?>" target="_blank" class="google-plus" rel="noopener noreferrer">
-				<i class="fab fa-google-plus-g"></i>
-			</a>
 			<a href="https://pinterest.com/pin/create/bookmarklet/?media=<?= wp_get_attachment_url( get_post_thumbnail_id() ); ?>&url=<?= get_permalink(); ?>&is_video=false&description=<?= rawurlencode(get_the_title()); ?>" target="_blank" class="pinterest" rel="noopener noreferrer">
 				<i class="fab fa-pinterest-p"></i>
 			</a>

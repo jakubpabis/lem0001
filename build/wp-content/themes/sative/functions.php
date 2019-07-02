@@ -325,7 +325,8 @@ if ( ! function_exists( 'sative_homepage_add_product_title' ) ) {
 		}
 		echo $product->get_name();
 		echo '</h3>';
-		echo '<hr/>';
+		//echo '<hr/>';
+		echo '<p class="description">'.wp_trim_words($product->get_description(), 21).'</p>';
 	}
 }
 add_action( 'sative_homepage_product_title', 'sative_homepage_add_product_title', 10 );
@@ -357,8 +358,32 @@ add_action( 'sative_product_link', 'sative_add_product_link', 10 );
 if ( ! function_exists( 'sative_add_product_title' ) ) {
 	function sative_add_product_title($tag) {
 		global $product;
-		global $post;
-		$terms = get_the_terms( $post->ID , 'brand' ); 
+		//global $post;
+		$terms = get_the_terms( $product->get_id() , 'brand' ); 
+		echo '<'.$tag.' class="title">';
+		if($terms) {
+			echo $terms[0]->name.'&nbsp;';
+		}
+		echo get_the_title();
+		echo '</'.$tag.'>';
+		//echo '<hr/>';
+		// if($product->get_short_description()) {
+		// 	echo '<p class="description">'.wp_trim_words($product->get_short_description(), 21).'</p>';
+		// } else {
+			echo '<p class="description">'.wp_trim_words($product->get_description(), 21).'</p>';
+		//}
+
+	}
+}
+add_action( 'sative_product_title', 'sative_add_product_title', 10 );
+
+/**
+ * Insert the title for products in the loop.
+ */
+if ( ! function_exists( 'sative_add_single_product_title' ) ) {
+	function sative_add_single_product_title($tag) {
+		global $product;
+		$terms = get_the_terms( $product->get_id() , 'brand' ); 
 		echo '<'.$tag.' class="title">';
 		if($terms) {
 			echo $terms[0]->name.'&nbsp;';
@@ -369,22 +394,31 @@ if ( ! function_exists( 'sative_add_product_title' ) ) {
 
 	}
 }
-add_action( 'sative_product_title', 'sative_add_product_title', 10 );
+add_action( 'sative_single_product_title', 'sative_add_single_product_title', 10 );
 
 /**
  * Output the related products.
  */
 if ( ! function_exists( 'woocommerce_output_related_products' ) ) {
+	
+
 	function woocommerce_output_related_products() {
 
-		$args = array(
-			'posts_per_page' => 3,
-			'columns'        => 3,
-			'orderby'        => 'rand', // @codingStandardsIgnoreLine.
-		);
+		global $upsellsused;
 
-		woocommerce_related_products( apply_filters( 'woocommerce_output_related_products_args', $args ) );
+		if($upsellsused == false) { 
+
+			$args = array(
+				'posts_per_page' => 3,
+				'columns'        => 3,
+				'orderby'        => 'rand', // @codingStandardsIgnoreLine.
+			);
+
+			woocommerce_related_products( apply_filters( 'woocommerce_output_related_products_args', $args ) );
+		}
+
 	}
+
 }
 
 /**
@@ -458,3 +492,65 @@ function my_custom_loop_category_title( $category ) {
 	<?php
 }    
 add_action( 'my_woocommerce_shop_loop_subcategory_title', 'my_custom_loop_category_title', 10 ); 
+
+
+/**
+ * Insert the title for products in the loop.
+ */
+if ( ! function_exists( 'sative_single_product_images' ) ) {
+	function sative_single_product_images($size = 'large', $attr = 'pa_color') {
+		
+		global $post, $product;
+		$attachment_ids = $product->get_gallery_image_ids();
+		$images = [];
+		$varimages = [];
+
+		if( $product->is_type('variable') ) {
+			$variations = $product->get_visible_children(); 
+			foreach ( $variations as $variation ) {
+				$variation = wc_get_product( $variation );
+				$pa_color = $variation->get_attribute('pa_color');
+				if(!empty($pa_color) && !in_array($variation->get_image_id(), $varimages)) {
+					$images[] = [
+						'url' => wp_get_attachment_image_url($variation->get_image_id(), $size),
+						'attr' => $variation->get_attributes()[$attr],
+					];
+					$varimages[] = $variation->get_image_id();
+				}
+			}
+		}
+
+		if ( $product->get_image() ) {
+			if(in_array($product->get_image_id(), $varimages)) {
+				$search = array_search(wp_get_attachment_image_url($product->get_image_id(), $size), array_column($images, 'url'));
+				$color = $images[$search]['attr'];
+				$thumb = [
+					'url' => wp_get_attachment_image_url($product->get_image_id(), $size),
+					'attr' => $color,
+				];
+				unset($images[$search]);
+				array_unshift($images, $thumb);
+			} else {
+				$thumb = [
+					'url' => get_the_post_thumbnail_url($post->ID, $size),
+					'attr' => '',
+				];
+				array_unshift($images, $thumb);
+			}
+		}
+
+		if ( $attachment_ids && has_post_thumbnail() ) {
+			foreach ( $attachment_ids as $attachment_id ) {
+				if (!in_array($attachment_id, $varimages)) {
+					$images[] = [
+						'url' => wp_get_attachment_image_url($attachment_id, $size),
+						'attr' => '',
+					];
+				} 
+			}
+		} 
+
+		return $images;
+
+	}
+}

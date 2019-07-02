@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
-<main>
+<main class="brands">
 
 	<?php while ( have_posts() ) : the_post(); ?>
 

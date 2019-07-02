@@ -1,14 +1,23 @@
 .product {
 
     &__single {
-        margin-top: 50px;
 
-        @media(max-width: 1080px) {
-            margin-top: 30px;
-        }
+        &-wrapper {
+            background-color: white;
+            position: relative;
+            width: 100%;
+            display: block;
+            padding-top: 50px;
+            padding-bottom: 160px;
 
-        @media(max-width: 767px) {
-            margin-top: 24px;
+            @media(max-width: 1000px) {
+                padding-top: 30px;
+            }
+
+            @media(max-width: 767px) {
+                padding-top: 24px;
+            }
+            
         }
 
         &-container {
@@ -16,7 +25,7 @@
             flex-wrap: nowrap;
             position: relative;
 
-            @media(max-width: 1080px) {
+            @media(max-width: 1000px) {
                 flex-wrap: wrap;
             }
 
@@ -31,14 +40,27 @@
                 max-width: 60%;
             }
 
-            @media(max-width: 1080px) {
+            @media(max-width: 1000px) {
                 flex-basis: 100%;
                 max-width: 100%;
             }
 
+            &_wrapper {
+                position: relative;
+                display: block;
+            }
+
             .item {
-                padding: 0 40px 20px 40px;
+                padding: 0 40px;
                 text-align: center;
+
+                @media(max-width: 1280px) {
+                    padding: 0 30px;
+                }
+
+                @media(max-width: 767px) {
+                    padding: 0 20px;
+                }
                 
                 img {
                     max-height: 80vh;
@@ -58,6 +80,7 @@
             flex-basis: 33.3333%;
             max-width: 33.3333%;
             text-align: center;
+            padding-top: 30px;
             padding-left: 30px;
 
             @media(max-width: 1280px) {
@@ -65,7 +88,7 @@
                 max-width: 40%;
             }
 
-            @media(max-width: 1080px) {
+            @media(max-width: 1000px) {
                 flex-basis: 100%;
                 max-width: 520px;
                 padding-left: 0;
@@ -220,12 +243,12 @@
             .single_add_to_cart_button {
                 width: calc(100% - 10px);
                 appearance: none;
-                background-color: transparent;  
+                background-color: $color-primary;
                 display: block;
                 margin: 40px 5px;
-                @include trans(250ms);
+                @include trans(500ms);
 
-                @media(max-width: 1080px) {
+                @media(max-width: 1000px) {
                     margin: 10px 5px 40px;
                 }
 
@@ -241,11 +264,13 @@
 
                 span {
                     vertical-align: 2px;
-                    @include trans(250ms);
+                    color: white;
                 }
 
                 &:hover {
                     background-color: $color-primary;
+                    transform: scale(1.05);
+                    box-shadow: 0 4px 16px 0 rgba($color: #000000, $alpha: 0.5);
 
                     span {
                         color: white;
@@ -258,21 +283,18 @@
         }
 
         &-tabs {
-            margin-top: 50px;
+            margin-top: -140px;
             margin-bottom: 100px;
 
             @media(max-width: 960px) {
-                margin-top: 40px;
                 margin-bottom: 80px;
             }
 
             @media(max-width: 767px) {
-                margin-top: 36px;
                 margin-bottom: 72px;
             }
 
             @media(max-width: 480px) {
-                margin-top: 30px;
                 margin-bottom: 64px;
             }
 
@@ -335,7 +357,7 @@
                     align-items: center;
                     justify-content: center;
 
-                    @media(max-width: 1080px) {
+                    @media(max-width: 1000px) {
                         min-height: 61px;
                         font-size: 19px;
                     }
@@ -383,7 +405,7 @@
                     font-family: $font-secondary;
                     overflow: hidden;
 
-                    @media(max-width: 1080px) {
+                    @media(max-width: 1000px) {
                         padding: 40px 50px;
                     }
 
@@ -412,7 +434,7 @@
                         font-size: 18px;
                         line-height: 1.66;
 
-                        @media(max-width: 1080px) {
+                        @media(max-width: 1000px) {
                             font-size: 16px;
                         }
 
@@ -518,7 +540,7 @@
                     position: relative;
                     padding: 0 80px;
 
-                    @media(max-width: 1080px) {
+                    @media(max-width: 1000px) {
                         padding: 0 50px;
                         height: 66px;
                         line-height: 66px;
@@ -552,7 +574,7 @@
                         letter-spacing: 1px;
                         margin-right: 20px;
 
-                        @media(max-width: 1080px) {
+                        @media(max-width: 1000px) {
                             font-size: 20px;
                         }
 
@@ -589,7 +611,7 @@
                         line-height: 39px;
                         @include trans(150ms);
 
-                        @media(max-width: 1080px) {
+                        @media(max-width: 1000px) {
                             width: 32px;
                             height: 32px;
                             line-height: 34px;
@@ -645,7 +667,7 @@
                             font-size: 21px;
                             color: white;
 
-                            @media(max-width: 1080px) {
+                            @media(max-width: 1000px) {
                                 font-size: 19px;
                             }
 
@@ -687,7 +709,7 @@
         margin-bottom: 60px;
         text-align: center;
 
-        @media(max-width: 1080px) {
+        @media(max-width: 1000px) {
             margin-top: 100px;
             margin-bottom: 50px;
         }
@@ -713,7 +735,7 @@
             letter-spacing: 1px;
             margin-bottom: 70px;
 
-            @media(max-width: 1080px) {
+            @media(max-width: 1000px) {
                 font-size: 44px;
                 margin-bottom: 60px;
             }

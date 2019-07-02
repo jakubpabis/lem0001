@@ -75,55 +75,49 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 		}
 	?>
 <?php endif; */ ?>
+
+	
+
 <div class="product__single-slider slider__container">
-	<div class="owl-carousel owl-theme">
-		<?php if ( has_post_thumbnail() ) : ?>
-			<div class="item">
-				<img src="<?= get_the_post_thumbnail_url($post->ID, 'large'); ?>" alt="">
+	<div class="product__single-slider_wrapper">
+		<div class="owl-carousel owl-theme">
+
+			<?php $slides = sative_single_product_images(); ?>
+			<?php foreach($slides as $slide) : ?>
+
+				<div class="item">
+					<img class="lazy" data-col="<?= $slide['attr']; ?>" src="<?= $slide['url']; ?>" alt="">
+				</div>
+
+			<?php endforeach; ?>
+
+		</div>
+
+		<?php if ( $attachment_ids && has_post_thumbnail() ) : ?>
+			<div class="owl-prev">
+				<i class="icon-chevron_left"></i>
+			</div>
+			<div class="owl-next">
+				<i class="icon-chevron_right"></i>
 			</div>
 		<?php endif; ?>
-		<?php 
-			$varimages = [];
-			if( $product->is_type('variable') ) :
-				$variations = $product->get_visible_children(); 
-				foreach ( $variations as $variation ) : 
-					$variation = wc_get_product( $variation );
-					$color = $variation->get_attribute('pa_color');
-					$attribute = $variation->get_attributes()['pa_color'];
-					if(!empty($color) && !in_array($variation->get_image_id(), $varimages)) : ?>
-						<div class="item">
-							<img class="lazy" data-col="<?= $variation->get_attributes()['pa_color']; ?>" data-src="<?= wp_get_attachment_image_url($variation->get_image_id(), 'large'); ?>" alt="">
-						</div>
-						<?php $varimages[] = $variation->get_image_id(); ?>
-					<?php endif;
-				endforeach; 
-			endif;
-		?>
-		<?php if ( $attachment_ids && has_post_thumbnail() ) :
-			foreach ( $attachment_ids as $attachment_id ) : 
-				if (!in_array($attachment_id, $varimages)) : ?>
-					<div class="item">
-						<img class="lazy" data-src="<?= wp_get_attachment_image_url($attachment_id, 'large'); ?>" alt="">
-					</div>
-				<?php endif; 
-			endforeach;
-		endif; ?>
+		
 	</div>
-	<?php /* $variations = $product->get_visible_children(); 
-		foreach ( $variations as $variation ) : 
-			$variation = wc_get_product( $variation );
-			$color = $variation->get_attribute('pa_color');
-			$attribute = $variation->get_attributes()['pa_color'];
-			if(!empty($color)) : ?>
-				<img class="lazy" data-col="<?= $variation->get_attributes()['pa_color']; ?>" data-src="<?= wp_get_attachment_image_url($variation->get_image_id(), 'large'); ?>" alt="">
-			<?php endif;
-	*/ ?>
-	<?php if ( $attachment_ids && has_post_thumbnail() ) : ?>
-		<div class="owl-prev">
-			<i class="icon-chevron_left"></i>
-		</div>
-		<div class="owl-next">
-			<i class="icon-chevron_right"></i>
+
+	<?php if ( sative_single_product_images() ) : ?>
+		<div class="owl-miniatures">
+			<?php $miniatures = sative_single_product_images('thumbnail'); ?>
+			<?php $i = 0; ?>
+			<?php foreach($miniatures as $miniature) : ?>
+
+				<div data-index="<?= $i; ?>">
+					<img width="50" class="lazy" data-col="<?= $miniature['attr']; ?>" data-src="<?= $miniature['url']; ?>" alt="">
+				</div>
+				<?php $i = $i + 1; ?>
+
+			<?php endforeach; ?>
+			
 		</div>
 	<?php endif; ?>
+
 </div>

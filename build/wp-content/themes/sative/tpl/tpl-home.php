@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
-<main>
+<main class="homepage">
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
@@ -119,16 +119,16 @@ get_header(); ?>
 								
 								<div class="products__item">
 									<div class="products__item-photo">
-										<img class="lazy" data-src="<?= get_the_post_thumbnail_url( $product->get_id(), 'medium' ); ?>" alt="" width="300">
+										<img class="lazy" data-src="<?= get_the_post_thumbnail_url( $product->get_id(), 'medium' ); ?>" alt="" width="360">
 									</div>
 									<div class="products__item-text">
 										<?php do_action('sative_homepage_product_title', get_sub_field('product')); ?>
 										<?php do_action('sative_homepage_price', $product); ?>
 									</div>
-									<div class="products__item-btn">
+									<?php /* <div class="products__item-btn">
 										<?= __('View product'); ?>
 										<i class="icon-chevron_right_bold"></i>
-									</div>
+									</div> */ ?>
 									<?php do_action('sative_homepage_product_link', get_sub_field('product')); ?>
 								</div>
 

@@ -18,30 +18,47 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<div <?php wc_product_cat_class( '', $category ); ?>>
+<div <?php wc_product_cat_class( 'products__item', $category ); ?>>
 	<?php
+	/**
+	 * woocommerce_before_subcategory_title hook.
+	 *
+	 * @hooked woocommerce_subcategory_thumbnail - 10
+	 */
+	$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true ); ?>
+	
+	<?php if ( !empty(wp_get_attachment_image_url( $thumbnail_id, 'medium' )) ) : ?>
+		<div class="products__item-photo">
+			<img class="lazy attachment-medium size-medium wp-post-image" data-src="<?= wp_get_attachment_image_url( $thumbnail_id, 'medium' ); ?>" alt="<?= esc_attr( $category->name ); ?>">
+		</div>
+	<?php else : ?>
+		<div class="products__item-photo">
+			<img width="320" height="320" data-src="<?= get_template_directory_uri(); ?>/assets/img/img_coming.png" class="attachment-medium size-medium wp-post-image lazy" alt="Picture coming soon...">
+		</div>
+	<?php endif; ?>
+
+	<div class="products__item-text category">
+		<h2 class="category_title">
+			<?= esc_html( $category->name ); ?>
+		</h2>
+		<?php if($category->description) : ?>
+			<p class="description">
+				<?= esc_html( wp_trim_words($category->description, 25) ); ?>
+			</p>
+		<?php endif; ?>
+	</div>
+
+	<?php
+	/**
+	 * woocommerce_after_subcategory_title hook.
+	 */
+	do_action( 'woocommerce_after_subcategory_title', $category );
 	/**
 	 * woocommerce_before_subcategory hook.
 	 *
 	 * @hooked woocommerce_template_loop_category_link_open - 10
 	 */
 	do_action( 'woocommerce_before_subcategory', $category );
-	/**
-	 * woocommerce_before_subcategory_title hook.
-	 *
-	 * @hooked woocommerce_subcategory_thumbnail - 10
-	 */
-	do_action( 'woocommerce_before_subcategory_title', $category );
-	/**
-	 * woocommerce_shop_loop_subcategory_title hook.
-	 *
-	 * @hooked woocommerce_template_loop_category_title - 10
-	 */
-	do_action( 'my_woocommerce_shop_loop_subcategory_title', $category );
-	/**
-	 * woocommerce_after_subcategory_title hook.
-	 */
-	do_action( 'woocommerce_after_subcategory_title', $category );
 	/**
 	 * woocommerce_after_subcategory hook.
 	 *

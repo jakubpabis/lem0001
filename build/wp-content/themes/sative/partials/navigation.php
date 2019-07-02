@@ -112,40 +112,47 @@
 					</li>
 
 				<?php endforeach; */ ?>
+				<li class="searchForm">
+					<a href="javascript:void(0)" onclick="showSearch()">
+						<i class="fas fa-search"></i>
+					</a>
+				</li>
 				<li>
-					<?php if ( is_user_logged_in() ) { ?>
+					<?php if ( is_user_logged_in() ) : ?>
 						<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','sative'); ?>">
-							<object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
+							<?php /* <object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
 								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="user icon black" width="36" height="39">
-							</object>
+							</object> */ ?>
+							<i class="far fa-user"></i>
 							<?php // _e('My Account','sative'); ?>
 						</a>
-					<?php } 
-					else { ?>
+					<?php else : ?>
 						<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','sative'); ?>">
-							<object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
+							<?php /* <object data="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" type="image/svg+xml" width="36" height="39">
 								<img src="<?= get_template_directory_uri(); ?>/assets/img/avatar.svg" alt="user icon black" width="36" height="39">
-							</object>
+							</object> */ ?>
+							<i class="far fa-user"></i>
 							<?php // _e('Login / Register','sative'); ?>
 						</a>
-					<?php } ?>
+					<?php endif; ?>
 				</li>
 				<li>
 					<a href="javascript:void(0)" id="cartOpenBTN" title="<?php _e('Cart','sative'); ?>">
 						<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>
 							<span><?= WC()->cart->get_cart_contents_count(); ?></span>
 						<?php endif; ?>
-						<object data="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="36" height="39">
+						<?php /* <object data="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="36" height="39">
 							<img src="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="cart icon black" width="36" height="39">
-						</object>
+						</object> */ ?>
+						<i class="fas fa-shopping-cart"></i>
 					</a>
 				</li>
 			</ul>
-			<form class="topbar__nav-side-search woocommerce-product-search" role="search" method="get" action="<?php echo esc_url( home_url( '/'  ) ); ?>">
+			<?php /*<form class="topbar__nav-side-search woocommerce-product-search" role="search" method="get" action="<?php echo esc_url( home_url( '/'  ) ); ?>">
 				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search Products&hellip;', 'placeholder', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label', 'woocommerce' ); ?>" />
 				<button type="submit"><i class="fas fa-search"></i></button>
 				<input type="hidden" name="post_type" value="product" />
-			</form>
+			</form> */ ?>
 		</nav>
 		<a href="javascript:void(0)" class="cart-btn-mobile" id="cartOpenBTNMobile">
 			<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>
@@ -247,3 +254,6 @@
 		<?php endif; ?>
 	<?php endif;  ?>
 </header>
+<div class="search__container">
+	<?= do_shortcode( '[wcas-search-form]' ); ?>
+</div>

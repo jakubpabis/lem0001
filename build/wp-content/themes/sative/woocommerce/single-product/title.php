@@ -20,4 +20,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-do_action( 'sative_product_title', 'h1' ); ?>
+do_action( 'sative_single_product_title', 'h1' ); ?>

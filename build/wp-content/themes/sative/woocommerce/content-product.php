@@ -34,11 +34,11 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
 	<?php if ( has_post_thumbnail() ) : ?>
 		<div class="products__item-photo">
-			<?= get_the_post_thumbnail( $post->ID, 'medium'); ?>
+			<img class="lazy attachment-medium size-medium wp-post-image" data-src="<?= get_the_post_thumbnail_url( $post->ID, 'medium'); ?>" alt="">
 		</div>
 	<?php else : ?>
 		<div class="products__item-photo">
-			<img width="320" height="320" src="<?= get_template_directory_uri(); ?>/assets/img/img_coming.png" class="attachment-medium size-medium wp-post-image" alt="Picture coming soon...">
+			<img width="320" height="320" data-src="<?= get_template_directory_uri(); ?>/assets/img/img_coming.png" class="attachment-medium size-medium wp-post-image lazy" alt="Picture coming soon...">
 		</div>
 	<?php endif; ?>
 
@@ -58,10 +58,10 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
 	</div>
 
-	<div class="products__item-btn">
+	<?php /*<div class="products__item-btn">
 		<?= __('View product') ?>
 		<i class="icon-chevron_right_bold"></i>
-	</div>
+	</div> */ ?>
 	<?php 
 	/**
 	 * Display product link
