@@ -122,12 +122,12 @@
 												}
 												echo '<a href="'.get_term_link($category).'" >';
 												$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
-												$image = wp_get_attachment_url( $thumbnail_id );
+												$image = wp_get_attachment_image_url( $thumbnail_id, 'thumbnail' );
 												echo '<div class="img-cont">';
 												if ( $image ) {
-													echo '<img width="320" height="320" class="lazy" data-src="' . $image . '" alt="' . $category->name . '" />';
+													echo '<img width="200" height="200" class="lazy" data-src="' . $image . '" alt="' . $category->name . '" />';
 												} else {
-													echo '<img width="320" height="320" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy" alt="Picture coming soon...">';
+													echo '<img width="200" height="200" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy" alt="Picture coming soon...">';
 												}
 												echo '</div>';
 												
@@ -203,18 +203,7 @@
 		</nav>
 		<nav class="topbar__nav-side">
 			<ul>
-				<?php // pll_the_languages(array('show_flags'=>1,'show_names'=>1, 'hide_current'=>1)); ?>
-				<?php /* if ($side_menu) foreach($side_menu as $item) : ?>
-				
-					<li>
-						<?php if($item->url) : ?>
-							<a href="<?= $item->url; ?>">
-								<?= $item->title; ?>
-							</a>
-						<?php endif; ?>
-					</li>
-
-				<?php endforeach; */ ?>
+				<?php pll_the_languages(array('show_flags'=>1,'show_names'=>1, 'hide_current'=>1)); ?>
 				<li class="searchForm">
 					<a href="javascript:void(0)" onclick="showSearch()">
 						<i class="fas fa-search"></i>

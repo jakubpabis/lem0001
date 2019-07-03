@@ -46,7 +46,7 @@
                 position: absolute;
                 top: 50%;
                 margin-top: -24px;
-                z-index: 9999999999;
+                z-index: 9;
                 cursor: pointer;
 
                 @media(max-width: 1280px) {
@@ -214,7 +214,7 @@
             position: absolute;
             top: 50%;
             margin-top: -48px;
-            z-index: 9999999999;
+            z-index: 9;
             cursor: pointer;
 
             @media(max-width: 1280px) {
