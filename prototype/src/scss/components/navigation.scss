@@ -60,13 +60,13 @@
 						letter-spacing: 0;
 					}
 
-					&:hover {
+					// &:hover {
 
-						.sub_menu {
-							max-height: 600px;
-						}
+					// 	.sub_menu {
+					// 		max-height: 600px;
+					// 	}
 
-					}
+					// }
 
 					> a {
 						padding: 0 24px;
@@ -143,18 +143,11 @@
 						width: 100vw;
 						left: 50%;
 						transform: translateX(-50%);
-						display: block;
+						display: none;
 						overflow: hidden;
 						background-color: $color-secondary;
-						height: auto;
 						z-index: 9999;
-						max-height: 0;
 						@include trans(400ms);
-
-						// &.active {
-						// 	padding: 38px 0;
-						// 	height: 120px;
-						// }
 
 						> .container {
 							display: flex;
@@ -162,7 +155,7 @@
 							padding-top: 20px;
 							padding-bottom: 20px;
 
-							> div {
+							.item {
 								line-height: 1;
 								color: $color-primary;
 								padding: 0 15px;
@@ -173,7 +166,6 @@
 								letter-spacing: 1px;
 								display: block;
 								position: relative;
-								overflow: hidden;
 								flex-basis: 16.666666%;
 	
 								@media(max-width: 1280px) {
@@ -198,11 +190,7 @@
 										background-color: white;
 										display: block;
 										position: relative;
-										overflow: hidden;
-										@include trans(400ms);
 										margin-bottom: 10px;
-										max-height: 200px;
-										height: auto;
 
 										img {
 											@include trans(400ms);
@@ -212,7 +200,6 @@
 
 									span {
 										position: relative;
-										//bottom: 0;
 										line-height: 1.44;
 										margin-bottom: 10px;
 										border-bottom: 2px solid transparent;
@@ -233,35 +220,18 @@
 
 									> a {
 
-										.img-cont {
-											max-height: 0;
-											margin-bottom: 0;
-										}
-
 										span {
 											border-bottom-color: $color-tertiary;
 										}
 
 									}
 
-									.subsub_menu {
-										max-height: 300px;
-										margin: 10px 0 0 0;
-										opacity: 1;
-									}
-
 								}
 
 								.subsub_menu {
-									display: block;
+									display: none;
 									position: relative;
-									height: auto;
-									overflow: hidden;
-									max-height: 0;
-									padding: 0;
-									opacity: 0;
-									margin: -200px 0 0 0;
-									@include trans(400ms);
+									padding: 10px 0 0 0;
 
 									li {
 										line-height: 1.44;

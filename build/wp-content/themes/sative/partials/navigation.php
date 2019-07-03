@@ -116,9 +116,9 @@
 													$haveChildren = get_term_children($category->term_id, 'product_cat');
 													$catParent = $category->term_id;
 													$is_child_active = null;
-													echo '<div class="active">';
+													echo '<div class="active item">';
 												} else {
-													echo '<div>';
+													echo '<div class="item">';
 												}
 												echo '<a href="'.get_term_link($category).'" >';
 												$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
