@@ -3,7 +3,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 ?>
-
 		<footer class="footer">
 			<a href="/" class="footer__logo">
 				<object data="<?= get_template_directory_uri(); ?>/assets/img/logo.svg" type="image/svg+xml" width="260" height="105">
@@ -80,8 +79,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 	</div>
+	<div class="search__container">
+		<?= do_shortcode( '[wcas-search-form]' ); ?>
+	</div>
 	<?php wp_footer(); ?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js" defer></script>
+	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js?v=1.2" defer></script>
+	
 </body>
 </html>

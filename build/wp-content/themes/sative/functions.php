@@ -1,5 +1,155 @@
 <?php
 
+class WP_HTML_Compression
+{
+    // Settings
+    protected $compress_css = true;
+    protected $compress_js = true;
+    protected $info_comment = true;
+    protected $remove_comments = true;
+
+    // Variables
+    protected $html;
+    public function __construct($html)
+    {
+   	 if (!empty($html))
+		{
+			$this->parseHTML($html);
+		}
+    }
+    public function __toString()
+    {
+   	 	return $this->html;
+    }
+    protected function bottomComment($raw, $compressed)
+    {
+		$raw = strlen($raw);
+		$compressed = strlen($compressed);
+		
+		$savings = ($raw-$compressed) / $raw * 100;
+		
+		$savings = round($savings, 2);
+		
+		return '<!--HTML compressed, size saved '.$savings.'%. From '.$raw.' bytes, now '.$compressed.' bytes-->';
+    }
+    protected function minifyHTML($html)
+    {
+		$pattern = '/<(?<script>script).*?<\/script\s*>|<(?<style>style).*?<\/style\s*>|<!(?<comment>--).*?-->|<(?<tag>[\/\w.:-]*)(?:".*?"|\'.*?\'|[^\'">]+)*>|(?<text>((<[^!\/\w.:-])?[^<]*)+)|/si';
+		preg_match_all($pattern, $html, $matches, PREG_SET_ORDER);
+		$overriding = false;
+		$raw_tag = false;
+		// Variable reused for output
+		$html = '';
+		foreach ($matches as $token)
+		{
+			$tag = (isset($token['tag'])) ? strtolower($token['tag']) : null;
+			
+			$content = $token[0];
+			
+			if (is_null($tag))
+			{
+				if ( !empty($token['script']) )
+				{
+					$strip = $this->compress_js;
+				}
+				else if ( !empty($token['style']) )
+				{
+					$strip = $this->compress_css;
+				}
+				else if ($content == '<!--wp-html-compression no compression-->')
+				{
+					$overriding = !$overriding;
+					
+					// Don't print the comment
+					continue;
+				}
+				else if ($this->remove_comments)
+				{
+					if (!$overriding && $raw_tag != 'textarea')
+					{
+						// Remove any HTML comments, except MSIE conditional comments
+						$content = preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s', '', $content);
+					}
+				}
+			}
+			else
+			{
+				if ($tag == 'pre' || $tag == 'textarea')
+				{
+					$raw_tag = $tag;
+				}
+				else if ($tag == '/pre' || $tag == '/textarea')
+				{
+					$raw_tag = false;
+				}
+				else
+				{
+					if ($raw_tag || $overriding)
+					{
+						$strip = false;
+					}
+					else
+					{
+						$strip = true;
+						
+						// Remove any empty attributes, except:
+						// action, alt, content, src
+						$content = preg_replace('/(\s+)(\w++(?<!\baction|\balt|\bcontent|\bsrc)="")/', '$1', $content);
+						
+						// Remove any space before the end of self-closing XHTML tags
+						// JavaScript excluded
+						$content = str_replace(' />', '/>', $content);
+					}
+				}
+			}
+			
+			if ($strip)
+			{
+				$content = $this->removeWhiteSpace($content);
+			}
+			
+			$html .= $content;
+   	 }
+   	 
+   	 return $html;
+    }
+   	 
+    public function parseHTML($html)
+    {
+		$this->html = $this->minifyHTML($html);
+		
+		if ($this->info_comment)
+		{
+			$this->html .= "\n" . $this->bottomComment($html, $this->html);
+		}
+    }
+    
+    protected function removeWhiteSpace($str)
+    {
+		$str = str_replace("\t", ' ', $str);
+		$str = str_replace("\n",  '', $str);
+		$str = str_replace("\r",  '', $str);
+		
+		while (stristr($str, '  '))
+		{
+			$str = str_replace('  ', ' ', $str);
+		}
+		
+		return $str;
+    }
+}
+
+function wp_html_compression_finish($html)
+{
+    return new WP_HTML_Compression($html);
+}
+
+function wp_html_compression_start()
+{
+    ob_start('wp_html_compression_finish');
+}
+add_action('get_header', 'wp_html_compression_start');
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -7,13 +157,11 @@
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function sative_setup() {
-
+function sative_setup() 
+{
 	load_theme_textdomain( 'sative' );
-
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
-
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'side'    => __( 'Side Menu', 'sative' ),
@@ -21,7 +169,6 @@ function sative_setup() {
 		'footer_one'    => __( 'Footer Menu First', 'sative' ),
 		'footer_two'    => __( 'Footer Menu Second', 'sative' ),
 	) );
-
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
@@ -33,34 +180,27 @@ function sative_setup() {
 		'gallery',
 		'caption',
 	) );
-
-	/*
-	 * Enable support for Post Formats.
-	 *
-	 * See: https://codex.wordpress.org/Post_Formats
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside',
-		'image',
-		'video',
-		'quote',
-		'link',
-		'gallery',
-		'audio',
-	) );
-
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
 }
 add_action( 'after_setup_theme', 'sative_setup' );
 
 /**
+ * Remove Post from menu
+ */
+function post_remove() 
+{ 
+   remove_menu_page('edit.php');
+}
+add_action('admin_menu', 'post_remove'); 
+
+/**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function sative_widgets_init() {
-
+function sative_widgets_init() 
+{
 	register_sidebar( array(
 		'name'          => __( 'Nav', 'sative' ),
 		'id'            => 'nav-sidebar',
@@ -77,158 +217,12 @@ add_action( 'widgets_init', 'sative_widgets_init' );
 /* Disable WordPress Admin Bar for all users but admins. */
 show_admin_bar(false);
 
-
-/**
- * Register polylang strings for translation
- */
-if (function_exists('pll_register_string')) {
-	$strings = [
-		'Your Cart',
-		'Our Shopping & Return Policy',
-		'Go to Checkout'
-	];
-	foreach($strings as $string) {
-		pll_register_string($string, $string);
-	}
-}
-
-
-/**
- * Use front-page.php when Front page displays is set to a static page.
- *
- * @since Twenty Seventeen 1.0
- *
- * @param string $template front-page.php.
- *
- * @return string The template to be used: blank if is_home() is true (defaults to index.php), else $template.
- */
-function sative_front_page_template( $template ) {
-	return is_home() ? '' : $template;
-}
-add_filter( 'frontpage_template',  'sative_front_page_template' );
-
-
-function searchForId($id, $array) {
-	foreach ($array as $key => $val) {
-		if ($val->ID == $id) {
-			return $key;
-		}
-	}
-	return null;
- }
-
-/**
- * Main menu array setup
- *
- * @param [type] $id
- * @return void
- */
-function sative_main_menu_setup($menu) {
-
-	$main_menu = [];
-	foreach($menu as $item) {
-
-		if($item->menu_item_parent == 0) {
-			$main_menu[] = $item;
-		} else {
-			$id = searchForId($item->menu_item_parent, $main_menu);
-
-			if(!$main_menu[$id]->menu_children) {
-				$main_menu[$id]->menu_children = [];
-				array_push($main_menu[$id]->menu_children, $item);
-			} else {
-				array_push($main_menu[$id]->menu_children, $item);
-			}
-		}
-
-	}
-
-	return $main_menu;
-}
-
-/**
- * 
- * Add WooCommerce support
- * 
- */
-add_action( 'after_setup_theme', 'woocommerce_support' );
-function woocommerce_support() {
-    add_theme_support( 'woocommerce' );
-}
-
-// Remove all WooCommerce styles and scripts
-add_filter( 'woocommerce_enqueue_styles', '__return_false' );
-
-
-
-
-
-
-
-/**
- * 
- * 
- * uncomment this on production
- * 
- */
-
-// function pm_remove_all_scripts() {
-//     global $wp_scripts;
-//     $wp_scripts->queue = array();
-// }
-// add_action('wp_print_scripts', 'pm_remove_all_scripts', 100);
-// function pm_remove_all_styles() {
-//     global $wp_styles;
-//     $wp_styles->queue = array();
-// }
-// add_action('wp_print_styles', 'pm_remove_all_styles', 100);
-
-/**
- * 
- * 
- * uncomment this on production
- * 
- */
-
-
-
-
-
-// function my_search_form($html)
-// {
-//     return str_replace('Search ', 'Search ', $html);
-// }
-// add_filter('get_search_form', 'my_search_form');
-
-/**
- * Disable responsive image support (test!)
- */
-
-// Clean the up the image from wp_get_attachment_image()
-add_filter( 'wp_get_attachment_image_attributes', function( $attr )
-{
-    if( isset( $attr['sizes'] ) )
-        unset( $attr['sizes'] );
-
-    if( isset( $attr['srcset'] ) )
-        unset( $attr['srcset'] );
-
-    return $attr;
-
-}, PHP_INT_MAX );
-// Override the calculated image sizes
-add_filter( 'wp_calculate_image_sizes', '__return_empty_array',  PHP_INT_MAX );
-// Override the calculated image sources
-add_filter( 'wp_calculate_image_srcset', '__return_empty_array', PHP_INT_MAX );
-// Remove the reponsive stuff from the content
-remove_filter( 'the_content', 'wp_make_content_images_responsive' );
-
 /**
  * 
  * Add Brand taxonomy to WooCommerce products
  * 
  */
-function brand_taxonomy()  {
+ function brand_taxonomy()  {
 
 	$labels = array(
 		'name'                       => __('Brands'),
@@ -260,6 +254,101 @@ function brand_taxonomy()  {
 }
 add_action( 'init', 'brand_taxonomy', 0 );
 
+/**
+ * Register polylang strings for translation
+ */
+if (function_exists('pll_register_string')) 
+{
+	$strings = [
+		'Your Cart',
+		'Our Shopping & Return Policy',
+		'Go to Checkout'
+	];
+	foreach($strings as $string) {
+		pll_register_string($string, $string);
+	}
+}
+
+function searchForId($id, $array) 
+{
+	foreach ($array as $key => $val) {
+		if ($val->ID == $id) {
+			return $key;
+		}
+	}
+	return null;
+ }
+
+/**
+ * Main menu array setup
+ *
+ * @param [type] $id
+ * @return void
+ */
+function sative_main_menu_setup($menu) 
+{
+	$main_menu = [];
+	foreach($menu as $item) {
+		if($item->menu_item_parent == 0) {
+			$main_menu[] = $item;
+		} else {
+			$id = searchForId($item->menu_item_parent, $main_menu);
+			if(!$main_menu[$id]->menu_children) {
+				$main_menu[$id]->menu_children = [];
+				array_push($main_menu[$id]->menu_children, $item);
+			} else {
+				array_push($main_menu[$id]->menu_children, $item);
+			}
+		}
+	}
+	return $main_menu;
+}
+
+/**
+ * 
+ * Add WooCommerce support
+ * 
+ */
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() 
+{
+    add_theme_support( 'woocommerce' );
+}
+// Remove all WooCommerce styles and scripts
+add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+
+
+
+
+
+
+
+/**
+ * 
+ * 
+ * uncomment this on production
+ * 
+ */
+
+// function pm_remove_all_scripts() 
+// {
+//     global $wp_scripts;
+//     $wp_scripts->queue = array();
+// }
+// add_action('wp_print_scripts', 'pm_remove_all_scripts', 100);
+// function pm_remove_all_styles() 
+// {
+//     global $wp_styles;
+//     $wp_styles->queue = array();
+// }
+// add_action('wp_print_styles', 'pm_remove_all_styles', 100);
+
+/**
+ * 
+ * 
+ * uncomment this on production
+ * 
+ */
 
 
 
@@ -274,8 +363,10 @@ add_action( 'init', 'brand_taxonomy', 0 );
 /**
  * Insert the anchor tag for products on homepage.
  */
-if ( ! function_exists( 'sative_homepage_add_product_link' ) ) {
-	function sative_homepage_add_product_link($id) {
+if ( ! function_exists( 'sative_homepage_add_product_link' ) ) 
+{
+	function sative_homepage_add_product_link($id) 
+	{
 		$link = get_the_permalink($id);
 		$product = wc_get_product($id);
 		echo '<a href="' . esc_url( $link ) . '" class="whole-element-link" title="' . __("View product").' '. $product->get_name() .'"></a>';
@@ -286,8 +377,10 @@ add_action( 'sative_homepage_product_link', 'sative_homepage_add_product_link', 
 /**
  * Display price on homepage
  */
-if( ! function_exists( 'sative_homepage_add_price' ) ) {
-	function sative_homepage_add_price($product) {
+if( ! function_exists( 'sative_homepage_add_price' ) ) 
+{
+	function sative_homepage_add_price($product) 
+	{
 		$currency = get_woocommerce_currency_symbol();
 		if ( $product->is_type( 'variable' ) && $product->get_variation_regular_price( 'min', true ) != $product->get_variation_price( 'min', true ) ) : ?>
 			<p class="price">
@@ -315,8 +408,10 @@ add_action( 'sative_homepage_price', 'sative_homepage_add_price', 10 );
 /**
  * Insert the title for products on the homepage.
  */
-if ( ! function_exists( 'sative_homepage_add_product_title' ) ) {
-	function sative_homepage_add_product_title($item) {
+if ( ! function_exists( 'sative_homepage_add_product_title' ) ) 
+{
+	function sative_homepage_add_product_title($item) 
+	{
 		$product = wc_get_product( get_sub_field('product') );
 		$terms = get_the_terms( $item , 'brand' ); 
 		echo '<h3 class="title">';
@@ -325,7 +420,6 @@ if ( ! function_exists( 'sative_homepage_add_product_title' ) ) {
 		}
 		echo $product->get_name();
 		echo '</h3>';
-		//echo '<hr/>';
 		echo '<p class="description">'.wp_trim_words($product->get_description(), 21).'</p>';
 	}
 }
@@ -343,8 +437,10 @@ add_action( 'sative_homepage_product_title', 'sative_homepage_add_product_title'
 /**
  * Insert the anchor tag for products in the loop.
  */
-if ( ! function_exists( 'sative_add_product_link' ) ) {
-	function sative_add_product_link() {
+if ( ! function_exists( 'sative_add_product_link' ) ) 
+{
+	function sative_add_product_link() 
+	{
 		global $product;
 		$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
 		echo '<a href="' . esc_url( $link ) . '" class="whole-element-link" title="' . __("View product").' '. get_the_title() .'"></a>';
@@ -355,8 +451,10 @@ add_action( 'sative_product_link', 'sative_add_product_link', 10 );
 /**
  * Insert the title for products in the loop.
  */
-if ( ! function_exists( 'sative_add_product_title' ) ) {
-	function sative_add_product_title($tag) {
+if ( ! function_exists( 'sative_add_product_title' ) ) 
+{
+	function sative_add_product_title($tag) 
+	{
 		global $product;
 		//global $post;
 		$terms = get_the_terms( $product->get_id() , 'brand' ); 
@@ -366,12 +464,7 @@ if ( ! function_exists( 'sative_add_product_title' ) ) {
 		}
 		echo get_the_title();
 		echo '</'.$tag.'>';
-		//echo '<hr/>';
-		// if($product->get_short_description()) {
-		// 	echo '<p class="description">'.wp_trim_words($product->get_short_description(), 21).'</p>';
-		// } else {
-			echo '<p class="description">'.wp_trim_words($product->get_description(), 21).'</p>';
-		//}
+		echo '<p class="description">'.wp_trim_words($product->get_description(), 21).'</p>';
 
 	}
 }
@@ -380,8 +473,10 @@ add_action( 'sative_product_title', 'sative_add_product_title', 10 );
 /**
  * Insert the title for products in the loop.
  */
-if ( ! function_exists( 'sative_add_single_product_title' ) ) {
-	function sative_add_single_product_title($tag) {
+if ( ! function_exists( 'sative_add_single_product_title' ) ) 
+{
+	function sative_add_single_product_title($tag) 
+	{
 		global $product;
 		$terms = get_the_terms( $product->get_id() , 'brand' ); 
 		echo '<'.$tag.' class="title">';
@@ -399,33 +494,29 @@ add_action( 'sative_single_product_title', 'sative_add_single_product_title', 10
 /**
  * Output the related products.
  */
-if ( ! function_exists( 'woocommerce_output_related_products' ) ) {
-	
-
-	function woocommerce_output_related_products() {
-
+if ( ! function_exists( 'woocommerce_output_related_products' ) ) 
+{
+	function woocommerce_output_related_products() 
+	{
 		global $upsellsused;
-
 		if($upsellsused == false) { 
-
 			$args = array(
 				'posts_per_page' => 3,
 				'columns'        => 3,
 				'orderby'        => 'rand', // @codingStandardsIgnoreLine.
 			);
-
 			woocommerce_related_products( apply_filters( 'woocommerce_output_related_products_args', $args ) );
 		}
-
 	}
-
 }
 
 /**
  * Change Checkout button in cart
  */
-if ( ! function_exists( 'sative_widget_shopping_cart_proceed_to_checkout' ) ) {
-	function sative_widget_shopping_cart_proceed_to_checkout() {
+if ( ! function_exists( 'sative_widget_shopping_cart_proceed_to_checkout' ) ) 
+{
+	function sative_widget_shopping_cart_proceed_to_checkout() 
+	{
 		echo '<a href="' . esc_url( wc_get_checkout_url() ) . '" class="button checkout wc-forward btn btn__normal btn__full btn__checkout"><span>' . pll__('Go to Checkout') . '</span><i class="icon-chevron_right_bold"></i></a>';
 	}
 }
@@ -434,7 +525,8 @@ add_action( 'sative_widget_shopping_cart_buttons', 'sative_widget_shopping_cart_
 /**
  * Change view cart message
  */
-function sative_custom_add_to_cart_message() {
+function sative_custom_add_to_cart_message() 
+{
 	global $woocommerce;
 	$return_to  = get_permalink(wc_get_page_id('shop'));
 	$message    = __('Product successfully added to your cart. ', 'woocommerce').'<span id="cartOpenBTNSuccess">View cart</span>';
@@ -445,7 +537,8 @@ add_filter( 'wc_add_to_cart_message_html', 'sative_custom_add_to_cart_message' )
 /**
  * Ensure variation combinations are working properly - standard limit is 30
  */
-function woo_custom_ajax_variation_threshold( $qty, $product ) {
+function woo_custom_ajax_variation_threshold( $qty, $product ) 
+{
     return 500;
 }       
 add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_threshold', 10, 2 );
@@ -463,7 +556,8 @@ add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_t
  
 add_filter( 'woocommerce_package_rates', 'businessbloomer_hide_free_shipping_for_shipping_class', 10, 2 );
   
-function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package ) {
+function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package ) 
+{
 	$shipping_class_target = 367;
 	$in_cart = false;
 	foreach( WC()->cart->cart_contents as $key => $values ) {
@@ -482,14 +576,11 @@ function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package
 	return $rates;
 }
 
-function my_custom_loop_category_title( $category ) {
-	?>
-	<h2 class="woocommerce-loop-category__title">
-		<?php
-		echo esc_html( $category->name );
-		?>
-	</h2>
-	<?php
+function my_custom_loop_category_title( $category ) 
+{
+	echo '<h2 class="woocommerce-loop-category__title">';
+	echo esc_html( $category->name );
+	echo '</h2>';
 }    
 add_action( 'my_woocommerce_shop_loop_subcategory_title', 'my_custom_loop_category_title', 10 ); 
 
@@ -497,9 +588,10 @@ add_action( 'my_woocommerce_shop_loop_subcategory_title', 'my_custom_loop_catego
 /**
  * Insert the title for products in the loop.
  */
-if ( ! function_exists( 'sative_single_product_images' ) ) {
-	function sative_single_product_images($size = 'large', $attr = 'pa_color') {
-		
+if ( ! function_exists( 'sative_single_product_images' ) ) 
+{
+	function sative_single_product_images($size = 'large', $attr = 'pa_color') 
+	{
 		global $post, $product;
 		$attachment_ids = $product->get_gallery_image_ids();
 		$images = [];

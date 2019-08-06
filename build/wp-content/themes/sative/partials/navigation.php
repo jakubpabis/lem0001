@@ -333,6 +333,3 @@
 		<?php endif; ?>
 	<?php endif; */ ?>
 </header>
-<div class="search__container">
-	<?= do_shortcode( '[wcas-search-form]' ); ?>
-</div>
