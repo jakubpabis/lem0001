@@ -65,6 +65,28 @@
         margin: 0 -15px;
     }
 
+    .woocommerce-checkout-review-order {
+
+        .form-row {
+            margin-top: 48px;
+            margin-bottom: 0!important;
+
+            .woocommerce-terms-and-conditions-checkbox-text {
+                text-transform: none;
+                font-size: 16px;
+                font-weight: 500;
+
+                a {
+                    text-decoration: underline;
+                    font-weight: 700;
+                }
+
+            }
+
+        }
+
+    }
+
     .col2-set,
     .woocommerce-checkout-review-order,
     #order_review_heading,
@@ -153,7 +175,7 @@
             input[type="checkbox"] {
                 appearance: checkbox!important;
                 width: 24px;
-                height: 24px;
+                height: 16px;
                 padding: 0;
                 display: inline-block;
                 margin: 0 5px 0 0;
@@ -504,7 +526,35 @@ span.required {
 }
 
 section.shipping {
+    margin-top: 50px;
     margin-bottom: 20px;
+
+    #shipping_method {
+
+        li {
+            padding: 3px 0;
+            vertical-align: middle;
+
+            label {
+                vertical-align: middle;
+                padding-left: 5px;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1;
+            }
+
+        }
+
+    }
+
+}
+
+.woocommerce-additional-fields {
+    margin-bottom: 100px;
+}
+
+.woocommerce-additional-fields__field-wrapper {
+    padding: 0!important;
 }
 
 .woocommerce-form__input.woocommerce-form__input-checkbox.input-checkbox {

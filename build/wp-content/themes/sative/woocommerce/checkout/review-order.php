@@ -11,7 +11,6 @@
  * the readme will list any important changes.
  *
  * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
  * @package 	WooCommerce/Templates
  * @version     3.3.0
  */
@@ -54,6 +53,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 	</tbody>
 	<tfoot>
+
+		<tr>
+			<th><?php _e( 'Shipping', 'woocommerce' ); ?></th>
+			<td><strong><?= WC()->cart->get_cart_shipping_total(); ?></strong></td>
+		</tr>
 
 		<tr class="cart-subtotal">
 			<th><?php _e( 'Subtotal', 'woocommerce' ); ?></th>

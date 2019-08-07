@@ -406,6 +406,17 @@ section {
 	height: 100%; 
 }
 
+.woocommerce-terms-and-conditions-wrapper {
+
+	.woocommerce-terms-and-conditions {
+		background-color: white;
+		max-height: 300px;
+		margin: 30px auto;
+		padding: 30px 15px;
+	}
+
+}
+
 .woocommerce {
 	position: relative;
 	display: block;
@@ -428,6 +439,18 @@ section {
 			font-weight: 700;
 		}
 
+	}
+
+	&-message {
+		padding: 2em 4em;
+		margin: 0 auto 2em;
+		position: absolute;
+		top: 40px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 99999999;
+		background-color: white;
+		box-shadow: 0 0 20px 0 rgba($color: #000000, $alpha: 0.2);
 	}
 
 }

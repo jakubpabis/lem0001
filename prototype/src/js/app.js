@@ -359,6 +359,16 @@ function subMenu()
 	});
 }
 
+function checkLocal(el)
+{
+	if($(el).val() == 'local_pickup:8' || $(el).prev().val() == 'local_pickup:8') {
+		$('#pickup_location_field').slideDown(300);
+	} else {
+		$('#pickup_location_field').slideUp(300);
+	}
+
+}
+
 
 $(document).ready(function() {
 	
