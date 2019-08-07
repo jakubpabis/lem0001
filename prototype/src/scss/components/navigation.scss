@@ -207,13 +207,37 @@
 	
 								}
 	
-								&.active,
-								&.current-cat {
+								&.active {
 	
 									> a {
 										color: $color-tertiary;
+
+										.img-cont {
+											border: 3px solid $color-tertiary;
+										}
+
 									}
 	
+								}
+
+								&.current-cat {
+									
+									> a {
+
+										span {
+											border-bottom-color: $color-tertiary;
+										}
+
+										.img-cont {
+											display: none;
+										}
+
+									}
+
+									.subsub_menu {
+										display: block;
+									}
+
 								}
 
 								&:hover {
@@ -242,7 +266,8 @@
 											@include trans(200ms);
 										}
 
-										&:hover {
+										&:hover,
+										&.active {
 
 											a {
 												padding-left: 5px;

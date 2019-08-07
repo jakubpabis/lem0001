@@ -112,11 +112,12 @@
 													}
 												}
 
-												if(is_product_category($category->slug) || $is_child_active !== null) {
+												if(is_product_category($category->slug) && $is_child_active == null) {
+													echo '<div class="active item">';
+												} else if($is_child_active !== null) {
 													$haveChildren = get_term_children($category->term_id, 'product_cat');
 													$catParent = $category->term_id;
-													$is_child_active = null;
-													echo '<div class="active item">';
+													echo '<div class="current-cat item">';
 												} else {
 													echo '<div class="item">';
 												}
@@ -151,7 +152,7 @@
 																		}
 																	}
 
-																	if(is_product_category($category->slug) || $is_child_active !== null) {
+																	if(is_product_category($category->slug)) {
 																		$is_child_active = null;
 																		echo '<li class="active">';
 																	} else {

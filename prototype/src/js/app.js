@@ -329,8 +329,20 @@ function lazyImages()
 
 function subMenu()
 {
+	var highest = 0, this_id;
 	$('.topbar__nav-main').find('ul.menu').find('> li').on('mouseenter', function() {
 		var $nav = $(this).find('.sub_menu');
+		$h = $('.topbar__nav-main').find('ul.menu').find('> li').find('.sub_menu').find('.item')
+		$h.each( function(i,v){
+			this_id = parseInt($(this).height());
+			if (this_id > highest)
+			{
+				highest = this_id;
+			}
+		});
+		$h.each(function() {
+			$(this).css({'min-height' : highest});
+		});
 		if($nav.length) {
 			$nav.stop(true, true).slideDown(300);
 			setTimeout(function() {
@@ -345,10 +357,9 @@ function subMenu()
 	});
 
 	$('.topbar__nav-main').find('ul.menu').find('> li').find('.sub_menu').find('.item').on('mouseenter', function() {
-		var $h = $(this).height();
 		if($(this).find('> a').next('ul.subsub_menu').length) {
-			$(this).css({'min-height' : $h}).find('.img-cont').stop(true, true).slideUp(200);
-			$(this).find('ul.subsub_menu').stop(true, true).delay(250).slideDown(150);
+			$(this).css({'min-height' : highest}).find('.img-cont').stop(true, true).slideUp(200);
+			$(this).find('ul.subsub_menu').stop(true, true).delay(200).slideDown(150);
 		}
 	});
 	$('.topbar__nav-main').find('ul.menu').find('> li').find('.sub_menu').find('.item').on('mouseleave', function() {
