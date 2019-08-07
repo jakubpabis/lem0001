@@ -348,7 +348,7 @@ function subMenu()
 		var $h = $(this).height();
 		if($(this).find('> a').next('ul.subsub_menu').length) {
 			$(this).css({'min-height' : $h}).find('.img-cont').stop(true, true).slideUp(200);
-			$(this).find('ul.subsub_menu').stop(true, true).delay(400).slideDown(150);
+			$(this).find('ul.subsub_menu').stop(true, true).delay(250).slideDown(150);
 		}
 	});
 	$('.topbar__nav-main').find('ul.menu').find('> li').find('.sub_menu').find('.item').on('mouseleave', function() {

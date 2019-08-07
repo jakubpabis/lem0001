@@ -546,34 +546,68 @@ add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_t
 
 
 
-/**
- * @snippet       Disable Free Shipping if Cart has Shipping Class (WooCommerce 2.6+)
- * @how-to        Watch tutorial @ https://businessbloomer.com/?p=19055
- * @sourcecode    https://businessbloomer.com/?p=19960
- * @author        Rodolfo Melogli
- * @testedwith    WooCommerce 3.4.4
- */
+// /**
+//  * @snippet       Disable Free Shipping if Cart has Shipping Class (WooCommerce 2.6+)
+//  * @how-to        Watch tutorial @ https://businessbloomer.com/?p=19055
+//  * @sourcecode    https://businessbloomer.com/?p=19960
+//  * @author        Rodolfo Melogli
+//  * @testedwith    WooCommerce 3.4.4
+//  */
  
-add_filter( 'woocommerce_package_rates', 'businessbloomer_hide_free_shipping_for_shipping_class', 10, 2 );
+// add_filter( 'woocommerce_package_rates', 'businessbloomer_hide_free_shipping_for_shipping_class', 10, 2 );
   
-function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package ) 
+// function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package ) 
+// {
+// 	$shipping_class_target = 'bikes';
+// 	$in_cart = false;
+// 	foreach( WC()->cart->cart_contents as $key => $values ) {
+// 		dd($values[ 'data' ]->get_shipping_class());
+// 		if( $values[ 'data' ]->get_shipping_class() == $shipping_class_target ) {
+// 			$in_cart = true;
+// 			//break;
+// 		} 
+// 	}
+// 	if( $in_cart ) {
+// 		//unset( $rates['free_shipping:6'] ); 
+// 		//unset( $rates['flat_rate:1'] );
+// 		//unset( $rates['flat_rate:10'] );
+// 		//unset( $rates['flat_rate:7'] );
+// 	} else {
+// 		//unset( $rates['local_pickup:8'] );
+// 	}
+// 	//return $rates;
+// }
+
+add_filter( 'woocommerce_package_rates', 'hide_shipping_method_based_on_shipping_class', 10, 2 );
+function hide_shipping_method_based_on_shipping_class( $rates, $package )
 {
-	$shipping_class_target = 367;
+    if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+        return;
+
+    // HERE define your shipping class to find
+	$class1 = 'bikes';
+	$class2 = 'bikes-pl';
+
 	$in_cart = false;
-	foreach( WC()->cart->cart_contents as $key => $values ) {
-		if( $values[ 'data' ]->get_shipping_class_id() == $shipping_class_target ) {
+    // HERE define the shipping method to hide
+    // $method_key_id = 'flat_rate:7';
+
+    // Checking in cart items
+    foreach( $package['contents'] as $item ){
+        // If we find the shipping class
+        if( $item['data']->get_shipping_class() == $class1 || $item['data']->get_shipping_class() == $class2 ){
 			$in_cart = true;
-			break;
-		} 
+			unset($rates['flat_rate:10']);
+			unset($rates['flat_rate:9']);
+			unset($rates['flat_rate:7']);
+			unset($rates['flat_rate:1']);
+            break; // Stop the loop
+        }
 	}
-	if( $in_cart ) {
-		unset( $rates['free_shipping:6'] ); 
-		unset( $rates['flat_rate:1'] );
-		unset( $rates['flat_rate:7'] );
-	} else {
-		unset( $rates['local_pickup:8'] );
+	if($in_cart == false) {
+		unset($rates['local_pickup:8']);
 	}
-	return $rates;
+    return $rates;
 }
 
 function my_custom_loop_category_title( $category ) 

@@ -84,6 +84,12 @@ label {
 	font-family: $font-primary;
 }
 
+abbr {
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 18px;
+}
+
 section {
 	width: 100%;
 	position: relative;
