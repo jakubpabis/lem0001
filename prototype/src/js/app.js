@@ -330,8 +330,11 @@ function lazyImages()
 function subMenu()
 {
 	var highest = 0, this_id;
-	$('.topbar__nav-main').find('ul.menu').find('> li').on('mouseenter', function() {
+	$('.topbar__nav-main').find('ul.menu').find('> li').on('mouseenter touchstart', function(e) {
 		var $nav = $(this).find('.sub_menu');
+		if($nav.is(':hidden')) {
+			e.preventDefault();
+		}
 		$h = $('.topbar__nav-main').find('ul.menu').find('> li').find('.sub_menu').find('.item')
 		$h.each( function(i,v){
 			this_id = parseInt($(this).height());
@@ -356,7 +359,10 @@ function subMenu()
 		$nav.stop(true, true).slideUp(200);
 	});
 
-	$('.topbar__nav-main').find('ul.menu').find('> li').find('.sub_menu').find('.item').on('mouseenter', function() {
+	$('.topbar__nav-main').find('ul.menu').find('> li').find('.sub_menu').find('.item').on('mouseenter touchstart', function(e) {
+		if($(this).find('> a').next('ul.subsub_menu').length && $(this).find('> a').next('ul.subsub_menu').is(':hidden')) {
+			e.preventDefault();
+		}
 		if($(this).find('> a').next('ul.subsub_menu').length) {
 			$(this).css({'min-height' : highest}).find('.img-cont').stop(true, true).slideUp(200);
 			$(this).find('ul.subsub_menu').stop(true, true).delay(200).slideDown(150);
@@ -368,6 +374,30 @@ function subMenu()
 		$item.find('ul.subsub_menu').stop(true, true).slideUp(50);
 		$item.find('.img-cont').stop(true, true).slideDown(250);
 	});
+
+
+	$('.topbar__nav-mobile').find('> ul').find('> li').find('> a').on('click', function(e) {
+		if($(this).next('.sub_menu').length) {
+			e.preventDefault();
+		}
+		$(this).next('.sub_menu').stop(true, true).slideToggle(300);
+		var $this = $(this);
+		setTimeout(function() {
+			$this.parent().toggleClass('active');
+		}, 300);
+	});
+
+	$('.topbar__nav-mobile').find('> ul').find('> li').find('.sub_menu').find('> ul').find('> li').find('> a').on('click', function(e) {
+		if($(this).next('.subsub_menu').length) {
+			e.preventDefault();
+		}
+		$(this).next('.subsub_menu').stop(true, true).slideToggle(300);
+		var $this = $(this);
+		setTimeout(function() {
+			$this.parent().toggleClass('current-cat');
+		}, 300);
+	});
+
 }
 
 function checkLocal(el)
