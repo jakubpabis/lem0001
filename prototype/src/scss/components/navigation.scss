@@ -780,11 +780,6 @@
 
 		i {
 			font-size: 21px;
-
-			@media(max-width: 440px) {
-				font-size: 19px;
-			}
-
 		}
 
 		span {
@@ -808,8 +803,8 @@
 			height: 27px;
 
 			@media(max-width: 480px) {
-				font-size: 24px;
-				height: 24px;
+				font-size: 25px;
+				height: 25px;
 			}
 
 		}
