@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<hr>
 					<p class="text">
 						Lemasomo Sp. z o.o.<br/>
-						<a href="tel:+48882837257">+48 882 837 257</a><br/>
+						<a href="tel:+48660848261">+48 660 848 261</a><br/>
 						<a href="mailto:office@lemasomo.com">office@lemasomo.com</a>
 					</p>
 					<div class="socials">
@@ -82,9 +82,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="search__container">
 		<?= do_shortcode( '[wcas-search-form]' ); ?>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" defer></script>
+	<script src="<?= get_template_directory_uri(); ?>/assets/js/main.min.js" defer></script>
 	<?php wp_footer(); ?>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="<?= get_template_directory_uri(); ?>/assets/js/app.js?v=1.2" defer></script>
-	
 </body>
 </html>

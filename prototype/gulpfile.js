@@ -1,216 +1,157 @@
-'use strict';
-
-var gulp = require('gulp'),
-    chalk = require('chalk'),
-    gulpif = require('gulp-if'),
-    open = require('open'),
-    fileInclude = require('gulp-file-include'),
-    runSequence = require('run-sequence'),
-    stylish = require('jshint-stylish'),
-    del = require('del'),
-    sass = require('gulp-sass'),
-    spritesmith = require('gulp.spritesmith'),
-    merge = require('merge-stream'),
-    autoprefixer = require('gulp-autoprefixer'),
-    plugins = require('gulp-load-plugins')();
-
-//src path
-var src = {
-    root: 'src',
-    css: 'src/css',
-    includes: 'src/includes',
-    scss: 'src/scss',
-    js: 'src/js',
-    sass: './sass',
-    img: 'src/img',
-    fonts: 'src/fonts',
-    video: 'src/video',
-    html: 'build',
-    buildJs: './build/assets/js',
-    buildCss: './build/assets/css',
-    buildImg: './build/assets/img',
-    buildFonts: './build/assets/fonts',
-    buildVideo: './build/assets/video',
-    portJs: '../build/wp-content/themes/sative/assets/js',
-    portCss: '../build/wp-content/themes/sative/assets/css',
-    portImg: '../build/wp-content/themes/sative/assets/img',
-    portFonts: '../build/wp-content/themes/sative/assets/fonts',
-    portVideo: '../build/wp-content/themes/sative/assets/video',
-};
-
-var production = false;
-
-var opts = {
-    comments: false,
-    quotes: true,
-    spare: true,
-    empty: true,
-    cdata: true
-};
-
-// chalk config
-var error = chalk.red.bold,
-    hint = chalk.yellow.bold,
-    change = chalk.red;
-
+var gulp = require('gulp');
+var plumber = require('gulp-plumber');
+var fileInclude = require('gulp-file-include');
+var rename = require('gulp-rename');
+var sourcemaps = require('gulp-sourcemaps');
+var sass = require('gulp-sass');
+var autoPrefixer = require('gulp-autoprefixer');
+//if node version is lower than v.0.1.2
+require('es6-promise').polyfill();
+var cssComb = require('gulp-csscomb');
+var cmq = require('gulp-merge-media-queries');
+var cleanCss = require('gulp-clean-css');
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
+var imageMin = require('gulp-imagemin');
+var webp = require("imagemin-webp");
+var extReplace = require("gulp-ext-replace");
+var cache = require('gulp-cache');
+const browsersync = require('browser-sync').create();
 /**
  * Log changes in console
  */
 var log = function (event) {
-    console.log(change('\n -- File ' + event.path + ' was ' + event.type + ' -->>>'));
+    console.log('\n -- File ' + event.path + ' was ' + event.type + ' -->>>');
+};
+//src path
+var src = {
+    // root: 'src',
+    // css: 'src/css',
+    includes: 'src/includes',
+    // scss: 'src/scss',
+    // js: 'src/js',
+    // sass: './sass',
+    // img: 'src/img',
+    // fonts: 'src/fonts',
+    // html: 'build',
+    // buildJs: './build/assets/js',
+    // buildCss: './build/assets/css',
+    // buildImg: './build/assets/img',
+    // buildFonts: './build/assets/fonts',
+    // portJs: '../build/themes/sative/assets/js',
+    // portCss: '../build/themes/sative/assets/css',
+    // portImg: '../build/themes/sative/assets/img',
+    // portFonts: '../build/themes/sative/assets/fonts'
 };
 
-/**
- * Task: Individually build SASS files
- */
-gulp.task('build-sass', function() {
-    return gulp.src([src.scss + '/prototype.scss', src.scss + '/prototype.sass'])
-        .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-        .pipe(autoprefixer('last 20 versions'))
-        .pipe(plugins.minifyCss())
-        .pipe(gulp.dest(src.buildCss))
-        .pipe(gulp.dest(src.portCss))
+gulp.task('browsersync', function(callback) {
+    browsersync.init({
+      server: {
+        baseDir: ['./dist']
+      },
+    });
+    callback();
+});
+  
+gulp.task('browsersyncReload', function(callback) {
+    browsersync.reload();
+    callback();
 });
 
-/**
- * Task: Individually build HTML files
- */
-gulp.task('build-html', function () {
-    return gulp.src([src.root + '/*.html', src.root + '/**/*.html'])
+gulp.task('sass',function(){
+    return gulp.src(['src/sass/**/*.scss'])
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(sass({
+            includePaths: require('node-neat').includePaths
+        }).on('error', sass.logError))
+        .pipe(autoPrefixer())
+        .pipe(cssComb())
+        .pipe(cmq({log:true}))
+        .pipe(concat('main.css'))
+        .pipe(gulp.dest('dist/css'))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(cleanCss())
+        .pipe(gulp.dest('dist/css'))
+        .pipe(gulp.dest('../build/wp-content/themes/sative/assets/css'))
+        .pipe(browsersync.stream());
+});
+gulp.task('js',function(){
+    return gulp.src(['src/js/**/*.js'])
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(concat('main.js'))
+        .pipe(gulp.dest('dist/js'))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js'))
+        .pipe(gulp.dest('../build/wp-content/themes/sative/assets/js'))
+});
+gulp.task('html',function(){
+    return gulp.src(['src/**/*.html'])
         .pipe(fileInclude({
             prefix: '@@',
             basepath: src.includes
         }))
-        .pipe(gulp.dest(src.html))
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(gulp.dest('dist/'))
+});
+gulp.task('image',function(){
+    return gulp.src(['src/img/**/*'])
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(cache(imageMin({ optimizationLevel: 7, progressive: true, interlaced: true })))
+        .pipe(gulp.dest('dist/img'))
+        .pipe(gulp.dest('../build/wp-content/themes/sative/assets/img'))
+});
+gulp.task('exportWebP', function() {
+    return gulp.src(['src/img/**/*'])
+      .pipe(imageMin({ optimizationLevel: 7, progressive: true, interlaced: true },[
+        webp({
+          quality: 85
+        })
+      ]))
+      .pipe(extReplace(".webp"))
+      .pipe(gulp.dest('dist/img'))
+      .pipe(gulp.dest('../build/wp-content/themes/sative/assets/img'));
 });
 
-/**
- * Task: Individually build JS files
- */
-gulp.task('build-js', function () {
-    console.log(hint('\n --------- Running SCRIPT tasks ----------------------------------------->>>'));
-    return gulp.src([src.js + '/*.js', src.js + '/**/*.js'])
-        .pipe(plugins.jshint('.jshintrc'))
-        .pipe(plugins.jshint.reporter(stylish))
-        .pipe(plugins.concat('app.js'))
-        .pipe(plugins.uglify())
-        .pipe(plugins.size())
-        .pipe(gulp.dest(src.buildJs))
-        .pipe(gulp.dest(src.portJs))
-});
+gulp.task('watch', function() {
+    gulp.watch('src/sass/**/*.scss', gulp.series('sass'));
+    gulp.watch('src/js/**/*.js', gulp.series('js', 'browsersyncReload'));
+    gulp.watch('src/**/*.html', gulp.series('html', 'browsersyncReload'));
+    gulp.watch('src/img/**/*', gulp.series('image', 'browsersyncReload'));
+    gulp.watch('src/img/**/*', gulp.series('exportWebP', 'browsersyncReload'));
+  });
 
-/**
- * Build SPRITES
- * @return Return a merged stream to handle both `end` events
- */
-gulp.task('sprite', function () {
-  var spriteData = gulp.src('src/img/sprites/*.png').pipe(spritesmith({
-    retinaSrcFilter: 'src/img/sprites/*@2x.png',
-    retinaImgName: 'gb-sprite@2x.png',
-    imgName: 'gb-sprite.png',
-    cssName: 'sprite.css'
-  }));
-  var imgStream = spriteData.img
-    .pipe(gulp.dest(src.buildImg));
-  var cssStream = spriteData.css
-    .pipe(gulp.dest('src/scss/other/'));
+gulp.task('default', gulp.series(gulp.parallel('sass'), gulp.parallel('browsersync', 'watch')));
 
-  return merge(imgStream, cssStream);
-});
-
-/**
- * Task: Copy images to build folder
- */
-gulp.task('build-img', function() {
-    return gulp.src([src.img + '/*', src.img + '/**/*'])
-        .pipe(gulp.dest(src.buildImg))
-        .pipe(gulp.dest(src.portImg))
-});
-
-/**
- * Task: Copy videos to build folder
- */
-gulp.task('build-video', function() {
-    return gulp.src([src.video + '/*', src.video + '/**/*'])
-        .pipe(gulp.dest(src.buildVideo))
-        .pipe(gulp.dest(src.portVideo))
-});
-
-
-/**
- * Task: Copy fonts to the build and public folder
- */
-gulp.task('build-fonts', function() {
-    return gulp.src([src.fonts + '/*', src.fonts + '/**/*'])
-        .pipe(gulp.dest(src.buildFonts))
-        .pipe(gulp.dest(src.portFonts))
-});
-
-
-/**
- * Task: Individually Watch JS
- */
-gulp.task('watch-js', function () {
-    console.log(hint('\n --------- Watching JS Files ------------------------------------------->>> \n'));
-    gulp
-    .watch([src.root + '/*.js', src.js + '/**/*.js'], ['build-js'])
-    .once('change', log);
-});
-
-/**
- * Task: Individually Watch IMG
- */
-gulp.task('watch-img', function () {
-    console.log(hint('\n --------- Watching IMG Files ------------------------------------------->>> \n'));
-    gulp
-    .watch([src.img + '/*', src.img + '/**/*'], ['build-img'])
-    .once('change', log);
-});
-
-/**
- * Task: Individually Watch SASS
- */
-gulp.task('watch-sass', function () {
-    console.log(hint('\n --------- Watching SASS Files ------------------------------------------->>> \n'));
-    gulp
-    .watch([src.root + '/*.scss', src.scss + '/**/*.scss', src.root + '/*.sass', src.scss + '/**/*.sass'], ['build-sass'])
-    .once('change', log);
-});
-
-/**
- * Task: Individually Watch HTML
- */
-gulp.task('watch-html', function () {
-    console.log(hint('\n --------- Watching HTML Files ------------------------------------------->>> \n'));
-    gulp
-    .watch([src.root + '/*.html', src.root + '/**/*.html', src.root + '/*.php', src.includes + '/**/*.php'], ['build-html'])
-    .once('change', log);
-});
-
-/**
- * Task: Clean 
- */
-gulp.task('clean', function () {
-    console.log(hint('\n --------- Clean:Build Folder ------------------------------------------>>> \n'));
-    del('build/', function (err) {
-        console.log(hint('All are files deleted from the build folder'));
-    });
-});
-
-/** 
- * Task: Build 
- */
-gulp.task('build', function () {
-    console.log(hint('\n --------- Build Development Mode  -------------------------------------->>> \n'));
-    runSequence('build-sass', 'build-js', 'build-html', 'build-img', 'build-fonts', 'build-video');
-});
-
-/** 
- * Task: Default 
- */
-gulp.task('default', ['build']);
-
-/**
- * Task: Watch all 
- */
-gulp.task('watch', ['watch-js', 'watch-sass', 'watch-html', 'watch-img']);
+// gulp.task('default',function(){
+//     gulp.series('browsersync');
+//     gulp.watch('src/js/**/*.js',gulp.series('js', 'browsersyncReload')).once('change', log);
+//     gulp.watch('src/sass/**/*.scss',gulp.series('sass', 'browsersyncReload')).once('change', log);
+//     gulp.watch('src/**/*.html',gulp.series('html', 'browsersyncReload')).once('change', log);
+//     gulp.watch('src/img/**/*',gulp.series('image')).once('change', log);
+//     gulp.watch('src/img/**/*',gulp.series('exportWebP')).once('change', log);
+// });

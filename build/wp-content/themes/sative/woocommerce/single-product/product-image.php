@@ -111,7 +111,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 			<?php foreach($miniatures as $miniature) : ?>
 
 				<div data-index="<?= $i; ?>">
-					<img width="50" class="lazy" data-col="<?= $miniature['attr']; ?>" data-src="<?= $miniature['url']; ?>" alt="">
+					<img width="50" class="lazy bg-cover" data-col="<?= $miniature['attr']; ?>" data-src="<?= $miniature['url']; ?>" alt="">
 				</div>
 				<?php $i = $i + 1; ?>
 

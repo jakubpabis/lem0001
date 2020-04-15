@@ -11,26 +11,9 @@
 	
 ?>
 
-<header class="topbar">
+<header id="topbarmenu" class="topbar">
 	<div class="container flex-cont">
 		<nav class="topbar__nav-mobile">
-
-			<div class="mobileSmall">
-				<a href="javascript:void(0)" onclick="showSearch()">
-					<i class="fas fa-search"></i>
-				</a>
-				<?php if ( is_user_logged_in() ) : ?>
-					<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','sative'); ?>">
-						<i class="far fa-user"></i>
-						<?php // _e('My Account','sative'); ?>
-					</a>
-				<?php else : ?>
-					<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','sative'); ?>">
-						<i class="far fa-user"></i>
-						<?php // _e('Login / Register','sative'); ?>
-					</a>
-				<?php endif; ?>
-			</div>
 
 			<div class="topbar__nav-mobile__close">
 				+
@@ -44,14 +27,12 @@
 						<?php else : ?>
 							<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<?php endif; ?>
-							<a href="<?= $item->url ?>">
+						<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url): ?>
+							<a data-toggle="collapse" href="#<?= $item->title; ?>-<?= $item->post_name; ?>-m" role="button" aria-expanded="false" aria-controls="<?= $item->title; ?>-<?= $item->post_name; ?>-m">
 								<?= $item->title; ?>
-								<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url): ?>
-									<i class="fas fa-chevron-down"></i>
-								<?php endif; ?>
+								<i class="fas fa-chevron-down"></i>
 							</a>
-							<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url): ?>
-							<div class="sub_menu">
+							<div class="sub_menu collapse" id="<?= $item->title; ?>-<?= $item->post_name; ?>-m">
 								<a class="viewAll" href="<?= $item->url ?>"><?= _e('View all', 'sative'); ?></a>
 								<ul>
 									<?php
@@ -100,9 +81,11 @@
 												} else {
 													echo '<li class="item">';
 												}
-												echo '<a href="'.get_term_link($category).'">'.$category->name;
 												if($haveChildren !== null) {
+													echo '<a href="#" data-action="dropdown">'.$category->name;
 													echo '<i class="fas fa-chevron-down"></i>';
+												} else {
+													echo '<a href="'.get_term_link($category).'">'.$category->name;
 												}
 												echo '</a>';
 												if($haveChildren !== null) : ?>
@@ -149,9 +132,12 @@
 									?>
 								</ul>
 							</div>
-							<?php endif; ?>
+						<?php else: ?>
+							<a href="<?= $item->url ?>">
+								<?= $item->title; ?>
+							</a>
+						<?php endif; ?>
 						</li>
-
 				<?php endforeach; ?>
 			</ul>
 
@@ -188,19 +174,20 @@
 				<?php if ($main_menu) foreach($main_menu as $item) : ?>
 
 					<?php if($item->menu_item_parent == 0) : ?>
+						<?php //var_dump($item); ?>
 					
 						<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
 							<li class="active">
 						<?php else : ?>
 							<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<?php endif; ?>
-							<a href="<?= $item->url ? $item->url : 'javascript:void(0);' ?>" <?= $item->url ? null : 'data-action="dropdown"' ?>>
-								<?= $item->title; ?>
-								<?= $item->url ? null : '<i class="icon-chevron_down_bold"></i>' ?>
-							</a>
 							<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url): ?>
-							<div class="sub_menu">
+							<a data-toggle="collapse" href="#<?= $item->title; ?>-<?= $item->post_name; ?>" role="button" aria-expanded="false" aria-controls="<?= $item->title; ?>-<?= $item->post_name; ?>">
+								<?= $item->title; ?>
+							</a>
+							<div class="sub_menu collapse" id="<?= $item->title; ?>-<?= $item->post_name; ?>">
 								<div class="container">
+									<div class="row">
 									<?php
 										$cat_args = array(
 											'parent'        => 0,
@@ -252,12 +239,11 @@
 												$image = wp_get_attachment_image_url( $thumbnail_id, 'thumbnail' );
 												echo '<div class="img-cont">';
 												if ( $image ) {
-													echo '<img width="200" height="200" class="lazy" data-src="' . $image . '" alt="' . $category->name . '" />';
+													echo '<img width="200" height="200" class="lazy bg-cover" data-src="' . $image . '" alt="' . $category->name . '" />';
 												} else {
-													echo '<img width="200" height="200" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy" alt="Picture coming soon...">';
+													echo '<img width="200" height="200" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy bg-cover" alt="Picture coming soon...">';
 												}
 												echo '</div>';
-												
 												echo '<span>'.$category->name.'</span>';
 												echo '</a>';
 												if($haveChildren !== null) : ?>
@@ -299,8 +285,13 @@
 											}
 										}
 									?>
+									</div>
 								</div>
 							</div>
+							<?php else: ?>
+								<a href="<?= $item->url; ?>">
+									<?= $item->title; ?>
+								</a>
 							<?php endif; ?>
 						</li>
 					

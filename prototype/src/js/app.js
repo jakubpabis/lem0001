@@ -421,7 +421,17 @@ $(document).ready(function() {
 	cartToggle();
 	menuToggle();
 	subMenuToggle();
-	subMenu();
+	//subMenu();
+
+	$(document).on('click', function(e) {
+		console.log( $.contains( document.getElementById('topbarmenu'), e.target ) );
+		if( !$.contains( document.getElementById('topbarmenu'), e.target ) ) {
+			$('.sub_menu.collapse').each(function() {
+				var id = $(this).attr('id');
+				$('#'+id).collapse('hide');
+			});
+		}
+	});
 
 	$('.dgwt-wcas-close, .dgwt-wcas-preloader').on('click', function() {
 		$('.search__container').fadeOut(300).removeClass('opened');
