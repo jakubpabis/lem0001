@@ -2227,6 +2227,13 @@ section {
 	margin-top: 30px;
 }
 
+.checkout .col-1,
+.checkout .col-2 {
+	width: 100% !important;
+	max-width: 100% !important;
+	flex-basis: 100% !important;
+}
+
 .checkout table {
 	display: flex;
 	flex-direction: column;
