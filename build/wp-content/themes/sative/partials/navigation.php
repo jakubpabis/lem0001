@@ -22,12 +22,12 @@
 			<ul>
 				<?php if ($main_menu) foreach($main_menu as $item) : ?>
 				
-						<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
+						<?php if( get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
 							<li class="active">
 						<?php else : ?>
 							<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<?php endif; ?>
-						<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url): ?>
+						<?php if( get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url ): ?>
 							<a data-toggle="collapse" href="#<?= $item->title; ?>-<?= $item->post_name; ?>-m" role="button" aria-expanded="false" aria-controls="<?= $item->title; ?>-<?= $item->post_name; ?>-m">
 								<?= $item->title; ?>
 								<i class="fas fa-chevron-down"></i>
@@ -176,12 +176,12 @@
 					<?php if($item->menu_item_parent == 0) : ?>
 						<?php //var_dump($item); ?>
 					
-						<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
+						<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
 							<li class="active">
 						<?php else : ?>
 							<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
 						<?php endif; ?>
-							<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url): ?>
+							<?php if( get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url ): ?>
 							<a data-toggle="collapse" href="#<?= $item->title; ?>-<?= $item->post_name; ?>" role="button" aria-expanded="false" aria-controls="<?= $item->title; ?>-<?= $item->post_name; ?>">
 								<?= $item->title; ?>
 							</a>
