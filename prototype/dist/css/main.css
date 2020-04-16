@@ -1618,10 +1618,6 @@ section {
 	border-bottom-color: #f00;
 }
 
-.topbar__nav-main ul.menu > li .sub_menu > .container .item.current-cat > a .img-cont {
-	display: none;
-}
-
 .topbar__nav-main ul.menu > li .sub_menu > .container .item.current-cat .subsub_menu {
 	display: block;
 }
