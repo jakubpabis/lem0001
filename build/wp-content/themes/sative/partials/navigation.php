@@ -5,8 +5,17 @@
 	}
 
 	global $wp;
-	$main_menu = sative_main_menu_setup(wp_get_nav_menu_items('main-menu'));
-	$side_menu = wp_get_nav_menu_items('side-menu'); 
+
+	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'menu' ] ) ) {
+		$menu = wp_get_nav_menu_object( $locations[ 'menu' ] );
+		$menu_items = wp_get_nav_menu_items($menu->term_id);
+		$main_menu = sative_main_menu_setup($menu_items);
+	}
+
+	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'side' ] ) ) {
+		$menu = wp_get_nav_menu_object( $locations[ 'side' ] );
+		$side_menu = wp_get_nav_menu_items($menu->term_id);
+	}
 	$current_url = home_url(add_query_arg(array(),$wp->request)).'/';
 	
 ?>
@@ -302,7 +311,7 @@
 		</nav>
 		<nav class="topbar__nav-side">
 			<ul>
-				<?php //pll_the_languages(array('show_flags'=>1,'show_names'=>1, 'hide_current'=>1)); ?>
+				<?php pll_the_languages(array('show_flags'=>1,'show_names'=>1, 'hide_current'=>1)); ?>
 				<li class="searchForm">
 					<a href="javascript:void(0)" onclick="showSearch()">
 						<i class="fas fa-search"></i>
