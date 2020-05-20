@@ -4206,10 +4206,10 @@ p.stars.selected a:not(.active)::before {
 .slider__overlay {
 	position: absolute;
 	top: 50%;
-	left: 16.6667%;
+	left: 10%;
 	min-width: 25%;
-	max-width: 35%;
-	padding: 30px;
+	max-width: 30%;
+	padding: 25px;
 	transform: translateY(-50%);
 	text-align: center;
 	background-color: rgba(255, 255, 255, .7);
@@ -4925,9 +4925,9 @@ h4,
 }
 
 .slider__overlay {
-	left: 10%;
-	min-width: 30%;
-	max-width: 40%;
+	left: 8%;
+	min-width: 28%;
+	max-width: 35%;
 	padding: 24px;
 }
 
