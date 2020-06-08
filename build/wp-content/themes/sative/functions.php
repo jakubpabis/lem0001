@@ -1,155 +1,5 @@
 <?php
 
-class WP_HTML_Compression
-{
-    // Settings
-    protected $compress_css = true;
-    protected $compress_js = true;
-    protected $info_comment = true;
-    protected $remove_comments = true;
-
-    // Variables
-    protected $html;
-    public function __construct($html)
-    {
-   	 if (!empty($html))
-		{
-			$this->parseHTML($html);
-		}
-    }
-    public function __toString()
-    {
-   	 	return $this->html;
-    }
-    protected function bottomComment($raw, $compressed)
-    {
-		$raw = strlen($raw);
-		$compressed = strlen($compressed);
-		
-		$savings = ($raw-$compressed) / $raw * 100;
-		
-		$savings = round($savings, 2);
-		
-		return '<!--HTML compressed, size saved '.$savings.'%. From '.$raw.' bytes, now '.$compressed.' bytes-->';
-    }
-    protected function minifyHTML($html)
-    {
-		$pattern = '/<(?<script>script).*?<\/script\s*>|<(?<style>style).*?<\/style\s*>|<!(?<comment>--).*?-->|<(?<tag>[\/\w.:-]*)(?:".*?"|\'.*?\'|[^\'">]+)*>|(?<text>((<[^!\/\w.:-])?[^<]*)+)|/si';
-		preg_match_all($pattern, $html, $matches, PREG_SET_ORDER);
-		$overriding = false;
-		$raw_tag = false;
-		// Variable reused for output
-		$html = '';
-		foreach ($matches as $token)
-		{
-			$tag = (isset($token['tag'])) ? strtolower($token['tag']) : null;
-			
-			$content = $token[0];
-			
-			if (is_null($tag))
-			{
-				if ( !empty($token['script']) )
-				{
-					$strip = $this->compress_js;
-				}
-				else if ( !empty($token['style']) )
-				{
-					$strip = $this->compress_css;
-				}
-				else if ($content == '<!--wp-html-compression no compression-->')
-				{
-					$overriding = !$overriding;
-					
-					// Don't print the comment
-					continue;
-				}
-				else if ($this->remove_comments)
-				{
-					if (!$overriding && $raw_tag != 'textarea')
-					{
-						// Remove any HTML comments, except MSIE conditional comments
-						$content = preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s', '', $content);
-					}
-				}
-			}
-			else
-			{
-				if ($tag == 'pre' || $tag == 'textarea')
-				{
-					$raw_tag = $tag;
-				}
-				else if ($tag == '/pre' || $tag == '/textarea')
-				{
-					$raw_tag = false;
-				}
-				else
-				{
-					if ($raw_tag || $overriding)
-					{
-						$strip = false;
-					}
-					else
-					{
-						$strip = true;
-						
-						// Remove any empty attributes, except:
-						// action, alt, content, src
-						$content = preg_replace('/(\s+)(\w++(?<!\baction|\balt|\bcontent|\bsrc)="")/', '$1', $content);
-						
-						// Remove any space before the end of self-closing XHTML tags
-						// JavaScript excluded
-						$content = str_replace(' />', '/>', $content);
-					}
-				}
-			}
-			
-			if ($strip)
-			{
-				$content = $this->removeWhiteSpace($content);
-			}
-			
-			$html .= $content;
-   	 }
-   	 
-   	 return $html;
-    }
-   	 
-    public function parseHTML($html)
-    {
-		$this->html = $this->minifyHTML($html);
-		
-		if ($this->info_comment)
-		{
-			$this->html .= "\n" . $this->bottomComment($html, $this->html);
-		}
-    }
-    
-    protected function removeWhiteSpace($str)
-    {
-		$str = str_replace("\t", ' ', $str);
-		$str = str_replace("\n",  '', $str);
-		$str = str_replace("\r",  '', $str);
-		
-		while (stristr($str, '  '))
-		{
-			$str = str_replace('  ', ' ', $str);
-		}
-		
-		return $str;
-    }
-}
-
-function wp_html_compression_finish($html)
-{
-    return new WP_HTML_Compression($html);
-}
-
-function wp_html_compression_start()
-{
-    ob_start('wp_html_compression_finish');
-}
-add_action('get_header', 'wp_html_compression_start');
-
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -262,7 +112,12 @@ if (function_exists('pll_register_string'))
 	$strings = [
 		'Your Cart',
 		'Our Shopping & Return Policy',
-		'Go to Checkout'
+		'Go to Checkout',
+		'Contact',
+		'About us',
+		'Customer service',
+		'Lemasomo uses cookies to improve our website and your user experience.<br/>By clicking any link or continuing to browse you are giving your consent to our',
+		'cookie policy'
 	];
 	foreach($strings as $string) {
 		pll_register_string($string, $string);
@@ -679,4 +534,33 @@ if ( ! function_exists( 'sative_single_product_images' ) )
 		return $images;
 
 	}
+}
+
+
+function generateCouponCode()
+{
+	$coupon_code = 'UNIQUECODE'; // Code - perhaps generate this from the user ID + the order ID
+	$amount = '10'; // Amount
+	$discount_type = 'percent'; // Type: fixed_cart, percent, fixed_product, percent_product
+
+	$coupon = array(
+		'post_title' => $coupon_code,
+		'post_content' => '',
+		'post_status' => 'publish',
+		'post_author' => 1,
+		'post_type'     => 'shop_coupon'
+	);    
+
+	$new_coupon_id = wp_insert_post( $coupon );
+
+	// Add meta
+	update_post_meta( $new_coupon_id, 'discount_type', $discount_type );
+	update_post_meta( $new_coupon_id, 'coupon_amount', $amount );
+	update_post_meta( $new_coupon_id, 'individual_use', 'no' );
+	update_post_meta( $new_coupon_id, 'product_ids', '' );
+	update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
+	update_post_meta( $new_coupon_id, 'usage_limit', '1' );
+	update_post_meta( $new_coupon_id, 'expiry_date', '' );
+	update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
+	update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
 }

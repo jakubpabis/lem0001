@@ -454,3 +454,12 @@
 		<?php endif; ?>
 	<?php endif; */ ?>
 </header>
+<?php if ( function_exists('yoast_breadcrumb') ) : ?>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<?php yoast_breadcrumb( '<nav class="breadcrumbs">','</nav>' ); ?>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>

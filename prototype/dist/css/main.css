@@ -2012,6 +2012,22 @@ section {
 	font-size: 20px;
 }
 
+.breadcrumbs {
+	font-size: 15px !important;
+	margin: 0 -7px;
+	padding: 12px 0;
+}
+
+.breadcrumbs a,
+.breadcrumbs strong {
+	margin: 0 7px;
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs strong:hover {
+	color: black;
+}
+
 .cart {
 	position: fixed;
 	z-index: 9999999999999999999999999999999999999999999999999999999999999;

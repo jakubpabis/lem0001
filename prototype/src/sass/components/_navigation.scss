@@ -902,3 +902,20 @@
 	}
 
 }
+
+.breadcrumbs {
+	margin: 0 -7px;
+	padding: 12px 0;
+	font-size: 15px!important;
+
+	a,
+	strong {
+		margin: 0 7px;
+	
+		&:hover {
+			color: black;
+		}
+
+	}
+
+}

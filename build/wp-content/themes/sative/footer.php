@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="container container-sml flex-cont">
 				<div class="footer__item left">
 					<p class="title">
-						Contact
+						<?php pll_e('Contact'); ?>
 					</p>
 					<hr>
 					<p class="text">
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div>
 				<div class="footer__item center">
 					<p class="title">
-						About us
+						<?php pll_e('About us'); ?>
 					</p>
 					<hr>
 					<?php 
@@ -43,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div>
 				<div class="footer__item right">
 					<p class="title">
-						Customer service
+						<?php pll_e('Customer service'); ?>
 					</p>
 					<hr>
 					<?php 
@@ -68,10 +68,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div id="cookieMessage">
 			<div class="container">
 				<div class="message">
-					Lemasomo uses cookies to improve our website and your user experience. 
-					<br/>
-					By clicking any link or continuing to browse you are giving your consent to our
-					<a href="/cookie-policy"><u>cookie-policy</u></a>.
+					<?php pll_e('Lemasomo uses cookies to improve our website and your user experience.<br/>By clicking any link or continuing to browse you are giving your consent to our'); ?>
+					<a href="/cookie-policy"><u><?php pll_e('cookie policy'); ?></u></a>.
 				</div>
 				<div class="agree" onclick="cookieAgree()">
 					Accept
