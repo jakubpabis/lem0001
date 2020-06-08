@@ -192,11 +192,11 @@
 								letter-spacing: 1px;
 								display: block;
 								position: relative;
-								flex-basis: 12.5%;
+								flex-basis: 16.6%;
 	
-								@media(max-width: 1280px) {
-									flex-basis: 14.28%;
-								}
+								// @media(max-width: 1280px) {
+								// 	flex-basis: 20%;
+								// }
 
 								@media(max-width: 991px) {
 									flex-basis: 25%;

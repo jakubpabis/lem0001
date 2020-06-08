@@ -58,7 +58,7 @@
 										$product_terms = get_the_terms( $post->ID, 'product_cat' );
 
 										if( !empty($product_categories) ){
-											foreach ($product_categories as $key => $category) if($category->slug !== 'uncategorized') {
+											foreach ($product_categories as $key => $category) if( $category->slug !== 'uncategorized' && $category->slug !== 'uncategorized-pl' && $category->slug !== 'uncategorized-en' ) {
 
 												$children = get_term_children($category->term_id, 'product_cat');
 
@@ -211,7 +211,7 @@
 										$product_terms = get_the_terms( $post->ID, 'product_cat' );
 
 										if( !empty($product_categories) ){
-											foreach ($product_categories as $key => $category) if($category->slug !== 'uncategorized') {
+											foreach ($product_categories as $key => $category) if( $category->slug !== 'uncategorized' && $category->slug !== 'uncategorized-pl' && $category->slug !== 'uncategorized-en' ) {
 
 												$children = get_term_children($category->term_id, 'product_cat');
 
@@ -454,7 +454,7 @@
 		<?php endif; ?>
 	<?php endif; */ ?>
 </header>
-<?php if ( function_exists('yoast_breadcrumb') ) : ?>
+<?php if ( function_exists('yoast_breadcrumb') && !is_front_page() ) : ?>
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
