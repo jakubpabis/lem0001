@@ -245,7 +245,7 @@
 												}
 												echo '<a href="'.get_term_link($category).'" >';
 												$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
-												$image = wp_get_attachment_image_url( $thumbnail_id, 'thumbnail' );
+												$image = wp_get_attachment_image_url( $thumbnail_id, 'medium' );
 												echo '<div class="img-cont">';
 												if ( $image ) {
 													echo '<img width="200" height="200" class="lazy bg-cover" data-src="' . $image . '" alt="' . $category->name . '" />';
