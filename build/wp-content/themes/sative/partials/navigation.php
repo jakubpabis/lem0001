@@ -311,7 +311,7 @@
 		</nav>
 		<nav class="topbar__nav-side">
 			<ul>
-				<?php pll_the_languages(array('show_flags'=>1,'show_names'=>1, 'hide_current'=>1)); ?>
+				<?php if (function_exists('pll_the_languages')) { pll_the_languages(array('show_flags'=>1,'show_names'=>1, 'hide_current'=>1)); } ?>
 				<li class="searchForm">
 					<a href="javascript:void(0)" onclick="showSearch()">
 						<i class="fas fa-search"></i>
