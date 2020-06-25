@@ -113,21 +113,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php if( is_front_page() ) : ?>
 		<script defer>
 			$(document).ready(function() {
-				setTimeout(function() {
-					console.log(getCookie('newsletter-coupon'));
-					if( !getCookie('newsletter-coupon') ) {
-						console.log('no cookie');
-						if( getUrlParameter('code') ) {
-							console.log('param');
-							setCookie('newsletter-coupon', getUrlParameter('code'), 365);
-							$('#code-modal').css({ 'visibility': 'visible', 'opacity': '1','pointer-events': 'auto' });
-						} else {
-							console.log('no param, triggering');
+				if( !getCookie('newsletter-coupon') ) {
+					if( getUrlParameter('code') ) {
+						setCookie('newsletter-coupon', getUrlParameter('code'), 365);
+						$('#code-modal').css({ 'visibility': 'visible', 'opacity': '1','pointer-events': 'auto' });
+					} else {
+						setTimeout(function() {
 							$('#open-modal').css({ 'visibility': 'visible', 'opacity': '1','pointer-events': 'auto' });
-						}
+						}, 5000);
 					}
-					console.log('some');
-				}, 5000);
+				}
 			});
 		</script>
 	<?php endif; ?>
