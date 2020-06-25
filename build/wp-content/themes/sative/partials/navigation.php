@@ -185,7 +185,7 @@
 					<?php if($item->menu_item_parent == 0) : ?>
 						<?php //var_dump($item); ?>
 					
-						<?php if( is_shop() || is_product() || is_product_category() ) : ?>
+						<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
 							<li class="active">
 						<?php else : ?>
 							<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
