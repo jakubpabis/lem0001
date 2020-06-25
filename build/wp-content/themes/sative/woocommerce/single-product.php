@@ -21,8 +21,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); ?>
-<main class="product__single">
+<section style="background-color: white;">
 	<?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
+</section>
+<main class="product__single">
 		<?php
 			/**
 			 * woocommerce_before_single_product hook.

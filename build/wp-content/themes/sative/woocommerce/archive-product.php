@@ -21,9 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); ?>
-
+<?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
 <main class="products__listing">
-	<?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
+	
 	<section class="products container">
 
 		<?php if ( have_posts() ) : ?>
