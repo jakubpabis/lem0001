@@ -6,9 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); ?>
-
-<section class="dealers">
+<section style="background-color: #f4f4f4;">
     <?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
+</section>
+<section class="dealers">
+    
     <?php while ( have_posts() ) : the_post(); ?>
 
         <div class="dealers__intro">

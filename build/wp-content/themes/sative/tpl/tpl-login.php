@@ -6,9 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); ?>
-
+<?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
 <div class="container">
-    <?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
+    
     <?php while ( have_posts() ) : the_post(); ?>
 
         <?php the_content(); ?>

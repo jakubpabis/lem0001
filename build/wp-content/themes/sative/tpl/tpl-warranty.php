@@ -6,9 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); ?>
-
+<?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
 <main class="generic article warranty">
-    <?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
+
     <div class="container container-xsml">
         <?php while ( have_posts() ) : the_post(); ?>
 
