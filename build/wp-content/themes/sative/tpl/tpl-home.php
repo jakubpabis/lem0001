@@ -116,6 +116,8 @@ get_header(); ?>
 							<?php while ( have_rows('products') ) : the_row(); ?>
 
 								<?php $product = wc_get_product( get_sub_field('product') ); ?>
+
+								<?php if( $product ) : ?>
 								
 								<div class="products__item">
 									<div class="products__item-photo">
@@ -131,6 +133,8 @@ get_header(); ?>
 									</div> */ ?>
 									<?php do_action('sative_homepage_product_link', get_sub_field('product')); ?>
 								</div>
+
+								<?php endif; ?>
 
 							<?php endwhile; ?>
 						

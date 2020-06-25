@@ -536,10 +536,19 @@ if ( ! function_exists( 'sative_single_product_images' ) )
 	}
 }
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 
 function generateCouponCode()
 {
-	$coupon_code = 'UNIQUECODE'; // Code - perhaps generate this from the user ID + the order ID
+	$coupon_code = generateRandomString(10); // Code - perhaps generate this from the user ID + the order ID
 	$amount = '10'; // Amount
 	$discount_type = 'percent'; // Type: fixed_cart, percent, fixed_product, percent_product
 
@@ -548,7 +557,7 @@ function generateCouponCode()
 		'post_content' => '',
 		'post_status' => 'publish',
 		'post_author' => 1,
-		'post_type'     => 'shop_coupon'
+		'post_type' => 'shop_coupon'
 	);    
 
 	$new_coupon_id = wp_insert_post( $coupon );
@@ -556,11 +565,12 @@ function generateCouponCode()
 	// Add meta
 	update_post_meta( $new_coupon_id, 'discount_type', $discount_type );
 	update_post_meta( $new_coupon_id, 'coupon_amount', $amount );
+	update_post_meta( $new_coupon_id, 'customer_email', $email );
 	update_post_meta( $new_coupon_id, 'individual_use', 'no' );
 	update_post_meta( $new_coupon_id, 'product_ids', '' );
 	update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
 	update_post_meta( $new_coupon_id, 'usage_limit', '1' );
-	update_post_meta( $new_coupon_id, 'expiry_date', '' );
+	update_post_meta( $new_coupon_id, 'expiry_date', date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "+1 month" ) ) );
 	update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
 	update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
 }
