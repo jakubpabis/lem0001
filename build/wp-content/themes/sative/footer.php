@@ -96,6 +96,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</form>
 			</div>
 		</div>
+		<div id="code-modal" class="modal-window">
+			<div class="modal-content text-center">
+				<a href="#" title="Close" class="modal-close"><?php pll_e('Zamknij'); ?></a>
+				<h2>
+					<?php pll_e('Dziękujemy! Twój kod rabatowy to: '); ?> <span style="color: #ff0000;"> <?= $_GET['code']; ?> </span>
+				</h2>
+			</div>
+		</div>
 	<?php endif; ?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
@@ -111,10 +119,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 						console.log('no cookie');
 						if( getUrlParameter('code') ) {
 							console.log('param');
-							setCookie('newsletter-coupon', getUrlParameter('code'), 365) ;
+							setCookie('newsletter-coupon', getUrlParameter('code'), 365);
+							$('#code-modal').css({ 'visibility': 'visible', 'opacity': '1','pointer-events': 'auto' });
 						} else {
 							console.log('no param, triggering');
-							$('.modal-window').css({ 'visibility': 'visible', 'opacity': '1','pointer-events': 'auto' });
+							$('#open-modal').css({ 'visibility': 'visible', 'opacity': '1','pointer-events': 'auto' });
 						}
 					}
 					console.log('some');
