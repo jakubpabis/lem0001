@@ -84,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<a class="btn" href="#open-modal" style="display: none;"></a>
 		<div id="open-modal" class="modal-window">
 			<div class="modal-content text-center">
-				<a href="#" title="Close" class="modal-close"><?php pll_e('Zamknij'); ?></a>
+				<a href="javascript:void(0)" onclick="document.getElementById('open-modal').style.display = 'none';" title="<?php pll_e('Zamknij'); ?>" class="modal-close"><?php pll_e('Zamknij'); ?></a>
 				<h2>
 					<?php pll_e('Zapisz się do newsletter’a i odbierz kod rabatowy 10%'); ?>
 				</h2>
@@ -98,7 +98,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 		<div id="code-modal" class="modal-window">
 			<div class="modal-content text-center">
-				<a href="#" title="Close" class="modal-close"><?php pll_e('Zamknij'); ?></a>
+				<a href="javascript:void(0)" onclick="document.getElementById('code-modal').style.display = 'none';" title="<?php pll_e('Zamknij'); ?>" class="modal-close"><?php pll_e('Zamknij'); ?></a>
 				<h2>
 					<?php pll_e('Dziękujemy! Twój kod rabatowy to: '); ?> <span style="color: #ff0000;"> <?= $_GET['code']; ?> </span>
 				</h2>
