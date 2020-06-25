@@ -117,7 +117,10 @@ if (function_exists('pll_register_string'))
 		'About us',
 		'Customer service',
 		'Lemasomo uses cookies to improve our website and your user experience.<br/>By clicking any link or continuing to browse you are giving your consent to our',
-		'cookie policy'
+		'cookie policy',
+		'Zamknij',
+		'Zapisz się',
+		'Wpisz tutaj swój e-mail'
 	];
 	foreach($strings as $string) {
 		pll_register_string($string, $string);
@@ -536,6 +539,62 @@ if ( ! function_exists( 'sative_single_product_images' ) )
 	}
 }
 
+function custom_post_type_newsletter_users() 
+{
+ 
+// Set UI labels for Custom Post Type
+$labels = array(
+    'name'                => _x( 'Newsletter Users', 'Post Type General Name', 'sative' ),
+    'singular_name'       => _x( 'Newsletter Users', 'Post Type Singular Name', 'sative' ),
+    'menu_name'           => __( 'Newsletter Users', 'sative' ),
+    'parent_item_colon'   => __( 'Parent Newsletter Users', 'sative' ),
+    'all_items'           => __( 'All Newsletter Users', 'sative' ),
+    'view_item'           => __( 'View Newsletter Users', 'sative' ),
+    'add_new_item'        => __( 'Add New Newsletter Users', 'sative' ),
+    'add_new'             => __( 'Add New', 'sative' ),
+    'edit_item'           => __( 'Edit Newsletter Users', 'sative' ),
+    'update_item'         => __( 'Update Newsletter Users', 'sative' ),
+    'search_items'        => __( 'Search Newsletter Users', 'sative' ),
+    'not_found'           => __( 'Not Found', 'sative' ),
+    'not_found_in_trash'  => __( 'Not found in Trash', 'sative' ),
+);
+    
+// Set other options for Custom Post Type
+$args = array(
+    'label'               => __( 'newsletter-users', 'sative' ),
+    'description'         => __( 'Newsletter Users', 'sative' ),
+    'labels'              => $labels,
+    // Features this CPT supports in Post Editor
+    'supports'            => array( 'title', 'custom-fields' ),
+    // You can associate this CPT with a taxonomy or custom taxonomy. 
+    'taxonomies'          => array(),
+    /* A hierarchical CPT is like Pages and can have
+    * Parent and child items. A non-hierarchical CPT
+    * is like Posts.
+    */ 
+    'hierarchical'        => false,
+    'public'              => false,
+    'show_ui'             => true,
+    'show_in_menu'        => true,
+    'show_in_nav_menus'   => false,
+    'show_in_admin_bar'   => false,
+    'menu_position'       => 20,
+    'menu_icon'           => 'dashicons-groups',
+    'can_export'          => true,
+    'has_archive'         => false,
+    'exclude_from_search' => true,
+    'publicly_queryable'  => false,
+    'capability_type'     => 'post',
+);   
+// Registering your Custom Post Type
+register_post_type( 'newsletter-users', $args );
+}
+/* Hook into the 'init' action so that the function
+* Containing our post type registration is not 
+* unnecessarily executed. 
+*/
+add_action( 'init', 'custom_post_type_newsletter_users', 0 );
+
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -573,4 +632,26 @@ function generateCouponCode()
 	update_post_meta( $new_coupon_id, 'expiry_date', date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "+1 month" ) ) );
 	update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
 	update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
+
+	return $coupon_code;
+
 }
+
+function sative_newsletter_form_submit() {
+	
+	$newsletterArray = array(
+        'post_type'     => 'newsletter-users',
+        'post_status'   => 'private',
+        'post_title'    => $_POST['newsletter-email'],
+    );
+
+    if( !post_exists( $_POST['newsletter-email'] ) ) {
+        wp_insert_post( $newsletterArray, true );
+    }
+
+    $redirect = '/?code='.generateCouponCode();
+    header("Location: $redirect");
+
+}
+add_action( 'admin_post_nopriv_newsletter_form', 'sative_newsletter_form_submit' );
+add_action( 'admin_post_newsletter_form', 'sative_newsletter_form_submit' );
