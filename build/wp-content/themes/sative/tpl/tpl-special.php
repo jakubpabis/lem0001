@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header(); ?>
 
 <main>
-	<?php get_template_part( 'partials/navigation', 'none' ); ?>
+	<?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 
 		<?php if(have_rows('section')) : 

@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); ?>
-<?php get_template_part( 'partials/navigation', 'none' ); ?>
+<?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
 <div class="container py-5">
 	<div class="row justify-content-center py5">
 		<div class="col-lg-8 col-md-10 text-center">

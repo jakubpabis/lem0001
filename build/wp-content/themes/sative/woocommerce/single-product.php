@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 <main class="product__single">
-	<?php get_template_part( 'partials/navigation', 'none' ); ?>
+	<?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
 		<?php
 			/**
 			 * woocommerce_before_single_product hook.
