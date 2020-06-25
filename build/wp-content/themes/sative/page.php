@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header(); ?>
 
 <main class="generic article">
+    <?php get_template_part( 'partials/navigation', 'none' ); ?>
     <div class="container container-sml">
         <?php while ( have_posts() ) : the_post(); ?>
 

@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header(); ?>
 
 <main class="products__listing">
-
+	<?php get_template_part( 'partials/navigation', 'none' ); ?>
 	<section class="products container">
 
 		<?php if ( have_posts() ) : ?>

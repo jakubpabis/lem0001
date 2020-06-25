@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header(); ?>
 
 <main class="generic article warranty">
+    <?php get_template_part( 'partials/navigation', 'none' ); ?>
     <div class="container container-xsml">
         <?php while ( have_posts() ) : the_post(); ?>
 

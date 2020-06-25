@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header(); ?>
 
 <section class="dealers">
+    <?php get_template_part( 'partials/navigation', 'none' ); ?>
     <?php while ( have_posts() ) : the_post(); ?>
 
         <div class="dealers__intro">
