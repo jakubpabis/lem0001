@@ -2014,18 +2014,21 @@ section {
 
 .breadcrumbs {
 	font-size: 15px !important;
-	margin: 0 -7px;
+	margin: 0;
 	padding: 12px 0;
 }
 
-.breadcrumbs a,
-.breadcrumbs strong {
+.breadcrumbs > span {
 	margin: 0 7px;
 }
 
-.breadcrumbs a:hover,
-.breadcrumbs strong:hover {
+.breadcrumbs > span a:hover,
+.breadcrumbs > span strong:hover {
 	color: black;
+}
+
+.breadcrumbs > span > span {
+	font-weight: 700;
 }
 
 .cart {
