@@ -34,7 +34,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
 	<?php if ( has_post_thumbnail() ) : ?>
 		<div class="products__item-photo">
-			<img class="lazy attachment-medium size-medium wp-post-image" data-src="<?= get_the_post_thumbnail_url( $post->ID, 'medium'); ?>" alt="">
+			<img class="attachment-medium size-medium wp-post-image" src="<?= get_the_post_thumbnail_url( $post->ID, 'medium'); ?>" alt="">
 		</div>
 	<?php else : ?>
 		<div class="products__item-photo">
