@@ -1624,7 +1624,7 @@ section {
 }
 
 .topbar__nav-main ul.menu > li .sub_menu > .container .item {
-	font-size: 21px;
+	font-size: 18px;
 	font-weight: 600;
 	line-height: 1;
 	position: relative;
@@ -1656,7 +1656,8 @@ section {
 
 .topbar__nav-main ul.menu > li .sub_menu > .container .item > a .img-cont img {
 	position: relative;
-	height: 64px;
+	width: auto;
+	max-height: 64px;
 	margin: 0 auto;
 }
 
