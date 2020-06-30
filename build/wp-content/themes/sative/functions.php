@@ -72,7 +72,7 @@ show_admin_bar(false);
  * Add Brand taxonomy to WooCommerce products
  * 
  */
- function brand_taxonomy()  {
+ function brand_taxonomy() {
 
 	$labels = array(
 		'name'                       => __('Brands'),
@@ -103,6 +103,44 @@ show_admin_bar(false);
 	
 }
 add_action( 'init', 'brand_taxonomy', 0 );
+
+
+/**
+ * 
+ * Add Type taxonomy to WooCommerce products
+ * 
+ */
+function type_taxonomy() {
+
+	$labels = array(
+		'name'                       => __('Types'),
+		'singular_name'              => __('Type'),
+		'menu_name'                  => __('Types'),
+		'all_items'                  => __('All types'),
+		'parent_item'                => __('Parent type'),
+		'parent_item_colon'          => __('Parent item'),
+		'new_item_name'              => __('New type'),
+		'add_new_item'               => __('Add new type'),
+		'edit_item'                  => __('Edit item'),
+		'update_item'                => __('Update item'),
+		'separate_items_with_commas' => __('Separate Type with commas'),
+		'search_items'               => __('Search Types'),
+		'add_or_remove_items'        => __('Add or remove Types'),
+		'choose_from_most_used'      => __('Choose from the most used Types'),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'type', 'product', $args );
+	
+}
+add_action( 'init', 'type_taxonomy', 0 );
 
 /**
  * Register polylang strings for translation

@@ -196,101 +196,50 @@
 							</a>
 							<div class="sub_menu collapse" id="<?= $item->title; ?>-<?= $item->post_name; ?>">
 								<div class="container">
-									<div class="row">
+									<div class="row justify-content-center">
 									<?php
 										$cat_args = array(
 											'parent'        => 0,
-											'hide_empty'    => true  
+											'hide_empty'    => false  
 										);
-										$product_categories = get_terms( 'product_cat', $cat_args );
+										$product_categories = get_terms( 'type', $cat_args );
 										$haveChildren = null;
 										$catParent = null;
 										$is_child_active = null;
 
 										global $post;
-										$product_terms = get_the_terms( $post->ID, 'product_cat' );
+										$product_terms = get_the_terms( $post->ID, 'type' );
 
 										if( !empty($product_categories) ){
-											foreach ($product_categories as $key => $category) if( $category->slug !== 'uncategorized' && $category->slug !== 'uncategorized-pl' && $category->slug !== 'uncategorized-en' ) {
+											foreach ($product_categories as $key => $category) if( $category->slug !== 'uncategorized' && $category->slug !== 'uncategorized-pl' && $category->slug !== 'uncategorized-en' ) { 
 
-												$children = get_term_children($category->term_id, 'product_cat');
+												$children = get_term_children($category->term_id, 'type');
 
-												if(get_term_children($category->term_id, 'product_cat')) {
-													$haveChildren = get_term_children($category->term_id, 'product_cat');
+												if(get_term_children($category->term_id, 'type')) {
+													$haveChildren = get_term_children($category->term_id, 'type');
 													$catParent = $category->term_id;
 												}
 
-												if($children) foreach($children as $child) {
-													if(is_product_category(get_term($child, 'product_cat')->slug)) {
-														$is_child_active = 1;
-														break;
-													}
-												}
-
-												if(is_product()) {
-													foreach($product_terms as $term) if($term->slug === $category->slug) {
-														$is_child_active = 1;
-														break;
-													}
-												}
-
-												if(is_product_category($category->slug) && $is_child_active == null) {
-													echo '<div class="active item">';
-												} else if($is_child_active !== null) {
-													$haveChildren = get_term_children($category->term_id, 'product_cat');
+												if($is_child_active !== null) {
+													$haveChildren = get_term_children($category->term_id, 'type');
 													$catParent = $category->term_id;
-													echo '<div class="current-cat item">';
+													echo '<div class="col-lg-auto"><div class="current-cat item">';
 												} else {
-													echo '<div class="item">';
+													echo '<div class="col-lg-auto"><div class="item">';
 												}
 												echo '<a href="'.get_term_link($category).'" >';
 												$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
-												$image = wp_get_attachment_image_url( $thumbnail_id, 'medium' );
+												$image = get_field('icon', 'type_'.$category->term_id)['url'];
 												echo '<div class="img-cont">';
 												if ( $image ) {
-													echo '<img width="200" height="200" class="lazy bg-cover" data-src="' . $image . '" alt="' . $category->name . '" />';
+													echo '<img width="64" height="64" class="lazy bg-cover" data-src="' . $image . '" alt="' . $category->name . '" />';
 												} else {
-													echo '<img width="200" height="200" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy bg-cover" alt="Picture coming soon...">';
+													echo '<img width="64" height="64" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy bg-cover" alt="Picture coming soon...">';
 												}
 												echo '</div>';
 												echo '<span>'.$category->name.'</span>';
 												echo '</a>';
-												if($haveChildren !== null) : ?>
-													<ul class="subsub_menu">
-														<?php
-															$cat_args = array(
-																'parent'        => $catParent,
-																'hide_empty'    => true 
-															);
-															$product_categories = get_terms( 'product_cat', $cat_args );
-															if( !empty($product_categories) ){
-																foreach ($product_categories as $key => $category) {
-
-																	if(is_product()) {
-																		foreach($product_terms as $term) if($term->slug === $category->slug) {
-																			$is_child_active = 1;
-																			break;
-																		}
-																	}
-
-																	if(is_product_category($category->slug)) {
-																		$is_child_active = null;
-																		echo '<li class="active">';
-																	} else {
-																		echo '<li>';
-																	}
-																	echo '<a href="'.get_term_link($category).'" >';
-																	echo $category->name;
-																	echo '</a>';
-																	echo '</li>';
-																}
-															}
-														?>
-													</ul>
-												<?php endif;
-												$haveChildren = null;
-												$catParent = null;
-												echo '</div>';
+												echo '</div></div>';
 											}
 										}
 									?>

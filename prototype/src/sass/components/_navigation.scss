@@ -176,30 +176,30 @@
 						//@include trans(400ms);
 
 						> .container {
-							display: flex;
-							flex-wrap: wrap;
+							// display: flex;
+							// flex-wrap: wrap;
 							padding-top: 20px;
 							padding-bottom: 20px;
 
 							.item {
 								line-height: 1;
 								color: $color-primary;
-								padding: 0 15px;
+								padding: 0 25px;
 								margin-top: 20px;
 								margin-bottom: 20px;
-								font-size: 16px;
-								font-weight: 700;
-								letter-spacing: 1px;
+								font-size: 21px;
+								font-weight: 600;
 								display: block;
 								position: relative;
-								flex-basis: 16.6%;
+								text-align: center;
+								//flex-basis: 16.6%;
 	
 								// @media(max-width: 1280px) {
 								// 	flex-basis: 20%;
 								// }
 
 								@media(max-width: 991px) {
-									flex-basis: 25%;
+									//flex-basis: 25%;
 								}
 	
 								&:before {
@@ -213,20 +213,16 @@
 									@include trans(400ms);
 
 									.img-cont {
-										background-color: white;
 										display: block;
 										position: relative;
 										margin-bottom: 10px;
 										padding: 0;
-										overflow: hidden;
-										width: 100%;
-										height: 100%;
-										padding-bottom: 100%;
 
 										img {
-											position: absolute;
-											top: 50%;
-											transform: translateY(-50%);
+											position: relative;
+											margin: 0 auto;
+											height: 64px;
+											width: 64px;
 										}
 
 									}
