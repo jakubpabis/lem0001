@@ -232,9 +232,9 @@
 												$image = get_field('icon', 'type_'.$category->term_id)['url'];
 												echo '<div class="img-cont">';
 												if ( $image ) {
-													echo '<img width="64" height="64" class="lazy bg-cover" data-src="' . $image . '" alt="' . $category->name . '" />';
+													echo '<img height="64" class="lazy bg-cover" data-src="' . $image . '" alt="' . $category->name . '" />';
 												} else {
-													echo '<img width="64" height="64" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy bg-cover" alt="Picture coming soon...">';
+													echo '<img height="64" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy bg-cover" alt="Picture coming soon...">';
 												}
 												echo '</div>';
 												echo '<span>'.$category->name.'</span>';
