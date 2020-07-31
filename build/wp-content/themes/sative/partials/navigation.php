@@ -239,9 +239,9 @@
 												} else if($is_child_active !== null) {
 													$haveChildren = get_term_children($category->term_id, 'product_cat');
 													$catParent = $category->term_id;
-													echo '<div class="col-lg-2"><div class="current-cat item">';
+													echo '<div class="current-cat item">';
 												} else {
-													echo '<div class="col-lg-2"><div class="item">';
+													echo '<div class="item">';
 												}
 												echo '<a href="'.get_term_link($category).'" >';
 												$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
@@ -290,7 +290,7 @@
 												<?php endif;
 												$haveChildren = null;
 												$catParent = null;
-												echo '</div></div>';
+												echo '</div>';
 											}
 										}
 									?>
