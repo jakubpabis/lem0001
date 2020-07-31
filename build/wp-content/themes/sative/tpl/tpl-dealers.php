@@ -117,5 +117,5 @@ get_header(); ?>
     }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChUaXItSbUlby58mbo2-8VEG07BMKFphI&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_qPHs7-G-Z23AMS-9W9jOaWC2YI4oa88&callback=initMap" async defer></script>
 <?php get_footer(); ?>
