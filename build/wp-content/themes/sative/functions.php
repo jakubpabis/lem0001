@@ -603,7 +603,7 @@ $args = array(
     'description'         => __( 'Newsletter Users', 'sative' ),
     'labels'              => $labels,
     // Features this CPT supports in Post Editor
-    'supports'            => array( 'title', 'custom-fields' ),
+    'supports'            => array( 'title', 'editor', 'custom-fields' ),
     // You can associate this CPT with a taxonomy or custom taxonomy. 
     'taxonomies'          => array(),
     /* A hierarchical CPT is like Pages and can have
@@ -643,7 +643,7 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
-function generateCouponCode()
+function generateCouponCode( $email )
 {
 	$coupon_code = generateRandomString(10); // Code - perhaps generate this from the user ID + the order ID
 	$amount = '10'; // Amount
@@ -678,18 +678,21 @@ function generateCouponCode()
 }
 
 function sative_newsletter_form_submit() {
+
+	$coupon_code = generateCouponCode( $_POST['newsletter-email'] );
 	
 	$newsletterArray = array(
         'post_type'     => 'newsletter-users',
         'post_status'   => 'private',
-        'post_title'    => $_POST['newsletter-email'],
+		'post_title'    => $_POST['newsletter-email'],
+		'post_content'  => $coupon_code
     );
 
     if( !post_exists( $_POST['newsletter-email'] ) ) {
         wp_insert_post( $newsletterArray, true );
     }
 
-    $redirect = '/?code='.generateCouponCode();
+    $redirect = '/?code='.$coupon_code;
     header("Location: $redirect");
 
 }
