@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="search__container">
 		<?= do_shortcode( '[wcas-search-form]' ); ?>
 	</div>
-	<?php if( is_front_page() ) : ?>
+	<?php /* if( is_front_page() ) : ?>
 		<a class="btn" href="#open-modal" style="display: none;"></a>
 		<div id="open-modal" class="modal-window">
 			<div class="modal-content text-center">
@@ -104,13 +104,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</h2>
 			</div>
 		</div>
-	<?php endif; ?>
+	<?php endif; */ ?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" defer></script>
 	<script src="<?= get_template_directory_uri(); ?>/assets/js/main.min.js?v=2.0" defer></script>
 	<?php wp_footer(); ?>
-	<?php if( is_front_page() ) : ?>
+	<?php /* if( is_front_page() ) : ?>
 		<script defer>
 			$(document).ready(function() {
 				if( !getCookie('newsletter-coupon') ) {
@@ -125,6 +125,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				}
 			});
 		</script>
-	<?php endif; ?>
+	<?php endif; */ ?>
 </body>
 </html>
