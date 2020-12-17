@@ -186,7 +186,7 @@
 						<a data-toggle="collapse" href="#<?= $item->slug; ?>-<?= $item->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?= $item->slug; ?>-<?= $item->term_id; ?>">
 							<?= $item->name; ?>
 						</a>
-						<ul class="sub_menu collapse" id="<?= $item->slug; ?>-<?= $item->term_id; ?>">
+						<ul class="sub_menu collapse" id="<?= $item->slug; ?>-<?= $item->term_id; ?>" data-parent=".menu">
 							<?php foreach( $item->child_categories as $children ): ?>
 								<li <?= get_term_link( $children->term_id ) == $current_url ? 'class="active"' : null ?>>
 									<?php if( !empty( $children->child_categories ) ): ?>
