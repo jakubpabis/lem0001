@@ -5,18 +5,18 @@
 	}
 
 	global $wp;
+	// if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'menu' ] ) ) {
+	// 	$menu = wp_get_nav_menu_object( $locations[ 'menu' ] );
+	// 	$menu_items = wp_get_nav_menu_items($menu->term_id);
+	// 	$main_menu = sative_main_menu_setup($menu_items);
+	// }
 
-	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'menu' ] ) ) {
-		$menu = wp_get_nav_menu_object( $locations[ 'menu' ] );
-		$menu_items = wp_get_nav_menu_items($menu->term_id);
-		$main_menu = sative_main_menu_setup($menu_items);
-	}
-
-	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'side' ] ) ) {
-		$menu = wp_get_nav_menu_object( $locations[ 'side' ] );
-		$side_menu = wp_get_nav_menu_items($menu->term_id);
-	}
+	// if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'side' ] ) ) {
+	// 	$menu = wp_get_nav_menu_object( $locations[ 'side' ] );
+	// 	$side_menu = wp_get_nav_menu_items($menu->term_id);
+	// }
 	$current_url = home_url(add_query_arg(array(),$wp->request)).'/';
+	$menu_cats = get_categories_hierarchical( ['taxonomy' => 'product_cat' ] );
 	
 ?>
 
@@ -178,133 +178,45 @@
 			</object>
 		</a>
 		<nav class="topbar__nav-main">
-		<?php //var_dump($main_menu); ?>
 			<ul class="menu">
-				<?php if ($main_menu) foreach($main_menu as $item) : ?>
-
-					<?php if($item->menu_item_parent == 0) : ?>
-						<?php //var_dump($item); ?>
+				<?php if ($menu_cats) foreach($menu_cats as $item) : ?>
 					
-						<?php if(get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
-							<li class="active">
-						<?php else : ?>
-							<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
-						<?php endif; ?>
-							<?php if( get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url ): ?>
-							<a data-toggle="collapse" href="#<?= $item->title; ?>-<?= $item->post_name; ?>" role="button" aria-expanded="false" aria-controls="<?= $item->title; ?>-<?= $item->post_name; ?>">
-								<?= $item->title; ?>
+					<li <?= get_term_link( $item->term_id ) == $current_url ? 'class="active"' : null ?>>
+						<?php if( !empty( $item->child_categories ) ): ?>
+						<a data-toggle="collapse" href="#<?= $item->slug; ?>-<?= $item->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?= $item->slug; ?>-<?= $item->term_id; ?>">
+							<?= $item->name; ?>
+						</a>
+						<ul class="sub_menu collapse" id="<?= $item->slug; ?>-<?= $item->term_id; ?>">
+							<?php foreach( $item->child_categories as $children ): ?>
+								<li <?= get_term_link( $children->term_id ) == $current_url ? 'class="active"' : null ?>>
+									<?php if( !empty( $children->child_categories ) ): ?>
+										<a data-toggle="collapse" href="#<?= $children->slug; ?>-<?= $children->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?= $children->slug; ?>-<?= $children->term_id; ?>">
+											<?= $children->name; ?>
+										</a>
+										<ul class="sub_menu collapse" id="<?= $children->slug; ?>-<?= $children->term_id; ?>">
+											<?php foreach( $children->child_categories as $child ): ?>
+												<li <?= get_term_link( $child->term_id ) == $current_url ? 'class="active"' : null ?>>
+													<a href="<?= get_term_link( $child->term_id ); ?>">
+														<?= $child->name; ?>
+													</a>
+												</li>
+											<?php endforeach; ?>
+										</ul>
+									<?php else: ?>
+										<a href="<?= get_term_link( $children->term_id ); ?>">
+											<?= $children->name; ?>
+										</a>
+									<?php endif; ?>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+						<?php else: ?>
+							<a href="<?= get_term_link( $item->term_id ); ?>">
+								<?= $item->name; ?>
 							</a>
-							<div class="sub_menu collapse" id="<?= $item->title; ?>-<?= $item->post_name; ?>">
-								<div class="container">
-									<div class="row">
-									<?php
-										$cat_args = array(
-											'parent'        => 0,
-											'hide_empty'    => true  
-										);
-										$product_categories = get_terms( 'product_cat', $cat_args );
-										$haveChildren = null;
-										$catParent = null;
-										$is_child_active = null;
-
-										global $post;
-										$product_terms = get_the_terms( $post->ID, 'product_cat' );
-
-										if( !empty($product_categories) ){
-											foreach ($product_categories as $key => $category) if( $category->slug !== 'uncategorized' && $category->slug !== 'uncategorized-pl' && $category->slug !== 'uncategorized-en' ) {
-
-												$children = get_term_children($category->term_id, 'product_cat');
-
-												if(get_term_children($category->term_id, 'product_cat')) {
-													$haveChildren = get_term_children($category->term_id, 'product_cat');
-													$catParent = $category->term_id;
-												}
-
-												if($children) foreach($children as $child) {
-													if(is_product_category(get_term($child, 'product_cat')->slug)) {
-														$is_child_active = 1;
-														break;
-													}
-												}
-
-												if(is_product()) {
-													foreach($product_terms as $term) if($term->slug === $category->slug) {
-														$is_child_active = 1;
-														break;
-													}
-												}
-
-												if(is_product_category($category->slug) && $is_child_active == null) {
-													echo '<div class="active item">';
-												} else if($is_child_active !== null) {
-													$haveChildren = get_term_children($category->term_id, 'product_cat');
-													$catParent = $category->term_id;
-													echo '<div class="current-cat item">';
-												} else {
-													echo '<div class="item">';
-												}
-												echo '<a href="'.get_term_link($category).'" >';
-												$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
-												$image = wp_get_attachment_image_url( $thumbnail_id, 'medium' );
-												echo '<div class="img-cont">';
-												if ( $image ) {
-													echo '<img width="200" height="200" class="lazy bg-cover" data-src="' . $image . '" alt="' . $category->name . '" />';
-												} else {
-													echo '<img width="200" height="200" data-src="'. get_template_directory_uri() .'/assets/img/img_coming.png" class="lazy bg-cover" alt="Picture coming soon...">';
-												}
-												echo '</div>';
-												echo '<span>'.$category->name.'</span>';
-												echo '</a>';
-												if($haveChildren !== null) : ?>
-													<ul class="subsub_menu">
-														<?php
-															$cat_args = array(
-																'parent'        => $catParent,
-																'hide_empty'    => true 
-															);
-															$product_categories = get_terms( 'product_cat', $cat_args );
-															if( !empty($product_categories) ){
-																foreach ($product_categories as $key => $category) {
-
-																	if(is_product()) {
-																		foreach($product_terms as $term) if($term->slug === $category->slug) {
-																			$is_child_active = 1;
-																			break;
-																		}
-																	}
-
-																	if(is_product_category($category->slug)) {
-																		$is_child_active = null;
-																		echo '<li class="active">';
-																	} else {
-																		echo '<li>';
-																	}
-																	echo '<a href="'.get_term_link($category).'" >';
-																	echo $category->name;
-																	echo '</a>';
-																	echo '</li>';
-																}
-															}
-														?>
-													</ul>
-												<?php endif;
-												$haveChildren = null;
-												$catParent = null;
-												echo '</div>';
-											}
-										}
-									?>
-									</div>
-								</div>
-							</div>
-							<?php else: ?>
-								<a href="<?= $item->url; ?>">
-									<?= $item->title; ?>
-								</a>
-							<?php endif; ?>
-						</li>
+						<?php endif; ?>
+					</li>
 					
-					<?php endif; ?>
 
 				<?php endforeach; ?>
 			</ul>

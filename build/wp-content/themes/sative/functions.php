@@ -698,3 +698,21 @@ function sative_newsletter_form_submit() {
 }
 add_action( 'admin_post_nopriv_newsletter_form', 'sative_newsletter_form_submit' );
 add_action( 'admin_post_newsletter_form', 'sative_newsletter_form_submit' );
+
+function get_categories_hierarchical( $args = array() ) {
+
+    if( !isset( $args[ 'parent' ] ) ) $args[ 'parent' ] = 0;
+
+    $categories = get_categories( $args );
+
+    foreach( $categories as $key => $category ):
+
+        $args[ 'parent' ] = $category->term_id;
+
+        $categories[ $key ]->child_categories = get_categories_hierarchical( $args );
+
+    endforeach;
+
+    return $categories;
+
+}
