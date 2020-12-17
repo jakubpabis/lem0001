@@ -16,7 +16,7 @@
 	// 	$side_menu = wp_get_nav_menu_items($menu->term_id);
 	// }
 	$current_url = home_url(add_query_arg(array(),$wp->request)).'/';
-	$menu_cats = get_categories_hierarchical( ['taxonomy' => 'product_cat' ] );
+	$menu_cats = get_categories_hierarchical( ['taxonomy' => 'product_cat', 'hide_empty' => false ] );
 	
 ?>
 
