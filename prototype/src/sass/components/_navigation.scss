@@ -73,6 +73,7 @@
 					color: $color-primary;
 					letter-spacing: 0.5px;
 					padding: 0;
+					position: relative;
 
 					@media(max-width: 1280px) {
 						font-size: 17px;
@@ -157,7 +158,8 @@
 						margin-top: 0!important;
 						border-radius: 0!important;
 						border: none!important;
-						top: 99px!important;
+						top: 100%!important;
+						min-width: 100%;
 						padding: 10px 0;
 						// width: 100vw!important;
 						// left: 50%!important;

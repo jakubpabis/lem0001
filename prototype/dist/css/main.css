@@ -1563,6 +1563,7 @@ section {
 	font-size: 18px;
 	font-weight: 700;
 	line-height: 1;
+	position: relative;
 	min-height: 100%;
 	padding: 0;
 	letter-spacing: .5px;
@@ -1608,7 +1609,8 @@ section {
 .topbar__nav-main ul.menu > li .sub_menu {
 	position: absolute;
 	z-index: 9999;
-	top: 99px !important;
+	top: 100% !important;
+	min-width: 100%;
 	margin-top: 0 !important;
 	padding: 10px 0;
 	border: none !important;
