@@ -21,7 +21,7 @@
 ?>
 
 <header id="topbarmenu" class="topbar">
-	<div class="container-fluid flex-cont">
+	<div class="container-fluid flex-cont justify-content-between">
 		<nav class="topbar__nav-mobile">
 
 			<div class="topbar__nav-mobile__close">
