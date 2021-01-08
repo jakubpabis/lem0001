@@ -630,7 +630,9 @@
 							}
 
 							.sub_menu {
-								background-color: $color-grey;
+								margin-top: 5px;
+								background-color: $color-grey2;
+								padding: 10px 0;
 							}
 
 							&.active,

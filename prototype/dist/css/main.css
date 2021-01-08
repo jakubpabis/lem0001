@@ -1812,7 +1812,9 @@ section {
 }
 
 .topbar__nav-mobile > ul > li .sub_menu > li .sub_menu {
-	background-color: #e2e2e2;
+	margin-top: 5px;
+	padding: 10px 0;
+	background-color: #d8d8d8;
 }
 
 .topbar__nav-mobile > ul > li .sub_menu > li.active > a,
