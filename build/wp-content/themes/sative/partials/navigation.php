@@ -12,7 +12,7 @@
 	// }
 
 	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'side' ] ) ) {
-		//$menu = wp_get_nav_menu_object( $locations[ 'side' ] );
+		$menu = wp_get_nav_menu_object( $locations[ 'side' ] );
 		$side_menu = wp_get_nav_menu_items($menu->term_id);
 	}
 	$current_url = home_url(add_query_arg(array(),$wp->request)).'/';
