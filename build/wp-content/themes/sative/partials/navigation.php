@@ -29,7 +29,7 @@
 			</div>
 			
 			<ul>
-				<?php if ($main_menu) foreach($main_menu as $item) : ?>
+				<?php /* if ($main_menu) foreach($main_menu as $item) : ?>
 				
 						<?php if( get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
 							<li class="active">
@@ -147,6 +147,46 @@
 							</a>
 						<?php endif; ?>
 						</li>
+				<?php endforeach; */ ?>
+				<?php if ($menu_cats) foreach($menu_cats as $item) : ?>
+					
+					<li <?= get_term_link( $item->term_id ) == $current_url ? 'class="active"' : null ?>>
+						<?php if( !empty( $item->child_categories ) ): ?>
+						<a data-toggle="collapse" href="#<?= $item->slug; ?>-<?= $item->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?= $item->slug; ?>-<?= $item->term_id; ?>">
+							<?= $item->name; ?>
+						</a>
+						<ul class="sub_menu collapse" id="<?= $item->slug; ?>-<?= $item->term_id; ?>" data-parent=".menu">
+							<?php foreach( $item->child_categories as $children ): ?>
+								<li <?= get_term_link( $children->term_id ) == $current_url ? 'class="active"' : null ?>>
+									<?php if( !empty( $children->child_categories ) ): ?>
+										<a data-toggle="collapse" href="#<?= $children->slug; ?>-<?= $children->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?= $children->slug; ?>-<?= $children->term_id; ?>">
+											<?= $children->name; ?>
+										</a>
+										<ul class="sub_menu collapse" id="<?= $children->slug; ?>-<?= $children->term_id; ?>">
+											<?php foreach( $children->child_categories as $child ): ?>
+												<li <?= get_term_link( $child->term_id ) == $current_url ? 'class="active"' : null ?>>
+													<a href="<?= get_term_link( $child->term_id ); ?>">
+														<?= $child->name; ?>
+													</a>
+												</li>
+											<?php endforeach; ?>
+										</ul>
+									<?php else: ?>
+										<a href="<?= get_term_link( $children->term_id ); ?>">
+											<?= $children->name; ?>
+										</a>
+									<?php endif; ?>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+						<?php else: ?>
+							<a href="<?= get_term_link( $item->term_id ); ?>">
+								<?= $item->name; ?>
+							</a>
+						<?php endif; ?>
+					</li>
+					
+
 				<?php endforeach; ?>
 			</ul>
 
