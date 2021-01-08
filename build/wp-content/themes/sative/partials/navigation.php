@@ -11,10 +11,10 @@
 	// 	$main_menu = sative_main_menu_setup($menu_items);
 	// }
 
-	// if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'side' ] ) ) {
-	// 	$menu = wp_get_nav_menu_object( $locations[ 'side' ] );
-	// 	$side_menu = wp_get_nav_menu_items($menu->term_id);
-	// }
+	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'side' ] ) ) {
+		//$menu = wp_get_nav_menu_object( $locations[ 'side' ] );
+		$side_menu = wp_get_nav_menu_items($menu->term_id);
+	}
 	$current_url = home_url(add_query_arg(array(),$wp->request)).'/';
 	$menu_cats = get_categories_hierarchical( ['taxonomy' => 'product_cat', 'hide_empty' => false ] );
 	
