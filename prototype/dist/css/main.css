@@ -3456,6 +3456,10 @@ section.shipping #shipping_method li label {
 	margin-top: .33em;
 }
 
+.woocommerce-breadcrumb {
+	display: none !important;
+}
+
 .product__single-wrapper {
 	position: relative;
 	display: block;

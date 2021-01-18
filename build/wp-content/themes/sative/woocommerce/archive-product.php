@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); ?>
+<?php do_action( 'woocommerce_before_main_content' ); ?>
 <?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
 <main class="products__listing">
 	
