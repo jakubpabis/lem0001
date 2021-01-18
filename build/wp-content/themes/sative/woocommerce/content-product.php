@@ -23,11 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 // Ensure visibility
-if ( empty( $product ) || ! $product->is_visible() ) {
+if ( empty( $product ) || ! $product->is_visible() || ! $product->is_in_stock() ) {
 	return;
 }
 ?>
-
+<?php if( $product->is_in_stock() || $product->is_on_backorder() ): ?>
 <div <?php post_class('products__item'); ?>>
 
 	<?php //do_action( 'woocommerce_before_shop_loop_item' ); ?>
@@ -69,3 +69,4 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	do_action( 'sative_product_link' ); ?>
 
 </div>
+<?php endif; ?>
