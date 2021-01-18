@@ -13,7 +13,7 @@
  * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     3.3.0
+ * @version     3.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,43 +24,32 @@ get_header(); ?>
 <?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
 <main class="products__listing">
 	
+	<?php // do_action( 'woocommerce_before_shop_loop' ); ?>
+
+	<?php if ( woocommerce_product_loop() ) { ?>
+
 	<section class="products container">
 
-		<?php if ( have_posts() ) : ?>
+		<?php
 
-			<?php woocommerce_product_loop_start(); ?>
+			woocommerce_product_loop_start();
 
-				<?php woocommerce_product_subcategories(); ?>
+			if ( wc_get_loop_prop( 'total' ) ) {
+				while ( have_posts() ) {
+					the_post();
 
-				<?php while ( have_posts() ) : the_post(); ?>
+					/**
+					 * Hook: woocommerce_shop_loop.
+					 */
+					do_action( 'woocommerce_shop_loop' );
 
-					<?php
-						/**
-						 * woocommerce_shop_loop hook.
-						 *
-						 * @hooked WC_Structured_Data::generate_product_data() - 10
-						 */
-						do_action( 'woocommerce_shop_loop' );
-					?>
+					wc_get_template_part( 'content', 'product' );
+				}
+			}
 
-					<?php wc_get_template_part( 'content', 'product' ); ?>
-
-				<?php endwhile; // end of the loop. ?>
-
-			<?php woocommerce_product_loop_end(); ?>
-
-		<?php elseif ( ! woocommerce_product_subcategories( array( 'before' => woocommerce_product_loop_start( false ), 'after' => woocommerce_product_loop_end( false ) ) ) ) : ?>
-
-			<?php
-				/**
-				 * woocommerce_no_products_found hook.
-				 *
-				 * @hooked wc_no_products_found - 10
-				 */
-				do_action( 'woocommerce_no_products_found' );
-			?>
-
-		<?php endif; ?>
+			woocommerce_product_loop_end();
+		
+		?>
 
 	</section>
 
@@ -71,6 +60,19 @@ get_header(); ?>
 		 * @hooked woocommerce_pagination - 10
 		 */
 		do_action( 'woocommerce_after_shop_loop' );
+	?>
+
+	<?php
+	
+		} else {
+			/**
+			 * Hook: woocommerce_no_products_found.
+			 *
+			 * @hooked wc_no_products_found - 10
+			 */
+			do_action( 'woocommerce_no_products_found' );
+		}
+	
 	?>
 
 </main>
