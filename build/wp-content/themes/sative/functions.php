@@ -7,7 +7,7 @@
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function sative_setup() 
+function sative_setup()
 {
 	load_theme_textdomain( 'sative' );
 	add_theme_support( 'title-tag' );
@@ -38,18 +38,18 @@ add_action( 'after_setup_theme', 'sative_setup' );
 /**
  * Remove Post from menu
  */
-function post_remove() 
-{ 
+function post_remove()
+{
    remove_menu_page('edit.php');
 }
-add_action('admin_menu', 'post_remove'); 
+add_action('admin_menu', 'post_remove');
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function sative_widgets_init() 
+function sative_widgets_init()
 {
 	register_sidebar( array(
 		'name'          => __( 'Nav', 'sative' ),
@@ -61,6 +61,16 @@ function sative_widgets_init()
 		'after_title'   => '',
 	) );
 
+	register_sidebar( array(
+		'name'          => __( 'Shop', 'sative' ),
+		'id'            => 'shop-sidebar',
+		'description'   => __( 'Add widgets here to appear in your shop sidebar.', 'sative' ),
+		'before_widget' => '<aside id="%1$s" class="sidebar__shop widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<span class="side_title">',
+		'after_title'   => '</span>',
+	) );
+
 }
 add_action( 'widgets_init', 'sative_widgets_init' );
 
@@ -68,9 +78,9 @@ add_action( 'widgets_init', 'sative_widgets_init' );
 show_admin_bar(false);
 
 /**
- * 
+ *
  * Add Brand taxonomy to WooCommerce products
- * 
+ *
  */
  function brand_taxonomy() {
 
@@ -100,15 +110,15 @@ show_admin_bar(false);
 		'show_tagcloud'              => true,
 	);
 	register_taxonomy( 'brand', 'product', $args );
-	
+
 }
 add_action( 'init', 'brand_taxonomy', 0 );
 
 
 /**
- * 
+ *
  * Add Type taxonomy to WooCommerce products
- * 
+ *
  */
 function type_taxonomy() {
 
@@ -138,14 +148,14 @@ function type_taxonomy() {
 		'show_tagcloud'              => true,
 	);
 	register_taxonomy( 'type', 'product', $args );
-	
+
 }
 add_action( 'init', 'type_taxonomy', 0 );
 
 /**
  * Register polylang strings for translation
  */
-if (function_exists('pll_register_string')) 
+if (function_exists('pll_register_string'))
 {
 	$strings = [
 		'Your Cart',
@@ -165,7 +175,7 @@ if (function_exists('pll_register_string'))
 	}
 }
 
-function searchForId($id, $array) 
+function searchForId($id, $array)
 {
 	foreach ($array as $key => $val) {
 		if ($val->ID == $id) {
@@ -181,7 +191,7 @@ function searchForId($id, $array)
  * @param [type] $id
  * @return void
  */
-function sative_main_menu_setup($menu) 
+function sative_main_menu_setup($menu)
 {
 	$main_menu = [];
 	foreach($menu as $item) {
@@ -201,12 +211,12 @@ function sative_main_menu_setup($menu)
 }
 
 /**
- * 
+ *
  * Add WooCommerce support
- * 
+ *
  */
 add_action( 'after_setup_theme', 'woocommerce_support' );
-function woocommerce_support() 
+function woocommerce_support()
 {
     add_theme_support( 'woocommerce' );
 }
@@ -220,19 +230,19 @@ add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 
 /**
- * 
- * 
+ *
+ *
  * uncomment this on production
- * 
+ *
  */
 
-// function pm_remove_all_scripts() 
+// function pm_remove_all_scripts()
 // {
 //     global $wp_scripts;
 //     $wp_scripts->queue = array();
 // }
 // add_action('wp_print_scripts', 'pm_remove_all_scripts', 100);
-// function pm_remove_all_styles() 
+// function pm_remove_all_styles()
 // {
 //     global $wp_styles;
 //     $wp_styles->queue = array();
@@ -240,28 +250,28 @@ add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 // add_action('wp_print_styles', 'pm_remove_all_styles', 100);
 
 /**
- * 
- * 
+ *
+ *
  * uncomment this on production
- * 
+ *
  */
 
 
 
 /**
- * 
- * 
+ *
+ *
  * Homepage WooCommerce functions.
- * 
- * 
+ *
+ *
  */
 
 /**
  * Insert the anchor tag for products on homepage.
  */
-if ( ! function_exists( 'sative_homepage_add_product_link' ) ) 
+if ( ! function_exists( 'sative_homepage_add_product_link' ) )
 {
-	function sative_homepage_add_product_link($id) 
+	function sative_homepage_add_product_link($id)
 	{
 		$link = get_the_permalink($id);
 		$product = wc_get_product($id);
@@ -273,9 +283,9 @@ add_action( 'sative_homepage_product_link', 'sative_homepage_add_product_link', 
 /**
  * Display price on homepage
  */
-if( ! function_exists( 'sative_homepage_add_price' ) ) 
+if( ! function_exists( 'sative_homepage_add_price' ) )
 {
-	function sative_homepage_add_price($product) 
+	function sative_homepage_add_price($product)
 	{
 		$currency = get_woocommerce_currency_symbol();
 		if ( $product->is_type( 'variable' ) && $product->get_variation_regular_price( 'min', true ) != $product->get_variation_price( 'min', true ) ) : ?>
@@ -304,12 +314,12 @@ add_action( 'sative_homepage_price', 'sative_homepage_add_price', 10 );
 /**
  * Insert the title for products on the homepage.
  */
-if ( ! function_exists( 'sative_homepage_add_product_title' ) ) 
+if ( ! function_exists( 'sative_homepage_add_product_title' ) )
 {
-	function sative_homepage_add_product_title($item) 
+	function sative_homepage_add_product_title($item)
 	{
 		$product = wc_get_product( get_sub_field('product') );
-		$terms = get_the_terms( $item , 'brand' ); 
+		$terms = get_the_terms( $item , 'brand' );
 		echo '<h3 class="title">';
 		if($terms) {
 			echo $terms[0]->name.'&nbsp;';
@@ -323,19 +333,19 @@ add_action( 'sative_homepage_product_title', 'sative_homepage_add_product_title'
 
 
 /**
- * 
- * 
+ *
+ *
  * Shop WooCommerce functions.
- * 
- * 
+ *
+ *
  */
 
 /**
  * Insert the anchor tag for products in the loop.
  */
-if ( ! function_exists( 'sative_add_product_link' ) ) 
+if ( ! function_exists( 'sative_add_product_link' ) )
 {
-	function sative_add_product_link() 
+	function sative_add_product_link()
 	{
 		global $product;
 		$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
@@ -347,13 +357,13 @@ add_action( 'sative_product_link', 'sative_add_product_link', 10 );
 /**
  * Insert the title for products in the loop.
  */
-if ( ! function_exists( 'sative_add_product_title' ) ) 
+if ( ! function_exists( 'sative_add_product_title' ) )
 {
-	function sative_add_product_title($tag) 
+	function sative_add_product_title($tag)
 	{
 		global $product;
 		//global $post;
-		$terms = get_the_terms( $product->get_id() , 'brand' ); 
+		$terms = get_the_terms( $product->get_id() , 'brand' );
 		echo '<'.$tag.' class="title">';
 		if($terms) {
 			echo $terms[0]->name.'&nbsp;';
@@ -369,12 +379,12 @@ add_action( 'sative_product_title', 'sative_add_product_title', 10 );
 /**
  * Insert the title for products in the loop.
  */
-if ( ! function_exists( 'sative_add_single_product_title' ) ) 
+if ( ! function_exists( 'sative_add_single_product_title' ) )
 {
-	function sative_add_single_product_title($tag) 
+	function sative_add_single_product_title($tag)
 	{
 		global $product;
-		$terms = get_the_terms( $product->get_id() , 'brand' ); 
+		$terms = get_the_terms( $product->get_id() , 'brand' );
 		echo '<'.$tag.' class="title">';
 		if($terms) {
 			echo $terms[0]->name.'&nbsp;';
@@ -390,12 +400,12 @@ add_action( 'sative_single_product_title', 'sative_add_single_product_title', 10
 /**
  * Output the related products.
  */
-if ( ! function_exists( 'woocommerce_output_related_products' ) ) 
+if ( ! function_exists( 'woocommerce_output_related_products' ) )
 {
-	function woocommerce_output_related_products() 
+	function woocommerce_output_related_products()
 	{
 		global $upsellsused;
-		if($upsellsused == false) { 
+		if($upsellsused == false) {
 			$args = array(
 				'posts_per_page' => 3,
 				'columns'        => 3,
@@ -409,9 +419,9 @@ if ( ! function_exists( 'woocommerce_output_related_products' ) )
 /**
  * Change Checkout button in cart
  */
-if ( ! function_exists( 'sative_widget_shopping_cart_proceed_to_checkout' ) ) 
+if ( ! function_exists( 'sative_widget_shopping_cart_proceed_to_checkout' ) )
 {
-	function sative_widget_shopping_cart_proceed_to_checkout() 
+	function sative_widget_shopping_cart_proceed_to_checkout()
 	{
 		echo '<a href="' . esc_url( wc_get_checkout_url() ) . '" class="button checkout wc-forward btn btn__normal btn__full btn__checkout"><span>' . pll__('Go to Checkout') . '</span><i class="icon-chevron_right_bold"></i></a>';
 	}
@@ -421,7 +431,7 @@ add_action( 'sative_widget_shopping_cart_buttons', 'sative_widget_shopping_cart_
 /**
  * Change view cart message
  */
-function sative_custom_add_to_cart_message() 
+function sative_custom_add_to_cart_message()
 {
 	global $woocommerce;
 	$return_to  = get_permalink(wc_get_page_id('shop'));
@@ -433,10 +443,10 @@ add_filter( 'wc_add_to_cart_message_html', 'sative_custom_add_to_cart_message' )
 /**
  * Ensure variation combinations are working properly - standard limit is 30
  */
-function woo_custom_ajax_variation_threshold( $qty, $product ) 
+function woo_custom_ajax_variation_threshold( $qty, $product )
 {
     return 500;
-}       
+}
 add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_threshold', 10, 2 );
 
 
@@ -449,10 +459,10 @@ add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_t
 //  * @author        Rodolfo Melogli
 //  * @testedwith    WooCommerce 3.4.4
 //  */
- 
+
 // add_filter( 'woocommerce_package_rates', 'businessbloomer_hide_free_shipping_for_shipping_class', 10, 2 );
-  
-// function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package ) 
+
+// function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package )
 // {
 // 	$shipping_class_target = 'bikes';
 // 	$in_cart = false;
@@ -461,10 +471,10 @@ add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_t
 // 		if( $values[ 'data' ]->get_shipping_class() == $shipping_class_target ) {
 // 			$in_cart = true;
 // 			//break;
-// 		} 
+// 		}
 // 	}
 // 	if( $in_cart ) {
-// 		//unset( $rates['free_shipping:6'] ); 
+// 		//unset( $rates['free_shipping:6'] );
 // 		//unset( $rates['flat_rate:1'] );
 // 		//unset( $rates['flat_rate:10'] );
 // 		//unset( $rates['flat_rate:7'] );
@@ -506,21 +516,21 @@ function hide_shipping_method_based_on_shipping_class( $rates, $package )
     return $rates;
 }
 
-function my_custom_loop_category_title( $category ) 
+function my_custom_loop_category_title( $category )
 {
 	echo '<h2 class="woocommerce-loop-category__title">';
 	echo esc_html( $category->name );
 	echo '</h2>';
-}    
-add_action( 'my_woocommerce_shop_loop_subcategory_title', 'my_custom_loop_category_title', 10 ); 
+}
+add_action( 'my_woocommerce_shop_loop_subcategory_title', 'my_custom_loop_category_title', 10 );
 
 
 /**
  * Insert the title for products in the loop.
  */
-if ( ! function_exists( 'sative_single_product_images' ) ) 
+if ( ! function_exists( 'sative_single_product_images' ) )
 {
-	function sative_single_product_images($size = 'large', $attr = 'pa_color') 
+	function sative_single_product_images($size = 'large', $attr = 'pa_color')
 	{
 		global $post, $product;
 		$attachment_ids = $product->get_gallery_image_ids();
@@ -528,7 +538,7 @@ if ( ! function_exists( 'sative_single_product_images' ) )
 		$varimages = [];
 
 		if( $product->is_type('variable') ) {
-			$variations = $product->get_visible_children(); 
+			$variations = $product->get_visible_children();
 			foreach ( $variations as $variation ) {
 				$variation = wc_get_product( $variation );
 				$pa_color = $variation->get_attribute('pa_color');
@@ -568,18 +578,18 @@ if ( ! function_exists( 'sative_single_product_images' ) )
 						'url' => wp_get_attachment_image_url($attachment_id, $size),
 						'attr' => '',
 					];
-				} 
+				}
 			}
-		} 
+		}
 
 		return $images;
 
 	}
 }
 
-function custom_post_type_newsletter_users() 
+function custom_post_type_newsletter_users()
 {
- 
+
 // Set UI labels for Custom Post Type
 $labels = array(
     'name'                => _x( 'Newsletter Users', 'Post Type General Name', 'sative' ),
@@ -596,7 +606,7 @@ $labels = array(
     'not_found'           => __( 'Not Found', 'sative' ),
     'not_found_in_trash'  => __( 'Not found in Trash', 'sative' ),
 );
-    
+
 // Set other options for Custom Post Type
 $args = array(
     'label'               => __( 'newsletter-users', 'sative' ),
@@ -604,12 +614,12 @@ $args = array(
     'labels'              => $labels,
     // Features this CPT supports in Post Editor
     'supports'            => array( 'title', 'editor', 'custom-fields' ),
-    // You can associate this CPT with a taxonomy or custom taxonomy. 
+    // You can associate this CPT with a taxonomy or custom taxonomy.
     'taxonomies'          => array(),
     /* A hierarchical CPT is like Pages and can have
     * Parent and child items. A non-hierarchical CPT
     * is like Posts.
-    */ 
+    */
     'hierarchical'        => false,
     'public'              => false,
     'show_ui'             => true,
@@ -623,13 +633,13 @@ $args = array(
     'exclude_from_search' => true,
     'publicly_queryable'  => false,
     'capability_type'     => 'post',
-);   
+);
 // Registering your Custom Post Type
 register_post_type( 'newsletter-users', $args );
 }
 /* Hook into the 'init' action so that the function
-* Containing our post type registration is not 
-* unnecessarily executed. 
+* Containing our post type registration is not
+* unnecessarily executed.
 */
 add_action( 'init', 'custom_post_type_newsletter_users', 0 );
 
@@ -655,7 +665,7 @@ function generateCouponCode( $email )
 		'post_status' => 'publish',
 		'post_author' => 1,
 		'post_type' => 'shop_coupon'
-	);    
+	);
 
 	$new_coupon_id = wp_insert_post( $coupon );
 
@@ -665,7 +675,7 @@ function generateCouponCode( $email )
 	update_post_meta( $new_coupon_id, 'customer_email', $email );
 	update_post_meta( $new_coupon_id, 'individual_use', 'yes' );
 	update_post_meta( $new_coupon_id, 'product_ids', '' );
-	update_post_meta( $new_coupon_id, 'exclude_sale_items', 'yes' );   
+	update_post_meta( $new_coupon_id, 'exclude_sale_items', 'yes' );
 	update_post_meta( $new_coupon_id, 'exclude_product_categories', array( 95, 91, 93, 969, 94, 97, 977, 96, 89, 88, 92, 1002, 441, 457, 1215, 1213, 449, 445, 455, 443, 451, 453, 447, 1217 ) );
 	update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
 	update_post_meta( $new_coupon_id, 'usage_limit', '1' );
@@ -680,7 +690,7 @@ function generateCouponCode( $email )
 function sative_newsletter_form_submit() {
 
 	$coupon_code = generateCouponCode( $_POST['newsletter-email'] );
-	
+
 	$newsletterArray = array(
         'post_type'     => 'newsletter-users',
         'post_status'   => 'private',
@@ -716,3 +726,113 @@ function get_categories_hierarchical( $args = array() ) {
     return $categories;
 
 }
+//
+// if ( ! function_exists( 'attribute_slug_to_title' ) )
+// {
+// 	function attribute_slug_to_title( $attribute, $slug )
+// 	{
+// 		global $woocommerce;
+// 		if ( taxonomy_exists( esc_attr( $attribute ) ) ) {
+// 			$term = get_term_by( 'taxonomy', $slug, esc_attr( $attribute ) );
+// 			if ( ! is_wp_error( $term ) && $term->name )
+// 				$value = $term->name;
+// 		} else {
+// 			$value = apply_filters( 'woocommerce_variation_option_name', $slug );
+// 		}
+// 		return $value;
+// 	}
+// }
+//
+// function sative_wc_filters()
+// {
+// 	global $wp_query;
+// 	$cat = $wp_query->get_queried_object();
+// 	$args = array(
+// 	    'category'  => array( $cat->slug )
+// 	);
+// 	$products_list = wc_get_products($args);
+// 	$attributes = array();
+// 	$attributesArray = array();
+// 	foreach( $products_list as $inlist ) {
+// 		$attr = $inlist->get_attributes();
+// 		foreach( $attr as $a => $val ) {
+// 			$name = wc_attribute_label($a);
+// 			if( !in_array( $name, $attributes ) ) {
+// 				$attributes[$a] = $name;
+// 			}
+// 		}
+// 		if( function_exists('get_product') ) {
+// 		    $product = get_product( $inlist->id );
+// 		    if ( $product->is_type( 'variable' ) ) {
+//
+// 		        $product = new WC_Product_Variable( $inlist->id );
+//
+// 		        $available_variations = $product->get_available_variations();
+// 		        $variation_variations = $product->get_variation_attributes();
+//
+// 		        $result = array( $available_variations , $attributes);
+//
+// 				foreach($variation_variations as $label => $vars) {
+// 					if( !array_key_exists($label, $attributesArray) ) {
+// 						$attributesArray[$label] = array();
+// 					}
+// 					//var_dump($attributesArray);
+// 					foreach( $vars as $var ) {
+// 						if( !in_array( $var, $attributesArray[$label] ) ) {
+// 							//var_dump(get_term_by('slug', $var, $label));
+// 							$attributesArray[$label][get_term_by('slug', $var, $label)->name] = $var;
+// 						}
+// 					}
+// 				}
+// 		    }
+// 		}
+// 	}
+//
+// 	$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+// 	$urlquery = parse_url($url, PHP_URL_QUERY);
+//
+// 	// Returns a string if the URL has parameters or NULL if not
+// 	if ($urlquery) {
+// 		$glue .= '&';
+// 	} else {
+// 		$glue .= '?';
+// 	}
+//
+// 	$returns = array(
+// 		'attributes' => $attributes,
+// 		'attrArray' => $attributesArray,
+// 		'url' => $url,
+// 		'glue' => $glue
+// 	);
+//
+// 	return $returns;
+// }
+//
+// function sative_product_query( $q )
+// {
+// 	$tax_query = $q->get( 'tax_query' );
+// 	$tax_query['relation'] = 'AND';
+// 	$tax_query[] = array(
+// 		'taxonomy' => 'pa_size',
+// 		'field' => 'slug',
+// 		'terms' => '42-pl',
+// 	);
+// 	$q->set( 'tax_query', $tax_query );
+// 	//var_dump($tax_query);
+// }
+//
+// $filters = sative_wc_filters();
+//
+// foreach( $filters['attributes'] as $key => $attr ) {
+// 	if(isset($_GET[$key])) {
+// 		add_action( 'woocommerce_product_query', 'sative_product_query' );
+// 	}
+// }
+
+
+
+// function sative_pre_get_posts( $q )
+// {
+//
+// }
+// add_action( 'pre_get_posts', 'sative_pre_get_posts' );

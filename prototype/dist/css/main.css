@@ -3235,7 +3235,49 @@ section.shipping #shipping_method li label {
 
 .products__container {
 	display: flex;
-	justify-content: space-evenly;
+	flex-wrap: nowrap;
+}
+
+.products__filters {
+	padding-right: 30px;
+	flex-basis: calc(30% - 30px);
+}
+
+.products__filters .sort {
+	margin-bottom: 20px;
+}
+
+.products__filters .sort i {
+	display: none !important;
+}
+
+.products__filters aside {
+	margin-bottom: 30px;
+}
+
+.products__filters aside .side_title {
+	font-size: 17px;
+	font-weight: 700;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.products__filters aside ul li {
+	line-height: 1.1;
+	padding: 4px 0;
+}
+
+.products__filters aside ul li a {
+	font-weight: 500;
+	line-height: 1.1;
+}
+
+.products__filters aside ul li span {
+	font-size: 12px;
+}
+
+.products__list {
+	display: flex;
 	flex-wrap: wrap;
 }
 
@@ -3243,11 +3285,11 @@ section.shipping #shipping_method li label {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	max-width: 360px;
+	max-width: 400px;
 	margin: 0 20px 100px 20px;
 	cursor: pointer;
 	text-align: center;
-	flex-basis: calc(33.3333% - 40px);
+	flex-basis: calc(50% - 40px);
 	flex-wrap: nowrap;
 }
 

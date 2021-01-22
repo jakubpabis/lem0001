@@ -20,39 +20,60 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-get_header(); ?>
+
+//var_dump(get_terms());
+//var_dump(get_term_by('slug', '733-bob-pl', 'pa_color'));
+
+
+//var_dump($url);
+//$filters = sative_wc_filters();
+//var_dump(sative_wc_filters());
+get_header();
+
+
+
+?>
+
 <?php do_action( 'woocommerce_before_main_content' ); ?>
 <?php get_template_part( 'partials/breadcrumbs', 'none' ); ?>
 <main class="products__listing">
-	
-	<?php // do_action( 'woocommerce_before_shop_loop' ); ?>
+
+	<?php  ?>
 
 	<?php if ( woocommerce_product_loop() ) { ?>
 
-	<section class="products container">
+	<div class="container">
 
-		<?php
+		<?php woocommerce_product_loop_start(); ?>
 
-			woocommerce_product_loop_start();
+		<aside class="products__filters">
+			<?php do_action( 'woocommerce_before_shop_loop' ); dynamic_sidebar('shop-sidebar'); ?>
+		</aside>
 
-			if ( wc_get_loop_prop( 'total' ) ) {
-				while ( have_posts() ) {
-					the_post();
+		<section class="products__list">
 
-					/**
-					 * Hook: woocommerce_shop_loop.
-					 */
-					do_action( 'woocommerce_shop_loop' );
+			<?php
 
-					wc_get_template_part( 'content', 'product' );
+				if ( wc_get_loop_prop( 'total' ) ) {
+					while ( have_posts() ) {
+						the_post();
+
+						/**
+						 * Hook: woocommerce_shop_loop.
+						 */
+						do_action( 'woocommerce_shop_loop' );
+
+						wc_get_template_part( 'content', 'product' );
+					}
 				}
-			}
 
-			woocommerce_product_loop_end();
-		
-		?>
+			?>
 
-	</section>
+		</section>
+
+		<?php woocommerce_product_loop_end(); ?>
+
+	</div>
 
 	<?php
 		/**
@@ -64,7 +85,7 @@ get_header(); ?>
 	?>
 
 	<?php
-	
+
 		} else {
 			/**
 			 * Hook: woocommerce_no_products_found.
@@ -73,7 +94,7 @@ get_header(); ?>
 			 */
 			do_action( 'woocommerce_no_products_found' );
 		}
-	
+
 	?>
 
 </main>
