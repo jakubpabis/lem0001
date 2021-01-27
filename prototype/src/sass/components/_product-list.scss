@@ -69,8 +69,32 @@
 		.sort {
 			margin-bottom: 20px;
 
-			i {
-				display: none!important;
+			form {
+				position: relative;
+			}
+
+			select {
+				appearance: none;
+				border: 2px solid $color-primary!important;
+				padding: 4px 10px;
+				width: 100%;
+				border-radius: 0!important;
+
+				&+i {
+					display: block!important;
+					position: absolute;
+					top: 15px;
+					right: 10px;
+					width: 0;
+					height: 0;
+					border-left: 6px solid transparent;
+					border-right: 6px solid transparent;
+					content: '';
+					border-top: 8px solid $color-primary;
+					pointer-events: none;
+					color: transparent;
+				}
+
 			}
 
 		}
@@ -87,19 +111,61 @@
 
 			ul {
 
+				&.show_more {
+
+					li {
+
+						&:nth-child(n+6) {
+							display: list-item!important;
+						}
+
+					}
+
+				}
+
 				li {
 					padding: 4px 0;
 					line-height: 1.1;
 
+					&.chosen {
+
+						a {
+							text-decoration: underline!important;
+						}
+
+					}
+
+					&:nth-child(n+6) {
+						display: none!important;
+					}
+
 					a {
 						font-weight: 500;
 						line-height: 1.1;
+
+						&:hover {
+							color: $color-tertiary;
+							text-decoration: none!important;
+						}
+
 					}
 
 					span {
 						font-size: 12px;
 					}
 
+				}
+
+			}
+
+			span.show_more {
+				font-size: 15px;
+				margin-top: 12px;
+				cursor: pointer;
+				color: $color-grey3;
+
+				&:hover {
+					color: $color-primary;
 				}
 
 			}
@@ -111,14 +177,27 @@
 	&__list {
 		display: flex;
 		flex-wrap: wrap;
+
+		.products__item {
+			flex-basis: calc(33.3333% - 40px);
+			max-width: 360px;
+		}
+
+		&.with_filters {
+
+			.products__item {
+				flex-basis: calc(50% - 40px);
+				max-width: 400px;
+			}
+
+		}
+
 	}
 
     &__item {
-        flex-basis: calc(50% - 40px);
         display: flex;
         flex-wrap: nowrap;
         flex-direction: column;
-        max-width: 400px;
         text-align: center;
         position: relative;
         margin: 0 20px 100px 20px;
@@ -626,4 +705,117 @@
 
 .woocommerce-breadcrumb {
     display: none!important;
+}
+
+/**
+ * Price filter widget
+ */
+.widget_price_filter {
+
+	.button {
+		border-radius: 0!important;
+		display: inline-block;
+		line-height: 1!important;
+		padding: 5px 10px;
+		border: 2px solid $color-primary;
+		font-weight: 500!important;
+
+		span {
+			line-height: 1;
+			font-size: 16px;
+			font-weight: 600;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+		}
+
+		&:hover {
+
+			i {
+				transform: translateX(5px);
+
+				@media(max-width: 767px) {
+					transform: translateX(0);
+				}
+
+			}
+
+		}
+	}
+
+	.price_slider {
+		margin-bottom: 1em;
+	}
+
+	.price_slider_amount {
+		text-align: right;
+		line-height: 2.4;
+		font-size: 0.8751em;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.button {
+			font-size: 1.15em;
+		}
+
+		.clear {
+			display: none!important;
+		}
+
+	}
+
+	.ui-slider {
+		position: relative;
+		text-align: left;
+		margin-left: 0.5em;
+		margin-right: 0.5em;
+	}
+
+	.ui-slider .ui-slider-handle {
+		position: absolute;
+		z-index: 2;
+		width: 1em;
+		height: 1em;
+		background-color: $color-dark;
+		border-radius: 1em;
+		cursor: ew-resize;
+		outline: none;
+		top: -0.3em;
+
+		/* rtl:ignore */
+		margin-left: -0.5em;
+	}
+
+	.ui-slider .ui-slider-range {
+		position: absolute;
+		z-index: 1;
+		font-size: 0.7em;
+		display: block;
+		border: 0;
+		border-radius: 1em;
+		background-color: darken($color-grey, 30%);
+	}
+
+	.price_slider_wrapper .ui-widget-content {
+		border-radius: 1em;
+		background-color: $color-grey;
+		border: 0;
+	}
+
+	.ui-slider-horizontal {
+		height: 0.5em;
+	}
+
+	.ui-slider-horizontal .ui-slider-range {
+		top: 0;
+		height: 100%;
+	}
+
+	.ui-slider-horizontal .ui-slider-range-min {
+		left: -1px;
+	}
+
+	.ui-slider-horizontal .ui-slider-range-max {
+		right: -1px;
+	}
 }

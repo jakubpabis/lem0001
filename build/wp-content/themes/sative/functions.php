@@ -168,7 +168,8 @@ if (function_exists('pll_register_string'))
 		'cookie policy',
 		'Zamknij',
 		'Zapisz się',
-		'Wpisz tutaj swój e-mail'
+		'Wpisz tutaj swój e-mail',
+		'Filtrowanie'
 	];
 	foreach($strings as $string) {
 		pll_register_string($string, $string);
@@ -725,6 +726,13 @@ function get_categories_hierarchical( $args = array() ) {
 
     return $categories;
 
+}
+
+function sative_active_woocommerce_filters() {
+    // for older WC versions
+    // global $_chosen_attributes;
+    $_chosen_attributes = WC_Query::get_layered_nav_chosen_attributes();
+    return count( $_chosen_attributes );
 }
 //
 // if ( ! function_exists( 'attribute_slug_to_title' ) )

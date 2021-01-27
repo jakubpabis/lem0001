@@ -1,4 +1,5 @@
-.btn {
+.btn,
+.button {
 	border-radius: 0!important;
 
 	&:hover,
@@ -140,7 +141,7 @@
 				@media(max-width: 767px) {
 					transform: translateX(0);
 				}
-	
+
 
 			}
 
@@ -161,13 +162,13 @@
 			margin-top: 20px;
 			margin-bottom: 20px;
 		}
-		
+
 		@media(max-width: 960px) {
 			padding: 10px 24px 12px;
 			margin-top: 16px;
 			margin-bottom: 16px;
 		}
-		
+
 		@media(max-width: 767px) {
 			border: 2px solid $color-primary;
 		}

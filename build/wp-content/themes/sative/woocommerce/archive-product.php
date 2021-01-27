@@ -46,11 +46,23 @@ get_header();
 
 		<?php woocommerce_product_loop_start(); ?>
 
-		<aside class="products__filters">
-			<?php do_action( 'woocommerce_before_shop_loop' ); dynamic_sidebar('shop-sidebar'); ?>
-		</aside>
+		<?php if( is_active_sidebar( 'shop-sidebar' ) ): ?>
+
+			<aside class="products__filters">
+
+				<?php do_action( 'woocommerce_before_shop_loop' ); ?>
+
+				<?php dynamic_sidebar('shop-sidebar'); ?>
+
+			</aside>
+
+		<section class="products__list with_filters">
+
+		<?php else: ?>
 
 		<section class="products__list">
+
+		<?php endif; ?>
 
 			<?php
 
