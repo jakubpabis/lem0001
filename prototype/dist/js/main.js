@@ -438,7 +438,10 @@ function checkLocal(el)
 function addShowMoreFilters()
 {
 	if( $('.woocommerce-widget-layered-nav-list') ) {
-		$('.woocommerce-widget-layered-nav-list').after('<span class="show_more">Pokaż więcej</span>');
+
+		if( $('.woocommerce-widget-layered-nav-list').find('li').length > 5 ) {
+			$('.woocommerce-widget-layered-nav-list').after('<span class="show_more">Pokaż więcej</span>');
+		}
 
 		$('.woocommerce-widget-layered-nav-list').next('span.show_more').on('click', function() {
 			if( $(this).prev('.woocommerce-widget-layered-nav-list').hasClass('show_more') ) {
