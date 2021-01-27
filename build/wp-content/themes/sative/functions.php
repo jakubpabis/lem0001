@@ -226,39 +226,6 @@ add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 
 
-
-
-
-
-/**
- *
- *
- * uncomment this on production
- *
- */
-
-// function pm_remove_all_scripts()
-// {
-//     global $wp_scripts;
-//     $wp_scripts->queue = array();
-// }
-// add_action('wp_print_scripts', 'pm_remove_all_scripts', 100);
-// function pm_remove_all_styles()
-// {
-//     global $wp_styles;
-//     $wp_styles->queue = array();
-// }
-// add_action('wp_print_styles', 'pm_remove_all_styles', 100);
-
-/**
- *
- *
- * uncomment this on production
- *
- */
-
-
-
 /**
  *
  *
@@ -451,40 +418,6 @@ function woo_custom_ajax_variation_threshold( $qty, $product )
 add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_threshold', 10, 2 );
 
 
-
-
-// /**
-//  * @snippet       Disable Free Shipping if Cart has Shipping Class (WooCommerce 2.6+)
-//  * @how-to        Watch tutorial @ https://businessbloomer.com/?p=19055
-//  * @sourcecode    https://businessbloomer.com/?p=19960
-//  * @author        Rodolfo Melogli
-//  * @testedwith    WooCommerce 3.4.4
-//  */
-
-// add_filter( 'woocommerce_package_rates', 'businessbloomer_hide_free_shipping_for_shipping_class', 10, 2 );
-
-// function businessbloomer_hide_free_shipping_for_shipping_class( $rates, $package )
-// {
-// 	$shipping_class_target = 'bikes';
-// 	$in_cart = false;
-// 	foreach( WC()->cart->cart_contents as $key => $values ) {
-// 		dd($values[ 'data' ]->get_shipping_class());
-// 		if( $values[ 'data' ]->get_shipping_class() == $shipping_class_target ) {
-// 			$in_cart = true;
-// 			//break;
-// 		}
-// 	}
-// 	if( $in_cart ) {
-// 		//unset( $rates['free_shipping:6'] );
-// 		//unset( $rates['flat_rate:1'] );
-// 		//unset( $rates['flat_rate:10'] );
-// 		//unset( $rates['flat_rate:7'] );
-// 	} else {
-// 		//unset( $rates['local_pickup:8'] );
-// 	}
-// 	//return $rates;
-// }
-
 add_filter( 'woocommerce_package_rates', 'hide_shipping_method_based_on_shipping_class', 10, 2 );
 function hide_shipping_method_based_on_shipping_class( $rates, $package )
 {
@@ -591,52 +524,52 @@ if ( ! function_exists( 'sative_single_product_images' ) )
 function custom_post_type_newsletter_users()
 {
 
-// Set UI labels for Custom Post Type
-$labels = array(
-    'name'                => _x( 'Newsletter Users', 'Post Type General Name', 'sative' ),
-    'singular_name'       => _x( 'Newsletter Users', 'Post Type Singular Name', 'sative' ),
-    'menu_name'           => __( 'Newsletter Users', 'sative' ),
-    'parent_item_colon'   => __( 'Parent Newsletter Users', 'sative' ),
-    'all_items'           => __( 'All Newsletter Users', 'sative' ),
-    'view_item'           => __( 'View Newsletter Users', 'sative' ),
-    'add_new_item'        => __( 'Add New Newsletter Users', 'sative' ),
-    'add_new'             => __( 'Add New', 'sative' ),
-    'edit_item'           => __( 'Edit Newsletter Users', 'sative' ),
-    'update_item'         => __( 'Update Newsletter Users', 'sative' ),
-    'search_items'        => __( 'Search Newsletter Users', 'sative' ),
-    'not_found'           => __( 'Not Found', 'sative' ),
-    'not_found_in_trash'  => __( 'Not found in Trash', 'sative' ),
-);
+	// Set UI labels for Custom Post Type
+	$labels = array(
+	    'name'                => _x( 'Newsletter Users', 'Post Type General Name', 'sative' ),
+	    'singular_name'       => _x( 'Newsletter Users', 'Post Type Singular Name', 'sative' ),
+	    'menu_name'           => __( 'Newsletter Users', 'sative' ),
+	    'parent_item_colon'   => __( 'Parent Newsletter Users', 'sative' ),
+	    'all_items'           => __( 'All Newsletter Users', 'sative' ),
+	    'view_item'           => __( 'View Newsletter Users', 'sative' ),
+	    'add_new_item'        => __( 'Add New Newsletter Users', 'sative' ),
+	    'add_new'             => __( 'Add New', 'sative' ),
+	    'edit_item'           => __( 'Edit Newsletter Users', 'sative' ),
+	    'update_item'         => __( 'Update Newsletter Users', 'sative' ),
+	    'search_items'        => __( 'Search Newsletter Users', 'sative' ),
+	    'not_found'           => __( 'Not Found', 'sative' ),
+	    'not_found_in_trash'  => __( 'Not found in Trash', 'sative' ),
+	);
 
-// Set other options for Custom Post Type
-$args = array(
-    'label'               => __( 'newsletter-users', 'sative' ),
-    'description'         => __( 'Newsletter Users', 'sative' ),
-    'labels'              => $labels,
-    // Features this CPT supports in Post Editor
-    'supports'            => array( 'title', 'editor', 'custom-fields' ),
-    // You can associate this CPT with a taxonomy or custom taxonomy.
-    'taxonomies'          => array(),
-    /* A hierarchical CPT is like Pages and can have
-    * Parent and child items. A non-hierarchical CPT
-    * is like Posts.
-    */
-    'hierarchical'        => false,
-    'public'              => false,
-    'show_ui'             => true,
-    'show_in_menu'        => true,
-    'show_in_nav_menus'   => false,
-    'show_in_admin_bar'   => false,
-    'menu_position'       => 20,
-    'menu_icon'           => 'dashicons-groups',
-    'can_export'          => true,
-    'has_archive'         => false,
-    'exclude_from_search' => true,
-    'publicly_queryable'  => false,
-    'capability_type'     => 'post',
-);
-// Registering your Custom Post Type
-register_post_type( 'newsletter-users', $args );
+	// Set other options for Custom Post Type
+	$args = array(
+	    'label'               => __( 'newsletter-users', 'sative' ),
+	    'description'         => __( 'Newsletter Users', 'sative' ),
+	    'labels'              => $labels,
+	    // Features this CPT supports in Post Editor
+	    'supports'            => array( 'title', 'editor', 'custom-fields' ),
+	    // You can associate this CPT with a taxonomy or custom taxonomy.
+	    'taxonomies'          => array(),
+	    /* A hierarchical CPT is like Pages and can have
+	    * Parent and child items. A non-hierarchical CPT
+	    * is like Posts.
+	    */
+	    'hierarchical'        => false,
+	    'public'              => false,
+	    'show_ui'             => true,
+	    'show_in_menu'        => true,
+	    'show_in_nav_menus'   => false,
+	    'show_in_admin_bar'   => false,
+	    'menu_position'       => 20,
+	    'menu_icon'           => 'dashicons-groups',
+	    'can_export'          => true,
+	    'has_archive'         => false,
+	    'exclude_from_search' => true,
+	    'publicly_queryable'  => false,
+	    'capability_type'     => 'post',
+	);
+	// Registering your Custom Post Type
+	register_post_type( 'newsletter-users', $args );
 }
 /* Hook into the 'init' action so that the function
 * Containing our post type registration is not
@@ -734,113 +667,5 @@ function sative_active_woocommerce_filters() {
     $_chosen_attributes = WC_Query::get_layered_nav_chosen_attributes();
     return count( $_chosen_attributes );
 }
-//
-// if ( ! function_exists( 'attribute_slug_to_title' ) )
-// {
-// 	function attribute_slug_to_title( $attribute, $slug )
-// 	{
-// 		global $woocommerce;
-// 		if ( taxonomy_exists( esc_attr( $attribute ) ) ) {
-// 			$term = get_term_by( 'taxonomy', $slug, esc_attr( $attribute ) );
-// 			if ( ! is_wp_error( $term ) && $term->name )
-// 				$value = $term->name;
-// 		} else {
-// 			$value = apply_filters( 'woocommerce_variation_option_name', $slug );
-// 		}
-// 		return $value;
-// 	}
-// }
-//
-// function sative_wc_filters()
-// {
-// 	global $wp_query;
-// 	$cat = $wp_query->get_queried_object();
-// 	$args = array(
-// 	    'category'  => array( $cat->slug )
-// 	);
-// 	$products_list = wc_get_products($args);
-// 	$attributes = array();
-// 	$attributesArray = array();
-// 	foreach( $products_list as $inlist ) {
-// 		$attr = $inlist->get_attributes();
-// 		foreach( $attr as $a => $val ) {
-// 			$name = wc_attribute_label($a);
-// 			if( !in_array( $name, $attributes ) ) {
-// 				$attributes[$a] = $name;
-// 			}
-// 		}
-// 		if( function_exists('get_product') ) {
-// 		    $product = get_product( $inlist->id );
-// 		    if ( $product->is_type( 'variable' ) ) {
-//
-// 		        $product = new WC_Product_Variable( $inlist->id );
-//
-// 		        $available_variations = $product->get_available_variations();
-// 		        $variation_variations = $product->get_variation_attributes();
-//
-// 		        $result = array( $available_variations , $attributes);
-//
-// 				foreach($variation_variations as $label => $vars) {
-// 					if( !array_key_exists($label, $attributesArray) ) {
-// 						$attributesArray[$label] = array();
-// 					}
-// 					//var_dump($attributesArray);
-// 					foreach( $vars as $var ) {
-// 						if( !in_array( $var, $attributesArray[$label] ) ) {
-// 							//var_dump(get_term_by('slug', $var, $label));
-// 							$attributesArray[$label][get_term_by('slug', $var, $label)->name] = $var;
-// 						}
-// 					}
-// 				}
-// 		    }
-// 		}
-// 	}
-//
-// 	$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-// 	$urlquery = parse_url($url, PHP_URL_QUERY);
-//
-// 	// Returns a string if the URL has parameters or NULL if not
-// 	if ($urlquery) {
-// 		$glue .= '&';
-// 	} else {
-// 		$glue .= '?';
-// 	}
-//
-// 	$returns = array(
-// 		'attributes' => $attributes,
-// 		'attrArray' => $attributesArray,
-// 		'url' => $url,
-// 		'glue' => $glue
-// 	);
-//
-// 	return $returns;
-// }
-//
-// function sative_product_query( $q )
-// {
-// 	$tax_query = $q->get( 'tax_query' );
-// 	$tax_query['relation'] = 'AND';
-// 	$tax_query[] = array(
-// 		'taxonomy' => 'pa_size',
-// 		'field' => 'slug',
-// 		'terms' => '42-pl',
-// 	);
-// 	$q->set( 'tax_query', $tax_query );
-// 	//var_dump($tax_query);
-// }
-//
-// $filters = sative_wc_filters();
-//
-// foreach( $filters['attributes'] as $key => $attr ) {
-// 	if(isset($_GET[$key])) {
-// 		add_action( 'woocommerce_product_query', 'sative_product_query' );
-// 	}
-// }
 
-
-
-// function sative_pre_get_posts( $q )
-// {
-//
-// }
-// add_action( 'pre_get_posts', 'sative_pre_get_posts' );
+remove_action('shutdown', 'wp_ob_end_flush_all', 1);
