@@ -33,7 +33,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php if(single_cat_title('', false)) : ?>
     <div class="section__intro container">
         <h1 class="section__title">
-            <?= isset($cat_parent) ? $cat_parent->name : null ?>
             <?= single_cat_title('', false); ?>
         </h1>
     </div>
