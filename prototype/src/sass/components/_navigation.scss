@@ -187,7 +187,7 @@
 							> a {
 								padding-top: 6px!important;
 								padding-bottom: 8px!important;
-								font-weight: 700;
+								font-weight: 700!important;
 
 								@media(max-width: 1280px) {
 									padding-top: 6px!important;
@@ -210,7 +210,7 @@
 								display: block;
 								white-space: nowrap;
 								font-size: 16px;
-								font-weight: 500;
+								font-weight: 500!important;
 
 								@media(max-width: 1280px) {
 									padding: 4px 18px;
@@ -255,7 +255,8 @@
 									> a {
 										padding-top: 4px!important;
 										padding-bottom: 6px!important;
-										font-weight: 600;
+										font-weight: 700!important;
+										font-size: 15px;
 
 										@media(max-width: 1280px) {
 											padding-top: 4px!important;
@@ -276,7 +277,8 @@
 									a {
 										display: block;
 										padding: 3px 24px 3px 32px;
-										font-weight: 400;
+										font-weight: 500!important;
+										font-size: 15px;
 
 										@media(max-width: 1280px) {
 											padding: 3px 18px 3px 26px;
