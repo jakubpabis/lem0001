@@ -161,14 +161,8 @@
 						top: 100%!important;
 						min-width: 100%;
 						padding: 10px 0;
-						// width: 100vw!important;
-						// left: 50%!important;
-						// transform: translateX(-50%)!important;
-						// //display: none;
-						// //overflow: hidden;
 						background-color: $color-secondary;
 						z-index: 9999;
-						// // @include trans(400ms);
 
 						@media(max-width: 1280px) {
 							padding: 9px 0;
@@ -193,6 +187,7 @@
 							> a {
 								padding-top: 6px!important;
 								padding-bottom: 8px!important;
+								font-weight: 700;
 
 								@media(max-width: 1280px) {
 									padding-top: 6px!important;
@@ -215,6 +210,7 @@
 								display: block;
 								white-space: nowrap;
 								font-size: 16px;
+								font-weight: 500;
 
 								@media(max-width: 1280px) {
 									padding: 4px 18px;
@@ -234,14 +230,14 @@
 								position: relative;
 								top: auto!important;
 								background-color: $color-light;
-								padding: 10px;
+								padding: 10px 0;
 
 								@media(max-width: 1280px) {
-									padding: 9px;
+									padding: 9px 0;
 								}
 
 								@media(max-width: 1140px) {
-									padding: 7px;
+									padding: 7px 0;
 								}
 
 								&-all {
@@ -259,6 +255,7 @@
 									> a {
 										padding-top: 4px!important;
 										padding-bottom: 6px!important;
+										font-weight: 600;
 
 										@media(max-width: 1280px) {
 											padding-top: 4px!important;
@@ -278,14 +275,15 @@
 
 									a {
 										display: block;
-										padding: 3px 24px;
+										padding: 3px 24px 3px 32px;
+										font-weight: 400;
 
 										@media(max-width: 1280px) {
-											padding: 3px 18px;
+											padding: 3px 18px 3px 26px;
 										}
 
 										@media(max-width: 1140px) {
-											padding: 2px 14px;
+											padding: 2px 14px 2px 20px;
 										}
 
 									}

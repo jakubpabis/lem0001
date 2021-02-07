@@ -1654,12 +1654,14 @@ section {
 }
 
 .topbar__nav-main ul.menu > li .sub_menu-all > a {
+	font-weight: 700;
 	padding-top: 6px !important;
 	padding-bottom: 8px !important;
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > a {
 	font-size: 16px;
+	font-weight: 500;
 	display: block;
 	padding: 4px 24px;
 	white-space: nowrap;
@@ -1668,7 +1670,7 @@ section {
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu {
 	position: relative;
 	top: auto !important;
-	padding: 10px;
+	padding: 10px 0;
 	background-color: #e8e8e8;
 }
 
@@ -1678,13 +1680,15 @@ section {
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu-all > a {
+	font-weight: 600;
 	padding-top: 4px !important;
 	padding-bottom: 6px !important;
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu li a {
+	font-weight: 400;
 	display: block;
-	padding: 3px 24px;
+	padding: 3px 24px 3px 32px;
 }
 
 .topbar__nav-side {
@@ -5129,7 +5133,7 @@ h4,
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu {
-	padding: 9px;
+	padding: 9px 0;
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu-all {
@@ -5142,7 +5146,7 @@ h4,
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu li a {
-	padding: 3px 18px;
+	padding: 3px 18px 3px 26px;
 }
 
 .topbar__nav-side ul li {
@@ -5409,7 +5413,7 @@ h4,
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu {
-	padding: 7px;
+	padding: 7px 0;
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu-all {
@@ -5422,7 +5426,7 @@ h4,
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu li a {
-	padding: 2px 14px;
+	padding: 2px 14px 2px 20px;
 }
 
 .topbar__nav-side-search input {
