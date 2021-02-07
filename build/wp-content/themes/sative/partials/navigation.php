@@ -157,7 +157,7 @@
 						</a>
 						<ul class="sub_menu collapse" id="<?php echo $item->slug; ?>-<?php echo $item->term_id; ?>" data-parent=".menu">
 							<li class="sub_menu-all">
-								<a href="#">
+								<a href="<?php echo get_term_link( $item->term_id ); ?>">
 									<?php pll_e( 'Pokaż wszystko' ); ?>
 								</a>
 							</li>
@@ -169,7 +169,7 @@
 										</a>
 										<ul class="sub_menu collapse" id="<?php echo $children->slug; ?>-<?php echo $children->term_id; ?>">
 											<li class="sub_menu-all">
-												<a href="#">
+												<a href="<?php echo get_term_link( $children->term_id ); ?>">
 													<?php pll_e( 'Pokaż wszystko' ); ?>
 												</a>
 											</li>
@@ -238,7 +238,7 @@
 						</a>
 						<ul class="sub_menu collapse" id="<?php echo $item->slug; ?>-<?php echo $item->term_id; ?>" data-parent=".menu">
 							<li class="sub_menu-all">
-								<a href="#">
+								<a href="<?php echo get_term_link( $item->term_id ); ?>">
 									<?php pll_e( 'Pokaż wszystko' ); ?>
 								</a>
 							</li>
@@ -250,7 +250,7 @@
 										</a>
 										<ul class="sub_menu collapse" id="<?php echo $children->slug; ?>-<?php echo $children->term_id; ?>">
 											<li class="sub_menu-all">
-												<a href="#">
+												<a href="<?php echo get_term_link( $ichildren->term_id ); ?>">
 													<?php pll_e( 'Pokaż wszystko' ); ?>
 												</a>
 											</li>
