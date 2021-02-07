@@ -250,7 +250,7 @@
 										</a>
 										<ul class="sub_menu collapse" id="<?php echo $children->slug; ?>-<?php echo $children->term_id; ?>">
 											<li class="sub_menu-all">
-												<a href="<?php echo get_term_link( $ichildren->term_id ); ?>">
+												<a href="<?php echo get_term_link( $children->term_id ); ?>">
 													<?php pll_e( 'Pokaż wszystko' ); ?>
 												</a>
 											</li>
