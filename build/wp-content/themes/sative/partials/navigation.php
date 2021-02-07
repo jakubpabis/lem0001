@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	if ( ! defined( 'ABSPATH' ) ) {
 		exit; // Exit if accessed directly
@@ -17,7 +17,7 @@
 	}
 	$current_url = home_url(add_query_arg(array(),$wp->request)).'/';
 	$menu_cats = get_categories_hierarchical( ['taxonomy' => 'product_cat', 'hide_empty' => false ] );
-	
+
 ?>
 
 <header id="topbarmenu" class="topbar">
@@ -27,27 +27,27 @@
 			<div class="topbar__nav-mobile__close">
 				+
 			</div>
-			
+
 			<ul>
 				<?php /* if ($main_menu) foreach($main_menu as $item) : ?>
-				
+
 						<?php if( get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url && (is_shop() || is_product() || is_product_category()) ) : ?>
 							<li class="active">
 						<?php else : ?>
-							<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
+							<li <?php echo $item->url == $current_url ? 'class="active"' : null ?>>
 						<?php endif; ?>
 						<?php if( get_permalink( wc_get_page_id( 'shop' ) ) === $item->url || get_permalink( wc_get_page_id( 'sklep' ) ) === $item->url ): ?>
-							<a data-toggle="collapse" href="#<?= $item->title; ?>-<?= $item->post_name; ?>-m" role="button" aria-expanded="false" aria-controls="<?= $item->title; ?>-<?= $item->post_name; ?>-m">
-								<?= $item->title; ?>
+							<a data-toggle="collapse" href="#<?php echo $item->title; ?>-<?php echo $item->post_name; ?>-m" role="button" aria-expanded="false" aria-controls="<?php echo $item->title; ?>-<?php echo $item->post_name; ?>-m">
+								<?php echo $item->title; ?>
 								<i class="fas fa-chevron-down"></i>
 							</a>
-							<div class="sub_menu collapse" id="<?= $item->title; ?>-<?= $item->post_name; ?>-m">
-								<a class="viewAll" href="<?= $item->url ?>"><?= _e('View all', 'sative'); ?></a>
+							<div class="sub_menu collapse" id="<?php echo $item->title; ?>-<?php echo $item->post_name; ?>-m">
+								<a class="viewAll" href="<?php echo $item->url ?>"><?php echo _e('View all', 'sative'); ?></a>
 								<ul>
 									<?php
 										$cat_args = array(
 											'parent'        => 0,
-											'hide_empty'    => true  
+											'hide_empty'    => true
 										);
 										$product_categories = get_terms( 'product_cat', $cat_args );
 										$haveChildren = null;
@@ -99,13 +99,13 @@
 												echo '</a>';
 												if($haveChildren !== null) : ?>
 													<ul class="subsub_menu">
-													<?= '<a class="viewAll" href="'.get_term_link($category).'">'; ?>
-													<?= _e('View all', 'sative'); ?>
-													<?= '</a>'; ?>
+													<?php echo '<a class="viewAll" href="'.get_term_link($category).'">'; ?>
+													<?php echo _e('View all', 'sative'); ?>
+													<?php echo '</a>'; ?>
 														<?php
 															$cat_args = array(
 																'parent'        => $catParent,
-																'hide_empty'    => true 
+																'hide_empty'    => true
 															);
 															$product_categories = get_terms( 'product_cat', $cat_args );
 															if( !empty($product_categories) ){
@@ -142,61 +142,71 @@
 								</ul>
 							</div>
 						<?php else: ?>
-							<a href="<?= $item->url ?>">
-								<?= $item->title; ?>
+							<a href="<?php echo $item->url ?>">
+								<?php echo $item->title; ?>
 							</a>
 						<?php endif; ?>
 						</li>
 				<?php endforeach; */ ?>
 				<?php if ($menu_cats) foreach($menu_cats as $item) : ?>
-					
-					<li <?= get_term_link( $item->term_id ) == $current_url ? 'class="active"' : null ?>>
+
+					<li <?php echo get_term_link( $item->term_id ) == $current_url ? 'class="active"' : null ?>>
 						<?php if( !empty( $item->child_categories ) ): ?>
-						<a data-toggle="collapse" href="#<?= $item->slug; ?>-<?= $item->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?= $item->slug; ?>-<?= $item->term_id; ?>">
-							<?= $item->name; ?>
+						<a data-toggle="collapse" href="#<?php echo $item->slug; ?>-<?php echo $item->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $item->slug; ?>-<?php echo $item->term_id; ?>">
+							<?php echo $item->name; ?>
 						</a>
-						<ul class="sub_menu collapse" id="<?= $item->slug; ?>-<?= $item->term_id; ?>" data-parent=".menu">
+						<ul class="sub_menu collapse" id="<?php echo $item->slug; ?>-<?php echo $item->term_id; ?>" data-parent=".menu">
+							<li class="sub_menu-all">
+								<a href="#">
+									<?php pll_e( 'Pokaż wszystko' ); ?>
+								</a>
+							</li>
 							<?php foreach( $item->child_categories as $children ): ?>
-								<li <?= get_term_link( $children->term_id ) == $current_url ? 'class="active"' : null ?>>
+								<li <?php echo get_term_link( $children->term_id ) == $current_url ? 'class="active"' : null ?>>
 									<?php if( !empty( $children->child_categories ) ): ?>
-										<a data-toggle="collapse" href="#<?= $children->slug; ?>-<?= $children->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?= $children->slug; ?>-<?= $children->term_id; ?>">
-											<?= $children->name; ?>
+										<a data-toggle="collapse" href="#<?php echo $children->slug; ?>-<?php echo $children->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $children->slug; ?>-<?php echo $children->term_id; ?>">
+											<?php echo $children->name; ?>
 										</a>
-										<ul class="sub_menu collapse" id="<?= $children->slug; ?>-<?= $children->term_id; ?>">
+										<ul class="sub_menu collapse" id="<?php echo $children->slug; ?>-<?php echo $children->term_id; ?>">
+											<li class="sub_menu-all">
+												<a href="#">
+													<?php pll_e( 'Pokaż wszystko' ); ?>
+												</a>
+											</li>
 											<?php foreach( $children->child_categories as $child ): ?>
-												<li <?= get_term_link( $child->term_id ) == $current_url ? 'class="active"' : null ?>>
-													<a href="<?= get_term_link( $child->term_id ); ?>">
-														<?= $child->name; ?>
+												<li <?php echo get_term_link( $child->term_id ) == $current_url ? 'class="active"' : null ?>>
+													<a href="<?php echo get_term_link( $child->term_id ); ?>">
+														<?php echo $child->name; ?>
 													</a>
 												</li>
 											<?php endforeach; ?>
 										</ul>
 									<?php else: ?>
-										<a href="<?= get_term_link( $children->term_id ); ?>">
-											<?= $children->name; ?>
+										<a href="<?php echo get_term_link( $children->term_id ); ?>">
+											<?php echo $children->name; ?>
 										</a>
 									<?php endif; ?>
 								</li>
 							<?php endforeach; ?>
 						</ul>
 						<?php else: ?>
-							<a href="<?= get_term_link( $item->term_id ); ?>">
-								<?= $item->name; ?>
+							<a href="<?php echo get_term_link( $item->term_id ); ?>">
+								<?php echo $item->name; ?>
 							</a>
 						<?php endif; ?>
 					</li>
-					
+
 
 				<?php endforeach; ?>
 			</ul>
 
 			<ul>
 				<?php if ($side_menu) foreach($side_menu as $item) : ?>
-				
-					<li <?= $item->url == $current_url ? 'class="active"' : null ?>>
+
+					<li <?php echo $item->url == $current_url ? 'class="active"' : null ?>>
 						<?php if($item->url) : ?>
-							<a href="<?= $item->url; ?>">
-								<?= $item->title; ?>
+							<a href="<?php echo $item->url; ?>">
+								<?php echo $item->title; ?>
 							</a>
 						<?php endif; ?>
 					</li>
@@ -213,50 +223,60 @@
 			</a>
 		</div>
 		<a href="/" class="topbar__logo">
-			<object data="<?= get_template_directory_uri(); ?>/assets/img/logo_black.svg" type="image/svg+xml" width="227" height="90">
-				<img src="<?= get_template_directory_uri(); ?>/assets/img/logo_black.svg" alt="Sative logo black" width="227" height="90">
+			<object data="<?php echo get_template_directory_uri(); ?>/assets/img/logo_black.svg" type="image/svg+xml" width="227" height="90">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo_black.svg" alt="Sative logo black" width="227" height="90">
 			</object>
 		</a>
 		<nav class="topbar__nav-main">
 			<ul class="menu">
 				<?php if ($menu_cats) foreach($menu_cats as $item) : ?>
-					
-					<li <?= get_term_link( $item->term_id ) == $current_url ? 'class="active"' : null ?>>
+
+					<li <?php echo get_term_link( $item->term_id ) == $current_url ? 'class="active"' : null ?>>
 						<?php if( !empty( $item->child_categories ) ): ?>
-						<a data-toggle="collapse" href="#<?= $item->slug; ?>-<?= $item->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?= $item->slug; ?>-<?= $item->term_id; ?>">
-							<?= $item->name; ?>
+						<a data-toggle="collapse" href="#<?php echo $item->slug; ?>-<?php echo $item->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $item->slug; ?>-<?php echo $item->term_id; ?>">
+							<?php echo $item->name; ?>
 						</a>
-						<ul class="sub_menu collapse" id="<?= $item->slug; ?>-<?= $item->term_id; ?>" data-parent=".menu">
+						<ul class="sub_menu collapse" id="<?php echo $item->slug; ?>-<?php echo $item->term_id; ?>" data-parent=".menu">
+							<li class="sub_menu-all">
+								<a href="#">
+									<?php pll_e( 'Pokaż wszystko' ); ?>
+								</a>
+							</li>
 							<?php foreach( $item->child_categories as $children ): ?>
-								<li <?= get_term_link( $children->term_id ) == $current_url ? 'class="active"' : null ?>>
+								<li <?php echo get_term_link( $children->term_id ) == $current_url ? 'class="active"' : null ?>>
 									<?php if( !empty( $children->child_categories ) ): ?>
-										<a data-toggle="collapse" href="#<?= $children->slug; ?>-<?= $children->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?= $children->slug; ?>-<?= $children->term_id; ?>">
-											<?= $children->name; ?>
+										<a data-toggle="collapse" href="#<?php echo $children->slug; ?>-<?php echo $children->term_id; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $children->slug; ?>-<?php echo $children->term_id; ?>">
+											<?php echo $children->name; ?>
 										</a>
-										<ul class="sub_menu collapse" id="<?= $children->slug; ?>-<?= $children->term_id; ?>">
+										<ul class="sub_menu collapse" id="<?php echo $children->slug; ?>-<?php echo $children->term_id; ?>">
+											<li class="sub_menu-all">
+												<a href="#">
+													<?php pll_e( 'Pokaż wszystko' ); ?>
+												</a>
+											</li>
 											<?php foreach( $children->child_categories as $child ): ?>
-												<li <?= get_term_link( $child->term_id ) == $current_url ? 'class="active"' : null ?>>
-													<a href="<?= get_term_link( $child->term_id ); ?>">
-														<?= $child->name; ?>
+												<li <?php echo get_term_link( $child->term_id ) == $current_url ? 'class="active"' : null ?>>
+													<a href="<?php echo get_term_link( $child->term_id ); ?>">
+														<?php echo $child->name; ?>
 													</a>
 												</li>
 											<?php endforeach; ?>
 										</ul>
 									<?php else: ?>
-										<a href="<?= get_term_link( $children->term_id ); ?>">
-											<?= $children->name; ?>
+										<a href="<?php echo get_term_link( $children->term_id ); ?>">
+											<?php echo $children->name; ?>
 										</a>
 									<?php endif; ?>
 								</li>
 							<?php endforeach; ?>
 						</ul>
 						<?php else: ?>
-							<a href="<?= get_term_link( $item->term_id ); ?>">
-								<?= $item->name; ?>
+							<a href="<?php echo get_term_link( $item->term_id ); ?>">
+								<?php echo $item->name; ?>
 							</a>
 						<?php endif; ?>
 					</li>
-					
+
 
 				<?php endforeach; ?>
 			</ul>
@@ -285,7 +305,7 @@
 				<li>
 					<a href="javascript:void(0)" id="cartOpenBTN" title="<?php _e('Cart','sative'); ?>">
 						<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>
-							<span><?= WC()->cart->get_cart_contents_count(); ?></span>
+							<span><?php echo WC()->cart->get_cart_contents_count(); ?></span>
 						<?php endif; ?>
 						<i class="fas fa-shopping-cart"></i>
 					</a>
@@ -306,10 +326,10 @@
 			<?php endif; ?>
 			<a href="javascript:void(0)" id="cartOpenBTNMobile">
 				<?php if(WC()->cart->get_cart_contents_count() !== 0) : ?>
-					<span><?= WC()->cart->get_cart_contents_count(); ?></span>
+					<span><?php echo WC()->cart->get_cart_contents_count(); ?></span>
 				<?php endif; ?>
-				<?php /* <object data="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="36" height="39">
-					<img src="<?= get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="cart icon black" width="36" height="39">
+				<?php /* <object data="<?php echo get_template_directory_uri(); ?>/assets/img/cart_black.svg" type="image/svg+xml" width="36" height="39">
+					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/cart_black.svg" alt="cart icon black" width="36" height="39">
 				</object> */ ?>
 				<i class="fas fa-shopping-cart"></i>
 			</a>
@@ -320,7 +340,7 @@
 			<?php
 				$cat_args = array(
 					'parent'        => 0,
-					'hide_empty'    => true  
+					'hide_empty'    => true
 				);
 				$product_categories = get_terms( 'product_cat', $cat_args );
 				$haveChildren = null;
@@ -374,7 +394,7 @@
 				<?php
 					$cat_args = array(
 						'parent'        => $catParent,
-						'hide_empty'    => true 
+						'hide_empty'    => true
 					);
 					$product_categories = get_terms( 'product_cat', $cat_args );
 					if( !empty($product_categories) ){

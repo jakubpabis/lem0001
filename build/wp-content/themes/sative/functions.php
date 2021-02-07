@@ -169,7 +169,8 @@ if (function_exists('pll_register_string'))
 		'Zamknij',
 		'Zapisz się',
 		'Wpisz tutaj swój e-mail',
-		'Filtrowanie'
+		'Filtrowanie',
+		'Pokaż wszystko'
 	];
 	foreach($strings as $string) {
 		pll_register_string($string, $string);

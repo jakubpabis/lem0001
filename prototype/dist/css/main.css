@@ -1648,6 +1648,16 @@ section {
 	background-color: #f4f4f4;
 }
 
+.topbar__nav-main ul.menu > li .sub_menu-all {
+	margin-top: -10px;
+	background-color: #e2e2e2;
+}
+
+.topbar__nav-main ul.menu > li .sub_menu-all > a {
+	padding-top: 6px !important;
+	padding-bottom: 8px !important;
+}
+
 .topbar__nav-main ul.menu > li .sub_menu li > a {
 	font-size: 16px;
 	display: block;
@@ -1660,6 +1670,16 @@ section {
 	top: auto !important;
 	padding: 10px;
 	background-color: #e8e8e8;
+}
+
+.topbar__nav-main ul.menu > li .sub_menu li > .sub_menu-all {
+	margin-top: -10px;
+	background-color: #e2e2e2;
+}
+
+.topbar__nav-main ul.menu > li .sub_menu li > .sub_menu-all > a {
+	padding-top: 4px !important;
+	padding-bottom: 6px !important;
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu li a {
@@ -5095,12 +5115,30 @@ h4,
 	padding: 9px 0;
 }
 
+.topbar__nav-main ul.menu > li .sub_menu-all {
+	margin-top: -9px;
+}
+
+.topbar__nav-main ul.menu > li .sub_menu-all > a {
+	padding-top: 6px !important;
+	padding-bottom: 8px !important;
+}
+
 .topbar__nav-main ul.menu > li .sub_menu li > a {
 	padding: 4px 18px;
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu {
 	padding: 9px;
+}
+
+.topbar__nav-main ul.menu > li .sub_menu li > .sub_menu-all {
+	margin-top: -9px;
+}
+
+.topbar__nav-main ul.menu > li .sub_menu li > .sub_menu-all > a {
+	padding-top: 4px !important;
+	padding-bottom: 6px !important;
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu li a {
@@ -5357,12 +5395,30 @@ h4,
 	padding: 7px 0;
 }
 
+.topbar__nav-main ul.menu > li .sub_menu-all {
+	margin-top: -7px;
+}
+
+.topbar__nav-main ul.menu > li .sub_menu-all > a {
+	padding-top: 5px !important;
+	padding-bottom: 7px !important;
+}
+
 .topbar__nav-main ul.menu > li .sub_menu li > a {
 	padding: 3px 14px;
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu {
 	padding: 7px;
+}
+
+.topbar__nav-main ul.menu > li .sub_menu li > .sub_menu-all {
+	margin-top: -7px;
+}
+
+.topbar__nav-main ul.menu > li .sub_menu li > .sub_menu-all > a {
+	padding-top: 3px !important;
+	padding-bottom: 5px !important;
 }
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu li a {
