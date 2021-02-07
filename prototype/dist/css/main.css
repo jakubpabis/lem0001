@@ -1661,7 +1661,7 @@ section {
 
 .topbar__nav-main ul.menu > li .sub_menu li > a {
 	font-size: 16px;
-	font-weight: 500 !important;
+	font-weight: 500;
 	display: block;
 	padding: 4px 24px;
 	white-space: nowrap;
@@ -1688,7 +1688,7 @@ section {
 
 .topbar__nav-main ul.menu > li .sub_menu li > .sub_menu li a {
 	font-size: 15px;
-	font-weight: 500 !important;
+	font-weight: 500;
 	display: block;
 	padding: 3px 24px 3px 32px;
 }
