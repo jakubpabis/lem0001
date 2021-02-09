@@ -82,8 +82,8 @@ show_admin_bar(false);
  * Add Brand taxonomy to WooCommerce products
  *
  */
- function brand_taxonomy() {
-
+ function brand_taxonomy()
+ {
 	$labels = array(
 		'name'                       => __('Brands'),
 		'singular_name'              => __('Brand'),
@@ -459,6 +459,19 @@ function my_custom_loop_category_title( $category )
 }
 add_action( 'my_woocommerce_shop_loop_subcategory_title', 'my_custom_loop_category_title', 10 );
 
+function sative_get_product_attributes()
+{
+	global $post, $product;
+	$attributes = array();
+	if( !empty( $product->get_attributes() ) ) {
+		foreach( $product->get_attributes() as $key => $val ) {
+			if( ! in_array( $key, $attributes ) ) {
+				$attributes[] = $key;
+			}
+		}
+	}
+	return $attributes;
+}
 
 /**
  * Insert the title for products in the loop.
@@ -467,7 +480,6 @@ if ( ! function_exists( 'sative_single_product_images' ) )
 {
 	function sative_single_product_images($size = 'large', $attr = 'pa_color')
 	{
-		global $post, $product;
 		$attachment_ids = $product->get_gallery_image_ids();
 		$images = [];
 		$varimages = [];

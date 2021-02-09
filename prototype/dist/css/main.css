@@ -1843,6 +1843,10 @@ section {
 	background-color: #e8e8e8;
 }
 
+.topbar__nav-mobile > ul > li .sub_menu-all > a {
+	font-weight: 700 !important;
+}
+
 .topbar__nav-mobile > ul > li .sub_menu > .viewAll {
 	display: block;
 	margin-bottom: 10px !important;
@@ -1871,6 +1875,10 @@ section {
 	margin-top: 5px;
 	padding: 10px 0;
 	background-color: #d8d8d8;
+}
+
+.topbar__nav-mobile > ul > li .sub_menu > li .sub_menu-all > a {
+	font-weight: 700 !important;
 }
 
 .topbar__nav-mobile > ul > li .sub_menu > li.active > a,

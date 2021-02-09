@@ -503,21 +503,16 @@
 
 					.sub_menu {
 						background-color: $color-light;
-						//position: relative;
 						padding: 0 0 15px;
 						width: 100%;
-						// display: none;
 
-						// > .viewAll {
-						// 	font-size: 17px;
-						// 	padding: 11px 15px;
-						// 	position: relative;
-						// 	display: block;
-						// 	text-align: left;
-						// 	font-weight: 400;
-						// 	background-color: $color-secondary;
-						// 	color: rgba($color: $color-primary, $alpha: .85);
-						// }
+						&-all {
+
+							> a {
+								font-weight: 700!important;
+							}
+
+						}
 
 						@media(max-width: 991px) {
 							padding: 15px 0;
@@ -555,6 +550,15 @@
 								margin-top: 5px;
 								background-color: $color-grey2;
 								padding: 10px 0;
+
+								&-all {
+
+									> a {
+										font-weight: 700!important;
+									}
+
+								}
+
 							}
 
 							&.active,
