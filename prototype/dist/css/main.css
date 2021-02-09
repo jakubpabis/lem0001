@@ -5121,8 +5121,13 @@ h4,
 	margin: 56px auto 84px;
 }
 
+.topbar__nav-main ul.menu > li {
+	font-size: 16px;
+	letter-spacing: 0;
+}
+
 .topbar__nav-main ul.menu > li > a {
-	padding: 0 18px;
+	padding: 0 17px;
 }
 
 .topbar__nav-main ul.menu > li i {
@@ -5409,13 +5414,8 @@ h4,
 
 @media (max-width: 1140px) {
 
-.topbar__nav-main ul.menu > li {
-	font-size: 16px;
-	letter-spacing: 0;
-}
-
 .topbar__nav-main ul.menu > li > a {
-	padding: 0 14px;
+	padding: 0 13px;
 }
 
 .topbar__nav-main ul.menu > li:hover:before,
@@ -5465,6 +5465,14 @@ h4,
 }
 
 @media (max-width: 1080px) {
+
+.topbar__nav-main ul.menu > li {
+	font-size: 15px;
+}
+
+.topbar__nav-main ul.menu > li > a {
+	padding: 0 12px;
+}
 
 .products__filters {
 	flex-basis: calc(40% - 20px);
