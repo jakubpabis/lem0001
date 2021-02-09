@@ -3304,7 +3304,7 @@ section.shipping #shipping_method li label {
 
 .products__filters {
 	padding-right: 30px;
-	flex-basis: calc(30% - 30px);
+	flex-basis: calc(33% - 30px);
 }
 
 .products__filters .sort {
@@ -3399,12 +3399,12 @@ section.shipping #shipping_method li label {
 }
 
 .products__list .products__item {
-	max-width: 360px;
+	max-width: 380px;
 	flex-basis: calc(33.3333% - 40px);
 }
 
 .products__list.with_filters .products__item {
-	max-width: 400px;
+	max-width: 420px;
 	flex-basis: calc(50% - 40px);
 }
 
@@ -5049,6 +5049,20 @@ p.stars.selected a:not(.active)::before {
 	line-height: 1.7;
 }
 
+@media (max-width: 1366px) {
+
+.topbar__nav-main ul.menu > li {
+	font-size: 17px;
+	letter-spacing: 0;
+}
+
+.topbar__nav-main ul.menu > li > a {
+	padding: 0 20px;
+	vertical-align: -39px;
+}
+
+}
+
 @media (max-width: 1280px) {
 
 .btn__smaller,
@@ -5105,10 +5119,6 @@ h4,
 
 .generic.article {
 	margin: 56px auto 84px;
-}
-
-.topbar__nav-main ul.menu > li {
-	font-size: 17px;
 }
 
 .topbar__nav-main ul.menu > li > a {
@@ -5374,6 +5384,15 @@ h4,
 
 }
 
+@media (max-width: 1199px) {
+
+.products__filters {
+	padding-right: 20px;
+	flex-basis: calc(35% - 20px);
+}
+
+}
+
 @media (max-width: 1170px) {
 
 .container__half-left {
@@ -5446,6 +5465,10 @@ h4,
 }
 
 @media (max-width: 1080px) {
+
+.products__filters {
+	flex-basis: calc(40% - 20px);
+}
 
 .slider__container.product__single-slider {
 	margin-bottom: 50px;
@@ -5734,6 +5757,19 @@ h5,
 	align-items: center;
 }
 
+.products__filters {
+	display: none;
+}
+
+.products__list.with_filters .products__item {
+	flex-basis: calc(33.3333% - 20px);
+}
+
+.products__item {
+	margin: 0 10px 80px 10px;
+	flex-basis: calc(33.3333% - 20px);
+}
+
 }
 
 @media (max-width: 960px) {
@@ -5758,10 +5794,6 @@ h5,
 
 .homepage {
 	padding: 20px 0 0 0;
-}
-
-.products__item {
-	flex-basis: calc(50% - 40px);
 }
 
 .product__single-tabs {
@@ -5942,6 +5974,18 @@ h4,
 
 .products__listing {
 	padding-top: 36px;
+}
+
+.products__list.with_filters {
+	justify-content: center;
+}
+
+.products__list.with_filters .products__item {
+	flex-basis: calc(50% - 20px);
+}
+
+.products__item {
+	flex-basis: calc(50% - 20px);
 }
 
 .products__item:hover {
@@ -6895,6 +6939,10 @@ h3,
 
 @media (max-width: 460px) {
 
+.products__list.with_filters .products__item {
+	flex-basis: 76vw;
+}
+
 .products__item {
 	margin-bottom: 60px;
 	flex-basis: 80vw;
@@ -6981,6 +7029,10 @@ h3,
 #order_review_heading .form-row label,
 .woocomerce-form .form-row label {
 	margin-bottom: 2px;
+}
+
+.products__list.with_filters .products__item {
+	flex-basis: 90vw;
 }
 
 .products__item {

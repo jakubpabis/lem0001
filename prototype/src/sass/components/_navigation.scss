@@ -61,10 +61,6 @@
 				flex-wrap: nowrap;
 				min-height: 100%;
 
-				// @media(max-width: 1280px) {
-				// 	margin: 5px 0 0 0;
-				// }
-
 				> li {
 					font-size: 18px;
 					font-weight: 700;
@@ -75,8 +71,9 @@
 					padding: 0;
 					position: relative;
 
-					@media(max-width: 1280px) {
+					@media(max-width: 1366px) {
 						font-size: 17px;
+						letter-spacing: 0;
 					}
 
 					@media(max-width: 1140px) {
@@ -87,6 +84,11 @@
 					> a {
 						padding: 0 24px;
 						vertical-align: -37px;
+
+						@media(max-width: 1366px) {
+							padding: 0 20px;
+							vertical-align: -39px;
+						}
 
 						@media(max-width: 1280px) {
 							padding: 0 18px;
