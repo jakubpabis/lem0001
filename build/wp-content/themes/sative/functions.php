@@ -480,6 +480,7 @@ if ( ! function_exists( 'sative_single_product_images' ) )
 {
 	function sative_single_product_images($size = 'large', $attr = 'pa_color')
 	{
+		global $post, $product;
 		$attachment_ids = $product->get_gallery_image_ids();
 		$images = [];
 		$varimages = [];
