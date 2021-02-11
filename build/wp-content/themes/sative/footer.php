@@ -80,51 +80,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="search__container">
 		<?= do_shortcode( '[wcas-search-form]' ); ?>
 	</div>
-	<?php /* if( is_front_page() ) : ?>
-		<a class="btn" href="#open-modal" style="display: none;"></a>
-		<div id="open-modal" class="modal-window">
-			<div class="modal-content text-center">
-				<a href="javascript:void(0)" onclick="document.getElementById('open-modal').style.display = 'none';" title="<?php pll_e('Zamknij'); ?>" class="modal-close"><?php pll_e('Zamknij'); ?></a>
-				<h2>
-					<?php pll_e('Zapisz się do newsletter’a i odbierz kod rabatowy 10%'); ?>
-				</h2>
-				<form method="POST" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" accept-charset="UTF-8" role="form" id="newsletter-form" enctype="multipart/form-data">
-					<input type="email" name="newsletter-email" value="" placeholder="<?php pll_e('Wpisz tutaj swój e-mail'); ?>" required>
-					<input type="hidden" name="action" value="newsletter_form">
-					<?php wp_nonce_field( 'newsletter_form', 'newsletter_form_nonce' ); ?>
-					<button type="submit" class="btn btn__small btn__full"><span><?php pll_e('Zapisz się'); ?></span></button>
-				</form>
-			</div>
-		</div>
-		<div id="code-modal" class="modal-window">
-			<div class="modal-content text-center">
-				<a href="javascript:void(0)" onclick="document.getElementById('code-modal').style.display = 'none';" title="<?php pll_e('Zamknij'); ?>" class="modal-close"><?php pll_e('Zamknij'); ?></a>
-				<h2>
-					<?php pll_e('Dziękujemy! Twój kod rabatowy to: '); ?> <span style="color: #ff0000;"> <?= $_GET['code']; ?> </span>
-				</h2>
-			</div>
-		</div>
-	<?php endif; */ ?>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<?php wp_footer(); ?>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" defer></script>
-	<script src="<?= get_template_directory_uri(); ?>/assets/js/main.min.js?v=2.10" defer></script>
-	<?php wp_footer(); ?>
-	<?php /* if( is_front_page() ) : ?>
-		<script defer>
-			$(document).ready(function() {
-				if( !getCookie('newsletter-coupon') ) {
-					if( getUrlParameter('code') ) {
-						setCookie('newsletter-coupon', getUrlParameter('code'), 365);
-						$('#code-modal').css({ 'visibility': 'visible', 'opacity': '1','pointer-events': 'auto' });
-					} else {
-						setTimeout(function() {
-							$('#open-modal').css({ 'visibility': 'visible', 'opacity': '1','pointer-events': 'auto' });
-						}, 5000);
-					}
-				}
-			});
-		</script>
-	<?php endif; */ ?>
+	<script src="<?= get_template_directory_uri(); ?>/assets/js/main.min.js?v=2.11" defer></script>
 </body>
 </html>

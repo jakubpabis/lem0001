@@ -406,7 +406,7 @@ function sative_custom_add_to_cart_message()
 {
 	global $woocommerce;
 	$return_to  = get_permalink(wc_get_page_id('shop'));
-	$message    = __('Product successfully added to your cart. ', 'woocommerce').'<span id="cartOpenBTNSuccess">View cart</span>';
+	$message    = __('Product successfully added to your cart. ', 'woocommerce').'<span id="cartOpenBTNSuccess">'.__('View cart', 'woocommerce').'</span>';
 	return $message;
 }
 add_filter( 'wc_add_to_cart_message_html', 'sative_custom_add_to_cart_message' );
@@ -476,7 +476,7 @@ function sative_get_product_attributes()
 }
 
 /**
- * Insert the title for products in the loop.
+ * Change photo on variation change.
  */
 if ( ! function_exists( 'sative_single_product_images' ) )
 {
