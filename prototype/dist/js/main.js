@@ -471,7 +471,7 @@ $(document).ready(function() {
 	//subMenu();
 
 	$(document).on('click', function(e) {
-		console.log( $.contains( document.getElementById('topbarmenu'), e.target ) );
+		//console.log( $.contains( document.getElementById('topbarmenu'), e.target ) );
 		if( !$.contains( document.getElementById('topbarmenu'), e.target ) ) {
 			$('.sub_menu.collapse').each(function() {
 				var id = $(this).attr('id');
@@ -485,11 +485,11 @@ $(document).ready(function() {
 		$('html, body').css({'overflow' : 'visible'});
 	});
 
-	$( document ).on( 'found_variation', '.variations_form', function ( event, variation) {
-		//console.log(variation);
-		// $('.product__single-info').find('> .price').find('span').text((variation.display_price).toLocaleString('en'));
-		// $('.product__single-info').find('> .sub-price').find('span').text((variation.display_regular_price).toLocaleString('en'));
-	});
+	// $( document ).on( 'found_variation', '.variations_form', function ( event, variation) {
+	// 	//console.log(variation);
+	// 	// $('.product__single-info').find('> .price').find('span').text((variation.display_price).toLocaleString('en'));
+	// 	// $('.product__single-info').find('> .sub-price').find('span').text((variation.display_regular_price).toLocaleString('en'));
+	// });
 
 	$('body').on('click', function(event){
 		if(!$(event.target).is('form.dgwt-wcas-search-form') && !$(event.target).is('.dgwt-wcas-search-input') && !$(event.target).is('.dgwt-wcas-sf-wrapp') && $('.search__container').hasClass('opened')){

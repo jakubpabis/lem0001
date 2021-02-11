@@ -43,14 +43,14 @@ if ( empty( $product ) || ! $product->is_visible() || ! $product->is_in_stock() 
 	<?php endif; ?>
 
 	<div class="products__item-text">
-		
-		<?php 
+
+		<?php
 		/**
 		 * Display product title
 		 */
 		do_action( 'sative_product_title', 'h3' ); ?>
 
-		<?php  
+		<?php
 		/**
 		 *  Display price
 		 */
@@ -58,11 +58,7 @@ if ( empty( $product ) || ! $product->is_visible() || ! $product->is_in_stock() 
 
 	</div>
 
-	<?php /*<div class="products__item-btn">
-		<?= __('View product') ?>
-		<i class="icon-chevron_right_bold"></i>
-	</div> */ ?>
-	<?php 
+	<?php
 	/**
 	 * Display product link
 	 */
