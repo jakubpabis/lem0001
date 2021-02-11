@@ -10,24 +10,23 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     1.6.4
+ * @see     https://docs.woocommerce.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 3.9.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
-if ( ! $messages ) {
+if ( ! $notices ) {
 	return;
 }
 
 ?>
 
 <div class="container text-center">
-	<?php foreach ( $messages as $message ) : ?>
-		<div class="woocommerce-info"><p class="font-size-large"><?php echo wp_kses_post( $message ); ?></p></div>
+	<?php foreach ( $notices as $notice ) : ?>
+		<div class="woocommerce-info"<?php echo wc_get_notice_data_attr( $notice ); ?>><p class="font-size-large"><?php echo wc_kses_notice( $notice['notice'] ); ?></p></div>
 	<?php endforeach; ?>
 </div>
