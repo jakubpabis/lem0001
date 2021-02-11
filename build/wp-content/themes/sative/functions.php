@@ -82,8 +82,8 @@ show_admin_bar(false);
  * Add Brand taxonomy to WooCommerce products
  *
  */
- function brand_taxonomy()
- {
+function brand_taxonomy()
+{
 	$labels = array(
 		'name'                       => __('Brands'),
 		'singular_name'              => __('Brand'),
@@ -120,7 +120,8 @@ add_action( 'init', 'brand_taxonomy', 0 );
  * Add Type taxonomy to WooCommerce products
  *
  */
-function type_taxonomy() {
+function type_taxonomy()
+{
 
 	$labels = array(
 		'name'                       => __('Types'),
@@ -223,7 +224,9 @@ function woocommerce_support()
     add_theme_support( 'woocommerce' );
 }
 // Remove all WooCommerce styles and scripts
-add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+if( ! is_checkout() ) {
+	add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+}
 
 
 
