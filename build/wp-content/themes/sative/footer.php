@@ -1,4 +1,4 @@
-<?php 
+<?php
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -34,11 +34,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php if (function_exists('pll_e')) { pll_e('About us'); } ?>
 					</p>
 					<hr>
-					<?php 
-						wp_nav_menu( array( 
-							'theme_location' => 'footer_one', 
+					<?php
+						wp_nav_menu( array(
+							'theme_location' => 'footer_one',
 							'container' =>	'nav',
-						) ); 
+						) );
 					?>
 				</div>
 				<div class="footer__item right">
@@ -46,11 +46,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php if (function_exists('pll_e')) { pll_e('Customer service'); } ?>
 					</p>
 					<hr>
-					<?php 
-						wp_nav_menu( array( 
-							'theme_location' => 'footer_two', 
+					<?php
+						wp_nav_menu( array(
+							'theme_location' => 'footer_two',
 							'container' =>	'nav',
-						) ); 
+						) );
 					?>
 				</div>
 			</div>
@@ -108,7 +108,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" defer></script>
-	<script src="<?= get_template_directory_uri(); ?>/assets/js/main.min.js?v=2.0" defer></script>
+	<script src="<?= get_template_directory_uri(); ?>/assets/js/main.min.js?v=2.10" defer></script>
 	<?php wp_footer(); ?>
 	<?php /* if( is_front_page() ) : ?>
 		<script defer>

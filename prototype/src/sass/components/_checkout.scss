@@ -114,7 +114,7 @@ table {
         }
 
     }
-    
+
     .form-row {
         padding: 0 15px;
         margin-bottom: 32px;
@@ -242,7 +242,7 @@ table {
         @media(max-width: 440px) {
             flex-basis: calc(50% - 10px);
         }
-        
+
         .image-container {
             position: relative;
             top: 0;
@@ -368,7 +368,7 @@ table {
         text-align: center;
         margin-bottom: 1em;
     }
-        
+
     .form-row {
         text-align: center;
         margin: 0 auto 1em!important;
@@ -608,4 +608,10 @@ section.shipping {
         min-height: 40px;
     }
 
+}
+
+.button.alt#place_order {
+	@extend .btn__normal;
+	@extend .btn__full;
+	@extend .btn__checkout;
 }

@@ -567,6 +567,7 @@ th {
 }
 
 .btn__normal,
+.button.alt#place_order,
 .button__normal {
 	display: inline-block;
 	margin-top: 30px;
@@ -577,6 +578,7 @@ th {
 }
 
 .btn__normal span,
+.button.alt#place_order span,
 .button__normal span {
 	font-size: 19px;
 	font-weight: 700;
@@ -586,6 +588,7 @@ th {
 }
 
 .btn__normal i,
+.button.alt#place_order i,
 .button__normal i {
 	font-size: 18px;
 	line-height: 1;
@@ -596,6 +599,7 @@ th {
 }
 
 .btn__normal:hover i,
+.button.alt#place_order:hover i,
 .button__normal:hover i {
 	transform: translateX(5px);
 }
@@ -669,24 +673,29 @@ th {
 }
 
 .btn__full,
+.button.alt#place_order,
 .button__full {
 	border-radius: 0 !important;
 	background-color: #222;
 }
 
 .btn__full span,
+.button.alt#place_order span,
 .btn__full i,
+.button.alt#place_order i,
 .button__full span,
 .button__full i {
 	color: white !important;
 }
 
 .btn__full:hover i,
+.button.alt#place_order:hover i,
 .button__full:hover i {
 	color: #f00 !important;
 }
 
 .btn__checkout,
+.button.alt#place_order,
 .button__checkout {
 	font-size: 24px;
 	font-weight: 700;
@@ -701,6 +710,7 @@ th {
 }
 
 .btn__checkout:hover,
+.button.alt#place_order:hover,
 .button__checkout:hover {
 	color: #f00;
 }
@@ -2289,7 +2299,8 @@ section {
 	letter-spacing: 1px;
 }
 
-.cart .btn__checkout {
+.cart .btn__checkout,
+.cart .button.alt#place_order {
 	display: block;
 	margin-top: 40px;
 	margin-bottom: 40px;
@@ -5861,6 +5872,7 @@ h5,
 }
 
 .btn__normal,
+.button.alt#place_order,
 .button__normal {
 	margin-top: 24px;
 	margin-bottom: 24px;
@@ -5869,17 +5881,20 @@ h5,
 }
 
 .btn__normal span,
+.button.alt#place_order span,
 .button__normal span {
 	font-size: 17px;
 }
 
 .btn__normal i,
+.button.alt#place_order i,
 .button__normal i {
 	font-size: 16px;
 	margin-left: 12px;
 }
 
 .btn__normal:hover i,
+.button.alt#place_order:hover i,
 .button__normal:hover i {
 	transform: translateX(0);
 }
@@ -5910,6 +5925,7 @@ h5,
 }
 
 .btn__checkout,
+.button.alt#place_order,
 .button__checkout {
 	font-size: 21px;
 	letter-spacing: 1px;
@@ -6731,7 +6747,8 @@ h3,
 	font-size: 19px;
 }
 
-.cart .btn__checkout {
+.cart .btn__checkout,
+.cart .button.alt#place_order {
 	margin-top: 32px;
 	margin-bottom: 32px;
 }
@@ -7126,7 +7143,8 @@ h3,
 	font-size: 18px;
 }
 
-.cart .btn__checkout {
+.cart .btn__checkout,
+.cart .button.alt#place_order {
 	margin-top: 24px;
 	margin-bottom: 24px;
 }

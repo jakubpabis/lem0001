@@ -427,11 +427,11 @@ function subMenu()
 
 function checkLocal(el)
 {
-	if($(el).val() == 'local_pickup:8' || $(el).prev().val() == 'local_pickup:8') {
-		$('#pickup_location_field').slideDown(300);
-	} else {
-		$('#pickup_location_field').slideUp(300);
-	}
+	// if($(el).val() == 'local_pickup:8' || $(el).prev().val() == 'local_pickup:8') {
+	// 	$('#pickup_location_field').slideDown(300);
+	// } else {
+	// 	$('#pickup_location_field').slideUp(300);
+	// }
 
 }
 
@@ -487,8 +487,8 @@ $(document).ready(function() {
 
 	$( document ).on( 'found_variation', '.variations_form', function ( event, variation) {
 		//console.log(variation);
-		$('.product__single-info').find('> .price').find('span').text((variation.display_price).toLocaleString('en'));
-		$('.product__single-info').find('> .sub-price').find('span').text((variation.display_regular_price).toLocaleString('en'));
+		// $('.product__single-info').find('> .price').find('span').text((variation.display_price).toLocaleString('en'));
+		// $('.product__single-info').find('> .sub-price').find('span').text((variation.display_regular_price).toLocaleString('en'));
 	});
 
 	$('body').on('click', function(event){
