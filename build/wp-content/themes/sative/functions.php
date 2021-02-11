@@ -419,37 +419,37 @@ function woo_custom_ajax_variation_threshold( $qty, $product )
 add_filter( 'woocommerce_ajax_variation_threshold', 'woo_custom_ajax_variation_threshold', 10, 2 );
 
 
-add_filter( 'woocommerce_package_rates', 'hide_shipping_method_based_on_shipping_class', 10, 2 );
-function hide_shipping_method_based_on_shipping_class( $rates, $package )
-{
-    if ( is_admin() && ! defined( 'DOING_AJAX' ) )
-        return;
-
-    // HERE define your shipping class to find
-	$class1 = 'bikes';
-	$class2 = 'bikes-pl';
-
-	$in_cart = false;
-    // HERE define the shipping method to hide
-    // $method_key_id = 'flat_rate:7';
-
-    // Checking in cart items
-    foreach( $package['contents'] as $item ){
-        // If we find the shipping class
-        if( $item['data']->get_shipping_class() == $class1 || $item['data']->get_shipping_class() == $class2 ){
-			$in_cart = true;
-			unset($rates['flat_rate:10']);
-			unset($rates['flat_rate:9']);
-			unset($rates['flat_rate:7']);
-			unset($rates['flat_rate:1']);
-            break; // Stop the loop
-        }
-	}
-	if($in_cart == false) {
-		unset($rates['local_pickup:8']);
-	}
-    return $rates;
-}
+// add_filter( 'woocommerce_package_rates', 'hide_shipping_method_based_on_shipping_class', 10, 2 );
+// function hide_shipping_method_based_on_shipping_class( $rates, $package )
+// {
+//     if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+//         return;
+//
+//     // HERE define your shipping class to find
+// 	$class1 = 'bikes';
+// 	$class2 = 'bikes-pl';
+//
+// 	$in_cart = false;
+//     // HERE define the shipping method to hide
+//     // $method_key_id = 'flat_rate:7';
+//
+//     // Checking in cart items
+//     foreach( $package['contents'] as $item ){
+//         // If we find the shipping class
+//         if( $item['data']->get_shipping_class() == $class1 || $item['data']->get_shipping_class() == $class2 ){
+// 			$in_cart = true;
+// 			unset($rates['flat_rate:10']);
+// 			unset($rates['flat_rate:9']);
+// 			unset($rates['flat_rate:7']);
+// 			unset($rates['flat_rate:1']);
+//             break; // Stop the loop
+//         }
+// 	}
+// 	if($in_cart == false) {
+// 		unset($rates['local_pickup:8']);
+// 	}
+//     return $rates;
+// }
 
 function my_custom_loop_category_title( $category )
 {
