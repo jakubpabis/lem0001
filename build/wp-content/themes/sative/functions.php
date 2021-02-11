@@ -224,9 +224,9 @@ function woocommerce_support()
     add_theme_support( 'woocommerce' );
 }
 // Remove all WooCommerce styles and scripts
-if( !is_checkout() ) {
-	add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
-}
+// if( !is_checkout() ) {
+// 	add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+// }
 
 
 
