@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<hr>
 					<p class="text">
 						Lemasomo Sp. z o.o.<br/>
-						<a href="tel:+48660848261">+48 660 848 261</a><br/>
-						<a href="mailto:office@lemasomo.com">office@lemasomo.com</a>
+						<a href="tel:+48600907050">+48 600 907 050</a><br/>
+						<a href="mailto:paulina@lemasomo.com">paulina@lemasomo.com</a>
 					</p>
 					<div class="socials">
 						<a href="https://www.facebook.com/PinarelloPolska/" target="_blank" rel="noreferrer">
